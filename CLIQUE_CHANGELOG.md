@@ -3,6 +3,7 @@ Clique Wordpress Boilerplate Changelog
 --------------------------------------------------------------
 
 Ver 3.0.0 - Oct 10, 2019
+
 * Migrated the Boilerplate Repo from Duplicator to Bedrock
 * Added in support/control to Composer
 * Added default plugins used to Composer with locked in versions
@@ -12,6 +13,7 @@ Ver 3.0.0 - Oct 10, 2019
 * Added wpackagist and wp-premium to composer
 
 Ver 2.1.1 - June 27, 2019
+
 * Cleaned up package.json per June Dev Meeting
 * Adjusted files in build folder for browser sync when compiling php, js, ands scss/css files.
 * Copied correct .lint files

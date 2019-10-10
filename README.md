@@ -1,4 +1,4 @@
-# [Bedrock](https://roots.io/bedrock/)
+# Clique's WP [Bedrock](https://roots.io/bedrock/) Install
 
 [![Packagist](https://img.shields.io/packagist/v/roots/bedrock.svg?style=flat-square)](https://packagist.org/packages/roots/bedrock)
 [![Build Status](https://img.shields.io/circleci/build/gh/roots/bedrock?style=flat-square)](https://circleci.com/gh/roots/bedrock)
@@ -50,7 +50,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
    ```
 5. Run through the WordPress installer:
     * Through WordPress admin at `https://{site_name}.TLD/wp/wp-admin/`
-    * Through `wp-cli` : `wp core install --url={site_name}.TLD --title= --admin_user=admin --admin_password= --admin_email=
+    * Through `wp-cli` : `wp core install --url={site_name}.TLD --title= --admin_user=admin --admin_password= --admin_email=`
 
 ## Plugins
 

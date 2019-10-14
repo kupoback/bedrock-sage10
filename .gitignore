@@ -6,6 +6,7 @@
 **/node_modules/
 **/vendor/
 **/dist/
+**/*.sql
 
 ## Lock files
 *.lock
@@ -125,6 +126,7 @@ web/app/mu-plugins/*/
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
+!web/wp-config.php
 
 # WordPress
 web/wp
@@ -134,6 +136,7 @@ web/.htaccess
 *.log
 
 # Dotenv
+.env
 .env.*
 !.env.example
 

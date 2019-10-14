@@ -111,7 +111,7 @@
 			"@remove-default"
 		],
 		"test": ["phpcs"],
-		"post-install": [
+		"remove-default": [
 			"rm -rf web/wp/wp-content/themes/*",
 			"rm -rf web/wp/wp-content/plugins/hello.php"
 		],
@@ -119,7 +119,7 @@
 	},
 	"scripts-descriptions": {
 		"post-root-package-install": "Symlink webserver configuration & content directories",
-		"reset-themes": "Removes all the installed default themes",
+		"reset-default": "Removes all the installed default themes",
 		"reset-plugins": "Remove all installed plugins"
 	}
 }

@@ -4,7 +4,6 @@
 
 ## Generic
 **/node_modules/
-**/vendor/
 **/dist/
 **/*.sql
 
@@ -122,7 +121,7 @@ $RECYCLE.BIN/
 web/app/cache/
 web/app/plugins/*
 !web/app/plugins/.gitkeep
-web/app/mu-plugins/*/
+!web/app/mu-plugins/*/
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
@@ -139,9 +138,6 @@ web/.htaccess
 .env
 .env.*
 !.env.example
-
-# Composer
-/vendor
 
 # WP-CLI
 wp-cli.local.yml

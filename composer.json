@@ -16,14 +16,7 @@
       "homepage": "https://github.com/retlehs"
     }
   ],
-  "keywords": [
-    "bedrock",
-    "composer",
-    "roots",
-    "wordpress",
-    "wp",
-    "wp-config"
-  ],
+  "keywords": ["bedrock", "composer", "roots", "wordpress", "wp", "wp-config"],
   "support": {
     "issues": "https://github.com/roots/bedrock/issues",
     "forum": "https://discourse.roots.io/category/bedrock"
@@ -38,7 +31,7 @@
       "package": {
         "name": "wp-premium/gravityforms",
         "type": "wordpress-plugin",
-        "version": "2.4.14",
+        "version": "2.4.15",
         "dist": {
           "url": "https://github.com/wp-premium/gravityforms/archive/master.zip",
           "type": "zip"
@@ -50,7 +43,7 @@
       "package": {
         "name": "wp-premium/advanced-custom-fields-pro",
         "type": "wordpress-plugin",
-        "version": "5.8.5",
+        "version": "5.8.7",
         "dist": {
           "url": "https://github.com/wp-premium/advanced-custom-fields-pro/archive/master.zip",
           "type": "zip"
@@ -59,17 +52,16 @@
     }
   ],
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.2",
     "composer/installers": "^1.7",
     "oscarotero/env": "^1.2.0",
-    "roots/wordpress": "5.2.3",
+    "roots/wordpress": ">=5.3",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "vlucas/phpdotenv": "^3.4.0",
     "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.4",
     "wpackagist-plugin/classic-editor": "^1.5",
     "wpackagist-plugin/cookie-notice": "^1.2",
-    "wpackagist-plugin/duplicator": "^1.3",
     "wpackagist-plugin/gravity-forms-wcag-20-form-fields": "^1.7",
     "wpackagist-plugin/optimus": "^1.6",
     "wpackagist-plugin/redirection": "^4.4",
@@ -121,7 +113,7 @@
     ],
     "remove-default": [
       "rm -rf web/wp/wp-content/themes/*",
-      "rm -rf web/wp/wp-content/plugins/hello.php"
+      "rm -f web/wp/wp-content/plugins/hello.php"
     ],
     "reset-plugins": "rm -rf web/app/plugins"
   },

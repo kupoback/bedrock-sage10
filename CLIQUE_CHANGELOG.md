@@ -2,6 +2,14 @@
 Clique Wordpress Boilerplate Changelog
 --------------------------------------------------------------
 
+Ver 3.1.0 - Nov 14, 2019
+* Updated `composer.json` to use `php -v 7.2`
+* Updated a fix to the `application.php` to temporarily address an issue with the `DB_*` environment data from being exposed by `$_GLOBAL` and `php -i` until Roots addressed [Issue 474](https://github.com/roots/bedrock/issues/474).
+* Updated WordPress version allowance 
+* Ran `composer update` to update plugins, WP core, and vendor folders
+* Updated `.gitignore` to not omit the `mu-plugins` folder, especially if it will be used
+* Updated `.gitignore` to not omit the `vendor` folders, an error which was added in initial release of `v3.0.0`
+
 Ver 3.0.0 - Oct 10, 2019
 
 * Migrated the Boilerplate Repo from Duplicator to Bedrock

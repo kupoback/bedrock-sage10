@@ -3,6 +3,7 @@ Clique Wordpress Boilerplate Changelog
 --------------------------------------------------------------
 
 Ver 3.1.0 - Nov 14, 2019
+
 * Updated `composer.json` to use `php -v 7.2`
 * Updated a fix to the `application.php` to temporarily address an issue with the `DB_*` environment data from being exposed by `$_GLOBAL` and `php -i` until Roots addressed [Issue 474](https://github.com/roots/bedrock/issues/474).
 * Updated WordPress version allowance 

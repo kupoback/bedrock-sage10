@@ -53,27 +53,28 @@
   ],
   "require": {
     "php": ">=7.2",
+	  "cedaro/satispress": "^0.5.0",
     "composer/installers": "^1.7",
     "oscarotero/env": "^1.2.0",
     "roots/wordpress": ">=5.3",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "vlucas/phpdotenv": "^3.4.0",
-    "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.4",
-    "wpackagist-plugin/classic-editor": "^1.5",
-    "wpackagist-plugin/cookie-notice": "^1.2",
-    "wpackagist-plugin/gravity-forms-wcag-20-form-fields": "^1.7",
-    "wpackagist-plugin/optimus": "^1.6",
-    "wpackagist-plugin/redirection": "^4.4",
-    "wpackagist-plugin/rest-api-toolbox": "^1.4",
-    "wpackagist-plugin/safe-svg": "^1.9",
-    "wpackagist-plugin/stream": "^3.4",
-    "wpackagist-plugin/updraftplus": "^1.16",
-    "wpackagist-plugin/w3-total-cache": "^0.10.1",
-    "wpackagist-plugin/wordpress-seo": "^12.2",
-    "wpackagist-plugin/wp-accessibility": "^1.6",
-    "wp-premium/advanced-custom-fields-pro": "^5.8.5",
-    "wp-premium/gravityforms": "^2.4.14"
+    "wpackagist-plugin/all-in-one-wp-security-and-firewall": ">=4.4",
+    "wpackagist-plugin/classic-editor": ">=1.5",
+    "wpackagist-plugin/cookie-notice": ">=1.2",
+    "wpackagist-plugin/gravity-forms-wcag-20-form-fields": ">=1.7",
+    "wpackagist-plugin/optimus": ">=1.6",
+    "wpackagist-plugin/redirection": ">=4.4",
+    "wpackagist-plugin/rest-api-toolbox": ">=1.4",
+    "wpackagist-plugin/safe-svg": ">=1.9",
+    "wpackagist-plugin/stream": ">=3.4",
+    "wpackagist-plugin/updraftplus": ">=1.16",
+    "wpackagist-plugin/w3-total-cache": ">=0.10.1",
+    "wpackagist-plugin/wordpress-seo": ">=12.2",
+    "wpackagist-plugin/wp-accessibility": ">=1.6",
+    "wp-premium/advanced-custom-fields-pro": ">=5.8.5",
+    "wp-premium/gravityforms": ">=2.4.14"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4.2",
@@ -101,21 +102,21 @@
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
-    "post-update-cmd": [
-      "@remove-default"
-    ],
-    "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\"",
-      "@remove-default"
-    ],
-    "test": [
-      "phpcs"
-    ],
-    "remove-default": [
-      "rm -rf web/wp/wp-content/themes/*",
-      "rm -f web/wp/wp-content/plugins/hello.php"
-    ],
-    "reset-plugins": "rm -rf web/app/plugins"
+	  "post-update-cmd": ["@remove-default"],
+	  "post-root-package-install": [
+		  "php -r \"copy('.env.example', '.env');\"",
+		  "@remove-default"
+	  ],
+	  "test": ["phpcs"],
+	  "remove-default": [
+		  "rm -rf web/app/themes/twenty*",
+		  "rm -rf web/wp/wp-content/themes/*",
+		  "rm -f web/wp/wp-content/plugins/hello.php"
+	  ],
+	  "reset-plugins": "rm -rf web/app/plugins",
+	  "reset-wp-core": "rm -rf web/wp",
+	  "reset-db": "cd web && wp db drop --yes && wp db create && wp db import mysql.sql && cd ../",
+	  "db-save": "cd web && wp db export mysql.sql && cd ../"
   },
   "scripts-descriptions": {
     "post-root-package-install": "Symlink webserver configuration & content directories",

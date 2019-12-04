@@ -2,6 +2,13 @@
 Clique Wordpress Boilerplate Changelog
 --------------------------------------------------------------
 
+Ver 3.1.3 - Dec 4, 2019
+
+* Updated `composer.json` to include SatisPress premium plugin management
+* Updated Readme with instructions on how to use SatisPress
+* Updated plugin versions
+* Updated WordPress to `5.3`
+
 Ver 3.1.0 - Nov 14, 2019
 
 * Updated `composer.json` to use `php -v 7.2`

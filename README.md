@@ -69,6 +69,7 @@ Plugins are all now manages through Composer. You can still install plugins via 
 * Redirection
 * REST API Toolbox
 * Safe SVG
+* SatisPress
 * Stream
 * Updraft Plus
 * W3 Total Cache
@@ -76,6 +77,7 @@ Plugins are all now manages through Composer. You can still install plugins via 
 * Yoast SEO
 
 ### Installing Plugins
+
 To install a plugin, in terminal type:
 ```sh
 $ composer require <namespace>/<package>
@@ -114,9 +116,73 @@ In addition to requiring the package, you will need to add the following to the 
 }
 ```
 
+#### Premium Plugins Unavailable from WP-Premium's GitHub Using the SatisPress Plugin
+
+Certain plugins will be unavailable from the github repo, like `SearchWP`. To help manage this, there is an additional plugin added to the `composer.json` file called [SatisPress](https://github.com/cedaro/satispress). This should be enabled on the dev site, and the premium plugins should be installed there as well, which will allow them to pulled down locally.
+
+##### Setting Up SatisPress:
+
+* Activate the SatisPress plugin from the admin panel
+* Head to Settings > SatisPress and copy the array item at the top of the page and paste it within the `repositories` array.
+
+**Example**
+
+```json
+{
+	"repositories": [
+        // ... Other required repo array items
+		{
+			"type": "composer",
+			"url": "https://example.com/satispress/"
+		}
+	]
+}
+``` 
+
+* Next create an API key under the **Access** panel.
+    * An example would be one called `dev` for the dev environment
+
+![SatisPress Admin Panel](https://i.ibb.co/1JSsPQw/satispress-access.png)
+
+* Copy the API key generated here, and locally create a file called `auth.json` and copy the following into the file
+
+```json
+{
+	"http-basic": {
+		"example.com": {
+			"username": "{API_KEY}}",
+			"password": "{PASSWORD}"
+		}
+	}
+}
+```
+
+* Change `example.com` to the URL of the domain in which you activated SatisPress omitting the `https://` from the URL, replace `{API_KEY}` with the key generated from step 2, and unless you changed the password in the admin panel, the `{PASSWORD}` is `satispress`.
+* After making these changes locally, commit this file and pull them down onto the server. This file must exist on the server before the next steps will work.
+
+##### Activating Plugins for use with SatisPress
+
+Under the Plugins page in the admin, you will now see checkboxes to the right of each plugin. Clicking a checkbox will trigger an event that will add this plugin to SatisPress' cache folder allowing those with the correct credentials in the `auth.json` file to download these plugins. This will also hold true for anytime a plugin is update, the relative cached folder will update with the latest version.
+
+![Plugins with Checkboxes](https://i.ibb.co/LxqzLHw/Screen-Shot-2019-12-04-at-11-02-37-AM.png)
+
+Going to Settings > SatisPress > Packages you will see a listing of the plugins you've added to the cache folder. Copy the package name and run the `composer require` command to add them to the `composer.json` file.
+
+Example: `composer require satispress/advanced-access-manager`
+
+![Packages added to SatisPress Cache](https://i.ibb.co/7S4nb6X/satispress-packages.png)
+
+## Multi-Site Support
+
+Bedrock by default supports WordPress' multi-site option, however due to possible difficulties with the admin slugs, there is a mu-plugin you must add to combat this issue. To read more about it, visit this [Bedrock writeup](https://roots.io/bedrock/docs/installing-bedrock/#multisite).
+
+To add the mu-plugin, run the following: `composer require roots/multisite-url-fixer`
+
 ## Documentation
 
-Bedrock documentation is available at [https://roots.io/bedrock/docs/](https://roots.io/bedrock/docs/).
+Bedrock documentation is available at [here](https://roots.io/bedrock/docs/).
+
+SatisPress documentation is available at [here](https://github.com/cedaro/satispress/blob/develop/docs/index.md).
 
 ## Community
 

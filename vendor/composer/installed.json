@@ -1,5 +1,119 @@
 [
     {
+        "name": "cedaro/satispress",
+        "version": "v0.5.0",
+        "version_normalized": "0.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cedaro/satispress.git",
+            "reference": "491710a56e4140e5654fd68e400940b4fb589110"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cedaro/satispress/zipball/491710a56e4140e5654fd68e400940b4fb589110",
+            "reference": "491710a56e4140e5654fd68e400940b4fb589110",
+            "shasum": ""
+        },
+        "require": {
+            "cedaro/wp-plugin": "^0.4.0",
+            "composer/installers": "^1.0",
+            "composer/semver": "^1.4",
+            "php": "^7",
+            "pimple/pimple": "^3.2",
+            "psr/container": "^1.0",
+            "psr/log": "^1.0"
+        },
+        "require-dev": {
+            "brain/monkey": "^2.2",
+            "cedaro/wp-test-suite": "dev-develop",
+            "dealerdirect/phpcodesniffer-composer-installer": "^0.5",
+            "phpcompatibility/phpcompatibility-wp": "^2",
+            "phpunit/phpunit": "^7.5",
+            "roave/security-advisories": "dev-master",
+            "squizlabs/php_codesniffer": "^3.3",
+            "wordpress/wordpress": "^5.1",
+            "wp-coding-standards/wpcs": "^1"
+        },
+        "time": "2019-09-25T19:36:25+00:00",
+        "type": "wordpress-plugin",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "SatisPress\\": "src/"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Brady Vercher",
+                "email": "brady@blazersix.com",
+                "homepage": "https://www.cedaro.com/"
+            },
+            {
+                "name": "Gary Jones",
+                "homepage": "https://gamajo.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "Generate a Composer repository from installed WordPress plugins and themes.",
+        "homepage": "https://github.com/cedaro/satispress",
+        "keywords": [
+            "composer",
+            "satis",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "cedaro/wp-plugin",
+        "version": "v0.4.0",
+        "version_normalized": "0.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cedaro/wp-plugin.git",
+            "reference": "c53f7f5809e95f0a08db1d31aec7f069d53eabd5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cedaro/wp-plugin/zipball/c53f7f5809e95f0a08db1d31aec7f069d53eabd5",
+            "reference": "c53f7f5809e95f0a08db1d31aec7f069d53eabd5",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "psr/container": "^1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "*@stable"
+        },
+        "time": "2018-01-12T20:25:00+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Cedaro\\WP\\Plugin\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Brady Vercher",
+                "email": "brady@blazersix.com",
+                "homepage": "https://www.cedaro.com/"
+            }
+        ],
+        "description": "A base WordPress plugin library.",
+        "homepage": "https://github.com/cedaro/wp-plugin"
+    },
+    {
         "name": "composer/installers",
         "version": "v1.7.0",
         "version_normalized": "1.7.0.0",
@@ -124,6 +238,70 @@
         ]
     },
     {
+        "name": "composer/semver",
+        "version": "1.5.0",
+        "version_normalized": "1.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/composer/semver.git",
+            "reference": "46d9139568ccb8d9e7cdd4539cab7347568a5e2e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/composer/semver/zipball/46d9139568ccb8d9e7cdd4539cab7347568a5e2e",
+            "reference": "46d9139568ccb8d9e7cdd4539cab7347568a5e2e",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.3.2 || ^7.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.5 || ^5.0.5",
+            "phpunit/phpunit-mock-objects": "2.3.0 || ^3.0"
+        },
+        "time": "2019-03-19T17:25:45+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Composer\\Semver\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nils Adermann",
+                "email": "naderman@naderman.de",
+                "homepage": "http://www.naderman.de"
+            },
+            {
+                "name": "Jordi Boggiano",
+                "email": "j.boggiano@seld.be",
+                "homepage": "http://seld.be"
+            },
+            {
+                "name": "Rob Bast",
+                "email": "rob.bast@gmail.com",
+                "homepage": "http://robbast.nl"
+            }
+        ],
+        "description": "Semver library that offers utilities, version constraint parsing and validation.",
+        "keywords": [
+            "semantic",
+            "semver",
+            "validation",
+            "versioning"
+        ]
+    },
+    {
         "name": "oscarotero/env",
         "version": "v1.2.0",
         "version_normalized": "1.2.0.0",
@@ -170,36 +348,36 @@
     },
     {
         "name": "phpoption/phpoption",
-        "version": "1.5.2",
-        "version_normalized": "1.5.2.0",
+        "version": "1.6.0",
+        "version_normalized": "1.6.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/schmittjoh/php-option.git",
-            "reference": "2ba2586380f8d2b44ad1b9feb61c371020b27793"
+            "reference": "f4e7a6a1382183412246f0d361078c29fb85089e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/2ba2586380f8d2b44ad1b9feb61c371020b27793",
-            "reference": "2ba2586380f8d2b44ad1b9feb61c371020b27793",
+            "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/f4e7a6a1382183412246f0d361078c29fb85089e",
+            "reference": "f4e7a6a1382183412246f0d361078c29fb85089e",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.0"
+            "php": "^5.5.9 || ^7.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "^4.7|^5.0"
+            "phpunit/phpunit": "^4.8.35 || ^5.0 || ^6.0 || ^7.0"
         },
-        "time": "2019-11-06T22:27:00+00:00",
+        "time": "2019-11-30T20:20:49+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.5-dev"
+                "dev-master": "1.6-dev"
             }
         },
         "installation-source": "dist",
         "autoload": {
-            "psr-0": {
-                "PhpOption\\": "src/"
+            "psr-4": {
+                "PhpOption\\": "src/PhpOption/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -210,6 +388,10 @@
             {
                 "name": "Johannes M. Schmitt",
                 "email": "schmittjoh@gmail.com"
+            },
+            {
+                "name": "Graham Campbell",
+                "email": "graham@alt-three.com"
             }
         ],
         "description": "Option Type for PHP",
@@ -221,18 +403,170 @@
         ]
     },
     {
+        "name": "pimple/pimple",
+        "version": "v3.2.3",
+        "version_normalized": "3.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/silexphp/Pimple.git",
+            "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/silexphp/Pimple/zipball/9e403941ef9d65d20cba7d54e29fe906db42cf32",
+            "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "psr/container": "^1.0"
+        },
+        "require-dev": {
+            "symfony/phpunit-bridge": "^3.2"
+        },
+        "time": "2018-01-21T07:42:36+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Pimple": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Pimple, a simple Dependency Injection Container",
+        "homepage": "http://pimple.sensiolabs.org",
+        "keywords": [
+            "container",
+            "dependency injection"
+        ]
+    },
+    {
+        "name": "psr/container",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/container.git",
+            "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+            "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2017-02-14T16:28:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Container\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common Container Interface (PHP FIG PSR-11)",
+        "homepage": "https://github.com/php-fig/container",
+        "keywords": [
+            "PSR-11",
+            "container",
+            "container-interface",
+            "container-interop",
+            "psr"
+        ]
+    },
+    {
+        "name": "psr/log",
+        "version": "1.1.2",
+        "version_normalized": "1.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
+            "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2019-11-01T11:05:21+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Log\\": "Psr/Log/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "homepage": "https://github.com/php-fig/log",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
+        ]
+    },
+    {
         "name": "roave/security-advisories",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/Roave/SecurityAdvisories.git",
-            "reference": "e3e6456e753326a096303e96b0f759fe789e63e8"
+            "reference": "e4ee2c8e4ccd908debc64069faf023c684a76760"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/e3e6456e753326a096303e96b0f759fe789e63e8",
-            "reference": "e3e6456e753326a096303e96b0f759fe789e63e8",
+            "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/e4ee2c8e4ccd908debc64069faf023c684a76760",
+            "reference": "e4ee2c8e4ccd908debc64069faf023c684a76760",
             "shasum": ""
         },
         "conflict": {
@@ -300,7 +634,7 @@
             "league/commonmark": "<0.18.3",
             "magento/magento1ce": "<1.9.4.3",
             "magento/magento1ee": ">=1,<1.14.4.3",
-            "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.3",
+            "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.2",
             "monolog/monolog": ">=1.8,<1.12",
             "namshi/jose": "<2.2",
             "onelogin/php-saml": "<2.10.4",
@@ -335,7 +669,7 @@
             "silverstripe/userforms": "<3",
             "simple-updates/phpwhois": "<=1",
             "simplesamlphp/saml2": "<1.10.6|>=2,<2.3.8|>=3,<3.1.4",
-            "simplesamlphp/simplesamlphp": "<1.17.3",
+            "simplesamlphp/simplesamlphp": "<1.17.8",
             "simplesamlphp/simplesamlphp-module-infocard": "<1.0.1",
             "slim/slim": "<2.6",
             "smarty/smarty": "<3.1.33",
@@ -369,7 +703,7 @@
             "symfony/security-guard": ">=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
             "symfony/security-http": ">=2.3,<2.3.41|>=2.4,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.2.12|>=4.3,<4.3.8",
             "symfony/serializer": ">=2,<2.0.11",
-            "symfony/symfony": ">=2,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
+            "symfony/symfony": ">=2,<2.8.52|>=3,<3.4.35|>=4,<4.2.12|>=4.3,<4.3.8",
             "symfony/translation": ">=2,<2.0.17",
             "symfony/validator": ">=2,<2.0.24|>=2.1,<2.1.12|>=2.2,<2.2.5|>=2.3,<2.3.3",
             "symfony/var-exporter": ">=4.2,<4.2.12|>=4.3,<4.3.8",
@@ -424,7 +758,7 @@
             "zfcampus/zf-apigility-doctrine": ">=1,<1.0.3",
             "zfr/zfr-oauth2-server-module": "<0.1.2"
         },
-        "time": "2019-11-13T10:25:51+00:00",
+        "time": "2019-12-02T13:03:15+00:00",
         "type": "metapackage",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -641,17 +975,17 @@
     },
     {
         "name": "squizlabs/php_codesniffer",
-        "version": "3.5.2",
-        "version_normalized": "3.5.2.0",
+        "version": "3.5.3",
+        "version_normalized": "3.5.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-            "reference": "65b12cdeaaa6cd276d4c3033a95b9b88b12701e7"
+            "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/65b12cdeaaa6cd276d4c3033a95b9b88b12701e7",
-            "reference": "65b12cdeaaa6cd276d4c3033a95b9b88b12701e7",
+            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
+            "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
             "shasum": ""
         },
         "require": {
@@ -663,7 +997,7 @@
         "require-dev": {
             "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
         },
-        "time": "2019-10-28T04:36:32+00:00",
+        "time": "2019-12-04T04:46:47+00:00",
         "bin": [
             "bin/phpcs",
             "bin/phpcbf"
@@ -694,17 +1028,17 @@
     },
     {
         "name": "symfony/polyfill-ctype",
-        "version": "v1.12.0",
-        "version_normalized": "1.12.0.0",
+        "version": "v1.13.1",
+        "version_normalized": "1.13.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-ctype.git",
-            "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
+            "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/550ebaac289296ce228a706d0867afc34687e3f4",
-            "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
+            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
+            "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
             "shasum": ""
         },
         "require": {
@@ -713,11 +1047,11 @@
         "suggest": {
             "ext-ctype": "For best performance"
         },
-        "time": "2019-08-06T08:03:45+00:00",
+        "time": "2019-11-27T13:56:44+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.12-dev"
+                "dev-master": "1.13-dev"
             }
         },
         "installation-source": "dist",
@@ -844,7 +1178,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.zip?timestamp=1570534130"
+            "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.zip?timestamp=1571882201"
         },
         "require": {
             "composer/installers": "~1.0"
@@ -935,16 +1269,16 @@
     },
     {
         "name": "wpackagist-plugin/redirection",
-        "version": "4.4.2",
-        "version_normalized": "4.4.2.0",
+        "version": "4.5.1",
+        "version_normalized": "4.5.1.0",
         "source": {
             "type": "svn",
             "url": "https://plugins.svn.wordpress.org/redirection/",
-            "reference": "tags/4.4.2"
+            "reference": "tags/4.5.1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://downloads.wordpress.org/plugin/redirection.4.4.2.zip"
+            "url": "https://downloads.wordpress.org/plugin/redirection.4.5.1.zip"
         },
         "require": {
             "composer/installers": "~1.0"
@@ -1035,16 +1369,16 @@
     },
     {
         "name": "wpackagist-plugin/w3-total-cache",
-        "version": "0.10.2",
-        "version_normalized": "0.10.2.0",
+        "version": "0.11.0",
+        "version_normalized": "0.11.0.0",
         "source": {
             "type": "svn",
             "url": "https://plugins.svn.wordpress.org/w3-total-cache/",
-            "reference": "tags/0.10.2"
+            "reference": "tags/0.11.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://downloads.wordpress.org/plugin/w3-total-cache.0.10.2.zip"
+            "url": "https://downloads.wordpress.org/plugin/w3-total-cache.0.11.0.zip"
         },
         "require": {
             "composer/installers": "~1.0"
@@ -1055,16 +1389,16 @@
     },
     {
         "name": "wpackagist-plugin/wordpress-seo",
-        "version": "12.5",
-        "version_normalized": "12.5.0.0",
+        "version": "12.6.2",
+        "version_normalized": "12.6.2.0",
         "source": {
             "type": "svn",
             "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-            "reference": "tags/12.5"
+            "reference": "tags/12.6.2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://downloads.wordpress.org/plugin/wordpress-seo.12.5.zip"
+            "url": "https://downloads.wordpress.org/plugin/wordpress-seo.12.6.2.zip"
         },
         "require": {
             "composer/installers": "~1.0"

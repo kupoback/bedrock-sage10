@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src'),
+    'Pimple' => array($vendorDir . '/pimple/pimple/src'),
     'Env' => array($vendorDir . '/oscarotero/env/src'),
 );

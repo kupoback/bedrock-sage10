@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '320cde22f66dd4f5d3fd621d3e88b98f' => $vendorDir . '/symfony/polyfill-ctype/bootstrap.php',
+    '90d3757d16285d35276a940c81f3a295' => $baseDir . '/web/app/plugins/satispress/src/functions.php',
     '841f98c5d948ce534a6f87abe5b50614' => $vendorDir . '/roots/wp-password-bcrypt/wp-password-bcrypt.php',
 );

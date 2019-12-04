@@ -7,8 +7,14 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
+    'SatisPress\\' => array($baseDir . '/web/app/plugins/satispress/src'),
     'Roots\\WPConfig\\' => array($vendorDir . '/roots/wp-config/src'),
     'Roots\\Composer\\' => array($vendorDir . '/roots/wordpress-core-installer/src'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
+    'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
+    'Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
+    'Cedaro\\WP\\Plugin\\' => array($vendorDir . '/cedaro/wp-plugin/src'),
 );

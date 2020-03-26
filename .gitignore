@@ -119,9 +119,10 @@ $RECYCLE.BIN/
 
 ## WordPress
 web/app/cache/
+!web/app/mu-plugins/*/
 web/app/plugins/*
 !web/app/plugins/.gitkeep
-!web/app/mu-plugins/*/
+web/app/themes/**/vendor
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
@@ -132,7 +133,7 @@ web/wp
 web/.htaccess
 
 # Logs
-*.log
+**/*.log
 
 # Dotenv
 .env
@@ -141,6 +142,9 @@ web/.htaccess
 
 # WP-CLI
 wp-cli.local.yml
+
+# Bedrock
+vendor
 
 ### Laravel ###x
 npm-debug.log

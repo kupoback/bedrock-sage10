@@ -24,17 +24,13 @@ Env::init();
 /**
  * Use Dotenv to set required environment variables and load .env file in root
  */
-$dotenv = Dotenv\Dotenv::create($root_dir, null, new Dotenv\Environment\DotenvFactory(
-	[
-		new Dotenv\Environment\Adapter\PutenvAdapter()
-	])
-);
+$dotenv = Dotenv\Dotenv::createImmutable($root_dir);
 if (file_exists($root_dir . '/.env')) {
-	$dotenv->load();
-	$dotenv->required(['WP_HOME', 'WP_SITEURL']);
-	if (!env('DATABASE_URL')) {
-		$dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
-	}
+    $dotenv->load();
+    $dotenv->required(['WP_HOME', 'WP_SITEURL']);
+    if (!env('DATABASE_URL')) {
+        $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
+    }
 }
 
 /**
@@ -101,13 +97,16 @@ Config::define('DISALLOW_FILE_MODS', true);
 /**
  * Define post revisions and autosave interval
  */
-Config::define('WP_POST_REVISIONS', 0);
-Config::define('AUTOSAVE_INTERVAL', 300);
+if (env('WP_ENV') === 'development') {
+	Config::define('WP_POST_REVISIONS', 0);
+	Config::define('AUTOSAVE_INTERVAL', 300);
+}
 
 /**
  * Debugging Settings
  */
 Config::define('WP_DEBUG_DISPLAY', false);
+Config::define('WP_DEBUG_LOG', env('WP_DEBUG_LOG') ?? false);
 Config::define('SCRIPT_DEBUG', false);
 ini_set('display_errors', '0');
 
@@ -123,6 +122,13 @@ $env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
 
 if (file_exists($env_config)) {
 	require_once $env_config;
+}
+
+/**
+ * Allows for xdebug_disable setting
+ */
+if ( function_exists( 'xdebug_disable' ) ) {
+	xdebug_disable();
 }
 
 Config::apply();

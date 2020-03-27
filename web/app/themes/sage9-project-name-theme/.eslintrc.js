@@ -10,6 +10,9 @@ module.exports = {
     "browser": true,
     "jquery": true
   },
+    'extends': [
+        'plugin:vue/base'
+    ],
   "parserOptions": {
     "ecmaFeatures": {
       "globalReturn": true,

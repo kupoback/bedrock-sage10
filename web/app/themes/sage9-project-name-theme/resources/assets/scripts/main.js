@@ -10,6 +10,9 @@ import home from './routes/home'; // Used for front-page.blade.php
 // import blog from './routes/blog'; // Used for home.blade.php
 import pageTemplateTemplateAbout from './routes/about';
 
+/** Vue Components to import **/
+const VueElms = require('./vue/vue.js');
+
 /**
  * Populate Router instance with DOM routes
  * @type {Router} routes - An instance of our router
@@ -26,4 +29,7 @@ const routes = new Router({
 });
 
 /** Load Events */
-jQuery(document).ready(() => routes.loadEvents());
+jQuery(document).ready(() => {
+    routes.loadEvents();
+    VueElms;
+});

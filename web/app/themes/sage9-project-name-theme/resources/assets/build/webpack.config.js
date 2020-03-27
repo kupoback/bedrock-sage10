@@ -57,6 +57,12 @@ let webpackConfig = {
         exclude: [/node_modules(?![/|\\](bootstrap|foundation-sites))/],
         use: [
           { loader: "cache" },
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          },
           { loader: "buble", options: { objectAssign: "Object.assign" } }
         ]
       },
@@ -186,12 +192,6 @@ let webpackConfig = {
       test: /\.js$/,
       options: {
         eslint: { failOnWarning: false, failOnError: true }
-      }
-    }),
-    new UglifyJSPlugin({
-      test: /\.js$/,
-      output: {
-        "max_line_len": false
       }
     }),
     new StyleLintPlugin({

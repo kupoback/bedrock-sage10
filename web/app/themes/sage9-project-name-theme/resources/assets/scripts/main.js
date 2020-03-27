@@ -1,12 +1,13 @@
 /** import external dependencies */
 import $ from 'jquery/dist/jquery.js';
 import "waypoints/lib/jquery.waypoints.min.js";
-import Swiper from 'swiper/dist/js/swiper.js';
+// import Swiper from 'swiper';
 
 /** import local dependencies */
 import Router from './util/Router';
 import common from './routes/common';
-import pageTemplateTemplateHome from './routes/home';
+import home from './routes/home'; // Used for front-page.blade.php
+// import blog from './routes/blog'; // Used for home.blade.php
 import pageTemplateTemplateAbout from './routes/about';
 
 /**
@@ -17,7 +18,10 @@ const routes = new Router({
 	/** All pages */
 	common,
 	/** Home page */
-	pageTemplateTemplateHome,
+	home,
+	/** Posts Archive */
+	// blog,
+	/** Custom Page Templates */
 	pageTemplateTemplateAbout,
 });
 

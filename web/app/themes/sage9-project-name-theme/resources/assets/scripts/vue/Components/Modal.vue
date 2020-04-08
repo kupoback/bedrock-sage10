@@ -47,7 +47,7 @@
 <style scoped lang="scss">
 	.modal-mask {
 		h3 {
-			color: blue;
+			color: green;
 			display: flex;
 		}
 		.modal-body {

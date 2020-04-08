@@ -9,7 +9,7 @@ const CopyGlobsPlugin = require("copy-globs-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const UglifyJSPlugin = require("uglify-js-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const { VueLoaderPlugin } = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader');
 const {ES6PromisePlugin} = require("es6-promise");
 
 const desire = require("./util/desire");
@@ -72,9 +72,8 @@ let webpackConfig = {
                 exclude: config.paths.assets,
                 use: [
                     {loader: 'vue-style-loader'},
+                    {loader: 'style-loader'},
                     {loader: 'css-loader'},
-                    {loader: "css", options: {sourceMap: config.enabled.sourceMaps}},
-                    {loader: "postcss", options: {config: {path: __dirname, ctx: config}, sourceMap: config.enabled.sourceMaps}}
                 ],
             },
             {

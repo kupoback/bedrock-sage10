@@ -11,7 +11,7 @@ Vue.use(mediaQueries);
 
 Vue.config.productionTip = false;
 
-if ($('#modal-cnt').length) {
+if (document.getElementById("modal-cnt") !== null) {
     const ModalWindow = Vue.component("modal", require('./Components/Modal.vue').default);
     const modalElm = new Vue({
         el: "#modal-cnt",

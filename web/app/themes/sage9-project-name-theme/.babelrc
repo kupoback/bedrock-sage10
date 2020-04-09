@@ -10,7 +10,8 @@
 						"> 1%",
 						"last 2 versions",
 						"not ie <= 8"
-					]
+					],
+					"ie": "11"
 				},
 				"useBuiltIns": "entry"
 			}

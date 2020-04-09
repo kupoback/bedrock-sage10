@@ -10,8 +10,9 @@ import home from './routes/home'; // Used for front-page.blade.php
 // import blog from './routes/blog'; // Used for home.blade.php
 import pageTemplateTemplateAbout from './routes/about';
 
-/** Vue Components to import **/
+/** Vue Components to import, and declare **/
 const VueElms = require('./vue/vue.js');
+VueElms;
 
 /**
  * Populate Router instance with DOM routes
@@ -28,8 +29,23 @@ const routes = new Router({
 	pageTemplateTemplateAbout,
 });
 
+/**
+ * Polyfill Corrections useful for Vue
+ */
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function(callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
+if (typeof NodeList.prototype.forEach !== 'function')  {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
 /** Load Events */
-jQuery(document).ready(() => {
-    routes.loadEvents();
-    VueElms;
-});
+jQuery(document).ready( routes.loadEvents() );

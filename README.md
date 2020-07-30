@@ -54,7 +54,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 
 ## Plugins
 
-Plugins are all now manages through Composer. You can still install plugins via the `wp-admin`, but it is advised to install them using Composer. There are two default methods of installing plugins, one for free plugins or ones found in the WordPress repository, and the other is for premium plugins NOT found in the WordPress repository.
+Plugins are all now managed through Composer. You can still install plugins via the `wp-admin`, but it is advised to install them using Composer. There are two default methods of installing plugins, one for free plugins or ones found in the WordPress repository, and the other is for premium plugins NOT found in the WordPress repository.
 
 #### Default Plugins
 
@@ -69,10 +69,10 @@ Plugins are all now manages through Composer. You can still install plugins via 
 * Redirection
 * REST API Toolbox
 * Safe SVG
-* SatisPress
 * Stream
-* Updraft Plus
+* Updraft Plus Pro
 * W3 Total Cache
+* WordFence
 * WP Accessibility
 * Yoast SEO
 
@@ -92,75 +92,9 @@ Ex: Adding Yoast `composer require wpackagist-plugin/wordpress-seo`
 
 #### Premium Plugins
 
-To install a premium plugin, to make things easier, we have included the [WP Premium](https://github.com/wp-premium/) GitHub repository to Composer. The namespace used for this is `wp-premium`. Note that not all premium plugins are included here, so please look at the repo to find your plugin. Otherwise, if it's not there, please reach out for help.
+Certain plugins will be unavailable from the github repo, like `SearchWP`. To help manage this, there is a website created called [Bedrock Plugin](https://prod.bedrock.cliquedomains.com/), which will be the home to any Premium Plugins we use on sites. ACF Pro, Gravity Forms and UpdraftPlus Pro are already uploaded here, and made available for access on new Bedrock sites. They are also defined in the `composer.json` to update to the latest **minor** version of the plugin. 
 
-In addition to requiring the package, you will need to add the following to the `repositories` block in the `composer.json` file. Please change `<package>` and `<version>` to the name of the plugin's slug and the version you wish to install.
-
-```json
-{
-    "type": "package",
-    "package": {
-        "name": "wp-premium/<package>",
-        "type": "wordpress-plugin",
-        "version": "<version",
-        "dist": {
-            "url": "https://github.com/wp-premium/<package>/archive/master.zip",
-            "type": "zip"
-        }
-    }
-}
-...
-"require": {
-    ...
-    "wpackagist-plugin/<package>": "^<version>",
-}
-```
-
-#### Premium Plugins Unavailable from WP-Premium's GitHub Using the SatisPress Plugin
-
-Certain plugins will be unavailable from the github repo, like `SearchWP`. To help manage this, there is an additional plugin added to the `composer.json` file called [SatisPress](https://github.com/cedaro/satispress). This should be enabled on the dev site, and the premium plugins should be installed there as well, which will allow them to pulled down locally.
-
-##### Setting Up SatisPress:
-
-* Activate the SatisPress plugin from the admin panel
-* Head to Settings > SatisPress and copy the array item at the top of the page and paste it within the `repositories` array.
-
-**Example**
-
-```json
-{
-	"repositories": [
-        // ... Other required repo array items
-		{
-			"type": "composer",
-			"url": "https://example.com/satispress/"
-		}
-	]
-}
-``` 
-
-* Next create an API key under the **Access** panel.
-    * An example would be one called `dev` for the dev environment
-
-![SatisPress Admin Panel](https://i.ibb.co/1JSsPQw/satispress-access.png)
-
-* Copy the API key generated here, and locally create a file called `auth.json` and copy the following into the file
-
-```json
-{
-	"http-basic": {
-		"example.com": {
-			"username": "{API_KEY}}",
-			"password": "{PASSWORD}"
-		}
-	}
-}
-```
-
-* Change `example.com` to the URL of the domain in which you activated SatisPress omitting the `https://` from the URL, replace `{API_KEY}` with the key generated from step 2, and unless you changed the password in the admin panel, the `{PASSWORD}` is `satispress`.
-* After making these changes locally, commit this file and pull them down onto the server. This file must exist on the server before the next steps will work.
-
-##### Activating Plugins for use with SatisPress
+##### Making a plugin available via SatisPress:
 
 Under the Plugins page in the admin, you will now see checkboxes to the right of each plugin. Clicking a checkbox will trigger an event that will add this plugin to SatisPress' cache folder allowing those with the correct credentials in the `auth.json` file to download these plugins. This will also hold true for anytime a plugin is update, the relative cached folder will update with the latest version.
 
@@ -168,7 +102,7 @@ Under the Plugins page in the admin, you will now see checkboxes to the right of
 
 Going to Settings > SatisPress > Packages you will see a listing of the plugins you've added to the cache folder. Copy the package name and run the `composer require` command to add them to the `composer.json` file.
 
-Example: `composer require satispress/advanced-access-manager`
+Example: `composer require clique-bedrock/advanced-access-manager`
 
 ![Packages added to SatisPress Cache](https://i.ibb.co/7S4nb6X/satispress-packages.png)
 

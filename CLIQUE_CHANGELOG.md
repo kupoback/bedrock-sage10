@@ -2,6 +2,10 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.3.1 - Aug 5th, 2020
+
+- Due to issue resolved by Justin, dropped `illuminate/support` back to `5.6.*`
+
 ## Ver 3.3.0 - July 30th, 2020
 
 ### Global Updates

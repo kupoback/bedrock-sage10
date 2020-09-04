@@ -6,6 +6,14 @@ use Sober\Controller\Controller;
 
 class App extends Controller
 {
+	
+	/**
+	 * ACF Field Values
+	 *
+	 * @var string[]
+	 */
+	protected $acf = [];
+	
     public function siteName()
     {
         return get_bloginfo('name');

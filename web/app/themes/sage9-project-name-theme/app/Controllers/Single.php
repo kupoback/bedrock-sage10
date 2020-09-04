@@ -3,8 +3,9 @@
 namespace App\Controllers;
 
 use Sober\Controller\Controller;
+use function App\grab_excerpt;
 
-class FrontPage extends Controller
+class Single extends Controller
 {
 	
 	/**

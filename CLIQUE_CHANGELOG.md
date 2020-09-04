@@ -2,6 +2,11 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.3.2 - Sept 4th, 2020
+
+- Added 404 Controller
+- Added `protected $acf` array var to Controllers
+
 ## Ver 3.3.1 - Aug 5th, 2020
 
 - Due to issue resolved by Justin, dropped `illuminate/support` back to `5.6.*`

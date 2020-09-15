@@ -9,28 +9,32 @@
  */
 
 use Roots\WPConfig\Config;
-
-/** @var string Directory containing all of the site's files */
-$root_dir = dirname(__DIR__);
-
-/** @var string Document Root */
-$webroot_dir = $root_dir . '/web';
+use function Env\env;
 
 /**
- * Expose global env() function from oscarotero/env
+ * Directory containing all of the site's files
+ *
+ * @var string
  */
-Env::init();
+$root_dir = dirname(__DIR__);
+
+/**
+ * Document Root
+ *
+ * @var string
+ */
+$webroot_dir = $root_dir . '/web';
 
 /**
  * Use Dotenv to set required environment variables and load .env file in root
  */
 $dotenv = Dotenv\Dotenv::createImmutable($root_dir);
 if (file_exists($root_dir . '/.env')) {
-    $dotenv->load();
-    $dotenv->required(['WP_HOME', 'WP_SITEURL']);
-    if (!env('DATABASE_URL')) {
-        $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
-    }
+	$dotenv->load();
+	$dotenv->required(['WP_HOME', 'WP_SITEURL']);
+	if (!env('DATABASE_URL')) {
+		$dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
+	}
 }
 
 /**
@@ -102,6 +106,7 @@ if (env('WP_ENV') === 'development') {
 	Config::define('AUTOSAVE_INTERVAL', 300);
 }
 
+
 /**
  * Debugging Settings
  */
@@ -122,13 +127,6 @@ $env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
 
 if (file_exists($env_config)) {
 	require_once $env_config;
-}
-
-/**
- * Allows for xdebug_disable setting
- */
-if ( function_exists( 'xdebug_disable' ) ) {
-	xdebug_disable();
 }
 
 Config::apply();

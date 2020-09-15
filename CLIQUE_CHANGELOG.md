@@ -2,6 +2,24 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.4.0 - Sept 15th, 2020
+
+- Updated Bedrock instance to the latest version of [github repo 1.14.2](https://github.com/roots/bedrock/releases/tag/1.14.2)
+  * Composer package versions
+  * `web/app/mu-plugins/bedrock-autoloader.php` was broken, throwing errors
+  * `config/application.php` with db creds exposed to `$_SERVER` fixed
+  * Added `.editorconfig` file for linter 
+- Updated WordPress Core to `5.5.1`
+- Updated Plugins
+  * ACF - `5.9.1`
+  * Gravity Forms - `2.4.20`
+  * Updraft Plus - `2.16.29.24`
+  * Classic Editor - `1.6`
+  * Stream - `3.5.1`
+  * W3 Total Cache - `0.14.4`
+  * Yoast - `14.9`
+  * Wordfence - `3.5.6`
+
 ## Ver 3.3.2 - Sept 4th, 2020
 
 - Added 404 Controller

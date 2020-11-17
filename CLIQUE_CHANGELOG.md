@@ -11,7 +11,9 @@
     * Redirection - `4.9.2`
     * Stream - `4.9.2`
     * UpdraftPlus - `2.16.34.24`
+    * W3 Total Cache - `0.15.2`
     * WordFence - `7.4.12`
+    * Yoast SEO - `15.3`
 - Updated Bedrock dependencies
 - Added Plugins
     * MainWP Child

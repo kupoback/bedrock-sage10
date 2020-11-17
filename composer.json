@@ -44,7 +44,7 @@
 		"vlucas/phpdotenv": "^4.1.8",
 		"oscarotero/env": "^2.1",
 		"roots/bedrock-autoloader": "^1.0",
-		"roots/wordpress": "5.5.1",
+		"roots/wordpress": "^5.5",
 		"roots/wp-config": "1.0.0",
 		"roots/wp-password-bcrypt": "1.0.0",
 		"cedaro/satispress": "^0.5.0",
@@ -55,6 +55,8 @@
 		"wpackagist-plugin/classic-editor": "^1.5",
 		"wpackagist-plugin/cookie-notice": "^1.2",
 		"wpackagist-plugin/gravity-forms-wcag-20-form-fields": "^1.7",
+		"wpackagist-plugin/mainwp-child": "^4.1",
+		"wpackagist-plugin/mainwp-child-reports": "^2.0"
 		"wpackagist-plugin/optimus": "^1.6",
 		"wpackagist-plugin/redirection": "^4.4",
 		"wpackagist-plugin/rest-api-toolbox": "^1.4",
@@ -63,7 +65,7 @@
 		"wpackagist-plugin/w3-total-cache": "^0.14",
 		"wpackagist-plugin/wordpress-seo": "^14.0",
 		"wpackagist-plugin/wp-accessibility": "^1.6",
-		"wpackagist-plugin/wordfence": "^7.4.9"
+		"wpackagist-plugin/wordfence": "^7.4.9",
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.5.6",
@@ -71,8 +73,7 @@
 	},
 	"config": {
 		"optimize-autoloader": true,
-		"preferred-install": "dist",
-		"sort-packages": true
+		"preferred-install": "dist"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,

@@ -2,6 +2,22 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.5.0 - Nov 17th, 2020
+
+- Ran composer update to update WordPress Core to `5.5.3` and changed `composer.json` to install latest `5.5` version
+- Updated WordPress Plugins
+    * ACF - `5.9.3`
+    * Gravity Forms - `2.4.21`
+    * Redirection - `4.9.2`
+    * Stream - `4.9.2`
+    * UpdraftPlus - `2.16.34.24`
+    * WordFence - `7.4.12`
+- Updated Bedrock dependencies
+- Added Plugins
+    * MainWP Child
+    * MainWP Child Reports
+- Updated Sage 9 composer pacakges
+
 ## Ver 3.4.0 - Sept 15th, 2020
 
 - Updated Bedrock instance to the latest version of [github repo 1.14.2](https://github.com/roots/bedrock/releases/tag/1.14.2)

@@ -2,6 +2,21 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.6 - Dec 4th, 2020
+
+- Added [Vue Accessible Modal](https://github.com/andrewvasilchuk/vue-accessible-modal) to `package.json` and updated example Vue modal
+- Ran `composer update` to update Sage 9 composer packages.
+- Updated node packages in Sage 9
+- Ran `composer update` to update WordPress plugins
+    * Updraft Plus - `2.16.41.24`
+    * Wordfence - `7.4.14`
+    * Yoast SEO - `15.4`
+- Updated Bedrock dependencies
+    * vlucas/phpdotenv - `5.2.0`
+    * squizlabs/php_codesniffer - `3.5.8`
+- Updated `application.php` to use `phpdotenv -v 5.2.0`
+- Updated `README.md`
+
 ## Ver 3.5.0 - Nov 17th, 2020
 
 - Ran composer update to update WordPress Core to `5.5.3` and changed `composer.json` to install latest `5.5` version

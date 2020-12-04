@@ -16,12 +16,12 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
 * Autoloader for mu-plugins (use regular plugins as mu-plugins)
 * Enhanced security (separated web root and secure passwords with [wp-password-bcrypt](https://github.com/roots/wp-password-bcrypt))
-* Clique's Default Sage 9 Theme pre-installed
+* Clique's Default Sage 9 Theme pre-installed with Vue integrated
 * Clean new database
 
 ## Requirements
 
-* PHP >= 7.2
+* PHP >= 7.4
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
@@ -111,6 +111,23 @@ Example: `composer require clique-bedrock/advanced-access-manager`
 Bedrock by default supports WordPress' multi-site option, however due to possible difficulties with the admin slugs, there is a mu-plugin you must add to combat this issue. To read more about it, visit this [Bedrock writeup](https://roots.io/bedrock/docs/installing-bedrock/#multisite).
 
 To add the mu-plugin, run the following: `composer require roots/multisite-url-fixer`
+
+## Migrating to a WPEngine Repo
+
+If there's an instance at the middle of the project that it's determined the client would rather host the site on WPEngine, the following steps will help to migrate from 
+Bedrock to a WP Instance.
+
+Since WPEngine uses `git` from the root of the WordPress install, all you need to do is simply create a new folder, and setup the file structure as below, and copy/paste the 
+theme folder in:
+```
+| wp-content
+| - themes
+| -- paste-theme-folder-here
+```
+
+After you do that, you can move the `.git` folder from the Bedrock repo into the newly created folder, and then make sure to refresh your git application, or run git from 
+terminal in the new folder. For the rest of the WPEngine setup and migration, please refer to [this Notion document](https://www.notion.
+so/cliquestudios/WPEngine-Projects-098b2f5e7d2e434e951bd3cf16ee70ce). If you cannot access the page, please reach out to a Senior Dev or Francois for help.
 
 ## Documentation
 

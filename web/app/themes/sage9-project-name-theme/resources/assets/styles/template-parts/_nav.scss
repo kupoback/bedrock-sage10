@@ -9,13 +9,17 @@
 // ========================================================================
 
 .topnav {
-	display:inline-block;
-	margin-left:20px;
 	vertical-align:top;
 	font-size: 10px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-
+	
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	
 	a {
 		color: $color-white;
 		font-weight: bold;
@@ -23,6 +27,7 @@
 	> ul {
 		list-style:none;
 		padding:0;
+		margin: 0;
 
 		> li {
 			display:inline-block;
@@ -106,19 +111,21 @@
 	}
 }
 
-@media only screen and (max-width: 768px) and (min-width: 1px) {
+@media only screen and (max-width: 767px) and (min-width: 1px) {
 	.topnav {
-		display:none;
 		position:absolute;
 		top:95px;
-		left:-20px;
+		left: 0;
 		width:100%;
 		z-index:999;
 		margin-left:0;
 		background-color: $secondary-orange;
 		font-size: 16px;
-		width: calc(100% + 40px);
-
+		
+		&:not(.vue-mobile-navigation) {
+			display: none;
+		}
+		
 		> ul {
 			padding: 0 30px;
 
@@ -133,7 +140,6 @@
 					text-align:center;
 					line-height:64px;
 					border-bottom: 1px $color-black solid;
-					line-height: 40px;
 
 					&:after {
 						display: none;

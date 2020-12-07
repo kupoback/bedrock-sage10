@@ -2,6 +2,17 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.7.0 - Dec 7th, 2020
+
+- Added Vue Navigation with REST API serving the data - **This is disabled by default**
+- Uncomment the following below to use
+    * `header.blade.php` - See comment blocks
+    * `setup.php` - Uncomment block in `wp_enqueue_scripts` action for localize script
+- Added documentation to `README.md` on how to use Vue Navigation
+- Updated WordPress Plugins:
+    * MainWP Child - `4.1.3`
+- Updated `README.md` to include instructions on setting up an existing site and how to use new Vue Navigation
+
 ## Ver 3.6 - Dec 4th, 2020
 
 - Added [Vue Accessible Modal](https://github.com/andrewvasilchuk/vue-accessible-modal) to `package.json` and updated example Vue modal
@@ -38,20 +49,20 @@
 ## Ver 3.4.0 - Sept 15th, 2020
 
 - Updated Bedrock instance to the latest version of [github repo 1.14.2](https://github.com/roots/bedrock/releases/tag/1.14.2)
-  * Composer package versions
-  * `web/app/mu-plugins/bedrock-autoloader.php` was broken, throwing errors
-  * `config/application.php` with db creds exposed to `$_SERVER` fixed
-  * Added `.editorconfig` file for linter 
+    * Composer package versions
+    * `web/app/mu-plugins/bedrock-autoloader.php` was broken, throwing errors
+    * `config/application.php` with db creds exposed to `$_SERVER` fixed
+    * Added `.editorconfig` file for linter
 - Updated WordPress Core to `5.5.1`
 - Updated Plugins
-  * ACF - `5.9.1`
-  * Gravity Forms - `2.4.20`
-  * Updraft Plus - `2.16.29.24`
-  * Classic Editor - `1.6`
-  * Stream - `3.5.1`
-  * W3 Total Cache - `0.14.4`
-  * Yoast - `14.9`
-  * Wordfence - `3.5.6`
+    * ACF - `5.9.1`
+    * Gravity Forms - `2.4.20`
+    * Updraft Plus - `2.16.29.24`
+    * Classic Editor - `1.6`
+    * Stream - `3.5.1`
+    * W3 Total Cache - `0.14.4`
+    * Yoast - `14.9`
+    * Wordfence - `3.5.6`
 
 ## Ver 3.3.2 - Sept 4th, 2020
 
@@ -73,6 +84,7 @@
 - Updated `README.md` install instructions for premium plugins
 
 ### Sage 9 Updates
+
 - Ran updates to the Sage 9 `composer.json`
 - Updated `.travis.yml` to phase out php versions 7.1, and 7.2
 - Added support for php 7.4 in `.travis.yml`
@@ -89,14 +101,16 @@
 
 ### Sage 9 Updates
 
-- Added in `front-page.blade.php`, `home.blade.php`, `content-front-page.blade.php` and `content-home.blade.php` for support of WP Hierarchy Template use of Front Page for Home and Home for Post Archive if set in _Settings > Reading_ within the admin
-- Cleaned up the `main.js` JavaScript code, updated the `routes` and `import` function names to support WP Hierarchy, and the JavaScript files within `resources/assets/scripts/routes` to comply more with JavaScript ES6 standards
+- Added in `front-page.blade.php`, `home.blade.php`, `content-front-page.blade.php` and `content-home.blade.php` for support of WP Hierarchy Template use of Front Page for Home and
+  Home for Post Archive if set in _Settings > Reading_ within the admin
+- Cleaned up the `main.js` JavaScript code, updated the `routes` and `import` function names to support WP Hierarchy, and the JavaScript files
+  within `resources/assets/scripts/routes` to comply more with JavaScript ES6 standards
 - Cleaned up some JS code in `common.js`, trying to utilize vanilla JS as much as possible, and move possible common rewritten code to functions
 - Webpack Updates:
-  - Now supports `Vue`
-  - Added `@babel/polyfill`
-  - `Vue` template compiling now live reloads
-  - 3 functions in `main.js` to manage common `Object doesn't support property or method "foreach"` which occurs with Vue `v-for` functionality
+    - Now supports `Vue`
+    - Added `@babel/polyfill`
+    - `Vue` template compiling now live reloads
+    - 3 functions in `main.js` to manage common `Object doesn't support property or method "foreach"` which occurs with Vue `v-for` functionality
 - Added in an exmaple Vue component for a modal visibility component to show that this functionality is working correctly
 - Updated `npm` packages with newer versions for better support, smaller library sizes, and updated their locations with the appropriate JavaScript and SCSS files
 
@@ -110,7 +124,8 @@
 ## Ver 3.1.0 - Nov 14, 2019
 
 - Updated `composer.json` to use `php -v 7.2`
-- Updated a fix to the `application.php` to temporarily address an issue with the `DB_*` environment data from being exposed by `$_GLOBAL` and `php -i` until Roots addressed [Issue 474](https://github.com/roots/bedrock/issues/474).
+- Updated a fix to the `application.php` to temporarily address an issue with the `DB_*` environment data from being exposed by `$_GLOBAL` and `php -i` until Roots
+  addressed [Issue 474](https://github.com/roots/bedrock/issues/474).
 - Updated WordPress version allowance
 - Ran `composer update` to update plugins, WP core, and vendor folders
 - Updated `.gitignore` to not omit the `mu-plugins` folder, especially if it will be used
@@ -179,11 +194,16 @@
 - Deactivated All In One WP Security plugin, Redirection plugin
 - Changed General Settings email address to "boilerplate@cliquestudios.com" -- Please change to your own
 - Sage Theme
-- - Removed the default custom template and added a Home template.
-- - Added a Home page used as the Front page of the WP install using the Home template
-- - Cleaned up base.php
-- - Added an Option page for ACF in lib/extras.php called "Theme Settings"
-- - Added lib/post-types.php file to contains all code related to custom Post Types and taxonomies. Loaded through functions.php
+-
+    - Removed the default custom template and added a Home template.
+-
+    - Added a Home page used as the Front page of the WP install using the Home template
+-
+    - Cleaned up base.php
+-
+    - Added an Option page for ACF in lib/extras.php called "Theme Settings"
+-
+    - Added lib/post-types.php file to contains all code related to custom Post Types and taxonomies. Loaded through functions.php
 
 ## Ver 1.0.5 - Mar 3, 2017
 

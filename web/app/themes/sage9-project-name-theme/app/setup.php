@@ -2,11 +2,12 @@
 
 namespace App;
 
-use App\Controllers\SageNavRestApi;
 use Roots\Sage\Container;
 use Roots\Sage\Assets\JsonManifest;
 use Roots\Sage\Template\Blade;
 use Roots\Sage\Template\BladeProvider;
+
+use App\Controllers\SageNavRestAPI;
 
 /**
  * Theme assets
@@ -92,7 +93,11 @@ add_action('after_setup_theme', function () {
 	 */
 	add_editor_style(asset_path('styles/main.css'));
 	
-	new SageNavRestAPI();
+	// Register the SageNavRestAPI Class
+	if (class_exists('SageNavRestAPI')) {
+		new SageNavRestAPI();
+	}
+	
 }, 20);
 
 /**

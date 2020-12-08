@@ -59,7 +59,6 @@
         methods: {
             menuBtnEvent() {
                 const menuBtn = document.querySelector('.header .hamburger');
-                console.log(menuBtn);
                 if (menuBtn) {
                     menuBtn.addEventListener('click', (elm) => {
                         const elmTarget = elm.target;

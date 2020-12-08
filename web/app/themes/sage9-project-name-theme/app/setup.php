@@ -22,7 +22,7 @@ add_action('wp_enqueue_scripts', function () {
 	
 	/**
 	 * Delete comment to use with Vue Navigation
-	 
+	 */
 	$query_obj = get_queried_object();
 	wp_localize_script('sage/main.js', 'NAV', [
 		'navID'    => 'primary-navigation',
@@ -31,7 +31,7 @@ add_action('wp_enqueue_scripts', function () {
 		'postId'   => $query_obj->ID,
 		'pageSlug' => is_front_page() ? 'home' : ($query_obj->post_name ?: 'undefined'),
 	]);
-	 */
+	
 }, 100);
 
 /**
@@ -94,7 +94,7 @@ add_action('after_setup_theme', function () {
 	add_editor_style(asset_path('styles/main.css'));
 	
 	// Register the SageNavRestAPI Class
-	if (class_exists('SageNavRestAPI')) {
+	if (class_exists('App\Controllers\SageNavRestAPI')) {
 		new SageNavRestAPI();
 	}
 	

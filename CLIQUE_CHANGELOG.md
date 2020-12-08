@@ -2,6 +2,10 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.7.1 - Dec 8th, 2020
+
+- Fixed issue with declaraion of class `SageNavRestAPI` in `setup.php`
+
 ## Ver 3.7.0 - Dec 7th, 2020
 
 - Added Vue Navigation with REST API serving the data - **This is disabled by default**

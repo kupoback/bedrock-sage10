@@ -77,7 +77,8 @@ class SageNavRestAPI
 				->map(function($item) use ($parse_items) {
 					$item['children'] = $parse_items[$item['id']] ?? [];;
 					return $item;
-				});
+				})
+				->toArray();
 			
 		}
 		

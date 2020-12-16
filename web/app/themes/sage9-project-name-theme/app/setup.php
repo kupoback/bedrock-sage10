@@ -6,7 +6,6 @@ use Roots\Sage\Container;
 use Roots\Sage\Assets\JsonManifest;
 use Roots\Sage\Template\Blade;
 use Roots\Sage\Template\BladeProvider;
-
 use App\Controllers\SageNavRestAPI;
 
 /**
@@ -25,11 +24,11 @@ add_action('wp_enqueue_scripts', function () {
 	 */
 	$query_obj = get_queried_object();
 	wp_localize_script('sage/main.js', 'NAV', [
-		'navID'    => 'primary-navigation',
 		'api'      => rest_url('navigation/v1/get-nav'),
-		'siteUrl'  => get_home_url(),
-		'postId'   => $query_obj->ID,
+		'navID'    => 'primary-navigation',
 		'pageSlug' => is_front_page() ? 'home' : ($query_obj->post_name ?: 'undefined'),
+		'postId'   => $query_obj->ID,
+		'siteUrl'  => get_home_url(),
 	]);
 	
 }, 100);

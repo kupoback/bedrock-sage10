@@ -80,3 +80,18 @@ add_filter('comments_template', function ($comments_template) {
 
     return $comments_template;
 }, 100);
+
+/**
+ * Custom Cache Endpoints for WP REST Cache plugin to include
+ * The !isset is used to ensure that the endpoint is not already being cached natively
+ */
+add_filter( 'wp_rest_cache/allowed_endpoints', function($allowed_endpoints) {
+	
+	// Adds the Navigation Endpoint for Vue
+	if (!isset( $allowed_endpoints[ 'navigation/v1' ] ) ) {
+		$allowed_endpoints[ 'navigation/v1' ][] = 'get-nav';
+	}
+	
+	
+	return $allowed_endpoints;
+}, 10, 1);

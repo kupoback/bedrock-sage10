@@ -10,6 +10,9 @@
     - All In One WP Security and Firewall - `4.4.5`
     - Updraft Plus - `2.16.42.24`
     - Yoast SEO - `15.5`
+- Added missing WP Rest Cache plugin
+- Removed REST API Toolbox - no longer maintained or used
+- Added filter for caching navigation endpoint
 
 ## Ver 3.7.1 - Dec 8th, 2020
 

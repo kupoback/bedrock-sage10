@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d59d5ec997884244dccbee39e1aac2a1",
+    "content-hash": "05f2134dd17832c4deadde735e0fc304",
     "packages": [
         {
             "name": "cedaro/satispress",
@@ -1529,24 +1529,6 @@
             "homepage": "https://wordpress.org/plugins/redirection/"
         },
         {
-            "name": "wpackagist-plugin/rest-api-toolbox",
-            "version": "1.4.2",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/rest-api-toolbox/",
-                "reference": "tags/1.4.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/rest-api-toolbox.1.4.2.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/rest-api-toolbox/"
-        },
-        {
             "name": "wpackagist-plugin/safe-svg",
             "version": "1.9.9",
             "source": {
@@ -1653,6 +1635,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-accessibility/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-rest-cache",
+            "version": "2020.3.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-rest-cache/",
+                "reference": "tags/2020.3.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-rest-cache.2020.3.2.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-rest-cache/"
         }
     ],
     "packages-dev": [

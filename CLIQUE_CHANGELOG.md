@@ -2,6 +2,15 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.7.2 - Dec 16th, 2020
+
+- Added `composer.lock` back to the repo
+- Ran `composer update` on WordPress Core to `5.6.0`
+- Ran `composer update` on WordPress Plugins:
+    - All In One WP Security and Firewall - `4.4.5`
+    - Updraft Plus - `2.16.42.24`
+    - Yoast SEO - `15.5`
+
 ## Ver 3.7.1 - Dec 8th, 2020
 
 - Fixed issue with declaraion of class `SageNavRestAPI` in `setup.php`
@@ -17,7 +26,7 @@
     * MainWP Child - `4.1.3`
 - Updated `README.md` to include instructions on setting up an existing site and how to use new Vue Navigation
 
-## Ver 3.6 - Dec 4th, 2020
+## Ver 3.6.0 - Dec 4th, 2020
 
 - Added [Vue Accessible Modal](https://github.com/andrewvasilchuk/vue-accessible-modal) to `package.json` and updated example Vue modal
 - Ran `composer update` to update Sage 9 composer packages.

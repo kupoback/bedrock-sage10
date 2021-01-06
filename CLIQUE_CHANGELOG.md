@@ -2,14 +2,27 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.7.3 - Jan 6th, 2021
+
+- Ran `composer update` on Bedrock Core:
+  - Security Advisories
+- Ran `composer update` on WordPress Plugins:
+  - All In One WP Security and Firewall - `4.4.6`
+  - Gravity Forms - `2.4.22`
+  - MainWP Child - `4.1.3.1`
+  - Updraft Plus - `2.16.46.24`
+  - W3 Total Cache - `2.0.1`
+  - WP Accessibility - `1.7.5`
+- Ran `composer update` on Sage Theme Core
+
 ## Ver 3.7.2 - Dec 16th, 2020
 
 - Added `composer.lock` back to the repo
 - Ran `composer update` on WordPress Core to `5.6.0`
 - Ran `composer update` on WordPress Plugins:
-    - All In One WP Security and Firewall - `4.4.5`
-    - Updraft Plus - `2.16.42.24`
-    - Yoast SEO - `15.5`
+  - All In One WP Security and Firewall - `4.4.5`
+  - Updraft Plus - `2.16.42.24`
+  - Yoast SEO - `15.5`
 - Added missing WP Rest Cache plugin
 - Removed REST API Toolbox - no longer maintained or used
 - Added filter for caching navigation endpoint
@@ -22,11 +35,11 @@
 
 - Added Vue Navigation with REST API serving the data - **This is disabled by default**
 - Uncomment the following below to use
-    * `header.blade.php` - See comment blocks
-    * `setup.php` - Uncomment block in `wp_enqueue_scripts` action for localize script
+  - `header.blade.php` - See comment blocks
+  - `setup.php` - Uncomment block in `wp_enqueue_scripts` action for localize script
 - Added documentation to `README.md` on how to use Vue Navigation
 - Updated WordPress Plugins:
-    * MainWP Child - `4.1.3`
+  - MainWP Child - `4.1.3`
 - Updated `README.md` to include instructions on setting up an existing site and how to use new Vue Navigation
 
 ## Ver 3.6.0 - Dec 4th, 2020
@@ -35,12 +48,12 @@
 - Ran `composer update` to update Sage 9 composer packages.
 - Updated node packages in Sage 9
 - Ran `composer update` to update WordPress plugins
-    * Updraft Plus - `2.16.41.24`
-    * Wordfence - `7.4.14`
-    * Yoast SEO - `15.4`
+  - Updraft Plus - `2.16.41.24`
+  - Wordfence - `7.4.14`
+  - Yoast SEO - `15.4`
 - Updated Bedrock dependencies
-    * vlucas/phpdotenv - `5.2.0`
-    * squizlabs/php_codesniffer - `3.5.8`
+  - vlucas/phpdotenv - `5.2.0`
+  - squizlabs/php_codesniffer - `3.5.8`
 - Updated `application.php` to use `phpdotenv -v 5.2.0`
 - Updated `README.md`
 
@@ -48,37 +61,37 @@
 
 - Ran composer update to update WordPress Core to `5.5.3` and changed `composer.json` to install latest `5.5` version
 - Updated WordPress Plugins
-    * ACF - `5.9.3`
-    * Gravity Forms - `2.4.21`
-    * Redirection - `4.9.2`
-    * Stream - `4.9.2`
-    * UpdraftPlus - `2.16.34.24`
-    * W3 Total Cache - `0.15.2`
-    * WordFence - `7.4.12`
-    * Yoast SEO - `15.3`
+  - ACF - `5.9.3`
+  - Gravity Forms - `2.4.21`
+  - Redirection - `4.9.2`
+  - Stream - `4.9.2`
+  - UpdraftPlus - `2.16.34.24`
+  - W3 Total Cache - `0.15.2`
+  - WordFence - `7.4.12`
+  - Yoast SEO - `15.3`
 - Updated Bedrock dependencies
 - Added Plugins
-    * MainWP Child
-    * MainWP Child Reports
+  - MainWP Child
+  - MainWP Child Reports
 - Updated Sage 9 composer pacakges
 
 ## Ver 3.4.0 - Sept 15th, 2020
 
 - Updated Bedrock instance to the latest version of [github repo 1.14.2](https://github.com/roots/bedrock/releases/tag/1.14.2)
-    * Composer package versions
-    * `web/app/mu-plugins/bedrock-autoloader.php` was broken, throwing errors
-    * `config/application.php` with db creds exposed to `$_SERVER` fixed
-    * Added `.editorconfig` file for linter
+  - Composer package versions
+  - `web/app/mu-plugins/bedrock-autoloader.php` was broken, throwing errors
+  - `config/application.php` with db creds exposed to `$_SERVER` fixed
+  - Added `.editorconfig` file for linter
 - Updated WordPress Core to `5.5.1`
 - Updated Plugins
-    * ACF - `5.9.1`
-    * Gravity Forms - `2.4.20`
-    * Updraft Plus - `2.16.29.24`
-    * Classic Editor - `1.6`
-    * Stream - `3.5.1`
-    * W3 Total Cache - `0.14.4`
-    * Yoast - `14.9`
-    * Wordfence - `3.5.6`
+  - ACF - `5.9.1`
+  - Gravity Forms - `2.4.20`
+  - Updraft Plus - `2.16.29.24`
+  - Classic Editor - `1.6`
+  - Stream - `3.5.1`
+  - W3 Total Cache - `0.14.4`
+  - Yoast - `14.9`
+  - Wordfence - `3.5.6`
 
 ## Ver 3.3.2 - Sept 4th, 2020
 
@@ -123,10 +136,10 @@
   within `resources/assets/scripts/routes` to comply more with JavaScript ES6 standards
 - Cleaned up some JS code in `common.js`, trying to utilize vanilla JS as much as possible, and move possible common rewritten code to functions
 - Webpack Updates:
-    - Now supports `Vue`
-    - Added `@babel/polyfill`
-    - `Vue` template compiling now live reloads
-    - 3 functions in `main.js` to manage common `Object doesn't support property or method "foreach"` which occurs with Vue `v-for` functionality
+  - Now supports `Vue`
+  - Added `@babel/polyfill`
+  - `Vue` template compiling now live reloads
+  - 3 functions in `main.js` to manage common `Object doesn't support property or method "foreach"` which occurs with Vue `v-for` functionality
 - Added in an exmaple Vue component for a modal visibility component to show that this functionality is working correctly
 - Updated `npm` packages with newer versions for better support, smaller library sizes, and updated their locations with the appropriate JavaScript and SCSS files
 
@@ -210,16 +223,11 @@
 - Deactivated All In One WP Security plugin, Redirection plugin
 - Changed General Settings email address to "boilerplate@cliquestudios.com" -- Please change to your own
 - Sage Theme
--
-    - Removed the default custom template and added a Home template.
--
-    - Added a Home page used as the Front page of the WP install using the Home template
--
-    - Cleaned up base.php
--
-    - Added an Option page for ACF in lib/extras.php called "Theme Settings"
--
-    - Added lib/post-types.php file to contains all code related to custom Post Types and taxonomies. Loaded through functions.php
+- - Removed the default custom template and added a Home template.
+- - Added a Home page used as the Front page of the WP install using the Home template
+- - Cleaned up base.php
+- - Added an Option page for ACF in lib/extras.php called "Theme Settings"
+- - Added lib/post-types.php file to contains all code related to custom Post Types and taxonomies. Loaded through functions.php
 
 ## Ver 1.0.5 - Mar 3, 2017
 

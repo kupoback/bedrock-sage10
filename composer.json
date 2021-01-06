@@ -61,7 +61,7 @@
         "wpackagist-plugin/redirection": "^4.4",
         "wpackagist-plugin/safe-svg": "^1.9",
         "wpackagist-plugin/stream": "^3.4",
-        "wpackagist-plugin/w3-total-cache": "^0.15.2",
+        "wpackagist-plugin/w3-total-cache": "^2.0",
         "wpackagist-plugin/wordfence": "^7.4",
         "wpackagist-plugin/wordpress-seo": "^15",
         "wpackagist-plugin/wp-accessibility": "^1.6",

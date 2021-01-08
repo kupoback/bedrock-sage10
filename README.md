@@ -29,7 +29,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 
 1. Clone this repo into your project directory and then run the following:
     ```sh
-    $ composer install
+    composer install
     ```
 2. Update environment variables in the `.env` file. If a `.env` file is not created, copy the `.env.example` file:
     * Database variables:
@@ -47,13 +47,13 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     * If you're using `laravel/valet`, just `cd` to the directory and run:
     ```sh
    # Replace {site_name} with the hostname you wish to use
-   $ valet link {site_name}
+   valet link {site_name}
    ```
 5. Run through the WordPress installer:
     * Through WordPress admin at `https://{site_name}.TLD/wp/wp-admin/`
     * Through `wp-cli`
     ```sh
-    $ wp core install --url={site_name}.TLD --title={Site Title} --admin_user=admin --admin_password={password} --admin_email={email}
+    wp core install --url={site_name}.TLD --title={Site Title} --admin_user=admin --admin_password={password} --admin_email={email}
    ```
 
 ## Working with an existing Project
@@ -81,7 +81,130 @@ On local, using either phpmyadmin, Sequel Pro, or whatever program you use to cr
 
 Once this is done, you can import the database one of two ways, you can import it directly via your application/phpmyadmin, or use `wp-cli` to import it. If you use `wp-cli` make sure to have the file sitting in the `web` directory, and run the `wp-cli` command from there.
 
-## Migrating to Staging
+## Migrating to a Forge Server
+
+Setting up a site using Forge and it's automated processes helps eliminate a lot of the work necessary for setup. To start, login to the [Forge Server](https://forge.laravel.com/servers). If you're setting up the site on Sandbox 7, look for that Server listing, otherwise, refer to . I will be using Sandbox 7 from here on out for examples. After you've got the server setup, click the name of the appropraite server. If not already done, under the Sites tab, fill out the following fields as shown.
+
+- Root Domain - Site you're setting up
+- Aliases - Project depending, but usually can be kept blank
+- Project Type - Keep this at the default "General PHP/Laravel"
+- Web Directory - Change this to `/web` since we're serving the site under the `web` directory
+- Check off Create Database, and enter in a database name
+- Click Add Site
+
+#### Example Setup
+![Forge Site Setup](https://i.ibb.co/XpY25dZ/forge-site-setup.png)
+
+### Database User Setup
+
+After you've set this up, click the Database tab on the side, and scroll down to `Add Database User`. Follow these next steps, entering in the following:
+
+- Database user
+- Database password
+- Check off the correct database this user can access 
+  
+Once these are filled out, click `Create`. Be sure to save these credentials in LastPass, as we'll need them for the `.env` file setup, as well as for anything else requiring database credentials.
+
+#### Example Database User Setup
+![Setting up database user](https://i.ibb.co/KqZpY9G/setup-database-user.png)
+
+### Setting up the Repository
+
+Once you've completed this, click the Sites tab, and then click the site name you just setup. 
+
+- Click on `Git Repository` 
+- Check off the correct repository (Usually always Bitbucket)
+- Copy the SSH url, but we only need the user and the reponame
+    - `git@bitbucket.org:clique_studios/new-backend-boilerplate.git`
+    - We only need the `clique_studios/new-backend-boilerplate.git` part
+- Enter in the name of the branch to pull from
+- Make sure `Install Composer Dependencies` is checked
+- Click `Install Repository`
+
+#### Example Repoistory Setup
+![Setup Repository](https://i.ibb.co/jrPcrGk/Screen-Shot-2021-01-08-at-12-27-12.png)
+
+Next steps are to setup the Environment File. Click the Environment tab, and the file in there will by default be empty. You can simply just open up your local `.env` file, and paste the contents in there, changing the `DB_NAME`, `DB_USER` `DB_PASSWORD`, `WP_ENV`, changing the value to the environment you're setting up, `WP_HOME`, and generate new salt keys by going [here](https://roots.io/salts.html). Once finished, hit `Save`.
+
+#### Example `.env` File Contents
+
+![Example env file contents](https://i.ibb.co/s5g6KgD/Screen-Shot-2021-01-08-at-12-41-04.png)
+
+### Adjustment to the `conf` file
+
+Since we're on Bedrock, we need to make sure that we're pointing nginx to the right directory. This is merely a double check. At the bottom of the screen, click on the `Files` button, and click on `Edit Nginx Configuration`. A modal will popup, and look for the line `root /home/forge/{SITE_NAME}`.
+If this does have `/web;` at the end of it, you can move on to the next section.
+If this does not have `/web` at the end of it, then add it here, and click `Save`. Then at the bottom of the page, click `Restart` and click on `Restart Nginx`. You should now be able to hit the URL, and if you haven't imported the database yet, you should see a WordPress setup screen. 
+
+### Setting up SSL
+
+Once that's complete, click the SSL tab, and select "LetsEncrypt", ensure the right domain is entered and click `Obtain Certificate`. 
+
+### Importing the database
+
+The next steps are to you to determine how you want to import the database, but my preferred method is to use WP-CLI to import the `sql` file. To do this using `rsync` or FileZilla, upload the `sql` file to the `web` directory. Then `ssh` into the server, navigate to the install folder and into the `web` directory and import the database.
+
+```shell
+# Replace {sqlfilename} with the name of your site.
+cd ~/project/web
+wp db export {sqlfilename}.sql
+
+# This next line will do a search replace for your local URL and replace it with the URL to access it via the server
+wp search-replace {LOCAL_DEV_URL} https://{PROJECT_NAME}.com
+````
+
+### Importing the Uploads folder
+
+Using CLI to unzip the uploads folder
+
+```shell
+cd path/to/site/web/app/
+rm -rf uploads
+gunzip < {sitename}-uploads.tar.gz | tar xvf -
+# This command will rename the folder to just be uploads
+mv {sitename}-uploads uploads
+# This command will show you that what you've done is complete
+cd uploads
+# This should show you the same files you'll have locally except for the cache folder
+ls -la
+# If everything looks correct run the following
+cd ../ && rm -f {sitename}-uploads.tar.gz
+```
+
+### Installing ACF-JSON WP-CLI plugin
+
+All forge servers should come with WP-CLI installed, and on Sandbox 7, this step is already done for you, so you can skip it. if this is on a non-Sandbox 7 server, then after you `ssh` into the server, not as a root user, run the following command.
+
+```shell
+wp package install git@github.com:superhuit-ch/wp-cli-acf-json.git
+
+# If the above does not work, copy and paste this line
+php -d memory_limit=-1 "$(which wp)"  package install git@github.com:superhuit-ch/wp-cli-acf-json.git
+```
+
+### Adjusting the Deployment Settings
+
+The final step needed before you're good to go, is getting the Deployment section setup. Simply click on the Deployments tab in the side, and you should see a section labeled `Deployment Scripts`. You'll want to replace the contents in there with the following, replacing `{SITE_FOLDER_NAME}`, `{BRANCH_NAME}`, and `{THEME_NAME}` with the appropriate names related to your project. If wp-cli is installed on the server, which should be by default, and you installed the ACF-JSON WP-CLI plugin, you can leave in the `wp acf-json sync` portion, otherwise delete that part.
+
+```shell
+cd /home/forge/{SITE_FOLDER_NAME}
+git pull origin {BRANCH_NAME}
+#$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
+
+( flock -w 10 9 || exit 1
+    echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
+
+# Sync the ACF-json folder to the site
+cd web
+wp acf-json sync
+# Move to the theme directory and rebuild the assets
+cd app/themes/{THEME_NAME}
+yarn build
+```
+
+After you've saved this, in the box above it called "Deployment", make sure to click on "Quick Deploy", so that forge will automatically pull in your changes from `.git` when you make a commit.
+
+## Migrating to non-Forge Server
 
 To migrate the site from local or development to staging, the best route is to use the `cli`.
 
@@ -97,14 +220,14 @@ but do not run the WordPress install.
 For the Database, you can run the following: 
 ```shell
 # Replace {sitename} with the name of your site.
-$ cd path/to/project/web
-$ wp db export {sitename}.sql
+cd path/to/project/web
+wp db export {sitename}.sql
 ````
 
 For the Uploads folder, you can execute the following:
 ```shell
-$ cd path/to/project/web/app
-$ tar -zcvf {sitename}-uploads.tar.gz uploads --exclude="/path/to/project/web/app/uploads/cache"
+cd path/to/project/web/app
+tar -zcvf {sitename}-uploads.tar.gz uploads --exclude="/path/to/project/web/app/uploads/cache"
 ```
 
 After you have both of these, you can use `rsync` to upload them or use an SFTP program to upload them to the site folder. To import the database, it's best to use `wp-cli` on 
@@ -114,24 +237,24 @@ before unzipping it.
 **Using WP-CLI to import the database**
 ```shell
 # Replace {sitename} with the name of your site.
-$ wp db import {sitename}.sql
+wp db import {sitename}.sql
 # Once this is done, and you've confirmed by looking at the front end make sure to delete the file
-$ rm -f {sitename}.sql
+rm -f {sitename}.sql
 ```
 
 **Using CLI to unzip the uploads folder**
 ```shell
-$ cd path/to/site/web/app/
-$ rm -rf uploads
-$ gunzip < {sitename}-uploads.tar.gz | tar xvf -
+cd path/to/site/web/app/
+rm -rf uploads
+gunzip < {sitename}-uploads.tar.gz | tar xvf -
 # This command will rename the folder to just be uploads
-$ mv {sitename}-uploads uploads
+mv {sitename}-uploads uploads
 # This command will show you that what you've done is complete
-$ cd uploads
+cd uploads
 # This should show you the same files you'll have locally except for the cache folder
-$ ls -la
+ls -la
 # If everything looks correct run the following
-$ cd ../ && rm -f {sitename}-uploads.tar.gz
+cd ../ && rm -f {sitename}-uploads.tar.gz
 ```
 
 ## Plugins
@@ -162,8 +285,8 @@ Plugins are all now managed through Composer. You can still install plugins via 
 
 To install a plugin, in terminal type:
 ```sh
-$ composer require <namespace>/<package>
-$ composer update
+composer require <namespace>/<package>
+composer update
 ```
 
 #### WordPress Repository Plugin

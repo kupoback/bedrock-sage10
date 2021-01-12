@@ -10,6 +10,8 @@
     - WP Accessibility - `1.7.6`
     - Yoast SEO - `15.6.2`
 - Added ACF Gravity Forms field plugin to allow selecting of GF via ACF
+- Added `siteName` to Nav localized args
+- Made an adjustment to the Vue Navigation to use `v-bind:class`, and keep for better code consistency
 
 ## Ver 3.7.3 - Jan 6th, 2021
 

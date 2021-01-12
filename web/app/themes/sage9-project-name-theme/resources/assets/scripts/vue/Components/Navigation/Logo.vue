@@ -31,6 +31,10 @@
 
 <script type="application/javascript">
     export default {
+        props: {
+            logo: String,
+            siteName: String,
+        },
         name: "Logo"
     };
 </script>

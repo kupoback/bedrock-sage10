@@ -6,7 +6,8 @@
         </a>
         
         <div class="hamburger-container">
-            <button class="hamburger">
+            <button class="hamburger"
+                    v-bind:class="{ 'is-active': menuOpen }" >
                 <div class="hamburger-box">
                     <div class="hamburger-inner"></div>
                 </div>
@@ -21,6 +22,7 @@
     export default {
         props: {
             homeUrl: String,
+            menuOpen: Boolean,
         },
         components: {Logo},
         name: "MobileHamburger"

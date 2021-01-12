@@ -3,7 +3,8 @@
             :class="headerClass">
         
         <MobileHamburger v-show="($resize && viewport === 'mobile') || viewport === 'mobile'"
-                         :homeUrl="homeUrl" />
+                         :homeUrl="homeUrl"
+                         :menu-open="mobileMenuOpen" />
         
         <DesktopNavigation v-if="($resize && viewport === 'desktop') || viewport === 'desktop'"
                            :homeUrl="homeUrl"
@@ -32,6 +33,7 @@
                 homeUrl: "",
                 mobileMenuOpen: false,
                 postId: NAV.postId,
+                siteName: '',
                 viewport: this.$mq.above(768) ? "desktop" : "mobile",
             };
         },
@@ -39,6 +41,7 @@
             if (typeof NAV !== "undefined") {
                 this.headerClass += ` header--${NAV.pageSlug}`;
                 this.homeUrl = NAV.siteUrl;
+                this.siteName = NAV.siteName;
             }
         },
         mounted() {
@@ -50,34 +53,25 @@
                 const vp = this.$mq.above(768) ? "desktop" : "mobile";
                 if (vp !== this.viewport) this.viewport = vp;
         
-                if (this.mobileMenuOpen) {
-                    const menuBtn = document.querySelector('.header .hamburger');
-                    this.toggleMenu(menuBtn, false);
-                }
+                if (this.mobileMenuOpen) this.toggleMenu(false);
             };
         },
         methods: {
             menuBtnEvent() {
                 const menuBtn = document.querySelector('.header .hamburger');
                 if (menuBtn) {
-                    menuBtn.addEventListener('click', (elm) => {
-                        const elmTarget = elm.target;
-                        if (this.viewport === 'mobile') this.toggleMenu(elmTarget, !this.mobileMenuOpen);
+                    menuBtn.addEventListener('click', () => {
+                        if (this.viewport === 'mobile') this.toggleMenu(!this.mobileMenuOpen);
                     });
                 }
             },
-            toggleMenu(elmTarget, open) {
-                const bodyElm = document.querySelector('body');
+            toggleMenu(open) {
+                const bodyElm = document.querySelector("body");
                 const bodyClass = `menu-open`;
-                const isActiveClass = `is-active`;
-                if (open) {
-                    elmTarget.classList.add(isActiveClass);
-                    bodyElm.classList.add(bodyClass);
-                }
-                else {
-                    elmTarget.classList.remove(isActiveClass);
-                    bodyElm.classList.remove(bodyClass);
-                }
+                
+                if (open) bodyElm.classList.add(bodyClass);
+                else bodyElm.classList.remove(bodyClass);
+                
                 this.mobileMenuOpen = open;
             },
         },

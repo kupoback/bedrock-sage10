@@ -2,6 +2,15 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+## Ver 3.7.4 - Jan 12th, 2021
+
+- Ran `composer Update` on Bedrock Core
+    - Polyfill updates
+- Ran `composer update` for WordPress Plugins:
+    - WP Accessibility - `1.7.6`
+    - Yoast SEO - `15.6.2`
+- Added ACF Gravity Forms field plugin to allow selecting of GF via ACF
+
 ## Ver 3.7.3 - Jan 6th, 2021
 
 - Ran `composer update` on Bedrock Core:

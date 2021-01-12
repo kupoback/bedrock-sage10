@@ -51,6 +51,7 @@
         "clique-bedrock/advanced-custom-fields-pro": "5.*",
         "clique-bedrock/gravityforms": "2.*",
         "clique-bedrock/updraftplus": "2.*",
+	    "wpackagist-plugin/acf-gravityforms-add-on": "^1.2",
         "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.4",
         "wpackagist-plugin/classic-editor": "^1.5",
         "wpackagist-plugin/cookie-notice": "^1.2",

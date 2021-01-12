@@ -199,7 +199,7 @@ cd web
 wp acf-json sync
 # Move to the theme directory and rebuild the assets
 cd app/themes/{THEME_NAME}
-yarn build
+yarn && yarn build
 ```
 
 After you've saved this, in the box above it called "Deployment", make sure to click on "Quick Deploy", so that forge will automatically pull in your changes from `.git` when you make a commit.

@@ -46,14 +46,13 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     * `WP_SITEURL` - URL pointing to subdirectory - Shouldn't have to adjust this (`${WP_HOME}/wp`)
     * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT`
         * Generate with [Roots's WordPress salts generator](https://roots.io/salts.html)
-3. Add theme(s) in `web/app/themes/` as you would for a normal WordPress site
-4. Set the document root on your webserver to Bedrock's `web` folder: `/path/to/site/web/`
+3. Set the document root on your webserver to Bedrock's `web` folder: `/path/to/site/web/`
     * If you're using `laravel/valet`, just `cd` to the directory and run:
     ```sh
    # Replace {site_name} with the hostname you wish to use
    valet link {site_name}
    ```
-5. Run through the WordPress installer:
+4. Run through the WordPress installer:
     * Through WordPress admin at `https://{site_name}.TLD/wp/wp-admin/`
     * Through `wp-cli`
     ```sh

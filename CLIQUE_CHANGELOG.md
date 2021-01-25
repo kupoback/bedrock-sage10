@@ -2,9 +2,23 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+# Ver 3.7.5 - Jan 25th, 2021
+
+- Ran `composer update` on Bedrock Core
+    - Composer Installers
+    - Security Advisories
+- Ran `composer update` on WordPress plugins
+    - Advanced Custom Fields - `5.9.4`
+    - MainWP Child - `4.1.4`
+    - Redirection - `5.0`
+    - W3 Total Cache - `2.1.0`
+- Ran `composer update` on Sage 9 theme
+    - Various polyfill updates for php versions and mbstring
+- Added update to `README.md` to mention setting a `DB_PREFIX` in the `.env` file on initial site setup for launch checklist security requirements.
+
 ## Ver 3.7.4 - Jan 12th, 2021
 
-- Ran `composer Update` on Bedrock Core
+- Ran `composer update` on Bedrock Core
     - Polyfill updates
 - Ran `composer update` for WordPress Plugins:
     - WP Accessibility - `1.7.6`

@@ -25,6 +25,8 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 * PHP >= 7.4
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
+---
+
 ## Installation of new project
 
 1. Clone this repo into your project directory and then run the following:
@@ -37,6 +39,8 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
         * `DB_USER` - Database user
         * `DB_PASSWORD` - Database password
         * `DB_HOST` - Database host
+        * `DB_PREFIX` - The prefix for WordPress' tables
+            * Note: It's strongly suggested setting this up with the checklist in mind. Don't use `wp_` but instead a random string that our security plugins would suggest using, since once going through the checklist, the plugin will not be able to update the tables and the `wp-config.php` file, and crash the site entirely. Just set it up early, and you'll be setup for success when closer to launch.
     * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
     * `WP_HOME` - Full URL to WordPress home (`https://{site_name}.TLD`)
     * `WP_SITEURL` - URL pointing to subdirectory - Shouldn't have to adjust this (`${WP_HOME}/wp`)
@@ -55,6 +59,8 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     ```sh
     wp core install --url={site_name}.TLD --title={Site Title} --admin_user=admin --admin_password={password} --admin_email={email}
    ```
+
+--- 
 
 ## Working with an existing Project
 
@@ -80,6 +86,8 @@ On local, using either phpmyadmin, Sequel Pro, or whatever program you use to cr
 ### Importing the Database
 
 Once this is done, you can import the database one of two ways, you can import it directly via your application/phpmyadmin, or use `wp-cli` to import it. If you use `wp-cli` make sure to have the file sitting in the `web` directory, and run the `wp-cli` command from there.
+
+---
 
 ## Migrating to a Forge Server
 
@@ -204,6 +212,8 @@ yarn && yarn build
 
 After you've saved this, in the box above it called "Deployment", make sure to click on "Quick Deploy", so that forge will automatically pull in your changes from `.git` when you make a commit.
 
+---
+
 ## Migrating to non-Forge Server
 
 To migrate the site from local or development to staging, the best route is to use the `cli`.
@@ -256,6 +266,8 @@ ls -la
 # If everything looks correct run the following
 cd ../ && rm -f {sitename}-uploads.tar.gz
 ```
+
+---
 
 ## Plugins
 
@@ -311,11 +323,15 @@ Example: `composer require clique-bedrock/advanced-access-manager`
 
 ![Packages added to SatisPress Cache](https://i.ibb.co/7S4nb6X/satispress-packages.png)
 
+---
+
 ## Multi-Site Support
 
 Bedrock by default supports WordPress' multi-site option, however due to possible difficulties with the admin slugs, there is a mu-plugin you must add to combat this issue. To read more about it, visit this [Bedrock writeup](https://roots.io/bedrock/docs/installing-bedrock/#multisite).
 
 To add the mu-plugin, run the following: `composer require roots/multisite-url-fixer`
+
+---
 
 ## Migrating to a WPEngine Repo
 
@@ -332,6 +348,8 @@ theme folder in:
 
 After you do that, you can move the `.git` folder from the Bedrock repo into the newly created folder, and then make sure to refresh your git application, or run git from 
 terminal in the new folder. For the rest of the WPEngine setup and migration, please refer to [this Notion document](https://www.notion.so/cliquestudios/WPEngine-Projects-098b2f5e7d2e434e951bd3cf16ee70ce). If you cannot access the page, please reach out to a Senior Dev or Francois for help.
+
+---
 
 ## Vue Navigation
 
@@ -353,6 +371,8 @@ based content, and uncomment the `<div id="vue-navigation-container"></div>` ele
 * Need to confirm IE 10/11 still properly functioning. There is a plugin, common backward compatibility functions, and babel is included, but always good to double check.
 
 The main component container is at `resources/assets/scripts/vue/Components/Navigation.vue` and uses the `store.js` found in the Vue assets folder under `Vuex` and the `mixins.js` under the `Util` folder in the Vue assets folder. The navigation contents from the API are stored with Vuex, and fed into the `DesktopNavigation.vue` and `MobileNavigation.vue` file which show based on the defined media query.
+
+---
 
 ## Documentation
 

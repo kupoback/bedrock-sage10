@@ -47,17 +47,17 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT`
         * Generate with [Roots's WordPress salts generator](https://roots.io/salts.html)
 3. Set the document root on your webserver to Bedrock's `web` folder: `/path/to/site/web/`
-    * If you're using `laravel/valet`, just `cd` to the directory and run:
-    ```sh
-   # Replace {site_name} with the hostname you wish to use
-   valet link {site_name}
-   ```
+    * If you're using `laravel/valet` and you've already parked your `Sites` folder, you shouldn't need to do anything futher.
 4. Run through the WordPress installer:
     * Through WordPress admin at `https://{site_name}.TLD/wp/wp-admin/`
     * Through `wp-cli`
     ```sh
     wp core install --url={site_name}.TLD --title={Site Title} --admin_user=admin --admin_password={password} --admin_email={email}
    ```
+5. Rename the `sage9-project-name-theme` in `web/app/themes` to the projects name
+6. Update the `web/app/themes/{THEME_NAME}/resources/assets/config.json`, changing the `publicPath` theme's name to match what you set in Step 5.
+7. Optional: If you're going to use Vue, uncomment lines 14/15 in `main.js`.
+
 
 --- 
 

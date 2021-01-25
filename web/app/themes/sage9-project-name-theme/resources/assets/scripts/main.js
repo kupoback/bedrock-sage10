@@ -11,8 +11,8 @@ import home from './routes/home'; // Used for front-page.blade.php
 import pageTemplateTemplateAbout from './routes/about';
 
 /** Vue Components to import, and declare **/
-const VueElms = require('./vue/vue.js');
-VueElms;
+// const VueElms = require('./vue/vue.js');
+// VueElms;
 
 /**
  * Populate Router instance with DOM routes

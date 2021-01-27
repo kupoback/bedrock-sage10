@@ -55,7 +55,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     wp core install --url={site_name}.TLD --title={Site Title} --admin_user=admin --admin_password={password} --admin_email={email}
    ```
 5. Rename the `sage9-project-name-theme` in `web/app/themes` to the projects name
-6. Update the `app/themes/{THEME_NAME}/resources/assets/config.json`, changing the `publicPath` theme's name to match what you set in Step 5.
+6. Update the `/app/themes/{THEME_NAME}/resources/assets/config.json`, changing the `publicPath` theme's name to match what you set in Step 5.
 7. Optional: If you're going to use Vue, uncomment lines 14/15 in `main.js`.
 
 

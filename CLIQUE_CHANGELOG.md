@@ -2,6 +2,14 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+# Ver 3.7.6 - Jan 27th, 2021
+
+- Ran `composer update` on WordPress Plugins
+    - Redirection - `5.0.1`
+    - Updraft Plus - `2.16.47.25`
+    - Yoast SEO - `15.7`
+- Worked on some theme webpack issues regarding importing fonts from SCSS and the browser able to resolve their path
+
 # Ver 3.7.5 - Jan 25th, 2021
 
 - Ran `composer update` on Bedrock Core

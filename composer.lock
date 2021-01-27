@@ -170,11 +170,11 @@
         },
         {
             "name": "clique-bedrock/updraftplus",
-            "version": "2.16.46.24",
+            "version": "2.16.47.25",
             "dist": {
                 "type": "zip",
-                "url": "https://prod.bedrock.cliquedomains.com/satispress/updraftplus/2.16.46.24",
-                "shasum": "74acc7caefc4e2cc2a74c09ca16a81c04fcf71e8"
+                "url": "https://prod.bedrock.cliquedomains.com/satispress/updraftplus/2.16.47.25",
+                "shasum": "27e40cf0614c4dba6f922972704c9ec59a824776"
             },
             "require": {
                 "composer/installers": "^1.0"
@@ -1537,15 +1537,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "5.0",
+            "version": "5.0.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/5.0"
+                "reference": "tags/5.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.5.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/redirection.5.0.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1627,15 +1627,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "15.6.2",
+            "version": "15.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/15.6.2"
+                "reference": "tags/15.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.15.6.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.15.7.zip"
             },
             "require": {
                 "composer/installers": "~1.0"

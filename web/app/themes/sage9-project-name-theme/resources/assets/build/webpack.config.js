@@ -9,7 +9,7 @@ const CopyGlobsPlugin = require("copy-globs-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const UglifyJSPlugin = require("uglify-js-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const { VueLoaderPlugin } = require('vue-loader');
+const {VueLoaderPlugin} = require("vue-loader");
 const {ES6PromisePlugin} = require("es6-promise");
 
 const desire = require("./util/desire");
@@ -71,9 +71,9 @@ let webpackConfig = {
                 test: /\.css$/,
                 exclude: config.paths.assets,
                 use: [
-                    {loader: 'vue-style-loader'},
-                    {loader: 'style-loader'},
-                    {loader: 'css-loader'},
+                    {loader: "vue-style-loader"},
+                    {loader: "style-loader"},
+                    {loader: "css-loader"},
                 ],
             },
             {
@@ -92,11 +92,11 @@ let webpackConfig = {
                 test: /\.scss$/,
                 exclude: config.paths.assets,
                 use: [
-                    {loader: 'vue-style-loader'},
-                    {loader: 'css-loader'},
-                    {loader: 'sass-loader'},
+                    {loader: "vue-style-loader"},
+                    {loader: "css-loader"},
+                    {loader: "sass-loader"},
                     {loader: "css", options: {sourceMap: config.enabled.sourceMaps}},
-                    {loader: "postcss", options: {config: {path: __dirname, ctx: config}, sourceMap: config.enabled.sourceMaps} },
+                    {loader: "postcss", options: {config: {path: __dirname, ctx: config}, sourceMap: config.enabled.sourceMaps}},
                 ]
             },
             {
@@ -106,28 +106,36 @@ let webpackConfig = {
                     fallback: "style",
                     use: [
                         {loader: "cache"},
-                        {loader: "css", options: {sourceMap: config.enabled.sourceMaps} },
-                        {loader: "postcss", options: {config: {path: __dirname, ctx: config}, sourceMap: config.enabled.sourceMaps} },
+                        {loader: "css", options: {sourceMap: config.enabled.sourceMaps}},
+                        {loader: "postcss", options: {config: {path: __dirname, ctx: config}, sourceMap: config.enabled.sourceMaps}},
                         {loader: "resolve-url", options: {sourceMap: config.enabled.sourceMaps}},
                         {loader: "sass", options: {sourceMap: config.enabled.sourceMaps, sourceComments: true}}
                     ]
                 })
             },
             {
-                test: /\.(ttf|otf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
+                test: /\.(png|jpe?g|gif|svg|ico)$/,
                 include: config.paths.assets,
                 loader: "url",
                 options: {
-                    limit: 4096,
+                    limit: 10000,
+                    name: `[path]${assetsFilenames}.[ext]`
+                }
+            },
+            {
+                test: /fonts\/.*\.(woff|woff2|eot|ttf|svg)$/,
+                include: config.paths.assets,
+                loader: "url",
+                options: {
                     name: `[path]${assetsFilenames}.[ext]`
                 }
             },
             {
                 test: /\.(ttf|otf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
                 include: /node_modules/,
-                loader: "url",
+                loader: "file-loader",
                 options: {
-                    limit: 4096,
+                    limit: 10000,
                     outputPath: "vendor/",
                     name: `${config.cacheBusting}.[ext]`
                 }
@@ -142,7 +150,7 @@ let webpackConfig = {
         modules: [config.paths.assets, "node_modules"],
         enforceExtension: false,
         alias: {
-            'vue$': 'vue/dist/vue.esm.js'
+            "vue$": "vue/dist/vue.esm.js"
         },
     },
     resolveLoader: {
@@ -195,7 +203,7 @@ let webpackConfig = {
             test: /\.js$/,
             options: {
                 eslint: {failOnWarning: false, failOnError: true}
-            }
+            },
         }),
         new StyleLintPlugin({
             failOnError: !config.enabled.watcher,

@@ -2,6 +2,13 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+# Ver 3.7.7 - Jan 29th, 2021
+
+- Updates to the `README.md` including:
+    - Added Quicklinks navigation
+    - Added instructions for wp-cli database addition
+    - Minor formatting tweaks
+
 # Ver 3.7.6 - Jan 27th, 2021
 
 - Ran `composer update` on WordPress Plugins

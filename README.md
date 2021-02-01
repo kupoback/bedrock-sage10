@@ -102,7 +102,7 @@ There are a few ways you can migrate a site down locally from an already existin
 
 As with the **Installation** instructions, you'll want to clone the project to a new folder, and copy the `.env.example` file named as `.env`. Then you'll want to setup the variables in the file similarly to how it is from the production or staging environment, minus the DB credentials and `WP_HOME` and `WP_SITEURL` fields. For `WP_ENV` you'll want to set that as `development` since we're working locally. For an explaination on these variables, please see **Installation of new project** above.
 
-After you've cloned, and setup your `.env` file, you'll want to run `composer update` in the root of the project and in the theme folder, as well as `yarn` in the theme folder. Do not run `composer install` as this _may_ install an updated version of WP Core or Plugins.
+After you've cloned, and setup your `.env` file, you'll want to run `composer install` in the root of the project and in the theme folder, as well as `yarn` in the theme folder.
 
 After you complete the above, you can use UpdraftPlus to download two parts of the site, or if you're more comfortable, you can `ssh` in and export the database with `wp-cli` if it's installed, and `gzip` the uploads folder omitting the `cache` and other files that aren't media related.
 
@@ -252,7 +252,7 @@ First, setup the server. Instructions for this can be found in Notion. One note,
 
 Example: `/var/www/html/SITENAME/production/web`
 
-After setting up the server, `cd` to the folder that'll be serving the staging site, and clone the repo here. Once you have cloned the repo, the next step would be to run `composer update` in the root of the cloned repo, and in the theme folder, followed by `yarn` to install the node modules. Afterwards, run `yarn build`, before moving on. After this is all complete, setup the database, and setup the `.env` file, ensuring that `WP_ENV` is set to `staging`, but do not run the WordPress install.
+After setting up the server, `cd` to the folder that'll be serving the staging site, and clone the repo here. Once you have cloned the repo, the next step would be to run `composer install` in the root of the cloned repo, and in the theme folder, followed by `yarn` to install the node modules. Afterwards, run `yarn build`, before moving on. After this is all complete, setup the database, and setup the `.env` file, ensuring that `WP_ENV` is set to `staging`, but do not run the WordPress install.
 
 For the Database, you can run the following:
 
@@ -328,8 +328,9 @@ To install a plugin, in terminal type:
 
 ```sh
 composer require <namespace>/<package>
-composer update
 ```
+
+You do not need to need to run `composer update` unless you want to update all the other plugins.
 
 ### WordPress Repository Plugin
 

@@ -220,7 +220,8 @@ The final step needed before you're good to go, is getting the Deployment sectio
 ```shell
 cd /home/forge/{SITE_FOLDER_NAME}
 git pull origin {BRANCH_NAME}
-#$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
+# Comment out the bottom if you're not going to actively run composer update locally before commiting your work
+$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
 
 ( flock -w 10 9 || exit 1
     echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock

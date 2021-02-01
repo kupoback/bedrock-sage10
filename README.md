@@ -178,7 +178,7 @@ The next steps are to you to determine how you want to import the database, but 
 ```shell
 # Replace {sqlfilename} with the name of your site.
 cd ~/project/web
-wp db export {sqlfilename}.sql
+wp db import {sqlfilename}.sql
 
 # This next line will do a search replace for your local URL and replace it with the URL to access it via the server
 wp search-replace {LOCAL_DEV_URL} https://{PROJECT_NAME}.com

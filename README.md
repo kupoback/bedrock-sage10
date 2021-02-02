@@ -302,12 +302,10 @@ Plugins are all now managed through Composer. You can still install plugins via 
 - All In One WP Security and Firewall
 - Classic Editor
 - Cookie Notice
-- Duplicator
 - Gravity Forms
 - Gravity Forms WCAG 20
 - Optimus
 - Redirection
-- REST API Toolbox
 - Safe SVG
 - StasiPress
 - Stream
@@ -337,7 +335,38 @@ Ex: Adding Yoast `composer require wpackagist-plugin/wordpress-seo`
 
 Certain plugins will be unavailable from the github repo, like `SearchWP`. To help manage this, there is a website created called [Bedrock Plugin](https://prod.bedrock.cliquedomains.com/), which will be the home to any Premium Plugins we use on sites. ACF Pro, Gravity Forms and UpdraftPlus Pro are already uploaded here, and made available for access on new Bedrock sites. They are also defined in the `composer.json` to update to the latest **minor** version of the plugin.
 
-#### Making a plugin available via SatisPress
+To install a premium plugin, with access to the plugins admin panel, we can copy the URL and try to dissect it to make sure it's usable. Say we have a URL like `https://eaxmple.plugin.com/?version=5.2.2&key=12354845312`. From this, we can see the params we can use and update are `version` and `key`, and changing those values as updates come about. For the key, since we want to keep license keys secure, we will use a package called `ffraenz/private-composer-installer` so that we can replace `key=1232456789` with `key={%EXAMPLE_KEY}` and `{%EXAMPLE_KEY}` being defined as `EXAMPLE_KEY=1232456789` in our `.env` file. 
+
+To add this to the `composer.json` file, you can copy and paste the code block below, making a few changes. We'll want to update the `name` of the package, the `version` of the package, the `dist.url` of the package, the `dist.type` of the package, and whether or not we need to use a key of sorts.
+
+After adding this to the `repositories` array, we can call to it like `composer require example-plugin/example-slug`, or however it's defined in the package name array.
+
+If this URL requires something that expires, like a web token, this method will not work, and we will need to use [StaisPress](#markdown-header-making-a-plugin-available-via-satispress) instead, which is covered in the next section.
+
+#### Example
+```json
+{
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "example-plugin/example-slug",
+				"version": "1.0.0",
+				"type": "wordpress-plugin",
+				"dist": {
+					"url": "https://eaxmple.plugin.com/?version=5.2.2&key={%EXAMPLE_KEY}",
+					"type": "zip"
+				},
+				"require": {
+					"ffraenz/private-composer-installer": "^5.0"
+				}
+			}
+		}
+	]
+}
+```
+
+### Making a plugin available via SatisPress
 
 Under the Plugins page in the admin, you will now see checkboxes to the right of each plugin. Clicking a checkbox will trigger an event that will add this plugin to SatisPress'
 cache folder allowing those with the correct credentials in the `auth.json` file to download these plugins. This will also hold true for anytime a plugin is update, the relative

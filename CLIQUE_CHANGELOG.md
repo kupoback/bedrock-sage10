@@ -2,42 +2,55 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+# Ver 3.7.8 - Feb 12th, 2021
+
+- Ran `composer update` for WordPress Core - `5.6.1`
+- Ran `composer update` for WordPress Plugins
+  - Advanced Custom Fields Pro - `5.9.5`
+  - Cookie Notice - `2.0.2`
+  - MainWP Child Support - `2.0.7`
+  - Stream - `3.6.2`
+  - Yoast SEO - `15.8`
+  - WP REST Cache - `2021.1.0`
+- Ran `composer update` for Bedrock dependencies
+  - Security Advisors
+
 # Ver 3.7.7 - Jan 29th, 2021
 
 - Updates to the `README.md` including:
-    - Added Quicklinks navigation
-    - Added instructions for wp-cli database addition
-    - Minor formatting tweaks
+  - Added Quicklinks navigation
+  - Added instructions for wp-cli database addition
+  - Minor formatting tweaks
 
 # Ver 3.7.6 - Jan 27th, 2021
 
 - Ran `composer update` on WordPress Plugins
-    - Redirection - `5.0.1`
-    - Updraft Plus - `2.16.47.25`
-    - Yoast SEO - `15.7`
+  - Redirection - `5.0.1`
+  - Updraft Plus - `2.16.47.25`
+  - Yoast SEO - `15.7`
 - Worked on some theme webpack issues regarding importing fonts from SCSS and the browser able to resolve their path
 
 # Ver 3.7.5 - Jan 25th, 2021
 
 - Ran `composer update` on Bedrock Core
-    - Composer Installers
-    - Security Advisories
+  - Composer Installers
+  - Security Advisories
 - Ran `composer update` on WordPress plugins
-    - Advanced Custom Fields - `5.9.4`
-    - MainWP Child - `4.1.4`
-    - Redirection - `5.0`
-    - W3 Total Cache - `2.1.0`
+  - Advanced Custom Fields - `5.9.4`
+  - MainWP Child - `4.1.4`
+  - Redirection - `5.0`
+  - W3 Total Cache - `2.1.0`
 - Ran `composer update` on Sage 9 theme
-    - Various polyfill updates for php versions and mbstring
+  - Various polyfill updates for php versions and mbstring
 - Added update to `README.md` to mention setting a `DB_PREFIX` in the `.env` file on initial site setup for launch checklist security requirements.
 
 ## Ver 3.7.4 - Jan 12th, 2021
 
 - Ran `composer update` on Bedrock Core
-    - Polyfill updates
+  - Polyfill updates
 - Ran `composer update` for WordPress Plugins:
-    - WP Accessibility - `1.7.6`
-    - Yoast SEO - `15.6.2`
+  - WP Accessibility - `1.7.6`
+  - Yoast SEO - `15.6.2`
 - Added ACF Gravity Forms field plugin to allow selecting of GF via ACF
 - Added `siteName` to Nav localized args
 - Made an adjustment to the Vue Navigation to use `v-bind:class`, and keep for better code consistency

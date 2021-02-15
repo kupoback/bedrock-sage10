@@ -227,10 +227,10 @@ $FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
     echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
 
 # Sync the ACF-json folder to the site
-cd web
-wp acf-json sync
+# cd web
+# wp acf-json sync # Currently investigating an issue where sometimes repeaters won't populate content hold off on using
 # Move to the theme directory and rebuild the assets
-cd app/themes/{THEME_NAME}
+cd web/app/themes/{THEME_NAME}
 yarn && yarn build
 ```
 

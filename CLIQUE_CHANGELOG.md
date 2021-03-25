@@ -2,6 +2,49 @@
 
 ## Clique Wordpress Boilerplate Changelog
 
+# Ver 3.8 - Mar 25th, 2021
+
+**New**
+
+- Added Routes folder to app for API related routes used on the site. 
+    - There's an init.php that is included in the functions.php so that instantiated classes can be called there.
+    - Added REST API for Blog Posts. This is commented out by default in Routes/init 
+    - @TODO Need to find a better "plugin" approach to this.
+- Added Helper folder with a default Helper Class there that contains a method to generate a picture with webp and default image type sources, and an image tag.
+
+**Updates**
+- Ran `composer update` on WordPress Core - `5.7.0`
+- Ran `composer update` on WordPress Plugins
+    - All In One WP Security - `4.4.8`
+    - Cookie Notice & Compliance for GDPR / CCPA - `2.0.3`
+    - Gravity Forms - `2.4.23`
+    - MainWP Child - `4.1.5`
+    - Updraft Plus - `2.16.50.25`
+    - W3 Total Cache - `2.1.1`
+    - Wordfence Security - `7.5.2`
+    - WP Accessibility - `1.7.7`
+    - WP REST Cache - `2021.2.1`
+    - Yoast SEO - `16.0.2`
+- Ran `composer update` on Bedrock dependencies
+    - psr/container - `1.1.1`
+    - pimple/pimple - `v3.4.0`
+    - rovae/security-advisories - `dev-master 3dfe1d2`
+    - sympony/polyfill-php80 - `v1.22.1`
+    - sympony/polyfill-mbstring - `v1.22.1`
+    - sympony/polyfill-ctype - `v1.22.1`
+- Ran `composer update` on Sage theme
+    - symfony/polyfill-mbstring - `v1.22.1`
+    - symfony/translation - `v4.4.20`
+    - psr/container - `1.1.1`
+    - symfony/polyfill-ctype - `v1.22.1`
+    - symfony/finder - `v4.4.20`
+    - symfony/polyfill-php80 - `v1.22.1`
+    - symfony/polyfill-php73 - `v1.22.1`
+    - symfony/console - `v4.4.20`
+    - symfony/debug - `v4.4.20`
+- Updated `.gitignore` to remove the wflogs from being committed
+
+
 # Ver 3.7.8 - Feb 12th, 2021
 
 - Ran `composer update` for WordPress Core - `5.6.1`

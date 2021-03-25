@@ -204,6 +204,8 @@ cd ../ && rm -f {sitename}-uploads.tar.gz
 
 ## Installing ACF JSON WP CLI plugin
 
+**Note** There is currently an issue experienced with this plugin where syncing files will cause the fields to jumble.
+
 All forge servers should come with WP-CLI installed, and on Sandbox 7, this step is already done for you, so you can skip it. if this is on a non-Sandbox 7 server, then after you `ssh` into the server, not as a root user, run the following command.
 
 ```shell
@@ -226,9 +228,11 @@ $FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
 ( flock -w 10 9 || exit 1
     echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
 
+# Currently investigating an issue where sometimes repeaters won't populate content hold off on using
 # Sync the ACF-json folder to the site
 # cd web
-# wp acf-json sync # Currently investigating an issue where sometimes repeaters won't populate content hold off on using
+# wp acf-json sync
+
 # Move to the theme directory and rebuild the assets
 cd web/app/themes/{THEME_NAME}
 yarn && yarn build

@@ -4,6 +4,9 @@
     @include('partials/entry-meta')
   </header>
   <div class="entry-content">
+	  @if (has_post_thumbnail())
+		  {!! \App\Helper\ImageHelper::imgSrcSet(get_post_thumbnail_id()) !!}
+	  @endif
     @php the_content() @endphp
   </div>
   <footer>

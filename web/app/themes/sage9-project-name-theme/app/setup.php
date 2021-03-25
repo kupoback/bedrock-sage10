@@ -6,7 +6,7 @@ use Roots\Sage\Container;
 use Roots\Sage\Assets\JsonManifest;
 use Roots\Sage\Template\Blade;
 use Roots\Sage\Template\BladeProvider;
-use App\Controllers\SageNavRestAPI;
+use App\Routes\SageNavRestAPI;
 
 /**
  * Theme assets
@@ -24,7 +24,7 @@ add_action('wp_enqueue_scripts', function () {
      */
     $query_obj = get_queried_object();
     wp_localize_script('sage/main.js', 'NAV', [
-        'api'      => rest_url('navigation/v1/get-nav'),
+        'api'      => rest_url('sage-endpoint/v1/get-nav'),
         'navID'    => 'primary-navigation',
         'pageSlug' => is_front_page() ? 'home' : ($query_obj->post_name ?: 'undefined'),
         'postId'   => $query_obj->ID,
@@ -95,7 +95,7 @@ add_action('after_setup_theme', function () {
     add_editor_style(asset_path('styles/main.css'));
     
     // Register the SageNavRestAPI Class
-    if (class_exists('App\Controllers\SageNavRestAPI')) {
+    if (class_exists('App\Routes\SageNavRestAPI')) {
         new SageNavRestAPI();
     }
 }, 20);

@@ -1,25 +1,22 @@
 <?php
 
-// declare(strict_types = 1);
+declare(strict_types = 1);
 
-namespace App\Controllers;
+namespace App\Routes;
+
+use App\Routes\Traits\RestRouteParams;
 
 /**
  * Class Name: SageNavRestAPI
  * Description: A basic class to parse and return the navigation items for Vue
  * Class SageNavRestAPI
  *
- * @package App\Controllers\SageNavRestApi
+ * @package App\Routes\SageNavRestApi
  */
 class SageNavRestAPI
 {
     
-    /**
-     * Endpoint Namespace
-     *
-     * @var string
-     */
-    protected $namespace;
+    use RestRouteParams;
     
     /**
      * MoralesRestAPI constructor.
@@ -34,12 +31,12 @@ class SageNavRestAPI
      */
     public function registerRoutes()
     {
-        $this->namespace = 'navigation/v1';
+        $this->route = "$this->namespace/$this->version";
         
         /**
          * Grabs the navigation items
          */
-        register_rest_route($this->namespace, '/get-nav', [
+        register_rest_route($this->route, '/get-nav', [
             'methods'  => \WP_REST_Server::READABLE,
             'callback' => [$this, 'populateNav'],
         ]);

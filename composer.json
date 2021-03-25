@@ -44,7 +44,7 @@
     "vlucas/phpdotenv": "^5.2",
     "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "^1.0",
-    "roots/wordpress": "^5.5",
+    "roots/wordpress": "^5.7",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "cedaro/satispress": "^0.5",
@@ -64,7 +64,7 @@
     "wpackagist-plugin/stream": "^3.4",
     "wpackagist-plugin/w3-total-cache": "^2.0",
     "wpackagist-plugin/wordfence": "^7.4",
-    "wpackagist-plugin/wordpress-seo": "^15.0",
+    "wpackagist-plugin/wordpress-seo": "^16.0",
     "wpackagist-plugin/wp-accessibility": "^1.6",
     "wpackagist-plugin/wp-rest-cache": "^2021.0"
   },

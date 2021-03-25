@@ -126,6 +126,7 @@ web/app/themes/**/vendor
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
+web/app/wflogs
 !web/wp-config.php
 
 web/app/updraft

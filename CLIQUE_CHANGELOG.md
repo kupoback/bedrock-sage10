@@ -1,6 +1,30 @@
 ---
 
-## Clique Wordpress Boilerplate Changelog
+# Clique Wordpress Boilerplate Changelog
+
+# Ver 3.8.1 - Apr, 22nd, 2021
+
+**Updates**
+
+- Ran `composer update` on WordPress Core - `5.7.1`
+- Ran `composer update` on WordPress Plugins
+    - ACF Gravity Forms Addon - `1.2.8`
+    - Gravity Forms - `2.4.24`
+    - MainWP Child - `4.1.6.1`
+    - Redirection - `5.1.1`
+    - UpdraftPlus - `2.16.53.25`
+    - W3 Total Cache - `2.1.2`
+    - WP REST Cache - `2021.3.0`
+    - Yoast SEO - `16.1.1`
+- Ran `composer update` on Bedrock dependencies
+    - Security Advisories - `dev-master 593c4de`
+    - Squizlabs PHPCS - `3.6.0`
+- Ran `composer update` on Sage 9 Theme
+    - Translation Contracts - `v2.4.0`
+    - Translation - `v4.4.21`
+    - Inflector - `1.4.4`
+    - Service Contracts - `v2.4.0`
+    - Console - `v4.4.21`
 
 # Ver 3.8 - Mar 25th, 2021
 

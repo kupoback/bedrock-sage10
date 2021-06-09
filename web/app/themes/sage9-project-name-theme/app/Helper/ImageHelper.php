@@ -54,6 +54,8 @@ class ImageHelper
                 })
                 ->toArray();
         }
+    
+        $webp_srcset = $src_sizes ? self::getWebp($src_sizes) : [];
         
         /**
          * The webp output in a source tag
@@ -157,6 +159,8 @@ class ImageHelper
         
         // Final assembly of image attributes
         $src_attributes = "alt=\"{$src_alt}\"";
+    
+        $webp_srcset = $src_sizes ? self::getWebp($src_sizes) : [];
         
         $webp_source = !empty($webp_srcset) && $webp_srcset[0] ? sprintf(
             '<source srcset="%s" sizes="%s" type="image/webp">',

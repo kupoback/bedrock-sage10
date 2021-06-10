@@ -74,18 +74,32 @@ class ImageHelper
             $get_img_data['img_type']
         ) : '';
 
-        return sprintf(
-            '<picture>%2$s<img role="%5$s" %3$s property="v:%4$s" %6$s %7$s content="%1$s" %8$s %9$s/></picture>',
-            esc_url($src),
-            $webp_source . $og_source,
-            $get_img_data['alt'] ? "alt=\"{$get_img_data['alt']}\"" : '',
-            $prop,
-            $role,
-            $image_class ? "class=\"{$image_class}\"" : '',
-            $image_id ? "id=\"{$image_id}\"" : '',
-            implode(' ', $da_return),
-            implode(' ', $aa_return),
-        );
+        if (strpos($get_img_data['img_type'], 'svg')) {
+            return sprintf(
+                '<picture><img src="%1$s" role="%4$s" %2$s property="v:%3$s" %5$s %6$s content="%1$s" %7$s %8$s/></picture>',
+                esc_url($src),
+                $get_img_data['alt'] ? "alt=\"{$get_img_data['alt']}\"" : '',
+                $prop,
+                $role,
+                $image_class ? "class=\"{$image_class}\"" : '',
+                $image_id ? "id=\"{$image_id}\"" : '',
+                implode(' ', $da_return),
+                implode(' ', $aa_return),
+            );
+        } else {
+            return sprintf(
+                '<picture>%2$s<img role="%5$s" %3$s property="v:%4$s" %6$s %7$s content="%1$s" %8$s %9$s/></picture>',
+                esc_url($src),
+                ($webp_source ?? '') . $og_source,
+                $get_img_data['alt'] ? "alt=\"{$get_img_data['alt']}\"" : '',
+                $prop,
+                $role,
+                $image_class ? "class=\"{$image_class}\"" : '',
+                $image_id ? "id=\"{$image_id}\"" : '',
+                implode(' ', $da_return),
+                implode(' ', $aa_return),
+            );
+        }
     }
 
     /**
@@ -170,21 +184,36 @@ class ImageHelper
             $src_sizes,
             str_replace('.', '', substr($src, strrpos($src, '.')))
         ) : '';
-
-        return sprintf(
-            '<figure %6$s><picture>%2$s<img role="%5$s" %3$s  %7$s %8$s property="v:%4$s" content="%1$s" %9$s %10$s /></picture>%11$s</figure>',
-            esc_url($src),
-            $webp_source . $og_source,
-            $src_attributes,
-            $prop,
-            $role,
-            $fig_class ? 'class="wp-caption ' . $fig_class . '"' : '',
-            $image_class ? 'class="' . $image_class . '"' : '',
-            $image_id ? "id=\"{$image_id}\"" : '',
-            implode(' ', $da_return),
-            implode(' ', $aa_return),
-            $caption
-        );
+        if (strpos($get_img_data['img_type'], 'svg')) {
+            sprintf(
+                '<figure %5$s><picture><img src="%1$s" role="%4$s" %2$s %6$s %7$s property="v:%3$s" content="%1$s" %8$s %9$s /></picture>%10$s</figure>',
+                esc_url($src),
+                $src_attributes,
+                $prop,
+                $role,
+                $fig_class ? 'class="wp-caption ' . $fig_class . '"' : '',
+                $image_class ? 'class="' . $image_class . '"' : '',
+                $image_id ? "id=\"{$image_id}\"" : '',
+                implode(' ', $da_return),
+                implode(' ', $aa_return),
+                $caption
+            );
+        } else {
+            return sprintf(
+                '<figure %6$s><picture>%2$s<img role="%5$s" %3$s  %7$s %8$s property="v:%4$s" content="%1$s" %9$s %10$s /></picture>%11$s</figure>',
+                esc_url($src),
+                ($webp_source ?? '') . $og_source,
+                $src_attributes,
+                $prop,
+                $role,
+                $fig_class ? 'class="wp-caption ' . $fig_class . '"' : '',
+                $image_class ? 'class="' . $image_class . '"' : '',
+                $image_id ? "id=\"{$image_id}\"" : '',
+                implode(' ', $da_return),
+                implode(' ', $aa_return),
+                $caption
+            );
+        }
     }
 
     /**

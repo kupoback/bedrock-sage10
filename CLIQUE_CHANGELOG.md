@@ -5,6 +5,7 @@
 # Ver 3.9.1.1 - June 10th, 2021
 
 - Fixed another issue with `ImageHelper::imgSrcSet` and `ImageHelper::imgSrcSetCaption` methods not returning webp's for svg's
+- Fixed issue with svg's unable to return due to no original source
 
 # Ver 3.9.1 - June 9th, 2021
 

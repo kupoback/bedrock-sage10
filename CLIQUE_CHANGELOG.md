@@ -2,6 +2,10 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.9.1.1 - June 10th, 2021
+
+- Fixed another issue with `ImageHelper::imgSrcSet` and `ImageHelper::imgSrcSetCaption` methods not returning webp's for svg's
+
 # Ver 3.9.1 - June 9th, 2021
 
 - Fixed issue with `ImageHelper::imgSrcSet` and `ImageHelper::imgSrcSetCaption` methods not returning webp's

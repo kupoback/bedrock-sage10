@@ -2,7 +2,7 @@
 
 # Clique Wordpress Boilerplate Changelog
 
-# Ver 3.9.2.1 - June 14th, 2021
+# Ver 3.9.1.2 - June 14th, 2021
 
 - Moved the `_wordpress.scss` file out of a folder that could be overwritten when a FE project is merged into the `styles` folder.
 

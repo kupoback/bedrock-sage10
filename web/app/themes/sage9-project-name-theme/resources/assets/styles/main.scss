@@ -13,9 +13,12 @@
 @import "common/reset";
 @import "template-parts/layouts";
 
+
+// Default WordPress CSS
+@import "default/wordpress";
+
 // components
 @import "components/base";
-@import "components/wordpress";
 @import "components/animation";
 @import "components/button";
 @import "components/form";

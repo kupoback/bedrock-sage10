@@ -15,9 +15,9 @@ use App\Routes\Traits\RestRouteParams;
  */
 class SageNavRestAPI
 {
-    
+
     use RestRouteParams;
-    
+
     /**
      * MoralesRestAPI constructor.
      */
@@ -25,14 +25,14 @@ class SageNavRestAPI
     {
         add_action('rest_api_init', [$this, 'registerRoutes',]);
     }
-    
+
     /**
      * Creates the API Endpoing in Wordpress
      */
     public function registerRoutes()
     {
         $this->route = "$this->namespace/$this->version";
-        
+
         /**
          * Grabs the navigation items
          */
@@ -41,7 +41,7 @@ class SageNavRestAPI
             'callback' => [$this, 'populateNav'],
         ]);
     }
-    
+
     /**
      * Returns an array of navigation items
      *
@@ -52,34 +52,33 @@ class SageNavRestAPI
     public function populateNav(\WP_REST_Request $request)
     {
         $return_menu = [];
-        
+
         // Used for changing the navigation array return if design calls for a unique layout on mobile/tablet
         $viewport = $request['viewport'];
-        
+
         // Which navigation to get
         $nav_id   = $request['navID'];
         $get_menu = wp_get_nav_menu_items($nav_id);
-        
+
         if (!is_wp_error($get_menu) && !empty($get_menu)) {
             $parse_items = collect($get_menu)
                 ->map(function ($item) {
                     return self::parseNavItem($item);
                 })
                 ->groupBy('parent');
-            
+
             $return_menu = collect($parse_items)
                 ->first()
                 ->map(function ($item) use ($parse_items) {
                     $item['children'] = $parse_items[$item['id']] ?? [];
-                    ;
                     return $item;
                 })
                 ->toArray();
         }
-        
+
         return rest_ensure_response($return_menu);
     }
-    
+
     /**
      * Parses the menu item for return formatting
      *
@@ -96,7 +95,7 @@ class SageNavRestAPI
         ];
         $addt_class = $opts['addt_class'] ?? '';
         $classes = wp_parse_args($addt_class, $default_classes);
-        
+
         return [
             'classes'          => implode(' ', $classes),
             'id'               => $item->ID, // The 'post id' of the item in nav_menu_item post type

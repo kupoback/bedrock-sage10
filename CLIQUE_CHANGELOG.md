@@ -11,7 +11,9 @@
         - Minor optimization to the collection return to filter out empty arrays and reset the key indexs
     - Added second method, `navWithChildren`, to return parent items with 1st level of children.
         - Added new endpoint for it `get-nav-with-children`
-- Adjusted `Link.vue` to check if the `menuItem` has the property `children`.
+- Adjusted `Link.vue` to check if the `menuItem` has the property `children`
+- Disabled the rest API registration in `setup.php`
+- Removed lingering `view` directory under `resources/assets`
 
 # Ver 3.9.1.1 - June 10th, 2021
 

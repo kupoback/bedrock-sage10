@@ -5,7 +5,13 @@
 # Ver 3.9.1.2 - June 17th, 2021
 
 - Moved the `_wordpress.scss` file out of a folder that could be overwritten when a FE project is merged into the `styles` folder.
-- Removed extra comma in SageNavRestAPI
+- Updated to `SageNavRestAPI`
+    - Removed extra comma in old method
+    - Changed main method to return only parent items and renamed it `navWOChildren`
+        - Minor optimization to the collection return to filter out empty arrays and reset the key indexs
+    - Added second method, `navWithChildren`, to return parent items with 1st level of children.
+        - Added new endpoint for it `get-nav-with-children`
+- Adjusted `Link.vue` to check if the `menuItem` has the property `children`.
 
 # Ver 3.9.1.1 - June 10th, 2021
 

@@ -9,7 +9,7 @@
             <button class="hamburger"
                     v-bind:class="{ 'is-active': menuOpen }" >
                 <div class="hamburger-box">
-                    <div class="hamburger-inner"></div>
+                    <div class="hamburger-inner" />
                 </div>
             </button>
         </div>

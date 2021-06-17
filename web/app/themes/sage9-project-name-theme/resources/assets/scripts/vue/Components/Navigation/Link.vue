@@ -3,8 +3,8 @@
         <a :href="menuItem.permalink"
            :class="`${isActive(postId, menuItem.objId)}`"
            :target="menuItem.target"
-           v-text="menuItem.title"></a>
-        <ul v-if="menuItem.children.length"
+           v-text="menuItem.title" />
+        <ul v-if="objHasKey(menuItem, 'children') && menuItem.children.length"
             class="submenu">
             <li v-for="({classes, id, objId, permalink, target, title}) in menuItem.children"
                 :class="`header__item ${listItemClass(postId, objId, classes)}`"
@@ -12,7 +12,7 @@
                 <a :href="permalink"
                    :class="`${isActive(postId, objId)}`"
                    :target="target"
-                   v-text="title"></a>
+                   v-text="title" />
             </li>
         </ul>
     </li>

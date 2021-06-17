@@ -38,18 +38,56 @@ class SageNavRestAPI
          */
         register_rest_route($this->route, '/get-nav', [
             'methods'  => \WP_REST_Server::READABLE,
-            'callback' => [$this, 'populateNav'],
+            'callback' => [$this, 'navWOChildren'],
+        ]);
+
+        register_rest_route($this->route, '/get-nav-with-children', [
+            'methods'  => \WP_REST_Server::READABLE,
+            'callback' => [$this, 'navWithChildren'],
         ]);
     }
 
     /**
-     * Returns an array of navigation items
+     * Returns an array of navigation items without their children
      *
      * @param \WP_REST_Request $request
      *
      * @return mixed|\WP_Error|\WP_HTTP_Response|\WP_REST_Response
      */
-    public function populateNav(\WP_REST_Request $request)
+    public function navWOChildren(\WP_REST_Request $request)
+    {
+        $return_menu = [];
+
+        // Used for changing the navigation array return if design calls for a unique layout on mobile/tablet
+        $viewport = $request['viewport'];
+
+        // Which navigation to get
+        $nav_id   = $request['navID'];
+        $get_menu = wp_get_nav_menu_items($nav_id);
+
+        if (!is_wp_error($get_menu) && !empty($get_menu)) {
+            $return_menu = collect($get_menu)
+                ->map(function ($item) {
+                    if ((int) $item->menu_item_parent === 0) {
+                        return self::parseNavItem($item);
+                    }
+                    return '';
+                })
+                ->filter()
+                ->values();
+        }
+
+        return rest_ensure_response($return_menu);
+    }
+
+    /**
+     * Returns an array of navigation items with children
+     *
+     * @param \WP_REST_Request $request
+     *
+     * @return mixed|\WP_Error|\WP_HTTP_Response|\WP_REST_Response
+     */
+    public function navWithChildren(\WP_REST_Request $request)
     {
         $return_menu = [];
 
@@ -93,17 +131,17 @@ class SageNavRestAPI
             'menu-item',
             (int) $item->menu_item_parent === 0 ? 'menu-item-parent' : 'menu-item-child',
         ];
-        $addt_class = $opts['addt_class'] ?? '';
-        $classes = wp_parse_args($addt_class, $default_classes);
+        $addt_class      = $opts['addt_class'] ?? '';
+        $classes         = wp_parse_args($addt_class, $default_classes);
 
         return [
-            'classes'          => implode(' ', $classes),
-            'id'               => $item->ID, // The 'post id' of the item in nav_menu_item post type
-            'objId'            => $item->object_id, // The 'post id' of the item's default post type
-            'permalink'        => $item->url,
-            'target'           => $item->target,
-            'title'            => $item->title,
-            'parent'           => (int) $item->menu_item_parent,
+            'classes'   => implode(' ', $classes),
+            'id'        => $item->ID, // The 'post id' of the item in nav_menu_item post type
+            'objId'     => $item->object_id, // The 'post id' of the item's default post type
+            'permalink' => $item->url,
+            'target'    => $item->target,
+            'title'     => $item->title,
+            'parent'    => (int) $item->menu_item_parent,
         ];
     }
 }

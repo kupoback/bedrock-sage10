@@ -14,23 +14,31 @@ use App\Routes\SageNavRestAPI;
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('sage/main.css', asset_path('styles/main.css'), false, null);
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
-    
+
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
-    
+
     /**
      * Delete comment to use with Vue Navigation
+     *
      */
-    $query_obj = get_queried_object();
-    wp_localize_script('sage/main.js', 'NAV', [
-        'api'      => rest_url('sage-endpoint/v1/get-nav'),
-        'navID'    => 'primary-navigation',
-        'pageSlug' => is_front_page() ? 'home' : ($query_obj->post_name ?: 'undefined'),
-        'postId'   => $query_obj->ID,
-        'siteName' => get_bloginfo('name'),
-        'siteUrl'  => get_home_url(),
-    ]);
+    // $query_obj = get_queried_object();
+    /**
+     * Endpoints:
+     * Navigation with no children  get-nav
+     * Navigation with children     get-nav-with-children
+     *
+     * @TODO Control this via the wp-admin
+     */
+    // wp_localize_script('sage/main.js', 'NAV', [
+    //     'api'      => rest_url('sage-endpoint/v1/get-nav'),
+    //     'navID'    => 'primary-navigation',
+    //     'pageSlug' => is_front_page() ? 'home' : ($query_obj->post_name ?: 'undefined'),
+    //     'postId'   => $query_obj->ID,
+    //     'siteName' => get_bloginfo('name'),
+    //     'siteUrl'  => get_home_url(),
+    // ]);
 }, 100);
 
 /**
@@ -47,14 +55,14 @@ add_action('after_setup_theme', function () {
     add_theme_support('soil-nav-walker');
     add_theme_support('soil-nice-search');
     add_theme_support('soil-relative-urls');
-    
+
     /**
      * Enable plugins to manage the document title
      *
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
      */
     add_theme_support('title-tag');
-    
+
     /**
      * Register navigation menus
      *
@@ -65,35 +73,35 @@ add_action('after_setup_theme', function () {
             'primary_navigation' => __('Primary Navigation', 'sage'),
         ]
     );
-    
+
     /**
      * Enable post thumbnails
      *
      * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
      */
     add_theme_support('post-thumbnails');
-    
+
     /**
      * Enable HTML5 markup support
      *
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
      */
     add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
-    
+
     /**
      * Enable selective refresh for widgets in customizer
      *
      * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
      */
     add_theme_support('customize-selective-refresh-widgets');
-    
+
     /**
      * Use main stylesheet for visual editor
      *
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style(asset_path('styles/main.css'));
-    
+
     // Register the SageNavRestAPI Class
     if (class_exists('App\Routes\SageNavRestAPI')) {
         new SageNavRestAPI();
@@ -142,7 +150,7 @@ add_action('after_setup_theme', function () {
     sage()->singleton('sage.assets', function () {
         return new JsonManifest(config('assets.manifest'), config('assets.uri'));
     });
-    
+
     /**
      * Add Blade to Sage container
      */
@@ -154,7 +162,7 @@ add_action('after_setup_theme', function () {
         (new BladeProvider($app))->register();
         return new Blade($app['view']);
     });
-    
+
     /**
      * Create @asset() Blade directive
      */
@@ -189,7 +197,7 @@ add_action('init', function () {
     remove_filter('the_content_feed', 'wp_staticize_emoji');
     remove_filter('comment_text_rss', 'wp_staticize_emoji');
     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
-    
+
     /**
      * Filter out the tinymce emoji plugin.
      */

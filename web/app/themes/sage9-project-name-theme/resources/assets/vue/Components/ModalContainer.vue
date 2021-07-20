@@ -29,7 +29,7 @@
                 })
             }
         },
-        name: "ModalContainer.vue"
+        name: "ModalContainer"
     };
 </script>
 

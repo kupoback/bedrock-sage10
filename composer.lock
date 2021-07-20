@@ -132,18 +132,18 @@
         },
         {
             "name": "clique-bedrock/advanced-custom-fields-pro",
-            "version": "5.9.6",
+            "version": "5.9.8",
             "dist": {
                 "type": "zip",
-                "url": "https://prod.bedrock.cliquedomains.com/satispress/advanced-custom-fields-pro/5.9.6",
-                "shasum": "078d07d16c4c730b7ec861782244a26aaa76b331"
+                "url": "https://prod.bedrock.cliquedomains.com/satispress/advanced-custom-fields-pro/5.9.8",
+                "shasum": "24b77bdebae7ac97c6455ea90a636dd00449a99e"
             },
             "require": {
                 "composer/installers": "^1.0"
             },
             "type": "wordpress-plugin",
             "authors": {
-                "name": "Elliot Condon",
+                "name": "Delicious Brains",
                 "homepage": "https://www.advancedcustomfields.com"
             },
             "description": "Customize WordPress with powerful, professional and intuitive fields.",
@@ -151,11 +151,11 @@
         },
         {
             "name": "clique-bedrock/gravityforms",
-            "version": "2.5.5",
+            "version": "2.5.7",
             "dist": {
                 "type": "zip",
-                "url": "https://prod.bedrock.cliquedomains.com/satispress/gravityforms/2.5.5",
-                "shasum": "9610c88539e796b3a588cd5a9ebc1696dd73d71b"
+                "url": "https://prod.bedrock.cliquedomains.com/satispress/gravityforms/2.5.7",
+                "shasum": "5a4e62bdf0189720a05ce1bc160602ef99ab431e"
             },
             "require": {
                 "composer/installers": "^1.0"
@@ -170,11 +170,11 @@
         },
         {
             "name": "clique-bedrock/updraftplus",
-            "version": "2.16.58.25",
+            "version": "2.16.59.25",
             "dist": {
                 "type": "zip",
-                "url": "https://prod.bedrock.cliquedomains.com/satispress/updraftplus/2.16.58.25",
-                "shasum": "c614f7b14e0008a98331bcb0475664132449a49e"
+                "url": "https://prod.bedrock.cliquedomains.com/satispress/updraftplus/2.16.59.25",
+                "shasum": "e7d99d27ef6d1d264840322dede79f4641b678b9"
             },
             "require": {
                 "composer/installers": "^1.0"
@@ -834,15 +834,15 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "5.7.2",
+            "version": "5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "5.7.2"
+                "reference": "5.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/refs/tags/5.7.2"
+                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/refs/tags/5.8"
             },
             "require": {
                 "php": ">=5.3.2",
@@ -885,7 +885,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-05-12T23:52:01+00:00"
+            "time": "2021-07-20T16:24:55+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -1408,7 +1408,7 @@
         },
         {
             "name": "wpackagist-plugin/all-in-one-wp-security-and-firewall",
-            "version": "4.4.8",
+            "version": "4.4.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/all-in-one-wp-security-and-firewall/",
@@ -1416,7 +1416,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.zip?timestamp=1615364368"
+                "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.zip?timestamp=1626741605"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1426,15 +1426,15 @@
         },
         {
             "name": "wpackagist-plugin/classic-editor",
-            "version": "1.6",
+            "version": "1.6.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/classic-editor/",
-                "reference": "tags/1.6"
+                "reference": "tags/1.6.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/classic-editor.1.6.zip"
+                "url": "https://downloads.wordpress.org/plugin/classic-editor.1.6.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1444,15 +1444,15 @@
         },
         {
             "name": "wpackagist-plugin/cookie-notice",
-            "version": "2.0.4",
+            "version": "2.1.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cookie-notice/",
-                "reference": "tags/2.0.4"
+                "reference": "tags/2.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cookie-notice.2.0.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/cookie-notice.2.1.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1480,15 +1480,15 @@
         },
         {
             "name": "wpackagist-plugin/mainwp-child",
-            "version": "4.1.6.1",
+            "version": "4.1.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mainwp-child/",
-                "reference": "tags/4.1.6.1"
+                "reference": "tags/4.1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mainwp-child.4.1.6.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/mainwp-child.4.1.7.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1534,15 +1534,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "5.1.1",
+            "version": "5.1.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/5.1.1"
+                "reference": "tags/5.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.5.1.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/redirection.5.1.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1588,15 +1588,15 @@
         },
         {
             "name": "wpackagist-plugin/w3-total-cache",
-            "version": "2.1.3",
+            "version": "2.1.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/w3-total-cache/",
-                "reference": "tags/2.1.3"
+                "reference": "tags/2.1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/w3-total-cache.2.1.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/w3-total-cache.2.1.5.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1624,15 +1624,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "16.4",
+            "version": "16.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/16.4"
+                "reference": "tags/16.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.16.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.16.7.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1684,12 +1684,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "14f52bfb898ca5b11a0f75e2a299213db2606003"
+                "reference": "062365f16d85b8585d665a913f3d3874db1860b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/14f52bfb898ca5b11a0f75e2a299213db2606003",
-                "reference": "14f52bfb898ca5b11a0f75e2a299213db2606003",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/062365f16d85b8585d665a913f3d3874db1860b4",
+                "reference": "062365f16d85b8585d665a913f3d3874db1860b4",
                 "shasum": ""
             },
             "conflict": {
@@ -1722,8 +1722,10 @@
                 "composer/composer": "<1.10.22|>=2-alpha.1,<2.0.13",
                 "contao-components/mediaelement": ">=2.14.2,<2.21.1",
                 "contao/core": ">=2,<3.5.39",
-                "contao/core-bundle": ">=4,<4.4.52|>=4.5,<4.9.6|= 4.10.0",
+                "contao/core-bundle": ">=4,<4.4.52|>=4.5,<4.9.16|>=4.10,<4.11.5|= 4.10.0",
                 "contao/listing-bundle": ">=4,<4.4.8",
+                "craftcms/cms": "<3.6.7",
+                "croogo/croogo": "<3.0.7",
                 "datadog/dd-trace": ">=0.30,<0.30.2",
                 "david-garcia/phpwhois": "<=4.3.1",
                 "derhansen/sf_event_mgt": "<4.3.1|>=5,<5.1.1",
@@ -1745,6 +1747,7 @@
                 "endroid/qr-code-bundle": "<3.4.2",
                 "enshrined/svg-sanitize": "<0.13.1",
                 "erusev/parsedown": "<1.7.2",
+                "ether/logs": "<3.0.4",
                 "ezsystems/demobundle": ">=5.4,<5.4.6.1",
                 "ezsystems/ez-support-tools": ">=2.2,<2.2.3",
                 "ezsystems/ezdemo-ls-extension": ">=5.4,<5.4.2.1",
@@ -1775,9 +1778,10 @@
                 "friendsofsymfony/rest-bundle": ">=1.2,<1.2.2",
                 "friendsofsymfony/user-bundle": ">=1.2,<1.3.5",
                 "friendsoftypo3/mediace": ">=7.6.2,<7.6.5",
+                "froala/wysiwyg-editor": "<3.2.7",
                 "fuel/core": "<1.8.1",
-                "getgrav/grav": "<1.7.11",
-                "getkirby/cms": "<3.5.4",
+                "getgrav/grav": "<=1.7.10",
+                "getkirby/cms": "<=3.5.6",
                 "getkirby/panel": "<2.5.14",
                 "gos/web-socket-bundle": "<1.10.4|>=2,<2.6.1|>=3,<3.3",
                 "gree/jose": "<=2.2",
@@ -1789,6 +1793,7 @@
                 "illuminate/encryption": ">=4,<=4.0.11|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.40|>=5.6,<5.6.15",
                 "illuminate/view": ">=7,<7.1.2",
                 "impresscms/impresscms": "<=1.4.2",
+                "intelliants/subrion": "<=4.2.1",
                 "ivankristianto/phpwhois": "<=4.3",
                 "james-heinrich/getid3": "<1.9.9",
                 "joomla/archive": "<1.1.10",
@@ -1803,6 +1808,7 @@
                 "laravel/framework": "<6.20.26|>=7,<8.40",
                 "laravel/socialite": ">=1,<1.0.99|>=2,<2.0.10",
                 "league/commonmark": "<0.18.3",
+                "league/flysystem": "<1.1.4|>=2,<2.1.1",
                 "lexik/jwt-authentication-bundle": "<2.10.7|>=2.11,<2.11.3",
                 "librenms/librenms": "<21.1",
                 "livewire/livewire": ">2.2.4,<2.2.6",
@@ -1818,10 +1824,12 @@
                 "moodle/moodle": "<3.5.17|>=3.7,<3.7.9|>=3.8,<3.8.8|>=3.9,<3.9.5|>=3.10,<3.10.2",
                 "namshi/jose": "<2.2",
                 "neos/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.12|>=3.1,<3.1.10|>=3.2,<3.2.13|>=3.3,<3.3.13|>=4,<4.0.6",
+                "neos/form": ">=1.2,<4.3.3|>=5,<5.0.9|>=5.1,<5.1.3",
                 "neos/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4|>=2.3,<2.9.99|>=3,<3.0.20|>=3.1,<3.1.18|>=3.2,<3.2.14|>=3.3,<3.3.23|>=4,<4.0.17|>=4.1,<4.1.16|>=4.2,<4.2.12|>=4.3,<4.3.3",
                 "neos/swiftmailer": ">=4.1,<4.1.99|>=5.4,<5.4.5",
                 "nette/application": ">=2,<2.0.19|>=2.1,<2.1.13|>=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
                 "nette/nette": ">=2,<2.0.19|>=2.1,<2.1.13",
+                "nukeviet/nukeviet": "<4.3.4",
                 "nystudio107/craft-seomatic": "<3.3",
                 "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
                 "october/backend": "<1.1.2",
@@ -1838,6 +1846,7 @@
                 "oro/platform": ">=1.7,<1.7.4",
                 "padraic/humbug_get_contents": "<1.1.2",
                 "pagarme/pagarme-php": ">=0,<3",
+                "pagekit/pagekit": "<=1.0.18",
                 "paragonie/random_compat": "<2",
                 "passbolt/passbolt_api": "<2.11",
                 "paypal/merchant-sdk-php": "<3.12",
@@ -1845,7 +1854,7 @@
                 "personnummer/personnummer": "<3.0.2",
                 "phanan/koel": "<5.1.4",
                 "phpfastcache/phpfastcache": ">=5,<5.0.13",
-                "phpmailer/phpmailer": "<6.1.6|>=6.1.8,<6.4.1",
+                "phpmailer/phpmailer": "<6.5",
                 "phpmussel/phpmussel": ">=1,<1.6",
                 "phpmyadmin/phpmyadmin": "<4.9.6|>=5,<5.0.3",
                 "phpoffice/phpexcel": "<1.8.2",
@@ -1854,7 +1863,7 @@
                 "phpunit/phpunit": ">=4.8.19,<4.8.28|>=5.0.10,<5.6.3",
                 "phpwhois/phpwhois": "<=4.2.5",
                 "phpxmlrpc/extras": "<0.6.1",
-                "pimcore/pimcore": "<6.8.8",
+                "pimcore/pimcore": "<10.0.7",
                 "pocketmine/pocketmine-mp": "<3.15.4",
                 "pressbooks/pressbooks": "<5.18",
                 "prestashop/autoupgrade": ">=4,<4.10.1",
@@ -1877,8 +1886,8 @@
                 "scheb/two-factor-bundle": ">=0,<3.26|>=4,<4.11",
                 "sensiolabs/connect": "<4.2.3",
                 "serluck/phpwhois": "<=4.2.6",
-                "shopware/core": "<=6.3.5.2",
-                "shopware/platform": "<=6.3.5.2",
+                "shopware/core": "<=6.4.1",
+                "shopware/platform": "<=6.4.1",
                 "shopware/production": "<=6.3.5.2",
                 "shopware/shopware": "<=5.6.9",
                 "silverstripe/admin": ">=1.0.3,<1.0.4|>=1.1,<1.1.1",
@@ -1886,8 +1895,8 @@
                 "silverstripe/cms": "<4.3.6|>=4.4,<4.4.4",
                 "silverstripe/comments": ">=1.3,<1.9.99|>=2,<2.9.99|>=3,<3.1.1",
                 "silverstripe/forum": "<=0.6.1|>=0.7,<=0.7.3",
-                "silverstripe/framework": "<4.4.7|>=4.5,<4.5.4",
-                "silverstripe/graphql": ">=2,<2.0.5|>=3,<3.1.2|>=3.2,<3.2.4",
+                "silverstripe/framework": "<4.7.4",
+                "silverstripe/graphql": "<=3.5|>=4-alpha.1,<4-alpha.2",
                 "silverstripe/registry": ">=2.1,<2.1.2|>=2.2,<2.2.1",
                 "silverstripe/restfulserver": ">=1,<1.0.9|>=2,<2.0.4",
                 "silverstripe/subsites": ">=2,<2.1.1",
@@ -1906,14 +1915,14 @@
                 "squizlabs/php_codesniffer": ">=1,<2.8.1|>=3,<3.0.1",
                 "ssddanbrown/bookstack": "<0.29.2",
                 "stormpath/sdk": ">=0,<9.9.99",
-                "studio-42/elfinder": "<2.1.49",
-                "sulu/sulu": "<1.6.34|>=2,<2.0.10|>=2.1,<2.1.1",
+                "studio-42/elfinder": "<2.1.59",
+                "sulu/sulu": "<1.6.41|>=2,<2.0.10|>=2.1,<2.1.1",
                 "swiftmailer/swiftmailer": ">=4,<5.4.5",
                 "sylius/admin-bundle": ">=1,<1.0.17|>=1.1,<1.1.9|>=1.2,<1.2.2",
                 "sylius/grid": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
                 "sylius/grid-bundle": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
                 "sylius/resource-bundle": "<1.3.14|>=1.4,<1.4.7|>=1.5,<1.5.2|>=1.6,<1.6.4",
-                "sylius/sylius": "<1.6.9|>=1.7,<1.7.9|>=1.8,<1.8.3",
+                "sylius/sylius": "<1.6.9|>=1.7,<1.7.9|>=1.8,<1.8.3|>=1.9,<1.9.5",
                 "symbiote/silverstripe-multivaluefield": ">=3,<3.0.99",
                 "symbiote/silverstripe-queuedjobs": ">=3,<3.0.2|>=3.1,<3.1.4|>=4,<4.0.7|>=4.1,<4.1.2|>=4.2,<4.2.4|>=4.3,<4.3.3|>=4.4,<4.4.3|>=4.5,<4.5.1|>=4.6,<4.6.4",
                 "symbiote/silverstripe-versionedfiles": "<=2.0.3",
@@ -1937,9 +1946,9 @@
                 "symfony/security-core": ">=2.4,<2.6.13|>=2.7,<2.7.9|>=2.7.30,<2.7.32|>=2.8,<3.4.49|>=4,<4.4.24|>=5,<5.2.9",
                 "symfony/security-csrf": ">=2.4,<2.7.48|>=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
                 "symfony/security-guard": ">=2.8,<3.4.48|>=4,<4.4.23|>=5,<5.2.8",
-                "symfony/security-http": ">=2.3,<2.3.41|>=2.4,<2.7.51|>=2.8,<3.4.48|>=4,<4.4.23|>=5,<5.2.8",
+                "symfony/security-http": ">=2.3,<2.3.41|>=2.4,<2.7.51|>=2.8,<3.4.48|>=4,<4.4.23|>=5,<5.2.8|>=5.3,<5.3.2",
                 "symfony/serializer": ">=2,<2.0.11",
-                "symfony/symfony": ">=2,<3.4.49|>=4,<4.4.24|>=5,<5.2.9",
+                "symfony/symfony": ">=2,<3.4.49|>=4,<4.4.24|>=5,<5.2.9|>=5.3,<5.3.2",
                 "symfony/translation": ">=2,<2.0.17",
                 "symfony/validator": ">=2,<2.0.24|>=2.1,<2.1.12|>=2.2,<2.2.5|>=2.3,<2.3.3",
                 "symfony/var-exporter": ">=4.2,<4.2.12|>=4.3,<4.3.8",
@@ -1955,9 +1964,9 @@
                 "tribalsystems/zenario": "<8.8.53370",
                 "truckersmp/phpwhois": "<=4.3.1",
                 "twig/twig": "<1.38|>=2,<2.7",
-                "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.38|>=9,<9.5.25|>=10,<10.4.14|>=11,<11.1.1",
+                "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.38|>=9,<9.5.28|>=10,<10.4.18|>=11,<11.3.1",
                 "typo3/cms-backend": ">=7,<=7.6.50|>=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
-                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<=7.6.50|>=8,<=8.7.39|>=9,<9.5.25|>=10,<10.4.14|>=11,<11.1.1",
+                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<=7.6.50|>=8,<=8.7.39|>=9,<9.5.28|>=10,<10.4.18|>=11,<11.3.1",
                 "typo3/cms-form": ">=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
                 "typo3/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.12|>=3.1,<3.1.10|>=3.2,<3.2.13|>=3.3,<3.3.13|>=4,<4.0.6",
                 "typo3/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4|>=2.3,<2.3.99|>=3,<3.0.20|>=3.1,<3.1.18|>=3.2,<3.2.14|>=3.3,<3.3.23|>=4,<4.0.17|>=4.1,<4.1.16|>=4.2,<4.2.12|>=4.3,<4.3.3",
@@ -1972,6 +1981,7 @@
                 "wikimedia/parsoid": "<0.12.2",
                 "willdurand/js-translation-bundle": "<2.1.1",
                 "wp-cli/wp-cli": "<2.5",
+                "yidashi/yii2cmf": "<=2",
                 "yii2mod/yii2-cms": "<1.9.2",
                 "yiisoft/yii": ">=1.1.14,<1.1.15",
                 "yiisoft/yii2": "<2.0.38",
@@ -2043,7 +2053,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-08T21:03:32+00:00"
+            "time": "2021-07-20T12:03:36+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

@@ -15,30 +15,35 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('sage/main.css', asset_path('styles/main.css'), false, null);
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
 
+    // Separated Vue scripts to its own file
+    wp_register_script('sage/sage-vue.js', asset_path('scripts/vue.js'), [], null, true);
+
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
 
     /**
      * Delete comment to use with Vue Navigation
-     *
      */
-    // $query_obj = get_queried_object();
-    /**
-     * Endpoints:
-     * Navigation with no children  get-nav
-     * Navigation with children     get-nav-with-children
-     *
-     * @TODO Control this via the wp-admin
-     */
-    // wp_localize_script('sage/main.js', 'NAV', [
-    //     'api'      => rest_url('sage-endpoint/v1/get-nav'),
-    //     'navID'    => 'primary-navigation',
-    //     'pageSlug' => is_front_page() ? 'home' : ($query_obj->post_name ?: 'undefined'),
-    //     'postId'   => $query_obj->ID,
-    //     'siteName' => get_bloginfo('name'),
-    //     'siteUrl'  => get_home_url(),
-    // ]);
+    // if (!is_admin()) {
+    //     wp_enqueue_script('sage/sage-vue.js');
+    //     /**
+    //      * Endpoints:
+    //      * Navigation with no children  get-nav
+    //      * Navigation with children     get-nav-with-children
+    //      *
+    //      * @TODO Control this via the wp-admin via options page
+    //      */
+    //     $query_obj = get_queried_object();
+    //     wp_localize_script('sage/sage-vue.js', 'NAV', [
+    //         'api'      => rest_url('sage-endpoint/v1/get-nav-with-children'),
+    //         'navID'    => 'primary-navigation',
+    //         'pageSlug' => is_front_page() ? 'home' : ($query_obj->post_name ?: 'undefined'),
+    //         'postId'   => $query_obj->ID,
+    //         'siteName' => get_bloginfo('name'),
+    //         'siteUrl'  => get_home_url(),
+    //     ]);
+    // }
 }, 100);
 
 /**
@@ -182,6 +187,7 @@ if (function_exists('acf_add_options_page')) {
             'menu_slug'  => 'theme-general-settings',
             'capability' => 'edit_posts',
             'redirect'   => false,
+            'post_id'    => 'theme_settings',
         ]
     );
 }

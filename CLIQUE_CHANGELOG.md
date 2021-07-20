@@ -2,6 +2,38 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.10 - July 20th, 2021
+
+- Ran `composer update` on WordPress Core and Plugins
+    - WordPress Core - `5.8`
+    - Advanced Custom Fields - `5.9.8`
+    - All In One WP Security and Firewall - `4.4.9`
+    - Classic Editor - `1.6.1`
+    - Cookie Notice - `2.1.0`
+    - Gravity Forms - `2.5.7`
+    - MainWP Child - `4.1.7`
+    - Redirection - `5.1.2`
+    - UpdraftPlus - `2.16.59.25`
+    - W3 Total Cache - `2.1.5`
+    - Yoast SEO - `16.7`
+- Ran `composer update` on Bedrock dependencies
+    - `roave/security-advisories` - `dev-master 062365f`
+- Added W3 Total Cache `define` in `config/application.php` and `config/environments/development.php` in case it's removed when the `wp-config.php` file is replaced ever
+- Added `.user.ini.example` as a reference for when calling to the path for `wordfence-waf.php` which is placed in the `web/wp` folder, and could be removed on core update
+- Added param types to methods in Helper and Routes for ease of use
+
+**Theme**
+
+- Ran `composer update` on Sage 9 Core
+    - `symfony/translation` - `v4.4.26`
+    - `symfony/console` - `v4.4.26`
+- Updated `php` required version to `7.4` in `composer.json`
+- Updated `php error` in `functions.php` to indicate a minimum of `7.4` is used
+- Updated the webpack to compile Vue scripts separately from `main.js`
+- Updated `setup.php` to register the `vue.js` and only enqueue it if it's uncommented out in `wp_enqueue_scrips` action
+- Updated REST API Endpoints to include a `permission_callback`
+- Added correct callbacks in Classes per `phpcs`
+
 # Ver 3.9.1.2 - June 17th, 2021
 
 - Moved the `_wordpress.scss` file out of a folder that could be overwritten when a FE project is merged into the `styles` folder.

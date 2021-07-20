@@ -23,8 +23,8 @@ $sage_error = function ($message, $subtitle = '', $title = '') {
 /**
  * Ensure compatible version of PHP is used
  */
-if (version_compare('7.1', phpversion(), '>=')) {
-    $sage_error(__('You must be using PHP 7.1 or greater.', 'sage'), __('Invalid PHP version', 'sage'));
+if (version_compare('7.4', phpversion(), '>=')) {
+    $sage_error(__('You must be using PHP 7.4 or greater.', 'sage'), __('Invalid PHP version', 'sage'));
 }
 
 /**
@@ -58,7 +58,7 @@ array_map(function ($file) use ($sage_error) {
     if (!locate_template($file, true, true)) {
         $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
     }
-}, ['helpers', 'setup', 'filters', 'admin', 'Routes/init']);
+}, ['helpers', 'setup', 'filters', 'admin', 'Routes/init' ]);
 
 /**
  * Here's what's happening with these hooks:

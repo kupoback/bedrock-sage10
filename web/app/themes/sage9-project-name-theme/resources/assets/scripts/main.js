@@ -10,10 +10,6 @@ import home from './routes/home'; // Used for front-page.blade.php
 // import blog from './routes/blog'; // Used for home.blade.php
 import pageTemplateTemplateAbout from './routes/about';
 
-/** Vue Components to import, and declare **/
-// const VueElms = require('./vue/vue.js');
-// VueElms;
-
 /**
  * Populate Router instance with DOM routes
  * @type {Router} routes - An instance of our router

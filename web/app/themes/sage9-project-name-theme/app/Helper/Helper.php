@@ -5,7 +5,7 @@ namespace App\Helper;
 
 class Helper
 {
-    
+
     /**
      * Returns the excerpt if it exists or creates the excerpt
      * based on the $post_override or $post->post_content
@@ -15,7 +15,7 @@ class Helper
      *
      * @return null|string|string[] Raw stripped content
      */
-    public static function grabExcerpt($post_override = null, $word_max = 25)
+    public static function grabExcerpt($post_override = null, int $word_max = 25)
     {
         if (!is_null($post_override)) {
             $excerpt = !is_int($post_override) ? $post_override : get_the_content('', true, $post_override);
@@ -25,31 +25,32 @@ class Helper
                 return '';
             }
         } else {
+            /** @noinspection PhpVariableNamingConventionInspection */
             global $post;
             $excerpt = strlen($post->post_excerpt) !== 0 ? $post->post_excerpt : $post->post_content;
         }
-        
+
         if ($excerpt) {
             $excerpt = strip_shortcodes($excerpt);
             $excerpt = strip_tags($excerpt);
             $excerpt = wp_trim_words($excerpt, $word_max, '');
         }
-        
+
         return html_entity_decode($excerpt);
     }
-    
+
     /**
      * Quicker method to just return the theme_settings fields
      *
-     * @param $field
+     * @param string $field The settings field name
      *
      * @return mixed
      */
-    public static function getSettingsField($field)
+    public static function getSettingsField(string $field)
     {
         return get_field($field, 'theme_settings');
     }
-    
+
     /**
      * Generates share URL's with encoded title and url params for Facebook, Twitter, Instagram, and e-mail
      *
@@ -58,11 +59,11 @@ class Helper
      *
      * @return object
      */
-    public static function socialMediaShare($title, $url)
+    public static function socialMediaShare(string $title, string $url)
     {
         $share_title = urlencode($title);
         $share_url   = urlencode($url);
-        
+
         return (object) [
             'facebook'  => "https://www.facebook.com/sharer/sharer.php?u=$share_url",
             'twitter'   => "https://twitter.com/intent/tweet?text=$share_title&url=$share_url",

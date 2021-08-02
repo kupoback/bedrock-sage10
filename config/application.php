@@ -10,6 +10,9 @@
 
 use Roots\WPConfig\Config;
 use function Env\env;
+use Dotenv\Repository\RepositoryBuilder;
+use Dotenv\Repository\Adapter\EnvConstAdapter;
+use Dotenv\Repository\Adapter\PutenvAdapter;
 
 /**
  * Directory containing all of the site's files
@@ -28,13 +31,19 @@ $webroot_dir = $root_dir . '/web';
 /**
  * Use Dotenv to set required environment variables and load .env file in root
  */
-$dotenv = Dotenv\Dotenv::createUnsafeImmutable($root_dir);
+$repository = RepositoryBuilder::createWithNoAdapters()
+                               ->addAdapter(EnvConstAdapter::class)
+                               ->addAdapter(PutenvAdapter::class)
+                               ->immutable()
+                               ->make();
+
+$dotenv = Dotenv\Dotenv::create($repository, $root_dir, ['.env', '.env.local'], false);
 if (file_exists($root_dir . '/.env')) {
-	$dotenv->load();
-	$dotenv->required(['WP_HOME', 'WP_SITEURL']);
-	if (!env('DATABASE_URL')) {
-		$dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
-	}
+    $dotenv->load();
+    $dotenv->required(['WP_HOME', 'WP_SITEURL']);
+    if (!env('DATABASE_URL')) {
+        $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
+    }
 }
 
 /**
@@ -68,12 +77,12 @@ Config::define('DB_COLLATE', '');
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
 
 if (env('DATABASE_URL')) {
-	$dsn = (object) parse_url(env('DATABASE_URL'));
-	
-	Config::define('DB_NAME', substr($dsn->path, 1));
-	Config::define('DB_USER', $dsn->user);
-	Config::define('DB_PASSWORD', isset($dsn->pass) ? $dsn->pass : null);
-	Config::define('DB_HOST', isset($dsn->port) ? "{$dsn->host}:{$dsn->port}" : $dsn->host);
+    $dsn = (object) parse_url(env('DATABASE_URL'));
+
+    Config::define('DB_NAME', substr($dsn->path, 1));
+    Config::define('DB_USER', $dsn->user);
+    Config::define('DB_PASSWORD', isset($dsn->pass) ? $dsn->pass : null);
+    Config::define('DB_HOST', isset($dsn->port) ? "{$dsn->host}:{$dsn->port}" : $dsn->host);
 }
 
 /**
@@ -102,10 +111,9 @@ Config::define('DISALLOW_FILE_MODS', true);
  * Define post revisions and autosave interval
  */
 if (env('WP_ENV') === 'development') {
-	Config::define('WP_POST_REVISIONS', 0);
-	Config::define('AUTOSAVE_INTERVAL', 300);
+    Config::define('WP_POST_REVISIONS', 0);
+    Config::define('AUTOSAVE_INTERVAL', 300);
 }
-
 
 /**
  * Debugging Settings
@@ -120,13 +128,13 @@ ini_set('display_errors', '0');
  * See https://codex.wordpress.org/Function_Reference/is_ssl#Notes
  */
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-	$_SERVER['HTTPS'] = 'on';
+    $_SERVER['HTTPS'] = 'on';
 }
 
 $env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
 
 if (file_exists($env_config)) {
-	require_once $env_config;
+    require_once $env_config;
 }
 
 Config::apply();
@@ -135,5 +143,5 @@ Config::apply();
  * Bootstrap WordPress
  */
 if (!defined('ABSPATH')) {
-	define('ABSPATH', $webroot_dir . '/wp/');
+    define('ABSPATH', $webroot_dir . '/wp/');
 }

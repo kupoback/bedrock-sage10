@@ -2,6 +2,20 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.11 - Aug 2nd, 2021
+
+- Ran `composer update` on Wordpress Core and Plugins
+    - Advanced Custom Fields - `5.9.9`
+    - Classic Editor - `1.6.2`
+    - Gravity Forms - `2.5.8`
+    - Redirection - `5.1.3`
+    - Yoast SEO - `16.8`
+- Ran `composer update` on Bedrock dependencies
+    - `roave/security-advisors` - `dev-master 52a1261`
+    - symfony/polyfill-php80` - `v1.32.1
+    - symfony/polyfill-mbstring` - `v1.32.1
+- Updated `application.php` to remove `$_SERVER` call exposing env contents
+
 # Ver 3.10 - July 20th, 2021
 
 - Ran `composer update` on WordPress Core and Plugins

@@ -2,6 +2,28 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.12 - Aug 6th, 2021
+
+- Ran `composer update` on Wordpress Plugins
+    - W3 Total Cache - `2.1.6`
+- Ran `composer update` on Bedrock Core
+    - `roots/bedrock-disallow-indexing` - `2.0.0`
+- Ran `composer update` on Sage 9 theme
+    - **Removed composer 2 requirements**
+    - `symfony/polyfill-php80` - `v1.23.1`
+    - `symfony/polyfill-mbstring` - `v1.23.1`
+    - `symfony/translation` - `v4.4.27`
+    - `symfony/finder` - `v4.4.27`
+    - `symfony/console` - `v4.4.27`
+    - `symfony/debug` - `v4.4.27`
+
+- Added bedrock-autoloader to the `mu-plugins` as is up to date with the Bedrock repo
+    - This now adds the mu-plugin and a notice for the disallowing of indexing of a site
+- Updated `config` files for `development.php` and `staging.php`
+    - Still hiding php errors displayed on dev
+    - Added config define on dev
+    - Removed all duplicates from `development.php` in `staging.php` aside from `DISALLOW_INDEXING`. No more debug logs on staging
+
 # Ver 3.11 - Aug 2nd, 2021
 
 - Ran `composer update` on Wordpress Core and Plugins

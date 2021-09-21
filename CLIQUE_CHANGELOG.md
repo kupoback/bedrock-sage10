@@ -29,6 +29,8 @@
   - phpoption/phpoption - `1.8.0`
   - graham-campbell/result-type - `v1.0.2)`
   - composer/installers - `v1.12.0`
+- Removed `WP_CACHE` define in development and staging config files
+- Disabled the ability to add plugins/themes/file editing on `WP_ENV` staging
 
 ### Sage 9
 
@@ -45,6 +47,7 @@
 - Updated the ImageHelper class to support picture classes
 - Updated the Rest Routes to better use Traits for making registration of routes easier
 - Moved Theme Settings ACF method to App\Traits
+- Added `plugins` folder for `scripts` in case FE dev adds a downloaded plugin outside of `package.json` 
 
 # Ver 3.12 - Aug 6th, 2021
 

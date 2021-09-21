@@ -31,6 +31,7 @@ class ImageHelper
 
         $properties  = $get_img_data['prop'];
         $image_class = $img_attrs['class'] ?? '';
+        $pic_class = $img_attrs['pic_class'] ?? '';
         $image_id    = $img_attrs['id'] ?? '';
 
         // Image Information
@@ -78,7 +79,7 @@ class ImageHelper
 
         if (strpos($get_img_data['img_type'], 'svg')) {
             return sprintf(
-                '<picture><img src="%1$s" role="%4$s" %2$s property="v:%3$s" %5$s %6$s content="%1$s" %7$s %8$s/></picture>',
+                '<picture %9$s><img src="%1$s" role="%4$s" %2$s property="v:%3$s" %5$s %6$s content="%1$s" %7$s %8$s/></picture>',
                 esc_url($source),
                 $get_img_data['alt'] ? "alt=\"{$get_img_data['alt']}\"" : '',
                 $properties,
@@ -87,11 +88,12 @@ class ImageHelper
                 $image_id ? "id=\"{$image_id}\"" : '',
                 implode(' ', $da_return),
                 implode(' ', $aa_return),
+                $pic_class ? "class=\"{$pic_class}\"" : '',
             );
         }
 
         return sprintf(
-            '<picture>%2$s<img role="%5$s" %3$s property="v:%4$s" %6$s %7$s content="%1$s" %8$s %9$s/></picture>',
+            '<picture %10$s>%2$s<img role="%5$s" %3$s property="v:%4$s" %6$s %7$s content="%1$s" %8$s %9$s/></picture>',
             esc_url($source),
             ($webp_source ?? '') . $og_source,
             $get_img_data['alt'] ? "alt=\"{$get_img_data['alt']}\"" : '',
@@ -101,6 +103,7 @@ class ImageHelper
             $image_id ? "id=\"{$image_id}\"" : '',
             implode(' ', $da_return),
             implode(' ', $aa_return),
+            $pic_class ? "class=\"{$pic_class}\"" : '',
         );
     }
 
@@ -125,6 +128,7 @@ class ImageHelper
         // $img_attrs
         $properties        = $get_img_data['prop'];
         $image_class = $img_attrs['class'] ?? '';
+        $pic_class = $img_attrs['pic_class'] ?? '';
         $image_id    = $img_attrs['id'] ?? '';
         $fig_class   = $img_attrs['figure_class'] ?? '';
 
@@ -188,7 +192,7 @@ class ImageHelper
         ) : '';
         if (strpos($get_img_data['img_type'], 'svg')) {
             sprintf(
-                '<figure %5$s><picture><img src="%1$s" role="%4$s" %2$s %6$s %7$s property="v:%3$s" content="%1$s" %8$s %9$s /></picture>%10$s</figure>',
+                '<figure %5$s><picture %11$s><img src="%1$s" role="%4$s" %2$s %6$s %7$s property="v:%3$s" content="%1$s" %8$s %9$s /></picture>%10$s</figure>',
                 esc_url($source),
                 $src_attributes,
                 $properties,
@@ -198,11 +202,12 @@ class ImageHelper
                 $image_id ? "id=\"{$image_id}\"" : '',
                 implode(' ', $da_return),
                 implode(' ', $aa_return),
-                $caption
+                $caption,
+                $pic_class ? "class=\"{$pic_class}\"" : '',
             );
         }
         return sprintf(
-            '<figure %6$s><picture>%2$s<img role="%5$s" %3$s  %7$s %8$s property="v:%4$s" content="%1$s" %9$s %10$s /></picture>%11$s</figure>',
+            '<figure %6$s><picture %12$s>%2$s<img role="%5$s" %3$s  %7$s %8$s property="v:%4$s" content="%1$s" %9$s %10$s /></picture>%11$s</figure>',
             esc_url($source),
             ($webp_source ?? '') . $og_source,
             $src_attributes,
@@ -213,7 +218,8 @@ class ImageHelper
             $image_id ? "id=\"{$image_id}\"" : '',
             implode(' ', $da_return),
             implode(' ', $aa_return),
-            $caption
+            $caption,
+            $pic_class ? "class=\"{$pic_class}\"" : '',
         );
     }
 
@@ -318,7 +324,7 @@ class ImageHelper
                         $w_item = !is_null($w_item) ? $w_item . ' ' . $item_size : null;
                         break;
                     default:
-                        $w_item = $srcset;
+                        $w_item = null;
                         break;
                 }
                 !is_null($w_item) ? array_push($webp_srcset, $w_item) : null;

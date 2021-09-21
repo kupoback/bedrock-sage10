@@ -40,18 +40,6 @@ class Helper
     }
 
     /**
-     * Quicker method to just return the theme_settings fields
-     *
-     * @param string $field The settings field name
-     *
-     * @return mixed
-     */
-    public static function getSettingsField(string $field)
-    {
-        return get_field($field, 'theme_settings');
-    }
-
-    /**
      * Generates share URL's with encoded title and url params for Facebook, Twitter, Instagram, and e-mail
      *
      * @param string $title

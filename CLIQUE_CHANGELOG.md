@@ -2,6 +2,50 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.13 - Sept 21, 2021
+
+### Bedrock
+- Ran `composer update` on WordPress Plugins
+  - Advanced Custom Fields - `5.10.2`
+  - Gravity Forms - `2.5.10`
+  - ACF Gravity Forms Addon - `1.2.9`
+  - GDPR Cookie Notice - `2.1.4`
+  - MainWP Child Reports - `2.0.8`
+  - Stream - `3.8.1`
+  - W3 Total Cache - `2.1.8`
+  - Wordfence - `7.5.5`
+  - Yoast SEO - `17.2`
+  - WP Accessibility - `1.7.9`
+  - WP Rest Cache - `2021.4.1`
+- Added WordPress Plugins
+  - ACF Content Analysist for Yoast - `3.0.1`
+- Removed WordPress Plugins
+  - cedaro/satispress - Removed due to only needed on https://prod.bedrock.cliquedomains.com and Bedrock will still download from there.
+- Ran `composer update` on WordPress Core
+  - `5.8.1`
+- Ran `composer update` on Bedrock Dependencies
+  - composer/installers - `v1.12.0`
+  - roave/security-advisories - `dev-master 4911abe`
+  - phpoption/phpoption - `1.8.0`
+  - graham-campbell/result-type - `v1.0.2)`
+  - composer/installers - `v1.12.0`
+
+### Sage 9
+
+- Ran `composer update` on Sage 9 Dependencies
+    - composer/installers - `v1.12.0`
+    - symfony/translation - `v4.4.30`
+    - paragonie/random_compat - `v9.99.100`
+    - ramsey/uuid - `3.9.4`
+    - symfony/finder - `v4.4.30`
+    - symfony/console - `v4.4.30`
+- Updated `package.json` 
+  - axios - `0.21.4` due to major security vulnerability
+- Added `log1x/sage-directives` to the theme folder to add some useful blade directives
+- Updated the ImageHelper class to support picture classes
+- Updated the Rest Routes to better use Traits for making registration of routes easier
+- Moved Theme Settings ACF method to App\Traits
+
 # Ver 3.12 - Aug 6th, 2021
 
 - Ran `composer update` on Wordpress Plugins

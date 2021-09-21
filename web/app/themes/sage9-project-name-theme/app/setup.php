@@ -12,15 +12,10 @@ use App\Routes\SageNavRestAPI;
  * Theme assets
  */
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('sage/main.css', asset_path('styles/main.css'), false, null);
-    wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
-
+    wp_register_style('sage/main.css', asset_path('styles/main.css'), false, null);
     // Separated Vue scripts to its own file
     wp_register_script('sage/sage-vue.js', asset_path('scripts/vue.js'), [], null, true);
-
-    if (is_single() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
-    }
+    wp_register_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
 
     /**
      * Delete comment to use with Vue Navigation
@@ -31,19 +26,29 @@ add_action('wp_enqueue_scripts', function () {
     //      * Endpoints:
     //      * Navigation with no children  get-nav
     //      * Navigation with children     get-nav-with-children
+    //      * Uses the nav location defined under register_nav_menus
     //      *
     //      * @TODO Control this via the wp-admin via options page
     //      */
     //     $query_obj = get_queried_object();
-    //     wp_localize_script('sage/sage-vue.js', 'NAV', [
-    //         'api'      => rest_url('sage-endpoint/v1/get-nav-with-children'),
-    //         'navID'    => 'primary-navigation',
-    //         'pageSlug' => is_front_page() ? 'home' : ($query_obj->post_name ?: 'undefined'),
-    //         'postId'   => $query_obj->ID,
-    //         'siteName' => get_bloginfo('name'),
-    //         'siteUrl'  => get_home_url(),
-    //     ]);
+    //      wp_localize_script('sage/sage-vue.js', 'NAV', [
+    //          'api'         => rest_url('sage-endpoint/v1/get-nav-with-children'),
+    //          'navLocation' => 'primary_navigation',
+    //          'pageSlug'    => is_front_page() ? 'home' : ($query_obj->post_name ?? 'undefined'),
+    //          'postId'      => $query_obj->ID ?? 0,
+    //          'siteName'    => get_bloginfo('name'),
+    //          'siteUrl'     => get_home_url(),
+    //      ]);
     // }
+
+    /**
+     * Moved here so that we can adjust and control the order of script and style loader
+     */
+    wp_enqueue_style('sage/main.css');
+    wp_enqueue_script('sage/main.js');
+    if (is_single() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
 }, 100);
 
 /**
@@ -76,6 +81,7 @@ add_action('after_setup_theme', function () {
     register_nav_menus(
         [
             'primary_navigation' => __('Primary Navigation', 'sage'),
+            'footer_navigation'  => __('Footer Navigation', 'sage'),
         ]
     );
 
@@ -106,11 +112,6 @@ add_action('after_setup_theme', function () {
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style(asset_path('styles/main.css'));
-
-    // Register the SageNavRestAPI Class
-    if (class_exists('App\Routes\SageNavRestAPI')) {
-        new SageNavRestAPI();
-    }
 }, 20);
 
 /**

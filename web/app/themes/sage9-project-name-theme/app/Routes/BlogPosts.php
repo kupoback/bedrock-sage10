@@ -8,7 +8,8 @@ namespace App\Routes;
 use App\Helper\Helper;
 use App\Helper\ImageHelper;
 use App\Routes\Traits\RestRouteParams;
-use App\Routes\Traits\RestRouteValidators;
+use App\Routes\Traits\RestRouteTrait;
+use App\Routes\Traits\RestRouteValidat;
 
 # Vendor Packages
 use Carbon\Carbon;
@@ -25,7 +26,8 @@ use function rest_ensure_response;
 class BlogPosts
 {
 
-    use RestRouteValidators;
+    use RestRouteTrait;
+    use RestRouteValidat;
     use RestRouteParams;
 
     /**
@@ -48,14 +50,15 @@ class BlogPosts
      */
     public function registerRoutes()
     {
-        $this->route = "$this->namespace/$this->version";
         /**
-         * Grabs a list of blog posts and manages the search query
+         * Blog Posts
          */
-        register_rest_route($this->route, '/blog-posts/(?P<paged>[\d]+)', [
-            'methods'             => WP_REST_Server::READABLE,
-            'callback'            => [$this, 'getPosts'],
-            'args'                => [
+        self::registerRoute(
+            'blog-posts',
+            WP_REST_Server::READABLE,
+            [$this, 'getPosts'],
+            '(?P<paged>[\d]+)',
+            [
                 [
                     'paged'    => [
                         'type'              => 'int',
@@ -73,9 +76,8 @@ class BlogPosts
                         'default'           => [],
                     ],
                 ],
-            ],
-            'permission_callback' => '__return_true',
-        ]);
+            ]
+        );
     }
 
     /**
@@ -179,5 +181,3 @@ class BlogPosts
             });
     }
 }
-
-new BlogPosts();

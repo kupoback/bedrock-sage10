@@ -21,27 +21,26 @@ export const store = new Vuex.Store({
     },
     actions: {
         getNavigation(store, opts) {
-            let api = NAV.api;
-            let config;
-            
-            config = {
-                params: {
-                    viewport: opts.viewport,
-                    navID: opts.navID,
-                }
-            };
-            
-            axios.get(api, config)
-                 .then(({data, status}) => {
-                     if (status === 200 && data.status !== 404) {
-                         store.commit("BUILD_NAVIGATION", {
-                             viewport: opts.viewport,
-                             data: data || null,
-                         });
-                     }
-                 })
-                 .catch(err => console.error(err));
-            return;
+            axios
+                .get(
+                    NAV.api,
+                    {
+                        params: {
+                            viewport: opts.viewport,
+                            navLocation: opts.navLocation,
+                        }
+                    }
+                )
+                .then(({data, status}) => {
+                    if (status === 200 && data.status !== 404) {
+                        store.commit("BUILD_NAVIGATION", {
+                            viewport: opts.viewport,
+                            data: data || null,
+                        });
+                    }
+                })
+                .catch(err => console.error(err));
+            return true;
         },
     },
     getters: {},

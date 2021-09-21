@@ -49,7 +49,6 @@
     "roots/wordpress": "^5.8",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "cedaro/satispress": "^0.5",
     "clique-bedrock/advanced-custom-fields-pro": "^5.9",
     "clique-bedrock/gravityforms": "^2.5",
     "clique-bedrock/updraftplus": "^2.16",
@@ -66,9 +65,10 @@
     "wpackagist-plugin/stream": "^3.7",
     "wpackagist-plugin/w3-total-cache": "^2.0",
     "wpackagist-plugin/wordfence": "^7.5",
-    "wpackagist-plugin/wordpress-seo": "^16.0",
+    "wpackagist-plugin/wordpress-seo": "^17.0",
     "wpackagist-plugin/wp-accessibility": "^1.7",
-    "wpackagist-plugin/wp-rest-cache": "^2021.0"
+    "wpackagist-plugin/wp-rest-cache": "^2021.0",
+    "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.6",

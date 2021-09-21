@@ -8,6 +8,7 @@ namespace App\Routes;
 use App\Routes\Traits\RestRouteParams;
 
 # Wordpress
+use App\Routes\Traits\RestRouteTrait;
 use WP_Error;
 use WP_HTTP_Response;
 use WP_REST_Request;
@@ -23,7 +24,7 @@ use WP_REST_Server;
  */
 class SageNavRestAPI
 {
-
+    use RestRouteTrait;
     use RestRouteParams;
 
     /**
@@ -39,22 +40,24 @@ class SageNavRestAPI
      */
     public function registerRoutes()
     {
-        $this->route = "$this->namespace/$this->version";
-
         /**
          * Grabs the navigation items
          */
-        register_rest_route($this->route, '/get-nav', [
-            'methods'  => WP_REST_Server::READABLE,
-            'callback' => [$this, 'navWOChildren'],
-            'permission_callback' => '__return_true',
-        ]);
+        self::registerRoute(
+            'get-nav',
+            WP_REST_Server::READABLE,
+            [$this, 'navWOChildren']
+        );
 
-        register_rest_route($this->route, '/get-nav-with-children', [
-            'methods'  => WP_REST_Server::READABLE,
-            'callback' => [$this, 'navWithChildren'],
-            'permission_callback' => '__return_true',
-        ]);
+
+        /**
+         * Grabs the navigation items with children mapped
+         */
+        self::registerRoute(
+            'get-nav-with-children',
+            WP_REST_Server::READABLE,
+            [$this, 'navWithChildren']
+        );
     }
 
     /**
@@ -72,8 +75,9 @@ class SageNavRestAPI
         $viewport = $request['viewport'];
 
         // Which navigation to get
-        $nav_id   = $request['navID'];
-        $get_menu = wp_get_nav_menu_items($nav_id);
+        $menu_location   = $request['navLocation'];
+        $get_menu_name = wp_get_nav_menu_name($menu_location);
+        $get_menu = wp_get_nav_menu_items($get_menu_name);
 
         if (!is_wp_error($get_menu) && !empty($get_menu)) {
             $return_menu = collect($get_menu)
@@ -105,8 +109,9 @@ class SageNavRestAPI
         $viewport = $request['viewport'];
 
         // Which navigation to get
-        $nav_id   = $request['navID'];
-        $get_menu = wp_get_nav_menu_items($nav_id);
+        $menu_location   = $request['navLocation'];
+        $get_menu_name = wp_get_nav_menu_name($menu_location);
+        $get_menu = wp_get_nav_menu_items($get_menu_name);
 
         if (!is_wp_error($get_menu) && !empty($get_menu)) {
             $parse_items = collect($get_menu)

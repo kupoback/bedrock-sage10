@@ -1,13 +1,16 @@
 <?php
 namespace App\Routes\Traits;
 
-trait RestRouteValidators
+use Illuminate\Support\Collection;
+
+trait RestRouteValidat
 {
     /**
      * @param $value
      * @param $request
      * @param $param
-     * @return array|\WP_Error
+     *
+     * @return array|Collection|\WP_Error
      */
     public function sanitizeCats($value, $request, $param)
     {
@@ -15,15 +18,15 @@ trait RestRouteValidators
             return new \WP_Error('rest_invalid_param', esc_html__('Must be an array.', 'focus-project-theme'), array('status' => 400));
         }
 
-        $sanitized_items = [];
-
-        foreach ($value as $item) {
-            if (!empty($item)) {
-                $sanitized_items[] = \sanitize_title($item);
-            }
-        }
-
-        return $sanitized_items;
+        return collect($value)
+            ->map(function ($cat) {
+                if (!empty($cat)) {
+                    return sanitize_title($cat);
+                }
+                return false;
+            })
+            ->filter()
+            ->values();
     }
 
     /**

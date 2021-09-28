@@ -6,6 +6,7 @@
 
 - Fixing issue with ImageHelper and Safari not displaying the image - Thanks John!
   - [Issue #6](https://bitbucket.org/clique_studios/new-backend-boilerplate/issues/6/imagehelper-src-vs-content-bug)
+- Tweak to the `config/environment/staging.php` file
 
 # Ver 3.13 - Sept 21, 2021
 

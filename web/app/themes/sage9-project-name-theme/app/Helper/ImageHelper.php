@@ -93,7 +93,7 @@ class ImageHelper
         }
 
         return sprintf(
-            '<picture %10$s>%2$s<img role="%5$s" %3$s property="v:%4$s" %6$s %7$s content="%1$s" %8$s %9$s/></picture>',
+            '<picture %10$s>%2$s<img src="%1$s" role="%5$s" %3$s property="v:%4$s" %6$s %7$s content="%1$s" %8$s %9$s/></picture>',
             esc_url($source),
             ($webp_source ?? '') . $og_source,
             $get_img_data['alt'] ? "alt=\"{$get_img_data['alt']}\"" : '',
@@ -207,7 +207,7 @@ class ImageHelper
             );
         }
         return sprintf(
-            '<figure %6$s><picture %12$s>%2$s<img role="%5$s" %3$s  %7$s %8$s property="v:%4$s" content="%1$s" %9$s %10$s /></picture>%11$s</figure>',
+            '<figure %6$s><picture %12$s>%2$s<img src="%1$s" role="%5$s" %3$s  %7$s %8$s property="v:%4$s" content="%1$s" %9$s %10$s /></picture>%11$s</figure>',
             esc_url($source),
             ($webp_source ?? '') . $og_source,
             $src_attributes,

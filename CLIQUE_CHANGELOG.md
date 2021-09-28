@@ -2,6 +2,11 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.13.1 - Sept 28, 2021
+
+- Fixing issue with ImageHelper and Safari not displaying the image - Thanks John!
+  - [Issue #6](https://bitbucket.org/clique_studios/new-backend-boilerplate/issues/6/imagehelper-src-vs-content-bug)
+
 # Ver 3.13 - Sept 21, 2021
 
 ### Bedrock

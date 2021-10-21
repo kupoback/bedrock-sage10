@@ -2,6 +2,27 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.14 - Oct 21, 2021
+
+- Ran `composer update` on WordPress Plugins
+  - Gravity Forms - `2.5.13`
+  - Updraft Plus - `2.16.62.25`
+  - GDPR Cookie Notice - `2.1.5`
+  - MainWP Child - `4.1.7.1`
+  - Stream - `3.8.2`
+  - W3 Total Cache - `2.1.9`
+  - Wordfence - `7.5.6`
+  - Yoast SEO - `17.4`
+- Ran `composer update` on Bedrock dependencies
+  - `roave/security-advisories` - `dev-master 0488e16`
+  - `squizlabs/php_codesniffer` - `3.6.1`
+  - `graham-campbell/result-type` - `v1.0.3`
+  - `vlucas/phpdotenv` - `v5.3.1`
+- Ran `composer update` on Sage 9 theme
+  - `symfony/translation` - `v4.4.32`
+  - `ramsey/uuid` - `3.9.6`
+  - `smyfony/debug` - `v4.4.31`
+
 # Ver 3.13.1 - Sept 28, 2021
 
 - Fixing issue with ImageHelper and Safari not displaying the image - Thanks John!

@@ -2,6 +2,36 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.15 - Dec 14, 2021
+
+- Ran `composer update` on WordPress Core 
+    - `5.8.1` - `5.8.2`
+- Ran `composer update` on WordPress Plugins
+    - Advanced Custom Fields Pro - `5.11.4`
+    - Gravity Forms - `2.5.15`
+    - GDPR Cookie Notice - `2.2.1`
+    - UpdraftPlus - `2.16.66.25`
+    - W3 Total Cache - `2.2.1`
+    - WordFence - `7.5.7`
+    - WP Accessibility - `1.7.11`
+    - Yoast SEO - `17.8`
+- Ran `composer update` on Bedrock dependencies
+    - `roave/security-advisories` - `dev-master 92e217f`
+    - `squizlabs/php_codesniffer` - `3.6.2`
+    - `grahm-campbell/result-type` - `v1.0.4`
+    - `vlucas/phpdotenv` - `v5.4.1`
+- Ran `composer update` on Sage 9 theme
+    - `symfony/translation-contracts` - `v2.5.0`
+    - `symfony/translation` - `v4.4.34`
+    - `psr/container` - `1.1.2`
+    - `symfony/deprecation-contracts` - `v2.5.0`
+    - `symfony/service-contracts` - `v2.5.0`
+    - `symfony/console` - `v4.4.34`
+
+- Theme updates to Vue
+    - Moved the Vuex scripts to their own functionality type file
+    - Updated the way the navigation API data is fetched
+
 # Ver 3.14 - Oct 21, 2021
 
 - Ran `composer update` on WordPress Plugins

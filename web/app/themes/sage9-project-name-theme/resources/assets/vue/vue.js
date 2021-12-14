@@ -1,7 +1,6 @@
 /**
  * A file that contains most of the Vue Components and logic
  */
-import axios from "axios";
 import Vue from "vue";
 import {store} from "./Vuex/store.js";
 import { MediaQueries } from "vue-media-queries";
@@ -45,6 +44,9 @@ if (navigationElm !== null) {
     });
 }
 
+/**
+ * Example component. Delete if not needing to reference, as well as ModalContainer.vue and the Modal folder
+ */
 if (document.getElementById("modal-cnt") !== null) {
     const ModalWindow = Vue.component("modal", require('./Components/ModalContainer.vue').default);
     const modalElm = new Vue({

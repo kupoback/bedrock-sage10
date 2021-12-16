@@ -2,6 +2,17 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.16 - Dec 16, 2021
+
+- Added default image sizes, with no heights to maintain aspect ratio, and disabled cropping
+    - `thumbnail` => Thumbnail - 300px wide
+    - `medium` => Medium - 768px wide
+    - `medium_large` => Medium Large - 1024px wide - This is a hidden image size in WP
+    - `large` => Large - 1280px wide
+- Added a banner image size of 1920px wide, with no defined height 
+- Added a filter for adding the new banner selection in the Media item dropdown, and allowing for a dev to add more image sizes if the project calls for it
+
+
 # Ver 3.15 - Dec 14, 2021
 
 - Ran `composer update` on WordPress Core 

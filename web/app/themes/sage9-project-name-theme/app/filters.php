@@ -98,3 +98,18 @@ add_filter('wp_rest_cache/allowed_endpoints', function (array $allowed_endpoints
 
     return $allowed_endpoints;
 }, 10, 1);
+
+/**
+ * Allows the addition of other image sizes in the media dropdown
+ */
+add_filter('image_size_names_choose', function ($sizes) {
+    return collect($sizes)
+        ->forget('full')
+        // Add image sizes here if they are below 1920
+        // ->put('image-size-name', 'Image Size Text')
+        ->put('banner', 'Banner') // 1920 width
+        // Add image sizes here if they are above 1920
+        // ->put('image-size-name', 'Image Size Text')
+        ->put('full', 'Full Size')
+        ->toArray();
+});

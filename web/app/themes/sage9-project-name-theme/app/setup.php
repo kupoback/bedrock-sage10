@@ -112,6 +112,33 @@ add_action('after_setup_theme', function () {
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style(asset_path('styles/main.css'));
+
+    /**
+     * An action to update the default WP image sizes, while removing the thumbnail crop
+     * Default image sizes are thumbnail, medium, medium_large, and large
+     */
+    $options = [
+        'thumbnail_size_w' => 300,
+        'thumbnail_size_h' => 0,
+        'thumbnail_crop' => 0,
+        'medium_size_w' => 768,
+        'medium_size_h' => 0,
+        'medium_large_size_w' => 1024,
+        'medium_large_size_h' => 0,
+        'large_size_w' => 1280,
+        'large_size_h' => 0,
+    ];
+
+    collect($options)
+        ->map(function ($opt_val, $opt_key) {
+            update_option($opt_key, $opt_val, true);
+        });
+
+    /**
+     * Adds a 1920w banner image size.
+     * Change the width if supporting browser size higher than 1920
+     */
+    add_image_size('banner', 1920, 0, 0);
 }, 20);
 
 /**

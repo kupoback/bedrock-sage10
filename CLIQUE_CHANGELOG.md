@@ -2,6 +2,34 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 3.17 - Jan 31, 2022
+
+- Ran `composer update` on WordPress Core
+    - `5.8.2` = `5.9`
+- Ran `composer update` on WordPress Plugins
+    - Gravity Forms - `2.5.16`
+    - UpdraftPlus - `2.22.1.25`
+    - ACF Gravity Forms Add On - `1.2.10`
+    - MainWP Child - `4.1.9`
+    - Redirections - `5.2.2`
+    - Yoast SEO - `18.0`
+- Removed WP Accessibility as it's not in our launch checklist, and unsure if anyone uses it for launch
+- Ran `composer update` on Bedrock dependencies
+    - `symfony/polyfill-ctype` - `v1.24.0`
+    - `roave/security-advisories` - `dev-master f2fdb4f`
+    - `symfony/polyfill-80` - `v1.24.0`
+    - `symfony/polyfill-mbstring` - `v1.24.0`
+- Ran `composer update` on Sage 9 dependencies
+    - `symfony/polyfill-73` - `v1.24.0`
+    - `symfony/polyfill-80` - `v1.24.0`
+    - `symfony/polyfill-mbstring` - `v1.24.0`
+    - `symfony/polyfill-ctype` - `v1.24.0`
+    - `symfony/translation` - `v4.4.37`
+    - `symfony/finder` - `v4.4.37`
+    - `symfony/console` - `v4.4.37`
+    - `symfony/debug` - `v4.4.37`
+- Added missing folder `acf-json` with `.gitkeep` in the Sage 9 Theme -- Thanks Chris for catching this
+
 # Ver 3.16 - Dec 16, 2021
 
 - Added default image sizes, with no heights to maintain aspect ratio, and disabled cropping
@@ -11,7 +39,6 @@
     - `large` => Large - 1280px wide
 - Added a banner image size of 1920px wide, with no defined height 
 - Added a filter for adding the new banner selection in the Media item dropdown, and allowing for a dev to add more image sizes if the project calls for it
-
 
 # Ver 3.15 - Dec 14, 2021
 

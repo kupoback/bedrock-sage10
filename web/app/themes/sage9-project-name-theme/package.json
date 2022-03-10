@@ -49,6 +49,7 @@
 		"browser-sync-webpack-plugin": "^2.3.0",
 		"chart.js": "2.7.3",
 		"copy-webpack-plugin": "^10.0.0",
+		"easydropdown": "^4.2.0",
 		"eslint": "^8.1.0",
 		"eslint-plugin-import": "^2.25.2",
 		"flexboxgrid-sass": "^8.0.5",
@@ -81,6 +82,5 @@
 		"jquery": "^3.5.1"
 	},
 	"dependencies": {
-		"easydropdown": "^4.2.0"
 	}
 }

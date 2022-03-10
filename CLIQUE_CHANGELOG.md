@@ -82,6 +82,7 @@
     - Updated `symfony/process` - `v5.4.5`
     - Updated `symfony/translation` - `v5.4.6`
 - Updates to the `.env.example` file
+- Added notice for admin to not install or update plugins outside composer if the environment allows for such.
 
 # Ver 3.17 - Jan 31, 2022
 

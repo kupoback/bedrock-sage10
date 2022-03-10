@@ -7,7 +7,7 @@ namespace App\Routes;
 # Sage Classes
 use App\Routes\Traits\RestRouteParams;
 
-# Wordpress
+# WordPress
 use App\Routes\Traits\RestRouteTrait;
 use WP_Error;
 use WP_HTTP_Response;
@@ -141,6 +141,7 @@ class SageNavRestAPI
      * @return array
      */
     private function parseNavItem(object $item, array $opts = [])
+    :array
     {
         $default_classes = [
             'menu-item',

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Helper;
 
@@ -13,15 +13,17 @@ class ImageHelper
      * @param int   $src_id    The Image ID
      * @param array $img_attrs
      *                         size      Allows the overriding of the image size, Defaults to large
-     *                         property  Allows the overriding of the iamge property type, Defaults to image
+     *                         property  Allows the overriding of the image property type, Defaults to image
      *                         class     Appends a class to the image tag
      *                         alt       Allows for the overriding of the image's alt tag, Defaults to the image alt, then image's title
-     *                         role      Allows for the overringing of the image's role, Defaults to img
-     * @param array $data_atts Pass an array of data attribuets for use with JS
+     *                         role      Allows for the overriding of the image's role, Defaults to img
+     * @param array $data_atts Pass an array of data attributes for use with JS
+     * @param array $aria_atts Any aria attributes needed for the image
      *
      * @return string          Returns a formatted picture HTML element with source and img tags
      */
     public static function imgSrcSet(int $src_id, array $img_attrs = [], array $data_atts = [], array $aria_atts = [])
+    :string
     {
         $get_img_data = self::imgSrcSetArr($src_id, $img_attrs);
 
@@ -61,7 +63,7 @@ class ImageHelper
         /**
          * The webp output in a source tag
          */
-        $webp_source = !empty($webp_srcset) && $webp_srcset[0] ? sprintf(
+        $webp_source = $get_webp ? sprintf(
             '<source srcset="%s" sizes="%s" type="image/webp">',
             $get_webp,
             $src_sizes
@@ -112,11 +114,13 @@ class ImageHelper
      *
      * @param int   $src_id    The ID of the image
      * @param array $img_attrs Parameters for overrides, size, property, role, alt, caption override
-     * @param array $data_atts Add's data attributes to the image tag.
+     * @param array $data_atts Adds data attributes to the image tag.
+     * @param array $aria_atts Any aria attributes needed for the image
      *
      * @return string
      */
     public static function imgSrcSetCaption(int $src_id, array $img_attrs = [], array $data_atts = [], array $aria_atts = [])
+    :string
     {
 
         $get_img_data = self::imgSrcSetArr($src_id, $img_attrs);
@@ -178,7 +182,7 @@ class ImageHelper
         // Final assembly of image attributes
         $src_attributes = "alt=\"{$src_alt}\"";
 
-        $webp_source = !empty($webp_srcset) && $webp_srcset[0] ? sprintf(
+        $webp_source = $get_webp ? sprintf(
             '<source srcset="%s" sizes="%s" type="image/webp">',
             $get_webp,
             $src_sizes
@@ -190,6 +194,7 @@ class ImageHelper
             $src_sizes,
             str_replace('.', '', substr($source, strrpos($source, '.')))
         ) : '';
+
         if (strpos($get_img_data['img_type'], 'svg')) {
             sprintf(
                 '<figure %5$s><picture %11$s><img src="%1$s" role="%4$s" %2$s %6$s %7$s property="v:%3$s" content="%1$s" %8$s %9$s /></picture>%10$s</figure>',
@@ -233,17 +238,18 @@ class ImageHelper
      * @return array
      */
     public static function imgSrcSetArr(int $src_id, array $img_attrs = [])
+    :array
     {
 
         // $img_attrs
-        $img_size = isset($img_attrs['size']) ? $img_attrs['size'] : 'large';
-        $img_prop = isset($img_attrs['property']) ? $img_attrs['property'] : 'image';
+        $img_size = $img_attrs['size'] ?? 'large';
+        $img_prop = $img_attrs['property'] ?? 'image';
 
         // Image Information
         $img_src       = wp_get_attachment_image_url($src_id, $img_size);
         $src_set       = wp_get_attachment_image_srcset($src_id, $img_size) ?: '';
         $src_set_sizes = wp_get_attachment_image_sizes($src_id, $img_size) ?: '';
-        $src_alt       = isset($img_attrs['alt']) ? $img_attrs['alt'] : '';
+        $src_alt       = $img_attrs['alt'] ?? '';
 
         if (!$src_alt) {
             $src_alt = get_post_meta($src_id, '_wp_attachment_image_alt', true) ? get_post_meta($src_id, '_wp_attachment_image_alt', true) : get_the_title($src_id);
@@ -271,29 +277,42 @@ class ImageHelper
     /**
      * Generates a proper formatted return of post images for Vue
      *
-     * @param int $post_thmb_id The image ID
+     * @param int $post_thumbnail_id The image ID
+     * @param string $image_size The size of the image to return. Defaults to large
      *
      * @return array|string
      */
-    public static function generateImgData(int $post_thmb_id)
+    public static function generateImgData(int $post_thumbnail_id, string $image_size = 'large')
     {
-        if (!$post_thmb_id) {
+        if (!$post_thumbnail_id) {
             return '';
         }
 
-        $post_meta_alt = get_post_meta($post_thmb_id, '_wp_attachment_image_alt', true);
-        $img_data['alt']    = $post_meta_alt ? html_entity_decode($post_meta_alt) : html_entity_decode(get_the_title($post_thmb_id));
-        $img_data['src']    = wp_get_attachment_image_url($post_thmb_id, 'large', false);
-        $img_data['srcset'] = wp_get_attachment_image_srcset($post_thmb_id, 'large');
-        $img_data['sizes']  = wp_get_attachment_image_sizes($post_thmb_id, 'large') ?: '';
+        $post_meta_alt      = get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true);
+        $source = wp_get_attachment_image_url($post_thumbnail_id, $image_size, false);
 
-        $source           = wp_get_attachment_image_url($post_thmb_id, 'large', false);
-        $img_data['type'] = 'image/' . str_replace('.', '', substr($source, strrpos($source, '.')));
+        $img_data = collect(
+            [
+                'alt' => $post_meta_alt ? html_entity_decode($post_meta_alt) : html_entity_decode(get_the_title($post_thumbnail_id)),
+                'src' => wp_get_attachment_image_url($post_thumbnail_id, $image_size, false),
+                'srcset' => wp_get_attachment_image_srcset($post_thumbnail_id, $image_size),
+                'sizes' => wp_get_attachment_image_sizes($post_thumbnail_id, $image_size) ?: '',
+            ]
+        );
+        // $img_data['alt']    = $post_meta_alt ? html_entity_decode($post_meta_alt) : html_entity_decode(get_the_title($post_thumbnail_id));
+        // $img_data['src']    = wp_get_attachment_image_url($post_thumbnail_id, 'large', false);
+        // $img_data['srcset'] = wp_get_attachment_image_srcset($post_thumbnail_id, 'large');
+        // $img_data['sizes']  = wp_get_attachment_image_sizes($post_thumbnail_id, 'large') ?: '';
+
+        $img_data->put('type', 'image/' . str_replace('.', '', substr($source, strrpos($source, '.'))));
 
         // Handles the webp portion of the image
-        self::getWebp($img_data['srcset']) ? $img_data['webpSrcset'] = self::getWebp($img_data['srcset']) : null;
+        $webp_srcset = self::getWebp($img_data->get('srcset'));
+        if ($webp_srcset) {
+            $img_data->put('webpSrcset', self::getWebp($img_data->get('srcset')));
+        }
 
-        return $img_data;
+        return $img_data->toArray();
     }
 
     /**
@@ -305,32 +324,36 @@ class ImageHelper
      * @return string
      */
     protected static function getWebp(string $src_set)
+    :string
     {
+        $home_url = get_home_url();
 
         // Creation of webp support
-        $webp_srcset = [];
-        $sset_items  = explode(', ', $src_set);
-        foreach ($sset_items as $srcset) {
-            $img_file = explode(' ', $srcset) ? explode(' ', $srcset) : $srcset;
-            if (!empty($img_file) && $img_file[0]) {
-                $item_size = !empty($img_file) && isset($img_file[1]) ? $img_file[1] : '';
-                $extension = substr($img_file[0], strrpos($img_file[0], '.'));
-                switch ($extension) {
-                    case '.jpg':
-                    case '.jpeg':
-                    case '.png':
-                        $w_item = str_replace($extension, '.webp', $img_file[0]);
-                        $w_item = file_exists($_SERVER['DOCUMENT_ROOT'] . parse_url($w_item)['path']) ? $w_item : null;
-                        $w_item = !is_null($w_item) ? $w_item . ' ' . $item_size : null;
-                        break;
-                    default:
-                        $w_item = null;
-                        break;
+        return collect(explode(', ', $src_set))
+            ->map(function ($srcset) use ($home_url) {
+                $img_file = explode(' ', $srcset) ? explode(' ', $srcset) : $srcset;
+                $webp_image = '';
+                if (!empty($img_file) && $img_file[0]) {
+                    $item_size = $img_file[1] ?? '';
+                    $extension = substr($img_file[0], strrpos($img_file[0], '.'));
+                    switch ($extension) {
+                        case '.jpg':
+                        case '.jpeg':
+                        case '.png':
+                            $webp_file = str_replace($extension, '.webp', $img_file[0]);
+                            $webp_file_path = parse_url($webp_file)['path'];
+                            $file_check = WP_CONTENT_DIR . str_replace('/app', '', $webp_file_path);
+                            if (file_exists($file_check)) {
+                                $webp_image = "$home_url$webp_file_path $item_size";
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 }
-                !is_null($w_item) ? array_push($webp_srcset, $w_item) : null;
-            }
-        }
-
-        return !empty($webp_srcset) ? $webp_srcset = implode(', ', $webp_srcset) : '';
+                return $webp_image;
+            })
+            ->filter()
+            ->implode(', ');
     }
 }

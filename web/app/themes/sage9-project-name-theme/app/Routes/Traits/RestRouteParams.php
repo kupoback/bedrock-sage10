@@ -6,6 +6,7 @@ namespace App\Routes\Traits;
 
 trait RestRouteParams
 {
+
     /**
      * Used as a base for a WP_Query call to have the defaults already defined,
      * and can be combined with wp_parse_args($args, $defaultQueryArgs) to merge
@@ -14,12 +15,13 @@ trait RestRouteParams
      * @return array
      */
     protected function defaultQueryArgs()
+    :array
     {
         return [
-            'post_type' => 'post',
+            'post_type'      => 'post',
             'posts_per_page' => 10,
-            'orderby' => 'date',
-            'order' => 'DESC'
+            'orderby'        => 'date',
+            'order'          => 'DESC',
         ];
     }
 }

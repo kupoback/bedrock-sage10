@@ -2,20 +2,21 @@
 namespace App\Routes\Traits;
 
 use Illuminate\Support\Collection;
+use WP_Error;
 
-trait RestRouteValidat
+trait RestRouteValidate
 {
     /**
      * @param $value
      * @param $request
      * @param $param
      *
-     * @return array|Collection|\WP_Error
+     * @return Collection|WP_Error
      */
     public function sanitizeCats($value, $request, $param)
     {
         if (!is_array($value)) {
-            return new \WP_Error('rest_invalid_param', esc_html__('Must be an array.', 'focus-project-theme'), array('status' => 400));
+            return new WP_Error('rest_invalid_param', esc_html__('Must be an array.', 'focus-project-theme'), array('status' => 400));
         }
 
         return collect($value)
@@ -33,12 +34,13 @@ trait RestRouteValidat
      * @param $value
      * @param $request
      * @param $param
-     * @return int|\WP_Error
+     *
+     * @return int|WP_Error
      */
     public function validatePPPage($value, $request, $param)
     {
         if (!isset($value) && empty(intval($value))) {
-            return new \WP_Error('rest_invalid_param', esc_html__('Must be an integer.', 'focus-project-theme'), array('status' => 400));
+            return new WP_Error('rest_invalid_param', esc_html__('Must be an integer.', 'focus-project-theme'), array('status' => 400));
         }
 
         return intval($value);
@@ -48,12 +50,13 @@ trait RestRouteValidat
      * @param $value
      * @param $request
      * @param $param
-     * @return mixed|\WP_Error
+     *
+     * @return mixed|WP_Error
      */
     public function sanitizeText($value, $request, $param)
     {
         if (!\is_string($value)) {
-            return new \WP_Error('rest_invalid_param', esc_html__('Must be a string.', 'focus-project-theme'), array('status' => 400));
+            return new WP_Error('rest_invalid_param', esc_html__('Must be a string.', 'focus-project-theme'), array('status' => 400));
         }
 
         return \filter_var($value, \FILTER_SANITIZE_FULL_SPECIAL_CHARS);

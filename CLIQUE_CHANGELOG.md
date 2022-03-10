@@ -2,6 +2,87 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 4.0 - Mar 10, 2022
+
+## Major Changes
+
+### Sage 9 is now php 8.0 ready - Thanks Justin!
+ 
+- php version minimum is `7.4`
+- php version max is `8.0`
+- Symfony upgraded from `5.6` to `8.83`
+  - [Documentation](https://laravel.com/docs/8.x/)
+
+### Sage 9's webpack 3.0 has been replaced by `laravel-mix`
+  - [Project Repo](https://github.com/laravel-mix/laravel-mix)
+  - [Documentation](https://github.com/laravel-mix/laravel-mix/tree/master/docs)
+  - `node-engine` minimum bumped up to `14.0`
+  - `node-engine` tested up to `17.7.0`
+  - `yarn watch` works once again!
+  - Compile non-prod time for base boilerplate is now ~4s
+  - Compile prod time for base boilerplate is now ~6.5s
+
+## Minor Changes
+- Ran `composer update` on WordPress Core
+  - `5.9.1`
+- Ran `composer update` on WordPress Plugins
+    - Advanced Custom Fields - `5.12`
+    - GDPR Cookie Notice - `2.2.3`
+    - MainWP Child - `4.1.10`
+    - Redirection - `5.2.3`
+    - Safe SVG - `1.9.10`
+    - Stream - `3.9.0`
+    - UpdraftPlus - `2.22.8.25`
+    - WordFence -`7.5.8`
+    - Yoast SEO - `18.3`
+- Ran `composer update` on Bedrock Dependencies
+    - `roav-security-advisories` - `dev-master 57a3432`
+    - `symfony/polyfill-ctype` - `v1.25.0`
+    - `symfony/polyfill-mbstring` - `v1.25.0`
+    - `symfony/polyfill-php80` - `v1.25.0`
+- Ran `composer update` on Sage 9 Dependencies
+    - Adjusted `composer.json` to include new `sage-installers` and `sage-lib` from Justin
+    - Removed `kylekatarnls/update-helper`
+    - Removed `paragonie/random_compat`
+    - Removed `psr/log`
+    - Removed `symfony/debug`
+    - Added `brick/math` - `0.9.3`
+    - Added `illuminate/bus` - `v8.83.4`
+    - Added `illuminate/collections` - `v8.83.4`
+    - Added `illuminate/macrobable` - `v8.83.4`
+    - Added `illuminate/pipeline` - `v8.83.4`
+    - Added `ramsey/collection` - `v1.2.2`
+    - Added `symfony/polyfill-intl-grapheme` - `v1.25.0`
+    - Added `symfony/polyfill-intl-normalizer` - `v1.25.0`
+    - Added `symfony/polyfill-81` - `v1.25.0`
+    - Added `symfony/string` - `v5.4.3`
+    - Added `coku/portable-ascii` - `v1.6.1`
+    - Updated `brain/hierarchy` - `2.7.0`
+    - Updated `composer/installers` - `v2.0.1`
+    - Updated `doctrine/inflector` - `2.0.4`
+    - Updated `illuminate/config` - `v8.83.4`
+    - Updated `illuminate/console` - `v8.83.4`
+    - Updated `illuminate/container` - `v8.83.4`
+    - Updated `illuminate/contracts` - `v8.83.4`
+    - Updated `illuminate/events` - `v8.83.4`
+    - Updated `illuminate/filesystem` - `v8.83.4`
+    - Updated `illuminate/support` - `v8.83.4`
+    - Updated `illuminate/view` - `v8.83.4`
+    - Updated `nesbot/carbon` - `v2.57.0`
+    - Updated `ramsey/uuid` - `v4.2.3`
+    - Updated `roots/sage-installer` - `dev-master 50c9698`
+    - Updated `roots/sage-lib` - `dev-master 9be12ac`
+    - Updated `squizlabs/php_codesniffer` - `3.6.2`
+    - Updated `symfony/console` - `v5.4.5`
+    - Updated `symfony/finder` - `v5.4.5`
+    - Updated `symfony/polyfill-ctype` - `v1.25.0`
+    - Updated `symfony/polyfill-mbstring` - `v1.25.0`
+    - Updated `symfony/polyfill-php73` - `v1.25.0`
+    - Updated `symfony/polyfill-php80` - `v1.25.0`
+    - Updated `symfony/process` - `v5.4.5`
+    - Updated `symfony/translation` - `v5.4.6`
+- Updates to the `.env.example` file
+
 # Ver 3.17 - Jan 31, 2022
 
 - Ran `composer update` on WordPress Core

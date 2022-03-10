@@ -1,10 +1,8 @@
 /** import external dependencies */
-import $ from 'jquery/dist/jquery.js';
-import "waypoints/lib/jquery.waypoints.min.js";
-// import Swiper from 'swiper';
+import 'jquery';
+import Router from './util/Router';
 
 /** import local dependencies */
-import Router from './util/Router';
 import common from './routes/common';
 import home from './routes/home'; // Used for front-page.blade.php
 // import blog from './routes/blog'; // Used for home.blade.php
@@ -22,16 +20,16 @@ const routes = new Router({
 	/** Posts Archive */
 	// blog,
 	/** Custom Page Templates */
-	pageTemplateTemplateAbout,
+	// pageTemplateTemplateAbout,
 });
 
 /**
  * Polyfill Corrections useful for Vue
  */
 if (window.NodeList && !NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = function(callback, thisArg) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
         thisArg = thisArg || window;
-        for (var i = 0; i < this.length; i++) {
+        for (let i = 0; i < this.length; i++) {
             callback.call(thisArg, this[i], i, this);
         }
     };
@@ -39,9 +37,9 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
 }
-if (typeof NodeList.prototype.forEach !== 'function')  {
+if (typeof NodeList.prototype.forEach !== 'function') {
     NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
 /** Load Events */
-jQuery(document).ready( routes.loadEvents() );
+$(() => routes.loadEvents());

@@ -9,14 +9,14 @@ use App\Helper\Helper;
 use App\Helper\ImageHelper;
 use App\Routes\Traits\RestRouteParams;
 use App\Routes\Traits\RestRouteTrait;
-use App\Routes\Traits\RestRouteValidat;
+use App\Routes\Traits\RestRouteValidate;
 
 # Vendor Packages
-use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
-# Wordpress
+# WordPress
 use WP_REST_Server;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -27,7 +27,7 @@ class BlogPosts
 {
 
     use RestRouteTrait;
-    use RestRouteValidat;
+    use RestRouteValidate;
     use RestRouteParams;
 
     /**
@@ -128,7 +128,7 @@ class BlogPosts
                 $return_data['posts'] = [];
 
                 if ($total > 0) {
-                    $return_data['posts'] = self::renderRosts($posts);
+                    $return_data['posts'] = self::renderPosts($posts);
                 }
 
                 $return_data['total']    = $total;
@@ -155,7 +155,7 @@ class BlogPosts
      *
      * @return Collection|void
      */
-    public function renderRosts(array $posts)
+    public function renderPosts(array $posts)
     {
         if (!$posts) {
             return;
@@ -172,7 +172,7 @@ class BlogPosts
                     'author'     => get_the_author_meta('display_name', $post->post_author),
                     'categories' => $categories && !is_wp_error($categories) ? collect($categories)->first() : '',
                     'date'       => $post_date->format('m-d-Y'),
-                    'excerpt'    => html_entity_decode(Helper::grabExcerpt($excerpt, 25)),
+                    'excerpt'    => html_entity_decode(Helper::generateExcept($excerpt, 25)),
                     'id'         => $post->ID,
                     'image'      => $image,
                     'permalink'  => get_the_permalink($post),

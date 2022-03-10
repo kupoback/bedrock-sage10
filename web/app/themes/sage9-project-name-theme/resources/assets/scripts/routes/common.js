@@ -19,7 +19,7 @@ export default {
         };
         
         // Scroll To
-        (function() {
+        (() => {
             $(".scrollto").on("click", elm => scrollTo(elm, 1000));
         })();
         

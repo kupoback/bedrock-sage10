@@ -18,6 +18,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_register_script('sage/manifest.js', asset_path('scripts/manifest.js'), ['jquery'], null, true);
     wp_register_script('sage/vendor.js', asset_path('scripts/vendor.js'), ['jquery'], null, true);
     wp_register_script('sage/vue.js', asset_path('scripts/vue.js'), ['sage/vendor.js'], null, true);
+    wp_register_script('sage/react.js', asset_path('scripts/react.js'), ['sage/vendor.js'], null, true);
     wp_register_script('sage/main.js', asset_path('scripts/main.js'), ['sage/vendor.js'], null, true);
 
     /**
@@ -40,6 +41,8 @@ add_action('wp_enqueue_scripts', function () {
         //     'navLocation' => 'primary_navigation',
         //     'pageSlug'    => is_front_page() ? 'home' : ($query_obj->post_name ?? 'undefined'),
         //     'postId'      => $query_obj->ID ?? 0,
+        //     'siteName'    => get_bloginfo('name'),
+        //     'siteUrl'     => get_home_url(),
         // ]);
     }
 
@@ -49,6 +52,8 @@ add_action('wp_enqueue_scripts', function () {
     // Enqueuing of Scripts and Styles
     wp_enqueue_script('sage/manifest.js');
     wp_enqueue_script('sage/vendor.js');
+    // Uncomment if using ReactJS
+    // wp_enqueue_script('sage/react.js');
     // Uncomment if using VueJS
     // wp_enqueue_script('sage/vue.js');
     wp_enqueue_script('sage/main.js');

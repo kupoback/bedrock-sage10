@@ -35,6 +35,9 @@ mix.sass(`${assetPath}/styles/main.scss`, "styles")
  */
 // mix.vue({version: 2})
 //    .js(`${assetPath}/vue/vue.js`, "scripts")
+
+// mix.react()
+//   .js(`${assetPath}/react/react.js`, "scripts")
     
     /**
      * Compiling JS

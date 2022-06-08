@@ -25,8 +25,8 @@ const VueInstance = new Vue({
     mediaQueries: mediaQueries,
     created() {
         if (typeof NAV !== "undefined" && navigationElm !== null) {
-            this.$store.dispatch('getNavigation', {viewport: "desktop", navID: NAV.navID});
-            this.$store.dispatch('getNavigation', {viewport: "mobile", navID: NAV.navID});
+            this.$store.dispatch('getNavigation', {viewport: "desktop", navLocation: NAV.navLocation});
+            this.$store.dispatch('getNavigation', {viewport: "mobile", navLocation: NAV.navLocation});
         }
     }
 });

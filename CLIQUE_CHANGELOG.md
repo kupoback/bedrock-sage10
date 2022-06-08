@@ -2,6 +2,64 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 4.1 - Jun 8th, 2022
+
+- Added support for React and Redux in the Sage 9 theme
+  - This can be uncommented from `webpack.mix.js` and `setup.php` then `yarn build` can be ran
+- Fixes to Vue Navigation
+- Ran `composer update` on WordPress Core
+  - `5.9.1` - `6.0.0`
+- Ran `composer update` on WordPress Plugins
+  - Advanced Custom Fields - `5.12.2`
+  - ACF Gravity Forms - `1.3.4`
+  - All In One WP Security and Firewall - `4.4.12`
+  - GDPR Cookie Notice - `2.3.0`
+  - Gravity Forms - `2.6.3`
+  - MainWP Child - `4.2.3`
+  - Optimus - `1.6.2`
+  - Safe SVG - `2.0.1`
+  - UpdraftPlus - `2.22.12.25`
+  - WordFence - `7.5.10`
+  - Yoast SEO - `19.0`
+- Ran `composer update` on Bedrock Dependencies
+  - `composer/installers` - `v2.1.1`
+  - `symfony/polyfill-ctype` - `v1.26.0`
+  - `roave/security-advisories` - `dev-master 961eba3`
+  - `roots/wp-password-bcrypt` - `1.1.0`
+  - `symfony/polyfill-php80` - `v1.26.0`
+  - `symfony/polyfill-mbstring` - `v1.26.0`
+- Ran `composer update` on Sage 9 Dependencies
+  Upgrading composer/installers (v2.0.1 => v2.1.1)
+    - `illuminate/bus` - `v8.83.16`
+    - `illuminate/collections` - `v8.83.16`
+    - `illuminate/config` - `v8.83.16`
+    - `illuminate/console` - `v8.83.16`
+    - `illuminate/container` - `v8.83.16`
+    - `illuminate/contracts` - `v8.83.16`
+    - `illuminate/events` - `v8.83.16`
+    - `illuminate/filesystem` - `v8.83.16`
+    - `illuminate/macroable` - `v8.83.16`
+    - `illuminate/pipeline` - `v8.83.16`
+    - `illuminate/support` - `v8.83.16`
+    - `illuminate/view` - `v8.83.16`
+    - `nesbot/carbon` - `2.58.0`
+    - `symfony/console` - `v5.4.9`
+    - `symfony/deprecation-contracts` - `v2.5.1`
+    - `symfony/finder` - `v5.4.8`
+    - `symfony/polyfill-ctype` - `v1.26.0`
+    - `symfony/polyfill-intl-grapheme` - `v1.26.0`
+    - `symfony/polyfill-intl-normalizer` - `v1.26.0`
+    - `symfony/polyfill-mbstring` - `v1.26.0`
+    - `symfony/polyfill-php73` - `v1.26.0`
+    - `symfony/polyfill-php80` - `v1.26.0`
+    - `symfony/polyfill-php81` - `v1.26.0`
+    - `symfony/process` - `v5.4.8`
+    - `symfony/service-contracts` - `v2.5.1`
+    - `symfony/string` - `v5.4.9`
+    - `symfony/translation` - `v5.4.9`
+    - `symfony/translation-contracts` - `v2.5.1`
+
+
 # Ver 4.0 - Mar 10, 2022
 
 ## Major Changes

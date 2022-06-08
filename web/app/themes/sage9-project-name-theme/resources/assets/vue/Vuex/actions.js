@@ -7,20 +7,16 @@ import axios from "axios";
  * @returns {Promise<AxiosResponse<any> | void>}
  */
 export function getNavigation (store, opts) {
+    const {viewport, navLocation} = opts;
     return axios
         .get(
             NAV.api,
-            {
-                params: {
-                    navLocation: opts.navLocation,
-                    viewport: opts.viewport
-                }
-            }
+            {params: {navLocation, viewport}}
         )
         .then(({data, status}) => {
             if (status === 200 && data.status !== 404) {
                 store.commit("buildNavigation", {
-                    viewport: opts.viewport,
+                    viewport: viewport,
                     data: data || null,
                 });
             }

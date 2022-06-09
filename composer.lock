@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25d021278637c13bce5dbec6446d4dba",
+    "content-hash": "4ae68cd595f50999baf87b7cc2ea2138",
     "packages": [
         {
             "name": "clique-bedrock/advanced-custom-fields-pro",
@@ -1456,12 +1456,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "961eba35293ca2e5b37bc281a63836243b35058a"
+                "reference": "eb3f283cd897fee03bd8c3557e03b5928fcbda34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/961eba35293ca2e5b37bc281a63836243b35058a",
-                "reference": "961eba35293ca2e5b37bc281a63836243b35058a",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/eb3f283cd897fee03bd8c3557e03b5928fcbda34",
+                "reference": "eb3f283cd897fee03bd8c3557e03b5928fcbda34",
                 "shasum": ""
             },
             "conflict": {
@@ -1638,7 +1638,7 @@
                 "laminas/laminas-http": "<2.14.2",
                 "laravel/fortify": "<1.11.1",
                 "laravel/framework": "<6.20.42|>=7,<7.30.6|>=8,<8.75",
-                "laravel/laravel": "<=5.8.38",
+                "laravel/laravel": "<=9.1.8",
                 "laravel/socialite": ">=1,<1.0.99|>=2,<2.0.10",
                 "latte/latte": "<2.10.8",
                 "lavalite/cms": "<=5.8",
@@ -1680,6 +1680,7 @@
                 "nette/application": ">=2,<2.0.19|>=2.1,<2.1.13|>=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
                 "nette/nette": ">=2,<2.0.19|>=2.1,<2.1.13",
                 "nilsteampassnet/teampass": "<=2.1.27.36",
+                "noumo/easyii": "<=0.9",
                 "nukeviet/nukeviet": "<4.3.4",
                 "nystudio107/craft-seomatic": "<3.4.12",
                 "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
@@ -1945,7 +1946,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-07T22:04:20+00:00"
+            "time": "2022-06-08T23:04:00+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -2012,7 +2013,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4|^8.0.0"
+        "php": "^8.0.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

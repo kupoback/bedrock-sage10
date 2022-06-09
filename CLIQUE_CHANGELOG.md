@@ -2,6 +2,12 @@
 
 # Clique Wordpress Boilerplate Changelog
 
+# Ver 4.1.1 - Jun 9th, 2022
+
+- Set minimum php version to `^8.0.0` for theme and Bedrock
+- Ran `composer update` on Bedrock dependencies
+  - `roave/security-advisories` - `dev-master eb3f283`
+
 # Ver 4.1 - Jun 8th, 2022
 
 - Added support for React and Redux in the Sage 9 theme

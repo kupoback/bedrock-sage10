@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunksage=globalThis.webpackChunksage||[]).push([[514],{229:(e,n,a)=>{const t=window.React;var l=a.n(t);const c=window.ReactDOM;a.n(c)().render(l().createElement("h1",null,"Hello World"),document.getElementById("react-app"))}},e=>{e(e.s=229)}]);

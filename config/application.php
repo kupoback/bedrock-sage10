@@ -9,10 +9,8 @@
  */
 
 use Roots\WPConfig\Config;
+use Dotenv\Dotenv;
 use function Env\env;
-use Dotenv\Repository\RepositoryBuilder;
-use Dotenv\Repository\Adapter\EnvConstAdapter;
-use Dotenv\Repository\Adapter\PutenvAdapter;
 
 /**
  * Directory containing all of the site's files
@@ -30,14 +28,13 @@ $webroot_dir = $root_dir . '/web';
 
 /**
  * Use Dotenv to set required environment variables and load .env file in root
+ * .env.local will override .env if it exists
  */
-$repository = RepositoryBuilder::createWithNoAdapters()
-                               ->addAdapter(EnvConstAdapter::class)
-                               ->addAdapter(PutenvAdapter::class)
-                               ->immutable()
-                               ->make();
+$env_files = file_exists($root_dir . '/.env.local')
+    ? ['.env', '.env.local']
+    : ['.env'];
 
-$dotenv = Dotenv\Dotenv::create($repository, $root_dir, ['.env', '.env.local'], false);
+$dotenv = Dotenv::createUnsafeImmutable($root_dir, $env_files, false);
 if (file_exists($root_dir . '/.env')) {
     $dotenv->load();
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
@@ -106,20 +103,14 @@ Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 Config::define('DISALLOW_FILE_EDIT', true);
 // Disable plugin and theme updates and installation from the admin
 Config::define('DISALLOW_FILE_MODS', true);
-
-/**
- * Define post revisions and autosave interval
- */
-if (env('WP_ENV') === 'development') {
-    Config::define('WP_POST_REVISIONS', 0);
-    Config::define('AUTOSAVE_INTERVAL', 300);
-}
+// Limit the number of post revisions that Wordpress stores (true (default WP): store every revision)
+Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?: true);
 
 /**
  * Debugging Settings
  */
 Config::define('WP_DEBUG_DISPLAY', false);
-Config::define('WP_DEBUG_LOG', env('WP_DEBUG_LOG') ?? false);
+Config::define('WP_DEBUG_LOG', false);
 Config::define('SCRIPT_DEBUG', false);
 ini_set('display_errors', '0');
 

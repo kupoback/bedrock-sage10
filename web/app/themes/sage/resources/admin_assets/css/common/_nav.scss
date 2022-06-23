@@ -1,0 +1,16 @@
+.show-none {
+	display: none;
+}
+.menu-item-depth {
+	&-0,
+	&-1 {
+		.acf-menu-item-fields {
+			@extend .show-none;
+		}
+	}
+	&-3 {
+		div[data-name="title"] {
+			@extend .show-none;
+		}
+	}
+}

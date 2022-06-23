@@ -20,5 +20,15 @@
     "dependencies": [
       "wp-blocks"
     ]
+  },
+  "react": {
+    "js": [
+      "runtime.8306ad.js",
+      "react.401c49.js"
+    ],
+    "dependencies": [
+      "react",
+      "react-dom"
+    ]
   }
 }

@@ -5,6 +5,7 @@
  */
 module.exports = async (app) => {
     app
+        // .setPath('@react', './resources/react')
         /**
          * Application entrypoints
          *
@@ -13,7 +14,8 @@ module.exports = async (app) => {
         .entry({
             app: ["@scripts/app", "@styles/app"],
             editor: ["@scripts/editor", "@styles/editor"],
-            // react: ["./resources/react/app"]
+            react: ["./resources/react/app"]
+            // react: ["@react/app"]
         })
         
         /**

@@ -195,3 +195,10 @@ add_action('init', function () {
         }
     });
 });
+
+/**
+ * Registers and adds Admin scripts to the site
+ */
+add_action('admin_enqueue_scripts', function () {
+    wp_enqueue_style('sage-admin-styles', get_template_directory_uri() . '/resources/admin_assets/css/admin_styles.min.css', [], null);
+});

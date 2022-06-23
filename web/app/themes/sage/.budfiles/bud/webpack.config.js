@@ -11,6 +11,11 @@ module.exports = {
         "@scripts/editor",
         "@styles/editor"
       ]
+    },
+    "react": {
+      "import": [
+        "./resources/react/app"
+      ]
     }
   },
   "bail": true,

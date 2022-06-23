@@ -153,38 +153,6 @@
           }
         }
       },
-      "jsconfig.json": {
-        "name": "jsconfig.json",
-        "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/jsconfig.json",
-        "module": {
-          "compilerOptions": {
-            "allowSyntheticDefaultImports": true,
-            "jsx": "preserve",
-            "lib": [
-              "dom",
-              "dom.iterable",
-              "esnext"
-            ],
-            "module": "commonjs",
-            "moduleResolution": "node",
-            "paths": {
-              "@react/*": [
-                "./resources/react/*"
-              ],
-              "@scripts/*": [
-                "./resources/scripts/*"
-              ],
-              "@styles/*": [
-                "./resources/styles/*"
-              ]
-            }
-          },
-          "exclude": [
-            "./public",
-            "./node_modules"
-          ]
-        }
-      },
       "theme.json": {
         "name": "theme.json",
         "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/theme.json",
@@ -227,6 +195,38 @@
               "customFontSize": false
             }
           }
+        }
+      },
+      "jsconfig.json": {
+        "name": "jsconfig.json",
+        "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/jsconfig.json",
+        "module": {
+          "compilerOptions": {
+            "allowSyntheticDefaultImports": true,
+            "jsx": "preserve",
+            "lib": [
+              "dom",
+              "dom.iterable",
+              "esnext"
+            ],
+            "module": "commonjs",
+            "moduleResolution": "node",
+            "paths": {
+              "@react/*": [
+                "./resources/react/*"
+              ],
+              "@scripts/*": [
+                "./resources/scripts/*"
+              ],
+              "@styles/*": [
+                "./resources/styles/*"
+              ]
+            }
+          },
+          "exclude": [
+            "./public",
+            "./node_modules"
+          ]
         }
       }
     }

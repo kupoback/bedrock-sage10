@@ -8,7 +8,7 @@
 	@if ($items ?? false)
 		<ul>
 			@foreach ($items as $item)
-				<li>{{ $item['item'] }}</li>
+				<li>{{ $item->item }}</li>
 			@endforeach
 		</ul>
 	@endif
@@ -17,13 +17,15 @@
 		{!! \App\Helper\ImageHelper::imgSrcSet($image, ['size' => 'medium']) !!}
 	@endif
 	
-	@if (($cta['url'] ?? false) && $cta['url'])
+	@if ($cta->url ?? false)
 		<div class="external-link">
-			<a href="{{$cta['url']}}" @if ($cta['target']) target="{{$cta['target']}}" rel="noopener" @endif >
-				{!! $cta['title'] !!}
+			<a href="{{$cta->url}}" @if ($cta->target) target="{{$cta->target}}" rel="noopener" @endif >
+				{!! $cta->title !!}
 			</a>
 		</div>
 	@endif
+		
+		{!! $cta_title ?? '' !!}
 	
 	<div>
 		<InnerBlocks />

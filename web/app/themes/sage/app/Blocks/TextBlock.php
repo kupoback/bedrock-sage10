@@ -2,6 +2,7 @@
 
 namespace App\Blocks;
 
+use App\SageThemeModule\ACFNestedFields;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldNameCollisionException;
 use StoutLogic\AcfBuilder\FieldsBuilder;
@@ -136,6 +137,7 @@ class TextBlock extends Block
         'items',
         'cta',
         'image',
+        'cta_title',
     ];
 
     /**
@@ -146,7 +148,8 @@ class TextBlock extends Block
     public function with()
     :array
     {
-        return self::acfFields();
+        return (new ACFNestedFields($this->fieldNames))
+            ->getData();
     }
 
     /**
@@ -167,25 +170,10 @@ class TextBlock extends Block
             ->addImage('image', ['return_format' => 'id'])
             ->addRepeater('items')
                 ->addText('item')
-            ->endRepeater();
+            ->endRepeater()
+            ->addText('cta_title');
 
         return $textBlock->build();
-    }
-
-    /**
-     * Maps through the field names defined and grabs their get_field
-     *
-     * @return array
-     */
-    public function acfFields()
-    :array
-    {
-        return collect($this->fieldNames)
-            ->mapWithKeys(fn($field) => [
-                $field => get_field($field) ?: ($this->example[$field] ?? false),
-            ])
-            ->filter()
-            ->toArray();
     }
 
     /**

@@ -15,7 +15,7 @@ class PostTypes
     public function __construct()
     {
         $post_types = [
-            // 'team' => $this->teamPostType(),
+             'team' => $this->teamPostType(),
         ];
 
         if (!empty($post_types)) {

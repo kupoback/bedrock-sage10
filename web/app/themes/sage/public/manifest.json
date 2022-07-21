@@ -1,9 +1,9 @@
 {
-  "app.css": "app.a416cb.css",
-  "app.js": "app.341703.js",
-  "editor.css": "editor.31d6cf.css",
-  "editor.js": "editor.ae0bbf.js",
-  "react.js": "react.401c49.js",
-  "runtime.js": "runtime.8306ad.js",
-  ".gitkeep": ".gitkeep.31d6cf"
+  "app.js": "js/app.js",
+  "editor.js": "js/editor.js",
+  "react.js": "js/react.js",
+  "images/.gitkeep": "images/.gitkeep",
+  "app.js.map": "js/app.js.map",
+  "editor.js.map": "js/editor.js.map",
+  "react.js.map": "js/react.js.map"
 }

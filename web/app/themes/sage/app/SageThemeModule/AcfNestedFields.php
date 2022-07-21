@@ -3,18 +3,19 @@
 namespace App\SageThemeModule;
 
 use Illuminate\Support\Str;
+use function collect;
 
-class ACFNestedFields
+class AcfNestedFields
 {
-
-    protected array $data = [];
-
-    private bool $returnArrayFormat = false;
-
-    public function __construct($data = [])
-    {
+    /**
+     * @param array $data The field names to grab get_field data for
+     * @param bool $returnArrayFormat Whether to return as an array or an object
+     */
+    public function __construct(
+        protected array $data = [],
+        private bool $returnArrayFormat = false
+    ) {
         $this->setReturnFilter();
-        $this->data = $data;
         $this->setData($this->data);
     }
 

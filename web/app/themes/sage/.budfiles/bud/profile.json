@@ -1,233 +1,291 @@
 {
+  "context": {
+    "name": "bud",
+    "dir": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage",
+    "manifest": {
+      "name": "sage",
+      "private": true,
+      "browserslist": [
+        "extends @wordpress/browserslist-config"
+      ],
+      "engines": {
+        "node": ">=16.0.0"
+      },
+      "scripts": {
+        "dev": "bud dev",
+        "build": "bud build",
+        "translate": "yarn translate:pot && yarn translate:update",
+        "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"app,resources\"",
+        "translate:update": "for filename in ./resources/lang/*.po; do msgmerge -U $filename ./resources/lang/sage.pot; done; rm -f ./resources/lang/*.po~",
+        "translate:compile": "yarn translate:mo && yarn translate:js",
+        "translate:js": "wp i18n make-json ./resources/lang --pretty-print",
+        "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
+      },
+      "devDependencies": {
+        "@roots/bud": "6.3.3",
+        "@roots/bud-tailwindcss": "6.3.3",
+        "@roots/sage": "6.3.3"
+      }
+    },
+    "disk": {
+      "config": {
+        "package.json": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/package.json",
+        ".editorconfig": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/.editorconfig",
+        "bud.config.js": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/bud.config.js",
+        "composer.json": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/composer.json",
+        "jsconfig.json": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/jsconfig.json",
+        "tailwind.config.js": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/tailwind.config.js",
+        "theme.json": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/theme.json"
+      }
+    },
+    "application": {
+      "manifestPath": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/@roots/bud/package.json",
+      "name": "@roots/bud",
+      "version": "6.3.3",
+      "description": "Frontend build tools combining the best parts of Symfony Encore and Laravel Mix",
+      "homepage": "https://roots.io/bud",
+      "contributors": [
+        {
+          "name": "kellymears",
+          "url": "https://github.com/kellymears"
+        },
+        {
+          "name": "QWp6t",
+          "url": "https://github.com/QWp6t"
+        },
+        {
+          "name": "clayrisser",
+          "url": "https://github.com/clayrisser"
+        }
+      ],
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/roots/bud.git",
+        "directory": "sources/@roots/bud"
+      },
+      "bugs": {
+        "url": "https://github.com/roots/bud/issues"
+      },
+      "funding": {
+        "type": "github sponsors",
+        "url": "https://github.com/sponsors/roots"
+      },
+      "keywords": [
+        "bud",
+        "roots",
+        "webpack"
+      ],
+      "engines": {
+        "node": ">=16"
+      },
+      "files": [
+        "bin/",
+        "docs/",
+        "lib/",
+        "vendor/"
+      ],
+      "bin": {
+        "bud": "./bin/bud.mjs",
+        "ts-bud": "./bin/ts-bud.mjs"
+      },
+      "type": "module",
+      "module": "./lib/index.js",
+      "types": "./lib/index.d.ts",
+      "exports": {
+        ".": "./lib/index.js",
+        "./bud": "./lib/bud.js",
+        "./cli": "./lib/cli/index.js",
+        "./cli/commands": "./lib/cli/commands/index.js",
+        "./cli/commands/*": "./lib/cli/commands/*.js",
+        "./context": "./lib/context/index.js",
+        "./context/*": "./lib/context/*.js",
+        "./extensions": "./lib/extensions/index.js",
+        "./extensions/*": "./lib/extensions/*/index.js",
+        "./factory": "./lib/factory/index.js",
+        "./services": "./lib/services/index.js"
+      },
+      "typesVersions": {
+        "*": {
+          ".": [
+            "./lib/index.d.ts"
+          ],
+          "bud": [
+            "./lib/bud.d.ts"
+          ],
+          "cli": [
+            "./lib/cli/index.d.ts"
+          ],
+          "cli/commands": [
+            "./lib/cli/commands/index.d.ts"
+          ],
+          "cli/commands/*": [
+            "./lib/cli/commands/*.d.ts"
+          ],
+          "context": [
+            "./lib/context/index.d.ts"
+          ],
+          "context/*": [
+            "./lib/context/*.d.ts"
+          ],
+          "extensions": [
+            "./lib/extensions/index.d.ts"
+          ],
+          "extensions/*": [
+            "./lib/extensions/*/index.d.ts"
+          ],
+          "factory": [
+            "./lib/factory/index.d.ts"
+          ],
+          "services": [
+            "./lib/services/index.d.ts"
+          ]
+        }
+      },
+      "devDependencies": {
+        "@skypack/package-check": "0.2.2",
+        "@types/braces": "3.0.1",
+        "@types/fs-extra": "9.0.13",
+        "@types/lodash": "4.14.182",
+        "@types/lodash-es": "4.17.6",
+        "@types/mini-css-extract-plugin": "2.5.0",
+        "@types/node": "16.11.45",
+        "@types/node-notifier": "8.0.2",
+        "@types/signale": "1.4.4"
+      },
+      "dependencies": {
+        "@roots/browserslist-config": "6.3.3",
+        "@roots/bud-api": "6.3.3",
+        "@roots/bud-build": "6.3.3",
+        "@roots/bud-cache": "6.3.3",
+        "@roots/bud-compiler": "6.3.3",
+        "@roots/bud-dashboard": "6.3.3",
+        "@roots/bud-extensions": "6.3.3",
+        "@roots/bud-framework": "6.3.3",
+        "@roots/bud-hooks": "6.3.3",
+        "@roots/bud-server": "6.3.3",
+        "@roots/bud-terser": "6.3.3",
+        "browserslist": "latest",
+        "caniuse-lite": "latest",
+        "chalk": "5.0.1",
+        "clean-webpack-plugin": "^4.0.0",
+        "clipanion": "3.2.0-rc.11",
+        "copy-webpack-plugin": "11.0.0",
+        "dotenv": "16.0.1",
+        "dotenv-expand": "8.0.3",
+        "execa": "6.1.0",
+        "fs-extra": "10.1.0",
+        "globby": "13.1.2",
+        "helpful-decorators": "2.1.0",
+        "html-webpack-plugin": "5.5.0",
+        "lodash-es": "4.17.21",
+        "mini-css-extract-plugin": "^2.4.5",
+        "node-notifier": "10.0.1",
+        "open": "8.4.0",
+        "open-editor": "4.0.0",
+        "signale": "1.4.0",
+        "tslib": "2.4.0",
+        "typanion": "3.9.0",
+        "webpack": "5.73.0",
+        "webpack-cli": "^4.9.2",
+        "webpack-manifest-plugin": "^5.0.0",
+        "webpack-remove-empty-scripts": "0.8.1"
+      },
+      "peerDependencies": {
+        "@roots/browserslist-config": "*",
+        "@roots/bud-api": "*",
+        "@roots/bud-build": "*",
+        "@roots/bud-cache": "*",
+        "@roots/bud-compiler": "*",
+        "@roots/bud-dashboard": "*",
+        "@roots/bud-extensions": "*",
+        "@roots/bud-framework": "*",
+        "@roots/bud-hooks": "*",
+        "@roots/bud-server": "*",
+        "browserslist": "*",
+        "caniuse-lite": "*"
+      },
+      "peerDependenciesMeta": {
+        "@roots/browserslist-config": {
+          "optional": true
+        },
+        "@roots/bud-api": {
+          "optional": true
+        },
+        "@roots/bud-build": {
+          "optional": true
+        },
+        "@roots/bud-cache": {
+          "optional": true
+        },
+        "@roots/bud-compiler": {
+          "optional": true
+        },
+        "@roots/bud-dashboard": {
+          "optional": true
+        },
+        "@roots/bud-extensions": {
+          "optional": true
+        },
+        "@roots/bud-framework": {
+          "optional": true
+        },
+        "@roots/bud-hooks": {
+          "optional": true
+        },
+        "@roots/bud-server": {
+          "optional": true
+        },
+        "browserslist": {
+          "optional": true
+        },
+        "caniuse-lite": {
+          "optional": true
+        }
+      },
+      "volta": {
+        "extends": "../../../package.json"
+      },
+      "label": "bud"
+    },
+    "colorDepth": 256,
+    "args": {
+      "cache": null,
+      "ci": false,
+      "clean": null,
+      "debug": false,
+      "devtool": null,
+      "esm": null,
+      "flush": null,
+      "hash": null,
+      "html": null,
+      "indicator": true,
+      "inject": null,
+      "immutable": null,
+      "log": null,
+      "manifest": null,
+      "minimize": null,
+      "mode": "development",
+      "modules": null,
+      "notify": true,
+      "overlay": true,
+      "browser": false,
+      "editor": false,
+      "publicPath": null,
+      "src": null,
+      "splitChunks": null,
+      "target": null,
+      "verbose": false
+    }
+  },
   "version": null,
   "config": {
     "development": {},
     "production": {},
     "base": {
-      ".editorconfig": {
-        "name": ".editorconfig",
-        "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/.editorconfig",
-        "module": {}
-      },
       "bud.config.js": {
         "name": "bud.config.js",
         "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/bud.config.js"
-      },
-      "tailwind.config.js": {
-        "name": "tailwind.config.js",
-        "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/tailwind.config.js",
-        "module": {
-          "content": [
-            "./index.php",
-            "./app/**/*.php",
-            "./resources/**/*.{php,vue,js}"
-          ],
-          "theme": {
-            "extend": {
-              "colors": {}
-            }
-          },
-          "plugins": [],
-          "default": {
-            "content": [
-              "./index.php",
-              "./app/**/*.php",
-              "./resources/**/*.{php,vue,js}"
-            ],
-            "theme": {
-              "extend": {
-                "colors": {}
-              }
-            },
-            "plugins": []
-          }
-        }
-      },
-      "package.json": {
-        "name": "package.json",
-        "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/package.json",
-        "module": {
-          "name": "sage",
-          "private": true,
-          "browserslist": [
-            "extends @wordpress/browserslist-config"
-          ],
-          "engines": {
-            "node": ">=16.0.0"
-          },
-          "scripts": {
-            "dev": "bud dev",
-            "build": "bud build",
-            "translate": "yarn translate:pot && yarn translate:update",
-            "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"app,resources\"",
-            "translate:update": "for filename in ./resources/lang/*.po; do msgmerge -U $filename ./resources/lang/sage.pot; done; rm -f ./resources/lang/*.po~",
-            "translate:compile": "yarn translate:mo && yarn translate:js",
-            "translate:js": "wp i18n make-json ./resources/lang --pretty-print",
-            "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
-          },
-          "devDependencies": {
-            "@roots/bud": "5.8.7",
-            "@roots/bud-tailwindcss": "5.8.7",
-            "@roots/sage": "5.8.7"
-          }
-        }
-      },
-      "composer.json": {
-        "name": "composer.json",
-        "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/composer.json",
-        "module": {
-          "name": "roots/sage",
-          "type": "wordpress-theme",
-          "license": "MIT",
-          "description": "WordPress starter theme with a modern development workflow",
-          "homepage": "https://roots.io/sage/",
-          "authors": [
-            {
-              "name": "Ben Word",
-              "email": "ben@benword.com",
-              "homepage": "https://github.com/retlehs"
-            },
-            {
-              "name": "Scott Walkinshaw",
-              "email": "scott.walkinshaw@gmail.com",
-              "homepage": "https://github.com/swalkinshaw"
-            },
-            {
-              "name": "QWp6t",
-              "email": "hi@qwp6t.me",
-              "homepage": "https://github.com/qwp6t"
-            },
-            {
-              "name": "Brandon Nifong",
-              "email": "brandon@tendency.me",
-              "homepage": "https://github.com/log1x"
-            }
-          ],
-          "keywords": [
-            "wordpress"
-          ],
-          "support": {
-            "issues": "https://github.com/roots/sage/issues",
-            "forum": "https://discourse.roots.io/"
-          },
-          "autoload": {
-            "psr-4": {
-              "App\\": "app/"
-            }
-          },
-          "require": {
-            "php": "^7.4|^8.0",
-            "log1x/acf-composer": "^2.0",
-            "log1x/sage-directives": "^1.1",
-            "log1x/sage-svg": "^1.1",
-            "roots/acorn": "^2.0"
-          },
-          "require-dev": {
-            "squizlabs/php_codesniffer": "^3.6"
-          },
-          "suggest": {
-            "log1x/sage-directives": "A collection of useful Blade directives for WordPress and Sage (^1.0).",
-            "log1x/sage-svg": "A useful SVG directive for inlining SVG's within Blade views (^1.0)."
-          },
-          "config": {
-            "optimize-autoloader": true,
-            "preferred-install": "dist",
-            "sort-packages": true
-          },
-          "minimum-stability": "dev",
-          "prefer-stable": true,
-          "scripts": {
-            "lint": [
-              "phpcs --extensions=php --standard=PSR12 app"
-            ],
-            "post-autoload-dump": [
-              "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
-            ]
-          },
-          "extra": {
-            "acorn": {
-              "providers": [
-                "App\\Providers\\ThemeServiceProvider"
-              ]
-            }
-          }
-        }
-      },
-      "theme.json": {
-        "name": "theme.json",
-        "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/theme.json",
-        "module": {
-          "$schema": "https://schemas.wp.org/trunk/theme.json",
-          "version": 2,
-          "settings": {
-            "color": {
-              "palette": [
-                {
-                  "slug": "primary",
-                  "color": "#525ddc",
-                  "name": "Primary"
-                }
-              ],
-              "custom": false,
-              "customGradient": false,
-              "defaultPalette": false,
-              "defaultGradients": false
-            },
-            "custom": {
-              "spacing": {},
-              "typography": {
-                "font-size": {},
-                "line-height": {}
-              }
-            },
-            "spacing": {
-              "padding": true,
-              "units": [
-                "px",
-                "%",
-                "em",
-                "rem",
-                "vw",
-                "vh"
-              ]
-            },
-            "typography": {
-              "customFontSize": false
-            }
-          }
-        }
-      },
-      "jsconfig.json": {
-        "name": "jsconfig.json",
-        "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/jsconfig.json",
-        "module": {
-          "compilerOptions": {
-            "allowSyntheticDefaultImports": true,
-            "jsx": "preserve",
-            "lib": [
-              "dom",
-              "dom.iterable",
-              "esnext"
-            ],
-            "module": "commonjs",
-            "moduleResolution": "node",
-            "paths": {
-              "@react/*": [
-                "./resources/react/*"
-              ],
-              "@scripts/*": [
-                "./resources/scripts/*"
-              ],
-              "@styles/*": [
-                "./resources/styles/*"
-              ]
-            }
-          },
-          "exclude": [
-            "./public",
-            "./node_modules"
-          ]
-        }
       }
     }
   },
@@ -251,209 +309,9 @@
       "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
     },
     "devDependencies": {
-      "@roots/bud": "5.8.7",
-      "@roots/bud-tailwindcss": "5.8.7",
-      "@roots/sage": "5.8.7"
-    }
-  },
-  "installed": {
-    "@roots/bud": "5.8.7",
-    "@roots/bud-tailwindcss": "5.8.7",
-    "@roots/sage": "5.8.7"
-  },
-  "context": {
-    "name": "bud",
-    "cwd": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage",
-    "projectDir": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage",
-    "manifest": {
-      "name": "sage",
-      "private": true,
-      "browserslist": [
-        "extends @wordpress/browserslist-config"
-      ],
-      "engines": {
-        "node": ">=16.0.0"
-      },
-      "scripts": {
-        "dev": "bud dev",
-        "build": "bud build",
-        "translate": "yarn translate:pot && yarn translate:update",
-        "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"app,resources\"",
-        "translate:update": "for filename in ./resources/lang/*.po; do msgmerge -U $filename ./resources/lang/sage.pot; done; rm -f ./resources/lang/*.po~",
-        "translate:compile": "yarn translate:mo && yarn translate:js",
-        "translate:js": "wp i18n make-json ./resources/lang --pretty-print",
-        "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
-      },
-      "devDependencies": {
-        "@roots/bud": "5.8.7",
-        "@roots/bud-tailwindcss": "5.8.7",
-        "@roots/sage": "5.8.7"
-      }
-    },
-    "disk": {
-      "projectDir": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage",
-      "config": {
-        "package.json": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/package.json",
-        ".editorconfig": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/.editorconfig",
-        "bud.config.js": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/bud.config.js",
-        "composer.json": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/composer.json",
-        "jsconfig.json": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/jsconfig.json",
-        "tailwind.config.js": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/tailwind.config.js",
-        "theme.json": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/theme.json"
-      }
-    },
-    "application": {
-      "dir": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/@roots/bud",
-      "name": "@roots/bud",
-      "version": "5.8.7",
-      "description": "Frontend build tools combining the best parts of Symfony Encore and Laravel Mix",
-      "homepage": "https://roots.io/bud",
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/roots/bud.git",
-        "directory": "sources/@roots/bud"
-      },
-      "contributors": [
-        {
-          "name": "kellymears",
-          "url": "https://github.com/kellymears"
-        },
-        {
-          "name": "QWp6t",
-          "url": "https://github.com/QWp6t"
-        },
-        {
-          "name": "clayrisser",
-          "url": "https://github.com/clayrisser"
-        }
-      ],
-      "license": "MIT",
-      "bugs": {
-        "url": "https://github.com/roots/bud/issues"
-      },
-      "funding": {
-        "type": "github sponsors",
-        "url": "https://github.com/sponsors/roots"
-      },
-      "keywords": [
-        "bud",
-        "roots",
-        "webpack"
-      ],
-      "engines": {
-        "node": ">=14"
-      },
-      "bin": "./bin/bud.js",
-      "files": [
-        "bin/",
-        "lib/",
-        "types/",
-        "vendor/"
-      ],
-      "main": "./lib/cjs/index.js",
-      "module": "./lib/esm/index.js",
-      "types": "./types/index.d.ts",
-      "exports": {
-        ".": "./lib/cjs/index.js",
-        "./cli": "./lib/cjs/cli/index.js",
-        "./context": "./lib/cjs/context/index.js",
-        "./context/*": "./lib/cjs/context/*/index.js",
-        "./extensions": "./lib/cjs/extensions/index.js",
-        "./extensions/*": "./lib/cjs/extensions/*/index.js",
-        "./factory": "./lib/cjs/factory/index.js",
-        "./services": "./lib/cjs/services/index.js"
-      },
-      "typesVersions": {
-        "*": {
-          ".": [
-            "./types/index.d.ts"
-          ],
-          "cli": [
-            "./types/cli/index.d.ts"
-          ],
-          "context": [
-            "./types/context/index.d.ts"
-          ],
-          "context/*": [
-            "./types/context/*.d.ts"
-          ],
-          "extensions": [
-            "./types/extensions/index.d.ts"
-          ],
-          "extensions/*": [
-            "./types/extensions/*/index.d.ts"
-          ],
-          "factory": [
-            "./types/factory/index.d.ts"
-          ],
-          "services": [
-            "./types/services/index.d.ts"
-          ]
-        }
-      },
-      "devDependencies": {
-        "@skypack/package-check": "0.2.2",
-        "@types/braces": "3.0.1",
-        "@types/fs-extra": "9.0.13",
-        "@types/lodash": "4.14.182",
-        "@types/mini-css-extract-plugin": "2.5.0",
-        "@types/node": "16.11.36",
-        "@types/node-notifier": "8.0.2"
-      },
-      "dependencies": {
-        "@roots/bud-api": "5.8.7",
-        "@roots/bud-build": "5.8.7",
-        "@roots/bud-cache": "5.8.7",
-        "@roots/bud-compiler": "5.8.7",
-        "@roots/bud-dashboard": "5.8.7",
-        "@roots/bud-extensions": "5.8.7",
-        "@roots/bud-framework": "5.8.7",
-        "@roots/bud-hooks": "5.8.7",
-        "@roots/bud-server": "5.8.7",
-        "@roots/bud-support": "5.8.7",
-        "@roots/container": "5.8.7",
-        "clean-webpack-plugin": "^4.0.0",
-        "clipanion": "3.2.0-rc.11",
-        "copy-webpack-plugin": "^11.0.0",
-        "html-webpack-plugin": "^5.5.0",
-        "mini-css-extract-plugin": "^2.4.5",
-        "node-notifier": "10.0.1",
-        "tslib": "2.4.0",
-        "typanion": "3.9.0",
-        "type-fest": "^2.5.4",
-        "webpack": "5.72.1",
-        "webpack-cli": "^4.9.1",
-        "webpack-manifest-plugin": "^5.0.0",
-        "webpack-remove-empty-scripts": "0.8.0"
-      },
-      "label": "bud"
-    },
-    "colorDepth": 256,
-    "args": {
-      "cache": null,
-      "ci": null,
-      "clean": null,
-      "debug": false,
-      "devtool": null,
-      "flush": null,
-      "hash": null,
-      "html": null,
-      "indicator": true,
-      "inject": null,
-      "log": null,
-      "manifest": null,
-      "minimize": null,
-      "mode": "production",
-      "modules": null,
-      "notify": true,
-      "overlay": true,
-      "browser": false,
-      "editor": false,
-      "publicPath": null,
-      "src": null,
-      "splitChunks": null,
-      "target": null,
-      "verbose": false
+      "@roots/bud": "6.3.3",
+      "@roots/bud-tailwindcss": "6.3.3",
+      "@roots/sage": "6.3.3"
     }
   },
   "publicEnv": {}

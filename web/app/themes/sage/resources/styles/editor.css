@@ -1,0 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.interface-complementary-area {
+    width: 30vw;
+}
+
+.editor-styles-wrapper {
+    @extend .container;
+}

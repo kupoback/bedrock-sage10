@@ -1,21 +1,13 @@
 {
   "app": {
     "js": [
-      "runtime.8306ad.js",
-      "app.341703.js"
-    ],
-    "css": [
-      "app.a416cb.css"
+      "js/app.js"
     ],
     "dependencies": []
   },
   "editor": {
     "js": [
-      "runtime.8306ad.js",
-      "editor.ae0bbf.js"
-    ],
-    "css": [
-      "editor.31d6cf.css"
+      "js/editor.js"
     ],
     "dependencies": [
       "wp-blocks"
@@ -23,8 +15,7 @@
   },
   "react": {
     "js": [
-      "runtime.8306ad.js",
-      "react.401c49.js"
+      "js/react.js"
     ],
     "dependencies": [
       "react",

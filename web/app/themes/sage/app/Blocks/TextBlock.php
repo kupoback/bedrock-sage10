@@ -2,7 +2,7 @@
 
 namespace App\Blocks;
 
-use App\SageThemeModule\ACFNestedFields;
+use App\SageThemeModule\AcfNestedFields;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldNameCollisionException;
 use StoutLogic\AcfBuilder\FieldsBuilder;
@@ -139,7 +139,7 @@ class TextBlock extends Block
         'image',
         'cta_title',
     ];
-
+    
     /**
      * Data to be passed to the block before rendering.
      *
@@ -148,7 +148,7 @@ class TextBlock extends Block
     public function with()
     :array
     {
-        return (new ACFNestedFields($this->fieldNames))
+        return (new AcfNestedFields($this->fieldNames))
             ->getData();
     }
 

@@ -14,6 +14,6 @@
 	</div>
 	
 	<div>
-		<InnerBlocks />
+		<InnerBlocks></InnerBlocks>
 	</div>
 </div>

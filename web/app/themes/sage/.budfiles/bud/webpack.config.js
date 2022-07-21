@@ -2,27 +2,36 @@ module.exports = {
   "entry": {
     "app": {
       "import": [
+        "@roots/bud-client/lib/hmr/index.cjs?name=bud&bud.overlay=true&bud.indicator=true&path=/__bud/hmr",
+        "@roots/bud-client/lib/proxy-click-interceptor.cjs",
+        "react-refresh/runtime",
         "@scripts/app",
         "@styles/app"
       ]
     },
     "editor": {
       "import": [
+        "@roots/bud-client/lib/hmr/index.cjs?name=bud&bud.overlay=true&bud.indicator=true&path=/__bud/hmr",
+        "@roots/bud-client/lib/proxy-click-interceptor.cjs",
+        "react-refresh/runtime",
         "@scripts/editor",
         "@styles/editor"
       ]
     },
     "react": {
       "import": [
+        "@roots/bud-client/lib/hmr/index.cjs?name=bud&bud.overlay=true&bud.indicator=true&path=/__bud/hmr",
+        "@roots/bud-client/lib/proxy-click-interceptor.cjs",
+        "react-refresh/runtime",
         "./resources/react/app"
       ]
     }
   },
-  "bail": true,
+  "bail": false,
   "cache": {
-    "name": "bud.production",
+    "name": "bud.development",
     "type": "filesystem",
-    "version": "wbh5mtd2ruc_lzhzu2sp7ax9cto_",
+    "version": "wmbxx8isbslxnterstcpmjb4cxw_",
     "cacheDirectory": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/.budfiles/cache/webpack",
     "managedPaths": [
       "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules"
@@ -40,15 +49,28 @@ module.exports = {
     }
   },
   "context": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage",
+  "devtool": "cheap-module-source-map",
+  "experiments": {
+    "buildHttp": {
+      "allowedUris": [
+        null,
+        "https://gist.githubusercontent.com/",
+        "https://raw.githubusercontent.com/",
+        "https://unpkg.com/",
+        "https://cdn.skypack.dev/"
+      ],
+      "cacheLocation": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/.budfiles/bud/modules",
+      "frozen": false,
+      "lockfileLocation": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/.budfiles/bud/bud.lock",
+      "upgrade": true
+    }
+  },
+  "externalsType": "var",
   "infrastructureLogging": {
-    "console": {
-      "Console": {}
-    },
     "level": "none"
   },
-  "mode": "production",
+  "mode": "development",
   "module": {
-    "noParse": {},
     "rules": [
       {
         "test": {},
@@ -68,12 +90,150 @@ module.exports = {
             ],
             "use": [
               {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/style-loader/dist/cjs.js"
+              },
+              {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/css-loader/dist/cjs.js",
+                "options": {
+                  "importLoaders": 1,
+                  "modules": false,
+                  "sourceMap": true
+                }
+              },
+              {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-loader/dist/cjs.js",
+                "options": {
+                  "sourceMap": true,
+                  "postcssOptions": {
+                    "plugins": [
+                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-import/index.js",
+                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/tailwindcss/nesting/index.js",
+                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/tailwindcss/lib/index.js",
+                      [
+                        "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-preset-env/dist/index.cjs",
+                        {
+                          "stage": 1,
+                          "features": {
+                            "focus-within-pseudo-class": false
+                          },
+                          "browsers": ">1%"
+                        }
+                      ]
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "test": {},
+            "include": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
+            ],
+            "use": [
+              {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/style-loader/dist/cjs.js"
+              },
+              {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/css-loader/dist/cjs.js",
+                "options": {
+                  "esModule": true,
+                  "importLoaders": 1,
+                  "localIdentName": "[name]__[local]___[hash:base64:5]",
+                  "modules": true,
+                  "sourceMap": true
+                }
+              },
+              {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-loader/dist/cjs.js",
+                "options": {
+                  "sourceMap": true,
+                  "postcssOptions": {
+                    "plugins": [
+                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-import/index.js",
+                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/tailwindcss/nesting/index.js",
+                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/tailwindcss/lib/index.js",
+                      [
+                        "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-preset-env/dist/index.cjs",
+                        {
+                          "stage": 1,
+                          "features": {
+                            "focus-within-pseudo-class": false
+                          },
+                          "browsers": ">1%"
+                        }
+                      ]
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "test": {},
+            "include": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage"
+            ],
+            "exclude": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules"
+            ],
+            "use": [
+              {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/csv-loader/index.js"
+              }
+            ]
+          },
+          {
+            "test": {},
+            "include": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
+            ],
+            "type": "asset",
+            "generator": {
+              "filename": "fonts/[name][ext]"
+            }
+          },
+          {
+            "test": {},
+            "include": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage"
+            ],
+            "exclude": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules"
+            ],
+            "use": [
+              {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/html-loader/dist/cjs.js"
+              }
+            ]
+          },
+          {
+            "test": {},
+            "include": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
+            ],
+            "type": "asset/resource",
+            "generator": {
+              "filename": "images/[name][ext]"
+            }
+          },
+          {
+            "test": {},
+            "include": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
+            ],
+            "use": [
+              {
                 "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/babel-loader/lib/index.js",
                 "options": {
-                  "cacheDirectory": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/.budfiles/cache/babel",
                   "presets": [
                     [
-                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/@babel/preset-env/lib/index.js"
+                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/@babel/preset-env/lib/index.js",
+                      {
+                        "targets": [
+                          ">1%"
+                        ]
+                      }
                     ],
                     [
                       "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/@babel/preset-react/lib/index.js"
@@ -94,14 +254,14 @@ module.exports = {
                     ],
                     [
                       "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/@babel/plugin-proposal-class-properties/lib/index.js"
+                    ],
+                    [
+                      "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/react-refresh/babel.js"
                     ]
                   ],
-                  "env": {
-                    "development": {
-                      "compact": false
-                    }
-                  },
-                  "root": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage"
+                  "targets": [
+                    ">1%"
+                  ]
                 }
               }
             ]
@@ -109,68 +269,13 @@ module.exports = {
           {
             "test": {},
             "include": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage"
             ],
-            "use": [
-              {
-                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/mini-css-extract-plugin/dist/loader.js"
-              },
-              {
-                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/css-loader/dist/cjs.js",
-                "options": {
-                  "importLoaders": 1,
-                  "sourceMap": false
-                }
-              },
-              {
-                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-loader/dist/cjs.js",
-                "options": {
-                  "postcssOptions": {
-                    "plugins": [
-                      [
-                        "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-import/index.js"
-                      ],
-                      [
-                        null
-                      ],
-                      [
-                        null
-                      ],
-                      [
-                        "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/postcss-preset-env/dist/index.cjs",
-                        {
-                          "stage": 1,
-                          "features": {
-                            "focus-within-pseudo-class": false
-                          }
-                        }
-                      ]
-                    ]
-                  },
-                  "sourceMap": true
-                }
-              }
-            ]
-          },
-          {
-            "test": {},
-            "include": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
+            "exclude": [
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules"
             ],
-            "use": [
-              {
-                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/mini-css-extract-plugin/dist/loader.js"
-              },
-              {
-                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/css-loader/dist/cjs.js",
-                "options": {
-                  "importLoaders": 1,
-                  "localIdentName": "[name]__[local]___[hash:base64:5]",
-                  "modules": true,
-                  "sourceMap": false
-                }
-              }
-            ]
+            "type": "json",
+            "parser": {}
           },
           {
             "test": {},
@@ -179,37 +284,7 @@ module.exports = {
             ],
             "type": "asset/resource",
             "generator": {
-              "filename": "images/[name].[contenthash:6][ext]"
-            }
-          },
-          {
-            "test": {},
-            "include": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
-            ],
-            "type": "asset/resource",
-            "generator": {
-              "filename": "images/[name].[contenthash:6][ext]"
-            }
-          },
-          {
-            "test": {},
-            "include": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
-            ],
-            "type": "asset/resource",
-            "generator": {
-              "filename": "images/[name].[contenthash:6][ext]"
-            }
-          },
-          {
-            "test": {},
-            "include": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
-            ],
-            "type": "asset",
-            "generator": {
-              "filename": "fonts/[name].[contenthash:6][ext]"
+              "filename": "images/[name][ext]"
             }
           },
           {
@@ -226,44 +301,12 @@ module.exports = {
           {
             "test": {},
             "include": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage"
+              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources"
             ],
-            "exclude": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules"
-            ],
-            "use": [
-              {
-                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/js-yaml-loader/index.js"
-              }
-            ]
-          },
-          {
-            "test": {},
-            "include": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage"
-            ],
-            "exclude": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules"
-            ],
-            "use": [
-              {
-                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/html-loader/dist/cjs.js"
-              }
-            ]
-          },
-          {
-            "test": {},
-            "include": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage"
-            ],
-            "exclude": [
-              "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules"
-            ],
-            "use": [
-              {
-                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/csv-loader/index.js"
-              }
-            ]
+            "type": "asset/resource",
+            "generator": {
+              "filename": "images/[name][ext]"
+            }
           },
           {
             "test": {},
@@ -287,8 +330,11 @@ module.exports = {
             "exclude": [
               "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules"
             ],
-            "type": "json",
-            "parser": {}
+            "use": [
+              {
+                "loader": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/yml-loader/index.js"
+              }
+            ]
           }
         ]
       }
@@ -298,54 +344,18 @@ module.exports = {
   "name": "bud",
   "node": false,
   "output": {
-    "assetModuleFilename": "[name].[contenthash:6][ext]",
-    "chunkFilename": "[name].[contenthash:6].js",
-    "filename": "[name].[contenthash:6].js",
+    "assetModuleFilename": "[name][ext]",
+    "chunkFilename": "js/dynamic/[id].js",
+    "filename": "js/[name].js",
     "path": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/public",
-    "pathinfo": false,
-    "publicPath": ""
+    "publicPath": "/"
   },
   "optimization": {
-    "emitOnErrors": false,
-    "minimize": true,
+    "emitOnErrors": true,
+    "minimize": false,
     "minimizer": [
-      "...",
-      {
-        "options": {
-          "test": {},
-          "parallel": true,
-          "minimizer": {
-            "options": {
-              "preset": [
-                "default",
-                {
-                  "discardComments": {
-                    "removeAll": true
-                  }
-                }
-              ]
-            }
-          }
-        }
-      }
-    ],
-    "runtimeChunk": "single",
-    "splitChunks": {
-      "cacheGroups": {
-        "bud": {
-          "chunks": "all",
-          "test": {},
-          "reuseExistingChunk": true,
-          "priority": -10
-        },
-        "vendor": {
-          "chunks": "all",
-          "test": {},
-          "reuseExistingChunk": true,
-          "priority": -20
-        }
-      }
-    }
+      "..."
+    ]
   },
   "parallelism": 90,
   "performance": {
@@ -355,15 +365,19 @@ module.exports = {
   "stats": {
     "preset": "errors-warnings"
   },
-  "target": "browserslist:/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/package.json",
+  "target": "web",
   "plugins": [
+    {
+      "options": {}
+    },
     {
       "patterns": [
         {
-          "from": "images",
-          "to": "[name].[contenthash:6][ext]",
+          "from": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources/images",
+          "to": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/public/images/[path][name][ext]",
           "context": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/resources",
-          "noErrorOnMissing": true
+          "noErrorOnMissing": true,
+          "toType": "template"
         }
       ],
       "options": {}
@@ -383,29 +397,6 @@ module.exports = {
         "useLegacyEmit": false,
         "writeToFileEmit": true
       }
-    },
-    {
-      "_sortedModulesCache": {},
-      "options": {
-        "filename": "[name].[contenthash:6].css",
-        "ignoreOrder": false,
-        "runtime": true,
-        "chunkFilename": "[name].[contenthash:6].css"
-      },
-      "runtimeOptions": {
-        "linkType": "text/css"
-      }
-    },
-    {
-      "options": {
-        "enabled": true,
-        "verbose": false,
-        "extensions": {},
-        "ignore": [],
-        "remove": {}
-      },
-      "enabled": true,
-      "verbose": false
     },
     {
       "options": {
@@ -441,6 +432,25 @@ module.exports = {
       "file": "entrypoints.json",
       "entrypointsName": "entrypoints.json",
       "wordpressName": "wordpress.json"
+    },
+    {
+      "options": {
+        "overlay": false,
+        "exclude": {},
+        "include": {}
+      }
+    },
+    {
+      "resourceRegExp": {}
+    },
+    {
+      "resourceRegExp": {}
+    },
+    {
+      "resourceRegExp": {}
+    },
+    {
+      "resourceRegExp": {}
     }
   ],
   "resolve": {

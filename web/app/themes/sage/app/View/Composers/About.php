@@ -17,7 +17,7 @@ class About extends Composer
         'partials.content-about',
     ];
 
-    protected $acf = [];
+    protected array $acf = [];
 
     public function __construct()
     {
@@ -31,6 +31,7 @@ class About extends Composer
      * @return array
      */
     public function with()
+    :array
     {
         return $this->acf;
     }

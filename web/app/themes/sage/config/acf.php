@@ -19,5 +19,9 @@ return [
     'defaults' => [
         'trueFalse' => ['ui' => 1],
         'select' => ['ui' => 1],
+        'image' => ['return_format' => 'id'],
+        'relationship' => ['filters' => ['search', 'taxonomy']],
+        'repeater' => ['layout' => 'block',],
+        'tab' => ['placement' => 'left'],
     ],
 ];

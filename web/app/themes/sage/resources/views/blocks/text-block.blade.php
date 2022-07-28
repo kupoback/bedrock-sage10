@@ -9,21 +9,29 @@
 				@endif
 				{!! $content ?? '' !!}
 				@if ($items ?? false)
-					<ul class="items-list mb-2 text-sm text-gray-300">
+					<ul class="items-list mb-2 text-sm text-gray-300 list-disc">
 						@foreach ($items as $item)
 							@if ($item)
-								<li>{{ $item->item }}</li>
+								<li>
+									<p>{{ $item->item }}</p>
+									<p>
+										@includeWhen(
+	                                        $item->link ?? false,
+	                                        'includes.anchor',
+	                                        [
+	                                            'link' => $item->link,
+	                                            'classes' => 'font-medium underline text-indigo-300',
+	                                        ]
+	                                    )
+									</p>
+								</li>
 							@endif
 						@endforeach
 					</ul>
 				@endif
 				@if ($cta->url ?? false)
 					<div class="external-link">
-						<a href="{{$cta->url}}"
-						   @if ($cta->target) target="{{$cta->target}}" rel="noopener" @endif
-						>
-							{!! $cta->title !!}
-						</a>
+						@include('includes.anchor', ['link' => $cta, 'classes' => 'font-light underline text-indigo-300'])
 					</div>
 				@endif
 				{!! $cta_title ?? '' !!}

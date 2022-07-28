@@ -22,9 +22,9 @@
         "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
       },
       "devDependencies": {
-        "@roots/bud": "6.3.3",
-        "@roots/bud-tailwindcss": "6.3.3",
-        "@roots/sage": "6.3.3"
+        "@roots/bud": "6.3.4",
+        "@roots/bud-tailwindcss": "6.3.4",
+        "@roots/sage": "6.3.4"
       }
     },
     "disk": {
@@ -41,7 +41,7 @@
     "application": {
       "manifestPath": "/Users/mak/Sites/boilerplate8.1/web/app/themes/sage/node_modules/@roots/bud/package.json",
       "name": "@roots/bud",
-      "version": "6.3.3",
+      "version": "6.3.4",
       "description": "Frontend build tools combining the best parts of Symfony Encore and Laravel Mix",
       "homepage": "https://roots.io/bud",
       "contributors": [
@@ -154,17 +154,17 @@
         "@types/signale": "1.4.4"
       },
       "dependencies": {
-        "@roots/browserslist-config": "6.3.3",
-        "@roots/bud-api": "6.3.3",
-        "@roots/bud-build": "6.3.3",
-        "@roots/bud-cache": "6.3.3",
-        "@roots/bud-compiler": "6.3.3",
-        "@roots/bud-dashboard": "6.3.3",
-        "@roots/bud-extensions": "6.3.3",
-        "@roots/bud-framework": "6.3.3",
-        "@roots/bud-hooks": "6.3.3",
-        "@roots/bud-server": "6.3.3",
-        "@roots/bud-terser": "6.3.3",
+        "@roots/browserslist-config": "6.3.4",
+        "@roots/bud-api": "6.3.4",
+        "@roots/bud-build": "6.3.4",
+        "@roots/bud-cache": "6.3.4",
+        "@roots/bud-compiler": "6.3.4",
+        "@roots/bud-dashboard": "6.3.4",
+        "@roots/bud-extensions": "6.3.4",
+        "@roots/bud-framework": "6.3.4",
+        "@roots/bud-hooks": "6.3.4",
+        "@roots/bud-server": "6.3.4",
+        "@roots/bud-terser": "6.3.4",
         "browserslist": "latest",
         "caniuse-lite": "latest",
         "chalk": "5.0.1",
@@ -309,9 +309,9 @@
       "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
     },
     "devDependencies": {
-      "@roots/bud": "6.3.3",
-      "@roots/bud-tailwindcss": "6.3.3",
-      "@roots/sage": "6.3.3"
+      "@roots/bud": "6.3.4",
+      "@roots/bud-tailwindcss": "6.3.4",
+      "@roots/sage": "6.3.4"
     }
   },
   "publicEnv": {}

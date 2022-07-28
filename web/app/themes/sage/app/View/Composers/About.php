@@ -1,0 +1,37 @@
+<?php
+
+namespace App\View\Composers;
+
+use App\SageThemeModule\AcfNestedFields;
+use Roots\Acorn\View\Composer;
+use \App\Fields\About as AboutFields;
+
+class About extends Composer
+{
+    /**
+     * List of views served by this composer.
+     *
+     * @var array
+     */
+    protected static $views = [
+        'partials.content-about',
+    ];
+
+    protected $acf = [];
+
+    public function __construct()
+    {
+        $this->acf = (new AcfNestedFields(AboutFields::fieldNames()))
+            ->getFields();
+    }
+
+    /**
+     * Data to be passed to view before rendering.
+     *
+     * @return array
+     */
+    public function with()
+    {
+        return $this->acf;
+    }
+}

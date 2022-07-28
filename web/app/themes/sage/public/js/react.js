@@ -1742,8 +1742,8 @@ if (true) {
 'use strict';
 
 // ATTENTION
-var REACT_FORWARD_REF_TYPE =  Symbol.for('react.forward_ref');
-var REACT_MEMO_TYPE =  Symbol.for('react.memo');
+var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+var REACT_MEMO_TYPE = Symbol.for('react.memo');
 
 var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map; // We never remove these associations.
 // It's OK to reference families, but use WeakMap/Set for types.
@@ -3101,8 +3101,9 @@ exports.Component = void 0;
  */
 class Component extends HTMLElement {
     constructor() {
-        super(...arguments);
+        super();
         this.name = `bud-overlay`;
+        this.renderShadow();
     }
     get message() {
         return this.getAttribute('message');
@@ -3243,7 +3244,6 @@ class Component extends HTMLElement {
         var _a;
         if ((_a = document.body) === null || _a === void 0 ? void 0 : _a.style)
             this.documentBodyStyle = document.body.style;
-        this.renderShadow();
     }
 }
 exports.Component = Component;
@@ -3269,12 +3269,12 @@ const stripAnsi = __webpack_require__(/*! strip-ansi */ "./node_modules/strip-an
 class Controller {
     /**
      * Class constructor
+     *
      * @public
      */
     constructor() {
-        this.element = document.createElement('bud-error');
-        document.body && document.body.appendChild(this.element);
         this.update = this.update.bind(this);
+        this.element = document.createElement('bud-error');
     }
     /**
      * Formatted error message
@@ -3292,13 +3292,37 @@ class Controller {
         }, ``);
     }
     /**
-     * Update element
+     * Append `bud-error` element to the DOM
+     *
+     * @public
+     */
+    createError() {
+        var _a;
+        !document.body.querySelector('bud-error') &&
+            ((_a = document.body) === null || _a === void 0 ? void 0 : _a.appendChild(this.element));
+    }
+    /**
+     * Remove `bud-error` element from the DOM (if present)
+     *
+     * @public
+     */
+    removeError() {
+        var _a;
+        (_a = document.body.querySelector('bud-error')) === null || _a === void 0 ? void 0 : _a.remove();
+    }
+    /**
+     * Update DOM
+     *
      * @public
      */
     update(payload) {
-        var _a;
+        var _a, _b;
         this.payload = payload;
         this.element.setAttribute('message', (_a = this.message) !== null && _a !== void 0 ? _a : ``);
+        if ((_b = this.payload.errors) === null || _b === void 0 ? void 0 : _b.length) {
+            return this.createError();
+        }
+        this.removeError();
     }
 }
 exports.Controller = Controller;
@@ -4032,7 +4056,7 @@ function ansiRegex({onlyFirst = false} = {}) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("3118cc41213c3c9c68eb")
+/******/ 		__webpack_require__.h = () => ("8fa1d4fc0d501e7b6d5c")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */

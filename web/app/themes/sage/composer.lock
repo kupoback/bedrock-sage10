@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3ff94d855c95f57d24b29c0060596a1a",
+    "content-hash": "e1abec80516e9e0e71187852fd3e396c",
     "packages": [
         {
             "name": "brick/math",
@@ -221,7 +221,7 @@
         },
         {
             "name": "illuminate/bus",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/bus.git",
@@ -274,16 +274,16 @@
         },
         {
             "name": "illuminate/cache",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
-                "reference": "8d6d0a6c91abd036a45c12944182d1b9fa2663e2"
+                "reference": "7ae5b3661413dad7264b5c69037190d766bae50f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cache/zipball/8d6d0a6c91abd036a45c12944182d1b9fa2663e2",
-                "reference": "8d6d0a6c91abd036a45c12944182d1b9fa2663e2",
+                "url": "https://api.github.com/repos/illuminate/cache/zipball/7ae5b3661413dad7264b5c69037190d766bae50f",
+                "reference": "7ae5b3661413dad7264b5c69037190d766bae50f",
                 "shasum": ""
             },
             "require": {
@@ -330,11 +330,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-03-23T15:38:39+00:00"
+            "time": "2022-07-22T14:58:32+00:00"
         },
         {
             "name": "illuminate/collections",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -388,7 +388,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -436,7 +436,7 @@
         },
         {
             "name": "illuminate/console",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/console.git",
@@ -496,7 +496,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -547,7 +547,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -595,7 +595,7 @@
         },
         {
             "name": "illuminate/events",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
@@ -650,7 +650,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -712,7 +712,7 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
@@ -770,7 +770,7 @@
         },
         {
             "name": "illuminate/log",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/log.git",
@@ -819,7 +819,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -865,7 +865,7 @@
         },
         {
             "name": "illuminate/pipeline",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pipeline.git",
@@ -913,7 +913,7 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
@@ -969,7 +969,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -1037,7 +1037,7 @@
         },
         {
             "name": "illuminate/view",
-            "version": "v8.83.18",
+            "version": "v8.83.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
@@ -1241,16 +1241,16 @@
         },
         {
             "name": "log1x/acf-composer",
-            "version": "v2.0.5",
+            "version": "v2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Log1x/acf-composer.git",
-                "reference": "33e2b7529fbd7190f024dd3d66a6e9a2b95e6f5b"
+                "reference": "98cf29c4f8a0c66629d9cb7c16da9e40b7bbd689"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Log1x/acf-composer/zipball/33e2b7529fbd7190f024dd3d66a6e9a2b95e6f5b",
-                "reference": "33e2b7529fbd7190f024dd3d66a6e9a2b95e6f5b",
+                "url": "https://api.github.com/repos/Log1x/acf-composer/zipball/98cf29c4f8a0c66629d9cb7c16da9e40b7bbd689",
+                "reference": "98cf29c4f8a0c66629d9cb7c16da9e40b7bbd689",
                 "shasum": ""
             },
             "require": {
@@ -1289,7 +1289,7 @@
             "description": "Create fields, blocks, option pages, and widgets using ACF Builder and Sage 10",
             "support": {
                 "issues": "https://github.com/Log1x/acf-composer/issues",
-                "source": "https://github.com/Log1x/acf-composer/tree/v2.0.5"
+                "source": "https://github.com/Log1x/acf-composer/tree/v2.0.6"
             },
             "funding": [
                 {
@@ -1297,7 +1297,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-05T12:41:28+00:00"
+            "time": "2022-07-24T22:47:31+00:00"
         },
         {
             "name": "log1x/sage-directives",
@@ -1427,16 +1427,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.7.0",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "5579edf28aee1190a798bfa5be8bc16c563bd524"
+                "reference": "720488632c590286b88b80e62aa3d3d551ad4a50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5579edf28aee1190a798bfa5be8bc16c563bd524",
-                "reference": "5579edf28aee1190a798bfa5be8bc16c563bd524",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/720488632c590286b88b80e62aa3d3d551ad4a50",
+                "reference": "720488632c590286b88b80e62aa3d3d551ad4a50",
                 "shasum": ""
             },
             "require": {
@@ -1456,11 +1456,10 @@
                 "guzzlehttp/psr7": "^2.2",
                 "mongodb/mongodb": "^1.8",
                 "php-amqplib/php-amqplib": "~2.4 || ^3",
-                "php-console/php-console": "^3.1.3",
                 "phpspec/prophecy": "^1.15",
                 "phpstan/phpstan": "^0.12.91",
                 "phpunit/phpunit": "^8.5.14",
-                "predis/predis": "^1.1",
+                "predis/predis": "^1.1 || ^2.0",
                 "rollbar/rollbar": "^1.3 || ^2 || ^3",
                 "ruflin/elastica": "^7",
                 "swiftmailer/swiftmailer": "^5.3|^6.0",
@@ -1480,7 +1479,6 @@
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "mongodb/mongodb": "Allow sending log messages to a MongoDB server (via library)",
                 "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
-                "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
@@ -1515,7 +1513,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/2.7.0"
+                "source": "https://github.com/Seldaek/monolog/tree/2.8.0"
             },
             "funding": [
                 {
@@ -1527,20 +1525,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-09T08:59:12+00:00"
+            "time": "2022-07-24T11:55:47+00:00"
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.59.1",
+            "version": "2.60.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "a9000603ea337c8df16cc41f8b6be95a65f4d0f5"
+                "reference": "00a259ae02b003c563158b54fb6743252b638ea6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/a9000603ea337c8df16cc41f8b6be95a65f4d0f5",
-                "reference": "a9000603ea337c8df16cc41f8b6be95a65f4d0f5",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/00a259ae02b003c563158b54fb6743252b638ea6",
+                "reference": "00a259ae02b003c563158b54fb6743252b638ea6",
                 "shasum": ""
             },
             "require": {
@@ -1629,7 +1627,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-29T21:43:55+00:00"
+            "time": "2022-07-27T15:57:48+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -2076,16 +2074,16 @@
         },
         {
             "name": "roots/acorn",
-            "version": "v2.0.6",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/acorn.git",
-                "reference": "b6eeae53bcac7d321b06b9fb4316c67240e8b48b"
+                "reference": "82649f7b8b4916da7fb63b202b4e3c8024178dbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/acorn/zipball/b6eeae53bcac7d321b06b9fb4316c67240e8b48b",
-                "reference": "b6eeae53bcac7d321b06b9fb4316c67240e8b48b",
+                "url": "https://api.github.com/repos/roots/acorn/zipball/82649f7b8b4916da7fb63b202b4e3c8024178dbd",
+                "reference": "82649f7b8b4916da7fb63b202b4e3c8024178dbd",
                 "shasum": ""
             },
             "require": {
@@ -2160,7 +2158,7 @@
             "support": {
                 "forum": "https://discourse.roots.io/",
                 "issues": "https://github.com/roots/acorn/issues",
-                "source": "https://github.com/roots/acorn/tree/v2.0.6"
+                "source": "https://github.com/roots/acorn/tree/v2.1.2"
             },
             "funding": [
                 {
@@ -2172,7 +2170,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-07T01:34:04+00:00"
+            "time": "2022-07-17T19:11:26+00:00"
         },
         {
             "name": "roots/support",

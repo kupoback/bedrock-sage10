@@ -35,10 +35,10 @@ module.exports = async (app) => {
          *
          * This should be the URL you use to visit your local development server.
          */
-        .proxy("http://example.test")
+        .proxy("https://boilerplate8.1.test")
         
         /**
          * Development URL to be used in the browser.
          */
-        .serve("http://0.0.0.0:3000");
+        .serve("http://localhost:8080");
 };

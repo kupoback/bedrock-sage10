@@ -2,106 +2,32 @@
 
 namespace App\SageThemeModule;
 
+use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+
 use function collect;
 
 class AcfNestedFields
 {
     /**
-     * @param array $data The field names to grab get_field data for
-     * @param bool $returnArrayFormat Whether to return as an array or an object
+     * @param  array  $data  The field names to grab get_field data for
      */
-    public function __construct(
-        protected array $data = [],
-        private bool $returnArrayFormat = false
-    ) {
-        $this->setReturnFilter();
-        $this->setData($this->data);
-    }
-
-    /**
-     * Set Return Filter
-     *
-     * Return filter sober/controller/acf-array
-     */
-    private function setReturnFilter()
-    :void
+    public function __construct(protected array $data = [])
     {
-        $this->returnArrayFormat =
-            (has_filter('sage/classes/acf/array')
-                ? apply_filters('sage/classes/acf/array', $this->returnArrayFormat)
-                : false);
     }
-
-    /**
-     * Iterates over array and adds a new snake cased key, with orignial value, for each kebab cased key
-     *
-     * Return void
-     */
-    private function recursiveSnakeCase(&$data)
-    :void
-    {
-        if (!is_array($data)) {
-            return;
-        }
-
-        collect($data)
-            ->each(fn($val, $key) => is_array($val)
-                ? $this->recursiveSnakeCase($val)
-                : $data[Str::kebab($key)] = $val);
-    }
-
-    /**
-     * Convert the data for the fields to an object if returnArrayFormat is false
-     *
-     * @return void
-     */
-    public function setDataReturnFormat()
-    :void
-    {
-        if ($this->returnArrayFormat) {
-            return;
-        }
-
-        if ($this->data) {
-            collect($this->data)
-                ->each(fn($item, $key) => $this->data[$key] = json_decode(json_encode($item)));
-        }
-    }
-
-    /**
-     * Set Data
-     *
-     * Set data from passed in field keys
-     */
-    public function setData($acf)
-    :void
-    {
-        if (is_string($acf)) {
-            $this->data = [$acf => get_field($acf)];
-        }
-
-        if (is_array($acf)) {
-            collect($acf)
-                ->each(fn($item) => $this->data[$item] = get_field($item));
-        }
-
-        $this->recursiveSnakeCase($this->data);
-
-        // Convert the data to an object
-        $this->setDataReturnFormat();
-    }
-
-    /**
-     * Get Data
-     *
-     * Return the data
-     *
-     * @return array
-     */
-    public function getData()
+    
+    public function getFields()
     :array
     {
-        return $this->data;
+        return collect($this->data)
+            ->mapWithKeys(fn($value) => [$value => get_field($value)])
+            ->mapWithKeys(function ($value, $key) {
+                $value = is_array($value)
+                    ? json_decode((new Fluent($value))->toJson())
+                    : $value;
+                $method = Str::camel($key);
+                return [$key => method_exists($this, $method) ? $this->{$method}($value) : $value];
+            })
+            ->all();
     }
 }

@@ -144,11 +144,13 @@ class TeamListing extends Block
     :array
     {
         return (new AcfNestedFields($this->fieldNames))
-            ->getData();
+            ->getFields();
     }
     
     /**
      * The block field group.
+     *
+     * @link ReferenceGuide https://github.com/Log1x/acf-builder-cheatsheet/blob/master/README.md
      *
      * @return array
      * @throws FieldNameCollisionException
@@ -164,10 +166,6 @@ class TeamListing extends Block
                 'team',
                 [
                     'post_type' => 'team',
-                    'filters' => [
-                        'search',
-                        'taxonomy',
-                    ],
                     'min' => 1,
                     'max' => 9,
                 ]

@@ -3,6 +3,7 @@
 namespace App\Blocks;
 
 use App\SageThemeModule\AcfNestedFields;
+use Illuminate\Support\Collection;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldNameCollisionException;
 use StoutLogic\AcfBuilder\FieldsBuilder;
@@ -129,6 +130,9 @@ class TextBlock extends Block
 
     /**
      * Field Names used for this block
+     * Omit any fields that would require a custom
+     * data return, and just make a method for it
+     *
      * @var array|string[]
      */
     public array $fieldNames = [
@@ -149,7 +153,7 @@ class TextBlock extends Block
     :array
     {
         return (new AcfNestedFields($this->fieldNames))
-            ->getData();
+            ->getFields();
     }
 
     /**
@@ -170,6 +174,7 @@ class TextBlock extends Block
             ->addImage('image', ['return_format' => 'id'])
             ->addRepeater('items')
                 ->addText('item')
+                ->addLink('link')
             ->endRepeater()
             ->addText('cta_title');
 

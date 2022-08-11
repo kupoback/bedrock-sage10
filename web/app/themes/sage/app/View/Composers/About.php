@@ -4,7 +4,7 @@ namespace App\View\Composers;
 
 use App\SageThemeModule\AcfNestedFields;
 use Roots\Acorn\View\Composer;
-use \App\Fields\About as AboutFields;
+use App\Fields\About as AboutFields;
 
 class About extends Composer
 {
@@ -14,10 +14,9 @@ class About extends Composer
      * @var array
      */
     protected static $views = [
+        'banners.about-banner',
         'partials.content-about',
     ];
-
-    protected array $acf = [];
 
     public function __construct()
     {

@@ -7,9 +7,6 @@
 		@endif
 		@if (!empty($team))
 			<div class="grid grid-cols-1 gap-8 mt-8 md:gap-12 md:mt-16 md:grid-cols-4 lg:grid-cols-4">
-{{--				@for($i = 0; $i < count($team); $i++)--}}
-{{--					Hello--}}
-{{--				@endfor--}}
 				@foreach ($team as $key => $individual)
 					<div class="team">
 						@if (has_post_thumbnail($individual))

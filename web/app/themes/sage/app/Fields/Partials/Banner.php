@@ -29,7 +29,7 @@ class Banner extends Partial
         $banner
             ->addTab('Banner')
             ->addText('banner_title', ['label' => 'Title Override'])
-            ->addText('banner_subtitle', ['label' => 'Title']);
+            ->addText('banner_subtitle', ['label' => 'Sub Title']);
 
         return $banner;
     }

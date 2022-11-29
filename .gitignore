@@ -124,6 +124,7 @@ web/app/cache/
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 web/app/themes/**/vendor
+web/app/themes/**/public
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep

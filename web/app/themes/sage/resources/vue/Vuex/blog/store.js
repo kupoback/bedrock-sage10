@@ -7,7 +7,7 @@ import getters from "./getters.js";
 import actions from "./actions.js";
 import modules from "./modules.js";
 
-export const blogStore = createStore({
+export const store = createStore({
     state,
     getters,
     mutations,

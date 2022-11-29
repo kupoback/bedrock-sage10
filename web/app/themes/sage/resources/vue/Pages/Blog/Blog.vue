@@ -1,13 +1,14 @@
 <template>
     <div class="mx-auto my-16 blog-listing__posts">
         <Post v-if="!loading && posts.length"
-              v-for="({author, categories, date, excerpt, id, image, permalink, sticky, title}) in posts"
+              v-for="({author, categories, date, excerpt, id, image, permalink, sticky, title}, index) in posts"
               :key="id"
               :author="author"
               :categories="categories"
               :date="date"
               :excerpt="excerpt"
               :image="image"
+              :last-item="id === posts.findLast(x => true)?.id"
               :permalink="permalink"
               :sticky="sticky"
               :title="title" />
@@ -20,6 +21,8 @@
 </template>
 
 <script type="application/javascript">
+    import {store} from "../../Vuex/blog/store";
+    
     import Post from "./Components/Post";
     import NoResults from "../../Components/NoResults";
     import Loading from "../../Components/Loading";
@@ -27,17 +30,17 @@
         props: {},
         data: () => ({}),
         created() {
-            this.$store.dispatch('getBlogPosts');
+            store.dispatch('getBlogPosts');
         },
         mounted() {},
         methods: {},
         components: {Loading, NoResults, Post},
         computed: {
-            loading() {return this.$store.state.loading},
-            maxPages() {return this.$store.state.maxPages},
-            noResults() {return this.$store.state.noResults},
-            page() {return this.$store.state.page},
-            posts() {return this.$store.state.posts},
+            loading() {return store.state.loading},
+            maxPages() {return store.state.maxPages},
+            noResults() {return store.state.noResults},
+            page() {return store.state.page},
+            posts() {return store.state.posts},
         },
         watch: {},
         name: "Blog"

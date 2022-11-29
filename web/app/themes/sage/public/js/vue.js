@@ -13036,9 +13036,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Components_Post__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Components/Post */ "./resources/vue/Pages/Blog/Components/Post.vue");
-/* harmony import */ var _Components_NoResults__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/NoResults */ "./resources/vue/Components/NoResults.vue");
-/* harmony import */ var _Components_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Loading */ "./resources/vue/Components/Loading.vue");
+/* harmony import */ var _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Vuex/blog/store */ "./resources/vue/Vuex/blog/store.js");
+/* harmony import */ var _Components_Post__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Components/Post */ "./resources/vue/Pages/Blog/Components/Post.vue");
+/* harmony import */ var _Components_NoResults__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/NoResults */ "./resources/vue/Components/NoResults.vue");
+/* harmony import */ var _Components_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/Loading */ "./resources/vue/Components/Loading.vue");
+
 
 
 
@@ -13046,30 +13048,30 @@ __webpack_require__.r(__webpack_exports__);
   props: {},
   data: () => ({}),
   created() {
-    this.$store.dispatch('getBlogPosts');
+    _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__.store.dispatch('getBlogPosts');
   },
   mounted() {},
   methods: {},
   components: {
-    Loading: _Components_Loading__WEBPACK_IMPORTED_MODULE_2__["default"],
-    NoResults: _Components_NoResults__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Post: _Components_Post__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Loading: _Components_Loading__WEBPACK_IMPORTED_MODULE_3__["default"],
+    NoResults: _Components_NoResults__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Post: _Components_Post__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   computed: {
     loading() {
-      return this.$store.state.loading;
+      return _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__.store.state.loading;
     },
     maxPages() {
-      return this.$store.state.maxPages;
+      return _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__.store.state.maxPages;
     },
     noResults() {
-      return this.$store.state.noResults;
+      return _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__.store.state.noResults;
     },
     page() {
-      return this.$store.state.page;
+      return _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__.store.state.page;
     },
     posts() {
-      return this.$store.state.posts;
+      return _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__.store.state.posts;
     }
   },
   watch: {},
@@ -13086,8 +13088,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Util_mixins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Util/mixins */ "./resources/vue/Util/mixins.js");
-/* harmony import */ var _Components_PostImage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Components/PostImage */ "./resources/vue/Components/PostImage.vue");
+/* harmony import */ var _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Vuex/blog/store */ "./resources/vue/Vuex/blog/store.js");
+/* harmony import */ var _Util_mixins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Util/mixins */ "./resources/vue/Util/mixins.js");
+/* harmony import */ var _Components_PostImage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Components/PostImage */ "./resources/vue/Components/PostImage.vue");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13112,6 +13116,10 @@ __webpack_require__.r(__webpack_exports__);
       type: [Array, Object],
       default: []
     },
+    lastItem: {
+      type: Boolean,
+      default: true
+    },
     permalink: {
       type: String,
       default: false
@@ -13132,16 +13140,16 @@ __webpack_require__.r(__webpack_exports__);
   mounted() {},
   methods: {},
   components: {
-    PostImage: _Components_PostImage__WEBPACK_IMPORTED_MODULE_1__["default"]
+    PostImage: _Components_PostImage__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   computed: {
     readMore() {
-      var _this$$store$state$la;
-      return ((_this$$store$state$la = this.$store.state.labels) === null || _this$$store$state$la === void 0 ? void 0 : _this$$store$state$la.view_more) || 'Read More';
+      var _store$state$labels;
+      return ((_store$state$labels = _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_0__.store.state.labels) === null || _store$state$labels === void 0 ? void 0 : _store$state$labels.view_more) || 'Read More';
     }
   },
   watch: {},
-  mixins: [_Util_mixins__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_Util_mixins__WEBPACK_IMPORTED_MODULE_1__["default"]],
   name: "Post"
 });
 
@@ -13650,7 +13658,7 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "blogStore": function() { return /* binding */ blogStore; }
+/* harmony export */   "store": function() { return /* binding */ store; }
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state.js */ "./resources/vue/Vuex/blog/state.js");
@@ -13669,7 +13677,7 @@ __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/r
 
 
 
-const blogStore = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.createStore)({
+const store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.createStore)({
   state: _state_js__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _getters_js__WEBPACK_IMPORTED_MODULE_2__["default"],
   mutations: _mutations_js__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -13719,321 +13727,21 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
-/* harmony import */ var _Vuex_blog_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Vuex/blog/store */ "./resources/vue/Vuex/blog/store.js");
-/* harmony import */ var _vuex_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vuex/store */ "./resources/vue/vuex/store.js");
-/* harmony import */ var _Pages_Blog_Blog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Pages/Blog/Blog */ "./resources/vue/Pages/Blog/Blog.vue");
+/* harmony import */ var _Pages_Blog_Blog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pages/Blog/Blog */ "./resources/vue/Pages/Blog/Blog.vue");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
 
 
+/**
+ * Components
+ */
 
 
-const frameworkBlogPostsElm = document.getElementById('framework-blog');
-console.log(frameworkBlogPostsElm);
-if (frameworkBlogPostsElm) {
-  const frameworkBlogComponent = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_Pages_Blog_Blog__WEBPACK_IMPORTED_MODULE_3__["default"]);
-  frameworkBlogComponent.use(_Vuex_blog_store__WEBPACK_IMPORTED_MODULE_1__.blogStore).mount('#framework-blog');
-}
-
-var $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
-var $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
-	$ReactRefreshModuleId$
-);
-
-function $ReactRefreshModuleRuntime$(exports) {
-	if (true) {
-		var errorOverlay;
-		if (true) {
-			errorOverlay = false;
-		}
-		var testMode;
-		if (typeof __react_refresh_test__ !== 'undefined') {
-			testMode = __react_refresh_test__;
-		}
-		return __react_refresh_utils__.executeRuntime(
-			exports,
-			$ReactRefreshModuleId$,
-			module.hot,
-			errorOverlay,
-			testMode
-		);
-	}
-}
-
-if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
-	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
-} else {
-	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
-}
-
-/***/ }),
-
-/***/ "./resources/vue/vuex/default/actions.js":
-/*!***********************************************!*\
-  !*** ./resources/vue/vuex/default/actions.js ***!
-  \***********************************************/
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
-__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-var $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
-var $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
-	$ReactRefreshModuleId$
-);
-
-function $ReactRefreshModuleRuntime$(exports) {
-	if (true) {
-		var errorOverlay;
-		if (true) {
-			errorOverlay = false;
-		}
-		var testMode;
-		if (typeof __react_refresh_test__ !== 'undefined') {
-			testMode = __react_refresh_test__;
-		}
-		return __react_refresh_utils__.executeRuntime(
-			exports,
-			$ReactRefreshModuleId$,
-			module.hot,
-			errorOverlay,
-			testMode
-		);
-	}
-}
-
-if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
-	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
-} else {
-	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
-}
-
-/***/ }),
-
-/***/ "./resources/vue/vuex/default/getters.js":
-/*!***********************************************!*\
-  !*** ./resources/vue/vuex/default/getters.js ***!
-  \***********************************************/
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
-__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-var $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
-var $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
-	$ReactRefreshModuleId$
-);
-
-function $ReactRefreshModuleRuntime$(exports) {
-	if (true) {
-		var errorOverlay;
-		if (true) {
-			errorOverlay = false;
-		}
-		var testMode;
-		if (typeof __react_refresh_test__ !== 'undefined') {
-			testMode = __react_refresh_test__;
-		}
-		return __react_refresh_utils__.executeRuntime(
-			exports,
-			$ReactRefreshModuleId$,
-			module.hot,
-			errorOverlay,
-			testMode
-		);
-	}
-}
-
-if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
-	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
-} else {
-	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
-}
-
-/***/ }),
-
-/***/ "./resources/vue/vuex/default/modules.js":
-/*!***********************************************!*\
-  !*** ./resources/vue/vuex/default/modules.js ***!
-  \***********************************************/
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
-__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-var $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
-var $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
-	$ReactRefreshModuleId$
-);
-
-function $ReactRefreshModuleRuntime$(exports) {
-	if (true) {
-		var errorOverlay;
-		if (true) {
-			errorOverlay = false;
-		}
-		var testMode;
-		if (typeof __react_refresh_test__ !== 'undefined') {
-			testMode = __react_refresh_test__;
-		}
-		return __react_refresh_utils__.executeRuntime(
-			exports,
-			$ReactRefreshModuleId$,
-			module.hot,
-			errorOverlay,
-			testMode
-		);
-	}
-}
-
-if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
-	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
-} else {
-	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
-}
-
-/***/ }),
-
-/***/ "./resources/vue/vuex/default/mutations.js":
-/*!*************************************************!*\
-  !*** ./resources/vue/vuex/default/mutations.js ***!
-  \*************************************************/
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
-__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-var $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
-var $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
-	$ReactRefreshModuleId$
-);
-
-function $ReactRefreshModuleRuntime$(exports) {
-	if (true) {
-		var errorOverlay;
-		if (true) {
-			errorOverlay = false;
-		}
-		var testMode;
-		if (typeof __react_refresh_test__ !== 'undefined') {
-			testMode = __react_refresh_test__;
-		}
-		return __react_refresh_utils__.executeRuntime(
-			exports,
-			$ReactRefreshModuleId$,
-			module.hot,
-			errorOverlay,
-			testMode
-		);
-	}
-}
-
-if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
-	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
-} else {
-	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
-}
-
-/***/ }),
-
-/***/ "./resources/vue/vuex/default/state.js":
-/*!*********************************************!*\
-  !*** ./resources/vue/vuex/default/state.js ***!
-  \*********************************************/
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
-__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-var $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
-var $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
-	$ReactRefreshModuleId$
-);
-
-function $ReactRefreshModuleRuntime$(exports) {
-	if (true) {
-		var errorOverlay;
-		if (true) {
-			errorOverlay = false;
-		}
-		var testMode;
-		if (typeof __react_refresh_test__ !== 'undefined') {
-			testMode = __react_refresh_test__;
-		}
-		return __react_refresh_utils__.executeRuntime(
-			exports,
-			$ReactRefreshModuleId$,
-			module.hot,
-			errorOverlay,
-			testMode
-		);
-	}
-}
-
-if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
-	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
-} else {
-	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
-}
-
-/***/ }),
-
-/***/ "./resources/vue/vuex/store.js":
-/*!*************************************!*\
-  !*** ./resources/vue/vuex/store.js ***!
-  \*************************************/
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "store": function() { return /* binding */ store; }
-/* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _default_state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./default/state.js */ "./resources/vue/vuex/default/state.js");
-/* harmony import */ var _default_mutations_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./default/mutations.js */ "./resources/vue/vuex/default/mutations.js");
-/* harmony import */ var _default_getters_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./default/getters.js */ "./resources/vue/vuex/default/getters.js");
-/* harmony import */ var _default_actions_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./default/actions.js */ "./resources/vue/vuex/default/actions.js");
-/* harmony import */ var _default_modules_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./default/modules.js */ "./resources/vue/vuex/default/modules.js");
-/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
-__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
-
-
-
-// Store Values
-
-
-
-
-
-const store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.createStore)({
-  state: _default_state_js__WEBPACK_IMPORTED_MODULE_0__["default"],
-  getters: _default_getters_js__WEBPACK_IMPORTED_MODULE_2__["default"],
-  mutations: _default_mutations_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  actions: _default_actions_js__WEBPACK_IMPORTED_MODULE_3__["default"],
-  modules: _default_modules_js__WEBPACK_IMPORTED_MODULE_4__["default"]
-});
+/**
+ * Blog Listing Component
+ */
+document.getElementById('framework-blog') && (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_Pages_Blog_Blog__WEBPACK_IMPORTED_MODULE_1__["default"]).mount('#framework-blog');
 
 var $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
 var $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
@@ -17167,7 +16875,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [
     (!$options.loading && $options.posts.length)
-      ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 0 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.posts, ({author, categories, date, excerpt, id, image, permalink, sticky, title}) => {
+      ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 0 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.posts, ({author, categories, date, excerpt, id, image, permalink, sticky, title}, index) => {
           return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Post, {
             key: id,
             author: author,
@@ -17175,10 +16883,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             date: date,
             excerpt: excerpt,
             image: image,
+            "last-item": id === $options.posts.findLast(x => true)?.id,
             permalink: permalink,
             sticky: sticky,
             title: title
-          }, null, 8 /* PROPS */, ["author", "categories", "date", "excerpt", "image", "permalink", "sticky", "title"]))
+          }, null, 8 /* PROPS */, ["author", "categories", "date", "excerpt", "image", "last-item", "permalink", "sticky", "title"]))
         }), 128 /* KEYED_FRAGMENT */))
       : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
     (!$options.loading && !$options.posts.length)
@@ -17237,7 +16946,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_PostImage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PostImage")
 
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("article", {
-    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex bg-white transition hover:shadow-xl dark:bg-gray-800 dark:shadow-gray-800/25 my-6", $props.sticky ? 'my-12 border-2 border-dark dark:border-white rounded-lg' : ''])
+    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex bg-white transition hover:shadow-xl dark:bg-gray-800 dark:shadow-gray-800/25", {
+                'my-12 border-2 border-dark dark:border-white rounded-lg': $props.sticky,
+                'my-6': !$props.lastItem,
+             }])
   }, [
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [
       (!_ctx.objIsEmpty($props.date))
@@ -22983,7 +22695,7 @@ const toJSONObject = (obj) => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-/******/ 		__webpack_require__.h = function() { return "8a9c00b5133f63d0b30c"; }
+/******/ 		__webpack_require__.h = function() { return "72cba685035b0606a6de"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */

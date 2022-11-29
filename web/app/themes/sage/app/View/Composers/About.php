@@ -2,7 +2,7 @@
 
 namespace App\View\Composers;
 
-use App\SageThemeModule\AcfNestedFields;
+use App\ThemeModule\AcfNestedFields;
 use Roots\Acorn\View\Composer;
 use App\Fields\About as AboutFields;
 

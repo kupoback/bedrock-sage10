@@ -1,4 +1,4 @@
-@if (! post_password_required())
+@if (!post_password_required())
     <section id="comments" class="comments">
         @if (have_comments())
             <h2>

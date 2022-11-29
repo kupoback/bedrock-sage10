@@ -14,8 +14,9 @@ use function Roots\bundle;
  * @return void
  */
 add_action('wp_enqueue_scripts', function () {
-    // Uncomment to enable React on the site
-    // bundle('react')->enqueue();
+    // Uncomment to enable React or Vue on the site
+    // bundle('react')->enqueueJs();
+    bundle('vue')->enqueueJs();
     bundle('app')->enqueue();
 }, 100);
 
@@ -25,8 +26,20 @@ add_action('wp_enqueue_scripts', function () {
  * @return void
  */
 add_action('enqueue_block_editor_assets', function () {
+    // Uncomment to enable React or Vue on the site
+    // bundle('react')->enqueueJs();
+    bundle('vue')->enqueueJs();
     bundle('editor')->enqueue();
 }, 100);
+
+/**
+ * Registers an option CSS file and JS file for use within the wp-admin.
+ * Contains some "nice" styles for ACF, and there's an empty JS file.
+ * Uncomment to use
+ *
+ * @return void
+ */
+add_action('admin_enqueue_scripts', fn () => bundle('admin')->enqueue(), 100);
 
 /**
  * Register the initial theme setup.
@@ -58,9 +71,12 @@ add_action('after_setup_theme', function () {
      *
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
-    register_nav_menus([
-                           'primary_navigation' => __('Primary Navigation', 'sage'),
-                       ]);
+    register_nav_menus(
+        [
+            'primary_navigation' => __('Primary Navigation', 'sage'),
+            'footer_navigation'  => __('Footer Navigation', 'sage'),
+        ]
+    );
 
     /**
      * Disable the default block patterns.
@@ -152,15 +168,19 @@ add_action('widgets_init', function () {
         'after_title'   => '</h3>',
     ];
 
-    register_sidebar([
-                         'name' => __('Primary', 'sage'),
-                         'id'   => 'sidebar-primary',
-                     ] + $config);
+    register_sidebar(
+        [
+            'name' => __('Primary', 'sage'),
+            'id'   => 'sidebar-primary',
+        ] + $config
+    );
 
-    register_sidebar([
-                         'name' => __('Footer', 'sage'),
-                         'id'   => 'sidebar-footer',
-                     ] + $config);
+    register_sidebar(
+        [
+            'name' => __('Footer', 'sage'),
+            'id'   => 'sidebar-footer',
+        ] + $config
+    );
 });
 
 /**
@@ -194,18 +214,8 @@ add_action('init', function () {
     /**
      * Filter out the tinymce emoji plugin.
      */
-    add_filter('tiny_mce_plugins', function ($plugins) {
-        if (is_array($plugins)) {
-            return array_diff($plugins, ['wpemoji']);
-        } else {
-            return [];
-        }
-    });
-});
 
-/**
- * Registers and adds Admin scripts to the site
- */
-add_action('admin_enqueue_scripts', function () {
-    wp_enqueue_style('sage-admin-styles', get_template_directory_uri() . '/resources/admin_assets/css/admin_styles.min.css', [], null);
+    add_filter('tiny_mce_plugins', fn ($plugins) => is_array($plugins)
+        ? array_diff($plugins, ['wpemoji'])
+        : []);
 });

@@ -13,13 +13,16 @@
       "wp-blocks"
     ]
   },
-  "react": {
+  "admin": {
     "js": [
-      "js/react.js"
+      "js/admin.js"
     ],
-    "dependencies": [
-      "react",
-      "react-dom"
-    ]
+    "dependencies": []
+  },
+  "vue": {
+    "js": [
+      "js/vue.js"
+    ],
+    "dependencies": []
   }
 }

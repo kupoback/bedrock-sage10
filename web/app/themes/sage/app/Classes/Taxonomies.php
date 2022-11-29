@@ -20,18 +20,21 @@ class Taxonomies
     public function __construct()
     {
         $taxonomies = [
+            // Taxonomy Name => Taxonomy Registration Method
             // 'team_type' => $this->teamTypeTaxonomy(),
         ];
 
-        add_action('init', fn() => collect($taxonomies)
-            ->each(function ($tax_arr, $tax_name) {
-                // Drop out if a string or array of post types are not defined
-                if ($tax_arr['post_type'] ?? false) {
-                    new WP_Error('no-post-types-defined', "Did not define post types to assign taxonomy to");
-                    return false;
-                }
-                return register_taxonomy($tax_name, $tax_arr['post_type'], $tax_arr['tax_args'] ?? []);
-            }));
+        if (!empty($taxonomies)) {
+            add_action('init', fn() => collect($taxonomies)
+                ->each(function ($tax_arr, $tax_name) {
+                    // Drop out if a string or array of post types are not defined
+                    if ($tax_arr['post_type'] ?? false) {
+                        new WP_Error('no-post-types-defined', "Did not define post types to assign taxonomy to");
+                        return false;
+                    }
+                    return register_taxonomy($tax_name, $tax_arr['post_type'], $tax_arr['tax_args'] ?? []);
+                }));
+        }
     }
 
     /**
@@ -46,7 +49,7 @@ class Taxonomies
         return [
             'post_type' => 'team', //array or string
             'tax_args'  => self::taxonomyArray(
-                'Team Types',
+                'Team Type',
                 'team-type',
             ),
         ];

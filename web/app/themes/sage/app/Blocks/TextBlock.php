@@ -2,7 +2,7 @@
 
 namespace App\Blocks;
 
-use App\SageThemeModule\AcfNestedFields;
+use App\ThemeModule\AcfNestedFields;
 use Illuminate\Support\Collection;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldNameCollisionException;

@@ -39,7 +39,7 @@
 		}
 	},
 	"require": {
-		"php": "^7.4|^8.0",
+		"php": "^8.0",
 		"log1x/acf-composer": "^2.0",
 		"log1x/sage-directives": "^1.1",
 		"log1x/sage-svg": "^1.1",
@@ -55,7 +55,11 @@
 	"config": {
 		"optimize-autoloader": true,
 		"preferred-install": "dist",
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": {
+			"composer/installers": true,
+			"roots/wordpress-core-installer": true
+		}
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,

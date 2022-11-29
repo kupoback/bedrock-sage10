@@ -1,8 +1,15 @@
+/**
+ * Tailwind CSS Configuration
+ *
+ * @type {{plugins: *[], theme: {extend: {colors: {}}}, content: string[]}}
+ *
+ * @link https://tailwindcss.com/docs/configuration
+ */
 module.exports = {
     content: ["./index.php", "./app/**/*.php", "./resources/**/*.{php,vue,js}"],
     theme: {
         extend: {
-            colors: {},
+            colors: {}, // Extend Tailwind's default colors
         },
     },
     plugins: [],

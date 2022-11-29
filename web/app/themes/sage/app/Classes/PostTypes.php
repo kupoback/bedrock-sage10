@@ -4,6 +4,10 @@ namespace App\Classes;
 
 use App\Traits\SageAdminTrait;
 
+/**
+ * This Class allows for the one spot ease of
+ * registering Post Types for the site
+ */
 class PostTypes
 {
 
@@ -15,14 +19,17 @@ class PostTypes
     public function __construct()
     {
         $post_types = [
-             'team' => $this->teamPostType(),
+            // Post Type Name => Post Type Registration Method
+            // 'team' => $this->teamPostType(), //example
         ];
 
         if (!empty($post_types)) {
             add_action('init', fn() => collect($post_types)
-                ->each(fn($pt_args, $pt_name) => register_post_type($pt_name, $pt_args)));
+                ->each(function ($pt_args, $pt_name) {
+                    register_post_type($pt_name, $pt_args);
+                }));
             // Flush the permalinks
-            // flush_rewrite_rules();)
+            // flush_rewrite_rules();
         }
     }
 

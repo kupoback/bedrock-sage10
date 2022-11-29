@@ -25,37 +25,31 @@ class Shortcodes
         ];
 
         return collect($shortcodes)
-            ->map(function ($shortcode) {
-                return add_shortcode($shortcode, [$this, strtr($shortcode, ['-' => '_']),]);
-            });
+            ->each(fn ($shortcode) => add_shortcode($shortcode, [$this, strtr($shortcode, ['-' => '_']),]));
     }
 
     /**
      * A shortcode that outputs a formatted list of pages
      *
-     * @param array $atts         {
-     *                            Optional. Array or string of arguments to generate a list of pages. See `get_pages()` for additional arguments.
+     * @param  array{post_type: string, exclude: string, omit_current:string, orderby: string, order: string, post_status: string}
+     *              $attributes           {
+     *                  Optional. Array or string of arguments to generate a list of pages. See `get_pages()` for additional arguments.
      *
-     * @type string $post_type    The post type to override returning.
-     *                                  Default page
-     * @type string $exclude      Comma-separated list of page IDs to exclude. Default empty.
-     * @type string $omit_current Whether to omit the current page or not
-     *                                  Default yes
-     * @type string $orderby      Comma-separated list of column names to sort the pages by. Accepts 'post_author',
-     *                                  'post_date', 'post_title', 'post_name', 'post_modified', 'post_modified_gmt',
-     *                                  'menu_order', 'post_parent', 'ID', 'rand', or 'comment_count'. Default 'post_title'.
-     * @type string $order        Sets whether the order should be in ascending or descending order
-     *                                  Default ASC
-     * @type string $post_status  The post_status of posts to return
-     *                                  Default publish
-     * }
+     * @type string $post_type            The post type to override returning. Defaults to page
+     * @type string $exclude              Comma-separated list of page IDs to exclude. Defaults to empty.
+     * @type string $omit_current         Whether to omit the current page or not. Defaults to yes
+     * @type string $orderby              Comma-separated list of column names to sort the pages by. Accepts 'post_author',
+     *                                    'post_date', 'post_title', 'post_name', 'post_modified', 'post_modified_gmt',
+     *                                    'menu_order', 'post_parent', 'ID', 'rand', or 'comment_count'. Default 'post_title'.
+     * @type string $order                Sets whether the order should be in ascending or descending order. Defaults to ASC
+     * @type string $post_status          The post_status of posts to return. Defaults to publish
+     *                                    }
      *
      * @return string
      */
-    public function sitemap(array $atts = [])
+    public function sitemap(array $attributes = [])
     :string
     {
-
         $defaults = [
             'post_type'    => 'page',
             'exclude'      => '',
@@ -65,7 +59,8 @@ class Shortcodes
             'post_status'  => 'publish',
         ];
 
-        $parsed_args = wp_parse_args($atts, $defaults);
+        $parsed_args = collect($defaults)
+            ->merge($attributes);
 
         /**
          * The following was pulled from wp_list_pages
@@ -73,7 +68,14 @@ class Shortcodes
          * @ref  wp_list_pages
          * @uses wp_list_pages
          */
-        $parsed_args['exclude'] = preg_replace('/[^0-9,]/', '', $parsed_args['exclude']);
+        $parsed_args->put(
+            'exclude',
+            preg_replace(
+                '/[^\d,]/',
+                '',
+                $parsed_args->get('exclude'),
+            ),
+        );
 
         $exclude_array = ($parsed_args['exclude']) ? explode(',', $parsed_args['exclude']) : [];
 
@@ -84,32 +86,28 @@ class Shortcodes
 
         $parsed_args['exclude'] = implode(',', apply_filters('wp_list_pages_excludes', $exclude_array));
 
-        $pages = get_pages($parsed_args);
+        $pages = collect(get_pages($parsed_args));
 
-        $page_list = $pages ? array_map(function ($page) {
-            return sprintf(
-                '<li class="page-link col-xs-12"><a href="%2$s">%1$s</a></li>',
-                $page->post_title,
-                get_permalink($page)
+        /**
+         * Map through all the pages if we have any
+         */
+        if ($pages->isNotEmpty()) {
+            ob_start();
+            $return = sprintf(
+                '<div id="sitemap" class="sitemap-container"><ul class="page-list row">%s</ul></div>',
+                $pages
+                    ->map(fn ($page) => sprintf(
+                        '<li class="page-link col-xs-12"><a href="%2$s">%1$s</a></li>',
+                        $page->post_title,
+                        get_permalink($page),
+                    ))
+                    ->implode(''),
             );
-        },
-            $pages) : [];
+            $return .= ob_get_clean();
 
-        ob_start();
-        /**
-         * Returns HTML list of pages
-         */
-        $return = !empty($page_list) ?
-            sprintf(
-                '<div id="sitemap" class="sitemap-container container"><ul class="page-list row">%s</ul></div>',
-                implode('', $page_list)
-            )
-            : '';
+            return $return;
+        }
 
-        /**
-         * Return clean data
-         */
-        $return .= ob_get_clean();
-        return $return;
+        return '';
     }
 }

@@ -1,9 +1,19 @@
 {
   "app.js": "js/app.js",
   "editor.js": "js/editor.js",
-  "react.js": "js/react.js",
+  "admin.js": "js/admin.js",
+  "vue.js": "js/vue.js",
+  "js/dynamic/node_modules_roots_bud-client_lib_hot_components_indicator_index_js.js": "js/dynamic/node_modules_roots_bud-client_lib_hot_components_indicator_index_js.js",
+  "js/dynamic/node_modules_roots_bud-client_lib_hot_components_overlay_index_js.js": "js/dynamic/node_modules_roots_bud-client_lib_hot_components_overlay_index_js.js",
   "images/.gitkeep": "images/.gitkeep",
   "app.js.map": "js/app.js.map",
+  "app.hot-update.js.map": "app.bb3e4b753bde7b676ac4.hot-update.js.map",
   "editor.js.map": "js/editor.js.map",
-  "react.js.map": "js/react.js.map"
+  "editor.hot-update.js.map": "editor.bb3e4b753bde7b676ac4.hot-update.js.map",
+  "admin.js.map": "js/admin.js.map",
+  "admin.hot-update.js.map": "admin.bb3e4b753bde7b676ac4.hot-update.js.map",
+  "vue.js.map": "js/vue.js.map",
+  "vue.hot-update.js.map": "vue.bb3e4b753bde7b676ac4.hot-update.js.map",
+  "node_modules_roots_bud-client_lib_hot_components_indicator_index_js.js.map": "js/dynamic/node_modules_roots_bud-client_lib_hot_components_indicator_index_js.js.map",
+  "node_modules_roots_bud-client_lib_hot_components_overlay_index_js.js.map": "js/dynamic/node_modules_roots_bud-client_lib_hot_components_overlay_index_js.js.map"
 }

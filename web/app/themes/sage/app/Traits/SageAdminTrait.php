@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Helper\Helper;
 use Illuminate\Support\Str;
 
 trait SageAdminTrait
@@ -10,24 +11,24 @@ trait SageAdminTrait
     /**
      * Creates the array needed to register the post type
      *
-     * @param string $singular       The single name for the post type
-     * @param string $dashicon       The dashicon name for the post type, an image/svg or url
-     * @param string $description    The description of the post type
-     * @param string $type           Determines whether it's a post or a page style hierarchy
-     * @param array  $pt_args        Any args to overwrite the default settings of the WP registration of a post type
-     * @param bool   $singular_title Whether the title should be singular
+     * @param string $singular      The single name for the post type
+     * @param string $dashicon      The dashicon name for the post type, an image/svg or url
+     * @param string $description   The description of the post type
+     * @param string $type          Determines whether it's a post or a page style hierarchy
+     * @param array  $pt_args       Any args to overwrite the default settings of the WP registration of a post type.  See method for array fields to override
+     * @param bool   $enable_plural Whether to pluralize the title
      *
      * @return array
      * @link Dashicon https://developer.wordpress.org/resource/dashicons
      *
      */
-    protected function postTypeArray(string $singular, string $dashicon, string $description = '', string $type = '', array $pt_args = [], bool $singular_title = false)
+    protected function postTypeArray(string $singular, string $dashicon, string $description = '', string $type = "post", array $pt_args = [], bool $enable_plural = true)
     :array
     {
         $default_args  = ["title", "editor", "thumbnail", "excerpt", "revisions", "post-formats"];
         $supports_args = wp_parse_args($pt_args['supports'] ?? [], $default_args);
 
-        $plural          = $singular_title ? Str::plural($singular) : $singular;
+        $plural          = $enable_plural ? Str::plural($singular) : $singular;
         $single_lower    = strtolower($singular);
         $default_pt_args = [
             "label"               => __($plural, "merck-scraper"),
@@ -84,17 +85,17 @@ trait SageAdminTrait
     /**
      * Creates an array return for registering a taxonomy
      *
-     * @param string      $singular       The taxonomy singular name
-     * @param null|string $tax_slug       The taxonomy archive slug
-     * @param bool        $hierarchical   Whether this mimics a category or a tag
-     * @param array       $ct_args        Any other args to override minus the label
-     * @param bool        $singular_title Whether the title should be singular
+     * @param string      $singular      The taxonomy singular name
+     * @param null|string $tax_slug      The taxonomy archive slug
+     * @param bool        $hierarchical  Whether this mimics a category or a tag
+     * @param array       $ct_args       Any other args to override minus the label. See method for array fields to override
+     * @param bool        $enable_plural Whether to pluralize the title
      */
-    protected function taxonomyArray(string $singular, string $tax_slug = null, bool $hierarchical = true, array $ct_args = [], bool $singular_title = false)
+    protected function taxonomyArray(string $singular, string $tax_slug = null, bool $hierarchical = true, array $ct_args = [], bool $enable_plural = true)
     :array
     {
-        $plural       = $singular_title ? Str::plural($singular) : $singular;
         $single_lower = strtolower($singular);
+        $plural       = $enable_plural ? Str::plural($singular) : $singular;
         $default_args = [
             "labels"            => [
                 "name"                       => _x($singular, "Taxonomy General Name", "merck-scraper"),

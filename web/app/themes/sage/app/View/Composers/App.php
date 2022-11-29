@@ -2,9 +2,9 @@
 
 namespace App\View\Composers;
 
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Translation\Translator;
 use Roots\Acorn\View\Composer;
+
+use function Roots\bundle;
 
 class App extends Composer
 {
@@ -23,9 +23,10 @@ class App extends Composer
      * @return array
      */
     public function with()
+    :array
     {
         return [
-            'siteName' => $this->siteName(),
+            'siteName'  => $this->siteName(),
             'pageTitle' => $this->pageTitle(),
         ];
     }
@@ -44,10 +45,10 @@ class App extends Composer
     /**
      * Returns the page title
      *
-     * @return array|Application|Translator|string|null
+     * @return array|string|null
      */
     public function pageTitle()
-    :array|string|Translator|Application|null
+    :array|string|null
     {
         if (is_search()) {
             return __("Search", 'sage');

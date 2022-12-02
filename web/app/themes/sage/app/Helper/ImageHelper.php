@@ -304,17 +304,22 @@ class ImageHelper
                 'srcset' => wp_get_attachment_image_srcset($post_thumbnail_id, $image_size),
                 'sizes'  => wp_get_attachment_image_sizes($post_thumbnail_id, $image_size) ?: '',
             ],
-        );
+        )
+            ->filter();
 
-        $img_data->put('type', 'image/' . str_replace('.', '', substr($source, strrpos($source, '.'))));
+        if ($img_data->isNotEmpty()) {
+            $img_data->put('type', 'image/' . str_replace('.', '', substr($source, strrpos($source, '.'))));
 
-        // Handles the webp portion of the image
-        $webp_srcset = self::getWebp($img_data->get('srcset'));
-        if ($webp_srcset) {
-            $img_data->put('webpSrcset', self::getWebp($img_data->get('srcset')));
+            // Handles the webp portion of the image
+            $webp_srcset = self::getWebp($img_data->get('srcset'));
+            if ($webp_srcset) {
+                $img_data->put('webpSrcset', self::getWebp($img_data->get('srcset')));
+            }
+
+            return $img_data->toArray();
         }
 
-        return $img_data->toArray();
+        return [];
     }
 
     /**

@@ -99,7 +99,7 @@ class BlogPosts
         $formatted_data = [];
         $override_args  = [];
         try {
-            $posts_per_page = $request->get_param('posts_per_page') ?? '';
+            $posts_per_page = $request->get_param('posts_per_page') ?? 5;
             $paged          = $request->get_param('paged') ?? 1;
             $cat_id         = $request->get_param('catId') ?? '';
             $search         = $request->get_param('s') ?? null;

@@ -36,6 +36,7 @@ trait RestRouteDataReturnTrait
                         'year' => $post_date->format('Y'),
                         'date' => $post_date->format('M j')
                     ],
+                    'dateString' => $post_date->format('F j, Y'),
                     'excerpt'    => html_entity_decode(Helper::generateExcept($excerpt, 25)),
                     'id'         => $post->ID,
                     'image'      => (object) $image,

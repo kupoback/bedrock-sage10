@@ -1,5 +1,6 @@
 <template>
     <div class="mx-auto my-16 blog-listing__posts">
+        
         <Post v-if="!loading && posts.length"
               v-for="({author, categories, date, excerpt, id, image, permalink, sticky, title}, index) in posts"
               :key="id"
@@ -17,15 +18,32 @@
                    noResultsText="noResults" />
         
         <Loading v-if="loading" white />
+        
+        <Pagination
+            v-if="maxPages > 0"
+            :clickHandler="goToPage"
+            :pageCount="maxPages"
+            :forcePage="page"
+            firstLastButton>
+        </Pagination>
+        
     </div>
 </template>
 
 <script type="application/javascript">
+    /**
+     * Vue Scripts
+     */
     import {store} from "../../Vuex/blog/store";
-    
-    import Post from "./Components/Post";
-    import NoResults from "../../Components/NoResults";
+
+    /**
+     * Vue Components
+     */
     import Loading from "../../Components/Loading";
+    import NoResults from "../../Components/NoResults";
+    import Pagination from "../../Components/Pagination/Pagination";
+    import Post from "./Components/Post";
+    
     export default {
         props: {},
         data: () => ({}),
@@ -33,8 +51,16 @@
             store.dispatch('getBlogPosts');
         },
         mounted() {},
-        methods: {},
-        components: {Loading, NoResults, Post},
+        methods: {
+            goToPage(page) {
+                this.updatePage(page);
+                store.dispatch('getBlogPosts')
+            },
+            updatePage(page) {
+                store.commit('updateState', {page})
+            }
+        },
+        components: {Loading, NoResults, Pagination, Post},
         computed: {
             loading() {return store.state.loading},
             maxPages() {return store.state.maxPages},

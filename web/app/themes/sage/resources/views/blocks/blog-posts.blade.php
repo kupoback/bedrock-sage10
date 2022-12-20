@@ -29,17 +29,18 @@
 			The Results title, and listing will appear on the frontend, not in this preview
 		</div>
 	@endif
-	<script>var BLOG = {
-		api: {!! json_encode(rest_url('sage/v1/blog-posts/')) !!},
+	<script>
+		var BLOG = {
+			api: {!! json_encode(rest_url('sage/v1/blog-posts/')) !!},
 			filterLabel: {!! json_encode($post_filters->filter_label ?? '') !!},
 			filterSubmit: {!! json_encode($post_filters->filter_search ?? '') !!},
 			labels: {!! json_encode($post_labels) !!},
 			noResults: {!! json_encode($no_results) !!},
 			searchLabel: {!! json_encode($post_filters->search_label) !!},
 			searchPlaceholder: {!! json_encode($post_filters->search_placeholder) !!},
-			taxonomies: {!! $post_filters->filter_type !!}
-			
-	}</script>
+			taxonomies: {!! $post_filters->filter_type ?? [] !!}
+		};
+	</script>
 	@if (is_admin())
 		<div>
 			<InnerBlocks></InnerBlocks>

@@ -1,7 +1,6 @@
 let blog = typeof BLOG !== 'undefined' && BLOG;
 
 export default {
-	...blog,
 	loading: false,
 	maxPages: 0,
 	page: 1,
@@ -11,4 +10,5 @@ export default {
 	searchParams: {},
 	searchPostTypeCount: null,
 	selectedCategories: [],
+	...blog,
 };

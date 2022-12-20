@@ -36,6 +36,7 @@ export default async (app) => {
 			admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
 			// react: ["@sageReact/app"],
 			vue: ["@sageVue/app"],
+			blog: ['@sageVue/Pages/Blog/index']
 		})
 
 		/**

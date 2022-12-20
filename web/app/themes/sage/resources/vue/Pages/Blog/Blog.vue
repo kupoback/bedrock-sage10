@@ -16,7 +16,7 @@
                   :title="title" />
             
             <NoResults v-if="!loading && !posts.length"
-                       noResultsText="noResults" />
+                       :noResultsText="noResults" />
             
             <Loading v-if="loading"
                      white />
@@ -58,6 +58,7 @@
         created() {
             store.dispatch('getBlogPosts');
         },
+        beforeMount() {},
         mounted() {},
         methods: {
             goToPage(page) {

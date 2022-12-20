@@ -15,3 +15,4 @@
 		</div>
 	@endif
 </section>
+@php the_content(); @endphp

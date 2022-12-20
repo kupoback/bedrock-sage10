@@ -65,7 +65,7 @@ class BlogPosts extends Block
      *
      * @var string
      */
-    public $mode = 'preview';
+    public $mode = 'inline';
 
     /**
      * The default block alignment.
@@ -99,7 +99,7 @@ class BlogPosts extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => true,
     ];
@@ -201,7 +201,7 @@ class BlogPosts extends Block
                 ->filter()
                 ->map(fn ($term) => ['id' => $term->term_id, 'name' => $term->name, 'slug' => $term->slug]);
         }
-        return json_encode([]);
+        return '';
     }
 
     /**
@@ -212,5 +212,7 @@ class BlogPosts extends Block
     public function enqueue()
     :void
     {
+        bundle('blog')
+            ->enqueueJs();
     }
 }

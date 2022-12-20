@@ -1,7 +1,9 @@
 <template>
     <article class="flex bg-white transition hover:shadow-xl dark:bg-gray-800 dark:shadow-gray-800/25"
              :class="{
-                'my-12 border-2 border-dark dark:border-white rounded-lg': sticky,
+                'border-2 border-dark dark:border-white rounded-lg': sticky,
+                'my-12': !lastItem && !firstItem,
+                'mt-0': firstItem,
                 'my-6': !lastItem,
              }">
         <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
@@ -67,6 +69,10 @@
             excerpt: {
                 type: String,
                 default: false,
+            },
+            firstItem: {
+                type: Boolean,
+                default: true,
             },
             image: {
                 type: [Array, Object],

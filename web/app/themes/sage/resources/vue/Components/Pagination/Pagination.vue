@@ -61,7 +61,7 @@
                             slotName="pageBreakView"
                             :buttonText="breakViewText"
                             isDisabled
-                            :pageLinkClass="breakViewLinkClass"
+                            :pageLinkClass="[pageLinkClass, breakViewLinkClass]"
                             :pageNumber="selected"
                             :tabIndex="0">
                     
@@ -73,7 +73,7 @@
                 
                 <PageButton v-else-if="page.disabled"
                             slotName="pageDisabled"
-                            :pageLinkClass="pageLinkClass"
+                            :pageLinkClass="[pageLinkClass, pageDisabledClass]"
                             :buttonText="page.content"
                             :isDisabled="page.disabled"
                             :pageNumber="page.content"
@@ -264,6 +264,10 @@
             prevClass: {
                 type: String
             },
+            pageDisabledClass: {
+                type: String,
+                default: '',
+            },
             pageLinkClass: {
                 type: String,
                 default: '',
@@ -425,77 +429,4 @@
 </script>
 
 <style lang="scss" scoped>
-    $white: #fff;
-    $black: #000;
-    $blue: #2980b9;
-    
-    .vue-paginate {
-        width: 100%;
-        background: $white;
-        border-radius: 4px;
-        border: 1px solid transparent;
-        padding: 0.5rem 1rem;
-        
-        button {
-            color: $black;
-            font-size: 1rem;
-        }
-        
-        &__container {
-            display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
-            width: 100%;
-            
-            &-page {
-                border-top: 1px solid $black;
-                border-bottom: 1px solid $black;
-                border-left: 1px solid $black;
-                
-                padding: 0 4px;
-                
-                &:first-child {
-                    border-top-left-radius: 4px;
-                    border-bottom-left-radius: 4px;
-                    margin-left: 0;
-                }
-                &:last-child {
-                    border-top-right-radius: 4px;
-                    border-bottom-right-radius: 4px;
-                    border-right: 1px solid $black;
-                    margin-right: 0;
-                }
-    
-                &:not(.disabled) {
-                    &:hover,
-                    &:focus {
-                        background: $blue;
-            
-                        button {
-                            color: $white;
-                        }
-                    }
-                }
-            }
-            
-            &-number {
-                &__active {
-                    background: $blue;
-                    button {
-                        color: $white;
-                    }
-                }
-            }
-        }
-        
-        .disabled {
-            button {
-                cursor: default;
-            }
-            &:not(.vue-paginate__container-number) {
-                background: rgba($black, 0.5);
-                color: $white;
-            }
-        }
-    }
 </style>

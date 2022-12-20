@@ -24,8 +24,8 @@ const makeApiCall = (api, store, config = {params: {}}, page = 1, updateHistory 
 	return axios
 		.get(api, config)
 		.then(({data, status}) => {
-			const {maxPages, posts, postTypeCount} = data;
-			(status === 200 && data.status !== 404) && store.commit(commitType, {maxPages: Number(maxPages), page, posts});
+			const {maxPages, posts, postTypeCount, total} = data;
+			(status === 200 && data.status !== 404) && store.commit(commitType, {maxPages: Number(maxPages), page, posts, total});
 			postTypeCount !== undefined && store.commit('searchPostTypeCount', {postTypeCount});
 		})
 		.catch(err => console.error(err))
@@ -69,8 +69,8 @@ export default {
 		const config = {params: {}};
 
 		// Setup Config
-		if (search) config.params.search = search;
-		// if (selectedCategories.length) config.params.categories = selectedCategories;
+		if (search) config.params.s = search;
+		if (selectedCategories.length) config.params.categories = selectedCategories;
 
 		return makeApiCall(
 			api + (page || 1),

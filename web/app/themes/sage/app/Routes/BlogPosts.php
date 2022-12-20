@@ -101,7 +101,7 @@ class BlogPosts
         try {
             $posts_per_page = $request->get_param('posts_per_page') ?? 5;
             $paged          = $request->get_param('paged') ?? 1;
-            $cat_id         = $request->get_param('catId') ?? '';
+            $categories     = $request->get_param('categories') ?? [];
             $search         = $request->get_param('s') ?? null;
 
             $default_args = $this->defaultQueryArgs();
@@ -118,7 +118,7 @@ class BlogPosts
                 $override_args['s'] = $search;
             }
 
-            if (!empty($cat_id) && $cat_id !== 0) {
+            if (!empty($categories)) {
                 $override_args['tax_query'] = [
                     'relation' => 'AND',
                 ];
@@ -126,7 +126,7 @@ class BlogPosts
                 $override_args['tax_query'][] = [
                     'taxonomy' => 'category',
                     'field'    => 'term_id',
-                    'terms'    => [$cat_id],
+                    'terms'    => $categories,
                     'operator' => 'IN',
                 ];
             }
@@ -141,8 +141,8 @@ class BlogPosts
             if ($query->found_posts > 0) {
                 $return_data = [
                     'posts'    => self::renderPosts($query->posts),
-                    'total'    => $query->found_posts,
                     'maxPages' => $query->max_num_pages,
+                    'total'    => $query->found_posts,
                 ];
 
                 $formatted_data = new WP_REST_Response($return_data, 200);

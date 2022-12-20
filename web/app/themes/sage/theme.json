@@ -1161,9 +1161,9 @@
       "customFontSize": false,
       "fontFamilies": [
         {
-          "name": "Ui-sans-serif",
+          "name": "Inter",
           "slug": "sans",
-          "fontFamily": "ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,\"Noto Sans\",sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\",\"Noto Color Emoji\""
+          "fontFamily": "Inter,sans-serif"
         },
         {
           "name": "Ui-serif",
@@ -1173,7 +1173,12 @@
         {
           "name": "Ui-monospace",
           "slug": "mono",
-          "fontFamily": "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace"
+          "fontFamily": "ui-monospace,monospace"
+        },
+        {
+          "name": "Inter",
+          "slug": "body",
+          "fontFamily": "Inter,sans-serif"
         }
       ],
       "fontSizes": [

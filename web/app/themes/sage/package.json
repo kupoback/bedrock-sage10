@@ -28,5 +28,7 @@
 		"mitt": "^3.0.0",
 		"vuex": "^4.1.0"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"tw-elements": "^1.0.0-alpha13"
+	}
 }

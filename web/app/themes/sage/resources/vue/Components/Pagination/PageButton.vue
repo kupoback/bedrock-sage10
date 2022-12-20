@@ -21,7 +21,7 @@
     export default {
         props: {
             pageLinkClass: {
-                type: String,
+                type: [Array, String],
                 default: '',
             },
             additionalClass: {

@@ -10,5 +10,5 @@ export default {
 	search: '',
 	searchParams: {},
 	searchPostTypeCount: null,
-	selectedCategories: null,
+	selectedCategories: [],
 };

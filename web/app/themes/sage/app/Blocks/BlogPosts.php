@@ -125,8 +125,10 @@ class BlogPosts extends Block
     public array $fieldNames = [
         'title',
         'content',
+        'results',
         'post_labels',
         'no_results',
+        'post_filters',
     ];
 
     /**
@@ -137,8 +139,12 @@ class BlogPosts extends Block
     public function with()
     :array
     {
-        return (new AcfNestedFields($this->fieldNames))
+        $fields = (new AcfNestedFields($this->fieldNames))
             ->getFields();
+        if ($fields['post_filters']->filter_type ?? false) {
+            $fields['post_filters']->filter_type = $this->getTaxonomy();
+        }
+        return $fields;
     }
 
     /**
@@ -156,6 +162,7 @@ class BlogPosts extends Block
         $blogPosts
             ->addText('title')
             ->addWysiwyg('content')
+            ->addText('results', ['default_value' => __('Results', 'sage')])
             ->addGroup('post_labels')
                 ->addText(
                     'category',
@@ -172,10 +179,29 @@ class BlogPosts extends Block
                           ]
                 )
             ->endGroup()
-            ->addTextarea('no_results', ['rows' => 4]);
+            ->addTextarea('no_results', ['rows' => 4])
+            ->addGroup('post_filters')
+                ->addText('filter_label', ['default_value' => __('Filter By', 'sage')])
+                ->addSelect('filter_type', ['choices' => ['category' => "Categories", 'tags' => "Tags"], 'allow_null' => true])
+                ->addText('search_label', ['default_value' => __('Search', 'sage')])
+                ->addText('search_placeholder', ['default_value' => __('Enter in a keyword', 'sage')])
+                ->addText('filter_search', ['default_value' => __('Search', 'sage')])
+            ->endGroup();
 
 
         return $blogPosts->build();
+    }
+
+    public function getTaxonomy()
+    :bool|string
+    {
+        $taxonomy_type = get_field('post_filters')['filter_type'] ?? false;
+        if ($taxonomy_type) {
+            return collect(get_terms(['taxonomy' => $taxonomy_type]))
+                ->filter()
+                ->map(fn ($term) => ['id' => $term->term_id, 'name' => $term->name, 'slug' => $term->slug]);
+        }
+        return json_encode([]);
     }
 
     /**

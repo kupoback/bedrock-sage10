@@ -282,6 +282,7 @@
             if (this.forcePage !== this.selected) {
                 this.selected = this.forcePage
             }
+            console.log(this.selected)
         },
         computed: {
             pageRangeOffset() {

@@ -1,17 +1,17 @@
 <template>
     <picture>
-        <source v-if="image.webpSrcset"
+        <source v-if="image?.webpSrcset"
                 :srcset="image.webpSrcset"
                 :sizes="image.sizes"
                 type="image/webp"/>
-        <source :srcset="image.srcset"
-                :sizes="image.sizes"
-                :type="image.type"/>
-        <img :src="image.src"
-             :data-src="image.src"
+        <source :srcset="image?.srcset || ''"
+                :sizes="image?.sizes || ''"
+                :type="image?.type || ''"/>
+        <img :src="image?.src || ''"
+             :data-src="image?.src || ''"
              :class="imageClass"
-             :content="image.src"
-             :alt="image.alt"
+             :content="image?.src || ''"
+             :alt="image?.alt || ''"
              role="img"
              property="v:image"/>
     </picture>
@@ -29,7 +29,7 @@
             },
         },
         mixins: [mixins],
-        name: "PostImage"
+        name: "ImgSrcSet"
     };
 </script>
 

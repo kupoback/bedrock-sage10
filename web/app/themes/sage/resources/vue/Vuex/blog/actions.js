@@ -20,8 +20,6 @@ const makeApiCall = (api, store, config = {params: {}}, page = 1, updateHistory 
 	updateLoading(store, true);
 	let commitType = "updateState";
 	if (pushData) commitType = "mergeData";
-
-	console.log(api)
 	
 	return axios
 		.get(api, config)
@@ -70,7 +68,6 @@ export default {
 		const {api, page, selectedCategories, search} = store.state;
 		const config = {params: {}};
 		
-		console.log(store.state)
 		// Setup Config
 		if (search) config.params.s = search;
 		if (selectedCategories.length) config.params.categories = selectedCategories;

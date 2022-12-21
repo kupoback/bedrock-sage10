@@ -1,0 +1,118 @@
+{
+    "posts": [
+      {
+        "author": "themedemos",
+        "categories": "Classic, Uncategorized",
+        "date": {
+          "year": "2012",
+          "date": "Jan 7"
+        },
+        "dateString": "January 7, 2012",
+        "excerpt": "This is a sticky post. There are a few things to verify: The sticky post should be distinctly recognizable in some way in comparison to",
+        "id": 1241,
+        "image": {
+          
+        },
+        "permalink": "https://boilerplate8.1.test/template-sticky/",
+        "sticky": true,
+        "title": "Template: Sticky"
+      },
+      {
+        "author": "dev",
+        "categories": "Uncategorized",
+        "date": {
+          "year": "2022",
+          "date": "Aug 26"
+        },
+        "dateString": "August 26, 2022",
+        "excerpt": "Welcome to WordPress. This is your first post. Edit or delete it, then start writing!",
+        "id": 1,
+        "image": {
+          
+        },
+        "permalink": "https://boilerplate8.1.test/hello-world/",
+        "sticky": false,
+        "title": "Hello world!"
+      },
+      {
+        "author": "themereviewteam",
+        "categories": "Block",
+        "date": {
+          "year": "2018",
+          "date": "Nov 3"
+        },
+        "dateString": "November 3, 2018",
+        "excerpt": "Welcome to image alignment! If you recognize this post, it is because these are blocks that have been converted from the classic Markup: Image Alignment",
+        "id": 1755,
+        "image": {
+          "alt": "Rain Ripples",
+          "src": "https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-1280x960.jpg",
+          "srcset": "https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-1280x960.jpg 1280w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-768x576.jpg 768w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-300x225.jpg 300w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-1024x768.jpg 1024w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-1536x1152.jpg 1536w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563.jpg 1600w",
+          "sizes": "(max-width: 1280px) 100vw, 1280px",
+          "type": "image/jpg",
+          "webpSrcset": "https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-1280x960.webp 1280w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-768x576.webp 768w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-300x225.webp 300w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-1024x768.webp 1024w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563-1536x1152.webp 1536w, https://boilerplate8.1.test/app/uploads/2008/06/dsc04563.webp 1600w"
+        },
+        "permalink": "https://boilerplate8.1.test/block-image/",
+        "sticky": false,
+        "title": "Block: Image"
+      },
+      {
+        "author": "themereviewteam",
+        "categories": "Block",
+        "date": {
+          "year": "2018",
+          "date": "Nov 3"
+        },
+        "dateString": "November 3, 2018",
+        "excerpt": "Button blocks are not semantically buttons, but links inside a styled div.  If you do not add a link, a link tag without an anchor",
+        "id": 1747,
+        "image": {
+          
+        },
+        "permalink": "https://boilerplate8.1.test/block-button/",
+        "sticky": false,
+        "title": "Block: Button"
+      },
+      {
+        "author": "themereviewteam",
+        "categories": "Block",
+        "date": {
+          "year": "2018",
+          "date": "Nov 3"
+        },
+        "dateString": "November 3, 2018",
+        "excerpt": "This is a left aligned cover block with a background image. The cover block lets you add text on top of images or videos. This",
+        "id": 1745,
+        "image": {
+          
+        },
+        "permalink": "https://boilerplate8.1.test/block-cover/",
+        "sticky": false,
+        "title": "Block: Cover"
+      },
+      {
+        "author": "themereviewteam",
+        "categories": "Block",
+        "date": {
+          "year": "2018",
+          "date": "Nov 3"
+        },
+        "dateString": "November 3, 2018",
+        "excerpt": "Gallery blocks have two settings: the number of columns, and whether or not images should be cropped. The default number of columns is three, and",
+        "id": 1752,
+        "image": {
+          "alt": "Boat Barco Texture",
+          "src": "https://boilerplate8.1.test/app/uploads/2008/06/img_8399-1280x853.jpg",
+          "srcset": "https://boilerplate8.1.test/app/uploads/2008/06/img_8399-1280x853.jpg 1280w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399-768x512.jpg 768w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399-300x200.jpg 300w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399-1024x682.jpg 1024w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399-1536x1023.jpg 1536w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399.jpg 1600w",
+          "sizes": "(max-width: 1280px) 100vw, 1280px",
+          "type": "image/jpg",
+          "webpSrcset": "https://boilerplate8.1.test/app/uploads/2008/06/img_8399-1280x853.webp 1280w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399-768x512.webp 768w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399-300x200.webp 300w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399-1024x682.webp 1024w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399-1536x1023.webp 1536w, https://boilerplate8.1.test/app/uploads/2008/06/img_8399.webp 1600w"
+        },
+        "permalink": "https://boilerplate8.1.test/block-gallery/",
+        "sticky": false,
+        "title": "Block: Gallery"
+      }
+    ],
+    "maxPages": 10,
+    "total": 50
+  }

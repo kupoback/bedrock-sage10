@@ -50,7 +50,7 @@
     import {store} from "../../../Vuex/blog/store";
     import mixins from "../../../Util/mixins";
     
-    import PostImage from "../../../Components/PostImage";
+    import PostImage from "../../../Components/ImgSrcSet.vue";
     
     export default {
         props: {

@@ -15,8 +15,8 @@ use function Roots\bundle;
  */
 add_action('wp_enqueue_scripts', function () {
     // Uncomment to enable React or Vue on the site
-    // bundle('react')->enqueueJs();
-    bundle('vue')->enqueueJs();
+    bundle('react')->enqueueJs();
+    // bundle('vue')->enqueueJs();
     bundle('app')->enqueue();
 }, 100);
 
@@ -27,8 +27,8 @@ add_action('wp_enqueue_scripts', function () {
  */
 add_action('enqueue_block_editor_assets', function () {
     // Uncomment to enable React or Vue on the site
-    // bundle('react')->enqueueJs();
-    bundle('vue')->enqueueJs();
+    bundle('react')->enqueueJs();
+    // bundle('vue')->enqueueJs();
     bundle('editor')->enqueue();
 }, 100);
 

@@ -9,14 +9,14 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 use function Roots\bundle;
 
-class BlogPosts extends Block
+class ReactBlog extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Blog Posts';
+    public $name = 'React Blog';
 
     /**
      * The block description.
@@ -44,7 +44,7 @@ class BlogPosts extends Block
      *
      * @var array
      */
-    public $keywords = ['blog', 'post-listing', 'vue'];
+    public $keywords = ['blog', 'post-listing', 'react'];
 
     /**
      * The block post type allow list.
@@ -99,7 +99,7 @@ class BlogPosts extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => true,
+        'mode' => false,
         'multiple' => false,
         'jsx' => true,
     ];
@@ -157,35 +157,35 @@ class BlogPosts extends Block
     public function fields()
     :array
     {
-        $blogPosts = new FieldsBuilder('blog_posts');
+        $blogPosts = new FieldsBuilder('react_blog_posts');
 
         $blogPosts
             ->addText('title')
             ->addWysiwyg('content')
             ->addText('results', ['default_value' => __('Results', 'sage')])
             ->addGroup('post_labels')
-                ->addText(
-                    'category',
-                    [
-                              'default_value' => __('Category', 'sage'),
-                              'wrapper' => ['class' => 'one-half']
-                          ]
-                )
-                ->addText(
-                    'view_more',
-                    [
-                              'default_value' => __('View More', 'sage'),
-                              'wrapper' => ['class' => 'one-half']
-                          ]
-                )
+            ->addText(
+                'category',
+                [
+                    'default_value' => __('Category', 'sage'),
+                    'wrapper' => ['class' => 'one-half']
+                ]
+            )
+            ->addText(
+                'view_more',
+                [
+                    'default_value' => __('View More', 'sage'),
+                    'wrapper' => ['class' => 'one-half']
+                ]
+            )
             ->endGroup()
             ->addTextarea('no_results', ['rows' => 4])
             ->addGroup('post_filters')
-                ->addText('filter_label', ['default_value' => __('Filter By', 'sage')])
-                ->addSelect('filter_type', ['choices' => ['category' => "Categories", 'tags' => "Tags"], 'allow_null' => true])
-                ->addText('search_label', ['default_value' => __('Search', 'sage')])
-                ->addText('search_placeholder', ['default_value' => __('Enter in a keyword', 'sage')])
-                ->addText('filter_search', ['default_value' => __('Search', 'sage')])
+            ->addText('filter_label', ['default_value' => __('Filter By', 'sage')])
+            ->addSelect('filter_type', ['choices' => ['category' => "Categories", 'tags' => "Tags"], 'allow_null' => true])
+            ->addText('search_label', ['default_value' => __('Search', 'sage')])
+            ->addText('search_placeholder', ['default_value' => __('Enter in a keyword', 'sage')])
+            ->addText('filter_search', ['default_value' => __('Search', 'sage')])
             ->endGroup();
 
 

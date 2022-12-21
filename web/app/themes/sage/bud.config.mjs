@@ -21,8 +21,8 @@ export default async (app) => {
 		 */
 		.alias({
 			"@sageAdmin": "@src/admin_assets",
-			// "@sageReact": "@src/react",
-			"@sageVue": "@src/vue",
+			"@sageReact": "@src/react",
+			// "@sageVue": "@src/vue",
 		})
 
 		/**
@@ -34,9 +34,10 @@ export default async (app) => {
 			app: ["@scripts/app", "@styles/app"],
 			editor: ["@scripts/editor", "@styles/editor"],
 			admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
-			// react: ["@sageReact/app"],
-			vue: ["@sageVue/app"],
-			blog: ['@sageVue/Pages/Blog/index']
+			react: ["@sageReact/app"],
+			// vue: ["@sageVue/app"],
+			// blog: ['@sageVue/Pages/Blog/index']
+			blog: ['@sageReact/Pages/blog-index']
 		})
 
 		/**
@@ -52,8 +53,6 @@ export default async (app) => {
 		.watch(
 			[
 				"app/**/*",
-				app.path("@scripts/**/*"),
-				app.path("@styles/**/*"),
 				// "resources/react/**/*", // Uncomment if using React
 				"resources/vue/**/*", // Uncomment if using Vue
 				"resources/views/**/*",

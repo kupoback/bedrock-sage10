@@ -1,16 +1,18 @@
-import Post from "./Components/Post";
 // Example Data
-import {posts} from "../../../Util/posts.json"
+import {posts, total} from "../../../Util/posts.json"
+
+/**
+ * React Components
+ */
+import Posts from "../../../Redux/features/blog/Posts"
 
 function BlogListing({}) {
+	const resultsSpanElm = document.getElementById('results-count');
+	resultsSpanElm.innerText = `: ${total.toString()}`
 
 	return (
 		<div className="blog-listing__results">
-			{posts.map(post =>
-				<Post key={post.id}
-				      post={post}
-				      firstItem={post.id === posts[0]?.id}
-				      lastItem={post.id === posts.findLast(x => true)?.id}/>)}
+			<Posts />
 		</div>
 	);
 }

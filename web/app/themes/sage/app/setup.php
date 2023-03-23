@@ -81,7 +81,7 @@ add_action('after_setup_theme', function () {
     /**
      * Disable the default block patterns.
      *
-     * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-the-default-block-patterns
+     * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#responsive-embedded-content
      */
     remove_theme_support('core-block-patterns');
 
@@ -124,7 +124,7 @@ add_action('after_setup_theme', function () {
     /**
      * Enable selective refresh for widgets in customizer.
      *
-     * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
+     * @link https://developer.wordpress.org/reference/functions/add_theme_support/#customize-selective-refresh-widgets
      */
     add_theme_support('customize-selective-refresh-widgets');
 

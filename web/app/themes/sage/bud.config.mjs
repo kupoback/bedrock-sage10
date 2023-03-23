@@ -26,7 +26,8 @@ export default async (app) => {
 		})
 
 		/**
-		 * Application entry points
+		 * Application entry points. You can add additional entries to specific
+		 * CSS and/or JS files for compiling with their own unique file name
 		 *
 		 * Paths are relative to your resources directory
 		 */
@@ -35,9 +36,9 @@ export default async (app) => {
 			editor: ["@scripts/editor", "@styles/editor"],
 			admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
 			react: ["@sageReact/app"],
+			blog: ['@sageReact/Pages/blog-index']
 			// vue: ["@sageVue/app"],
 			// blog: ['@sageVue/Pages/Blog/index']
-			blog: ['@sageReact/Pages/blog-index']
 		})
 
 		/**

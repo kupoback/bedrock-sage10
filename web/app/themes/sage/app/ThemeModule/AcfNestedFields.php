@@ -18,7 +18,7 @@ class AcfNestedFields
         if (is_home()) {
             $this->postId = get_option('page_for_posts');
         } elseif (is_front_page()) {
-            $this->postId = get_option('page_for_front');
+            $this->postId = get_option('page_on_front');
         }
     }
 

@@ -1,0 +1,28 @@
+<?php
+
+namespace DummyNamespace;
+
+use Log1x\AcfComposer\Partial;
+use StoutLogic\AcfBuilder\FieldNameCollisionException;
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
+class DummyClass extends Partial
+{
+    /**
+     * The partial field group.
+     *
+     * @return FieldsBuilder
+     * @throws FieldNameCollisionException
+     *
+     * @link https://github.com/Log1x/acf-builder-cheatsheet
+     */
+    public function fields()
+    :FieldsBuilder
+    {
+        $DummyCamel = new FieldsBuilder('DummySnake');
+
+        // Start using -> build methods here
+
+        return $DummyCamel;
+    }
+}

@@ -1,5 +1,7 @@
 <?php
 
+use function Roots\bootloader;
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -10,9 +12,8 @@
 | don't have to worry about manually loading any of our classes later on.
 |
 */
-
 if (! file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
-    wp_die(__('Error locating autoloader. Please run <code>composer install</code>.', 'sage'));
+    wp_die(__('Error locating autoloader. Please run <code>composer install</code> in the theme folder.', 'sage'));
 }
 
 require $composer;
@@ -25,22 +26,22 @@ require $composer;
 | The first thing we will do is schedule a new Acorn application container
 | to boot when WordPress is finished loading the theme. The application
 | serves as the "glue" for all the components of Laravel and is
-| the IoC container for the system binding all of the various parts.
+| the IoC container for the system binding all the various parts.
 |
 */
 
-try {
-    \Roots\bootloader();
-} catch (Throwable $e) {
+if (! function_exists('\Roots\bootloader')) {
     wp_die(
         __('You need to install Acorn to use this theme.', 'sage'),
         '',
         [
-            'link_url' => 'https://docs.roots.io/acorn/2.x/installation/',
+            'link_url' => 'https://roots.io/acorn/docs/installation/',
             'link_text' => __('Acorn Docs: Installation', 'sage'),
         ]
     );
 }
+
+bootloader()->boot();
 
 /*
 |--------------------------------------------------------------------------
@@ -53,13 +54,20 @@ try {
 | is registered alongside Sage.
 |
 */
-
-collect(['setup', 'filters'])
+collect(
+    [
+        'setup',
+        'filters',
+        'Classes/init',
+        'Routes/init',
+        // Add any other additional files here
+    ],
+)
     ->each(function ($file) {
-        if (! locate_template($file = "app/{$file}.php", true, true)) {
+        if (!locate_template($file = "app/$file.php", true, true)) {
             wp_die(
-                /* translators: %s is replaced with the relative file path */
-                sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file)
+            /* translators: %s is replaced with the relative file path */
+                sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file),
             );
         }
     });
@@ -75,5 +83,4 @@ collect(['setup', 'filters'])
 | for Sage when booting.
 |
 */
-
 add_theme_support('sage');

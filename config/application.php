@@ -8,12 +8,15 @@
  * can.
  */
 
+use Dotenv\Repository\Adapter\EnvConstAdapter;
+use Dotenv\Repository\Adapter\PutenvAdapter;
+use Dotenv\Repository\RepositoryBuilder;
 use Roots\WPConfig\Config;
 use Dotenv\Dotenv;
 use function Env\env;
 
 /**
- * Directory containing all of the site's files
+ * Directory containing all the site's files
  *
  * @var string
  */
@@ -28,13 +31,14 @@ $webroot_dir = $root_dir . '/web';
 
 /**
  * Use Dotenv to set required environment variables and load .env file in root
- * .env.local will override .env if it exists
  */
-$env_files = file_exists($root_dir . '/.env.local')
-    ? ['.env', '.env.local']
-    : ['.env'];
+$repository = RepositoryBuilder::createWithNoAdapters()
+                               ->addAdapter(EnvConstAdapter::class)
+                               ->addAdapter(PutenvAdapter::class)
+                               ->immutable()
+                               ->make();
 
-$dotenv = Dotenv::createUnsafeImmutable($root_dir, $env_files, false);
+$dotenv = Dotenv::create($repository, $root_dir, ['.env', '.env.local'], false);
 if (file_exists($root_dir . '/.env')) {
     $dotenv->load();
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
@@ -50,6 +54,13 @@ if (file_exists($root_dir . '/.env')) {
 define('WP_ENV', env('WP_ENV') ?: 'production');
 
 /**
+ * Infer WP_ENVIRONMENT_TYPE based on WP_ENV
+ */
+if (!env('WP_ENVIRONMENT_TYPE') && in_array(WP_ENV, ['production', 'staging', 'development', 'local'])) {
+    Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+}
+
+/**
  * URLs
  */
 Config::define('WP_HOME', env('WP_HOME'));
@@ -62,9 +73,14 @@ Config::define('CONTENT_DIR', '/app');
 Config::define('WP_CONTENT_DIR', $webroot_dir . Config::get('CONTENT_DIR'));
 Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_DIR'));
 
+
 /**
  * DB settings
  */
+if (env('DB_SSL')) {
+    Config::define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
+}
+
 Config::define('DB_NAME', env('DB_NAME'));
 Config::define('DB_USER', env('DB_USER'));
 Config::define('DB_PASSWORD', env('DB_PASSWORD'));
@@ -78,8 +94,8 @@ if (env('DATABASE_URL')) {
 
     Config::define('DB_NAME', substr($dsn->path, 1));
     Config::define('DB_USER', $dsn->user);
-    Config::define('DB_PASSWORD', isset($dsn->pass) ? $dsn->pass : null);
-    Config::define('DB_HOST', isset($dsn->port) ? "{$dsn->host}:{$dsn->port}" : $dsn->host);
+    Config::define('DB_PASSWORD', $dsn->pass ?? null);
+    Config::define('DB_HOST', isset($dsn->port) ? "$dsn->host:$dsn->port" : $dsn->host);
 }
 
 /**
@@ -99,18 +115,31 @@ Config::define('NONCE_SALT', env('NONCE_SALT'));
  */
 Config::define('AUTOMATIC_UPDATER_DISABLED', true);
 Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
+
 // Disable the plugin and theme file editor in the admin
 Config::define('DISALLOW_FILE_EDIT', true);
+
 // Disable plugin and theme updates and installation from the admin
 Config::define('DISALLOW_FILE_MODS', true);
-// Limit the number of post revisions that Wordpress stores (true (default WP): store every revision)
+
+// Limit the number of post revisions that WordPress stores (true (default WP): store every revision)
 Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?: true);
+
+// Set the memory_limit within php.ini but using WordPress' built in define const
+if (env('WP_MEMORY_LIMIT') ?? false) {
+    Config::define('WP_MEMORY_LIMIT', env('WP_MEMORY_LIMIT'));
+}
+
+// Set to override the WP_MEMORY_LIMIT which determines how much RAM a script can consume
+if (env('WP_MAX_MEMORY_LIMIT') ?? false) {
+    Config::define('WP_MAX_MEMORY_LIMIT', env('WP_MAX_MEMORY_LIMIT'));
+}
 
 /**
  * Debugging Settings
  */
 Config::define('WP_DEBUG_DISPLAY', false);
-Config::define('WP_DEBUG_LOG', false);
+Config::define('WP_DEBUG_LOG', env('WP_DEBUG_LOG') ?? false);
 Config::define('SCRIPT_DEBUG', false);
 ini_set('display_errors', '0');
 

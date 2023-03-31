@@ -1,30 +1,41 @@
 {
   "app": {
     "js": [
-      "runtime.8306ad.js",
-      "app.341703.js"
-    ],
-    "css": [
-      "app.a416cb.css"
+      "js/runtime/app.js",
+      "js/app.js"
     ],
     "dependencies": []
   },
   "editor": {
     "js": [
-      "runtime.8306ad.js",
-      "editor.ae0bbf.js"
-    ],
-    "css": [
-      "editor.31d6cf.css"
+      "js/runtime/editor.js",
+      "js/editor.js"
     ],
     "dependencies": [
-      "wp-blocks"
+      "wp-blocks",
+      "wp-hooks"
     ]
   },
-  "react": {
+  "admin": {
     "js": [
-      "runtime.8306ad.js",
-      "react.401c49.js"
+      "js/runtime/admin.js",
+      "js/admin.js"
+    ],
+    "dependencies": []
+  },
+  "sageReact": {
+    "js": [
+      "js/runtime/sageReact.js",
+      "js/sageReact.js"
+    ],
+    "dependencies": [
+      "react"
+    ]
+  },
+  "blog": {
+    "js": [
+      "js/runtime/blog.js",
+      "js/blog.js"
     ],
     "dependencies": [
       "react",

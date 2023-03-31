@@ -1,122 +1,105 @@
 {
-	"name": "roots/bedrock",
-	"type": "project",
-	"license": "MIT",
-	"description": "WordPress boilerplate with Composer, easier configuration, and an improved folder structure",
-	"homepage": "https://roots.io/bedrock/",
-	"authors": [
-		{
-			"name": "Scott Walkinshaw",
-			"email": "scott.walkinshaw@gmail.com",
-			"homepage": "https://github.com/swalkinshaw"
-		},
-		{
-			"name": "Ben Word",
-			"email": "ben@benword.com",
-			"homepage": "https://github.com/retlehs"
-		}
-	],
-	"keywords": [
-		"bedrock",
-		"composer",
-		"roots",
-		"wordpress",
-		"wp",
-		"wp-config"
-	],
-	"support": {
-		"issues": "https://github.com/roots/bedrock/issues",
-		"forum": "https://discourse.roots.io/category/bedrock"
-	},
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://wpackagist.org",
-			"only": [
-				"wpackagist-plugin/*",
-				"wpackagist-theme/*"
-			]
-		},
-		{
-			"type": "composer",
-			"url": "https://prod.bedrock.cliquedomains.com/satispress/"
-		}
-	],
-	"require": {
-		"php": "^8.0.0|^8.1.0",
-		"composer/installers": "^2.1",
-		"vlucas/phpdotenv": "^5.4",
-		"oscarotero/env": "^2.1",
-		"roots/bedrock-autoloader": "^1.0",
-		"roots/bedrock-disallow-indexing": "^2.0",
-		"roots/wordpress": "6.0",
-		"roots/wp-config": "1.0.0",
-		"roots/wp-password-bcrypt": "1.1.0",
-		"clique-bedrock/advanced-custom-fields-pro": "^5.9",
-		"clique-bedrock/gravityforms": "^2.5",
-		"clique-bedrock/updraftplus": "^2.16",
-		"wpackagist-plugin/acf-gravityforms-add-on": "^1.2",
-		"wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.4",
-		"wpackagist-plugin/cookie-notice": "^2.1",
-		"wpackagist-plugin/gravity-forms-wcag-20-form-fields": "^1.7",
-		"wpackagist-plugin/mainwp-child": "^4.1",
-		"wpackagist-plugin/mainwp-child-reports": "^2.0",
-		"wpackagist-plugin/optimus": "^1.6",
-		"wpackagist-plugin/redirection": "^5.0",
-		"wpackagist-plugin/safe-svg": "^2.0",
-		"wpackagist-plugin/stream": "^3.7",
-		"wpackagist-plugin/w3-total-cache": "^2.0",
-		"wpackagist-plugin/wordfence": "^7.5",
-		"wpackagist-plugin/wordpress-seo": "^19.0",
-		"wpackagist-plugin/wp-rest-cache": "^2021.0",
-		"wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0"
-	},
-	"require-dev": {
-		"squizlabs/php_codesniffer": "^3.6.2",
-		"roave/security-advisories": "dev-latest"
-	},
-	"config": {
-		"optimize-autoloader": true,
-		"preferred-install": "dist",
-		"allow-plugins": {
-			"composer/installers": true,
-			"roots/wordpress-core-installer": true
-		}
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true,
-	"extra": {
-		"installer-paths": {
-			"web/app/mu-plugins/{$name}/": [
-				"type:wordpress-muplugin"
-			],
-			"web/app/plugins/{$name}/": [
-				"type:wordpress-plugin"
-			],
-			"web/app/themes/{$name}/": [
-				"type:wordpress-theme"
-			]
-		},
-		"wordpress-install-dir": "web/wp"
-	},
-	"scripts": {
-		"post-update-cmd": [
-			"@remove-default"
-		],
-		"post-root-package-install": [
-			"php -r \"copy('.env.example', '.env');\"",
-			"@remove-default"
-		],
-		"test": [
-			"phpcs"
-		],
-		"remove-default": [
-			"rm -rf web/app/themes/twenty*",
-			"rm -rf web/wp/wp-content/themes/*",
-			"rm -f web/wp/wp-content/plugins/hello.php"
-		]
-	},
-	"scripts-descriptions": {
-		"reset-default": "Removes all the installed default themes, and plugins"
-	}
+    "name": "roots/bedrock",
+    "type": "project",
+    "license": "MIT",
+    "description": "WordPress boilerplate with Composer, easier configuration, and an improved folder structure",
+    "homepage": "https://roots.io/bedrock/",
+    "authors": [
+        {
+            "name": "Scott Walkinshaw",
+            "email": "scott.walkinshaw@gmail.com",
+            "homepage": "https://github.com/swalkinshaw"
+        },
+        {
+            "name": "Ben Word",
+            "email": "ben@benword.com",
+            "homepage": "https://github.com/retlehs"
+        }
+    ],
+    "keywords": [
+        "bedrock",
+        "composer",
+        "roots",
+        "wordpress",
+        "wp",
+        "wp-config"
+    ],
+    "support": {
+        "issues": "https://github.com/roots/bedrock/issues",
+        "forum": "https://discourse.roots.io/category/bedrock"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        },
+        {
+            "type": "composer",
+            "url": "https://prod.bedrock.cliquedomains.com/satispress/"
+        }
+    ],
+    "require": {
+        "php": ">=8.1.0",
+        "composer/installers": "^2.2",
+        "ext-mysqli": "*",
+        "ext-json": "*",
+        "oscarotero/env": "^2.1",
+        "roots/bedrock-autoloader": "^1.0",
+        "roots/bedrock-disallow-indexing": "^2.0",
+        "roots/wordpress": "^6.1",
+        "roots/wp-config": "^1.0.0",
+        "roots/wp-password-bcrypt": "1.1.0",
+        "vlucas/phpdotenv": "^5.5",
+        "clique-bedrock/advanced-custom-fields-pro": "^6.0",
+        "clique-bedrock/gravityforms": "^2.5",
+        "clique-bedrock/updraftplus": "^2.16",
+        "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
+        "wpackagist-plugin/acf-gravityforms-add-on": "^1.2",
+        "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^5.0",
+        "wpackagist-plugin/cookie-notice": "^2.1",
+        "wpackagist-plugin/mainwp-child": "^4.1",
+        "wpackagist-plugin/mainwp-child-reports": "^2.0",
+        "wpackagist-plugin/optimus": "^1.6",
+        "wpackagist-plugin/redirection": "^5.0",
+        "wpackagist-plugin/safe-svg": "^2.0",
+        "wpackagist-plugin/stream": "^3.7",
+        "wpackagist-plugin/w3-total-cache": "^2.0",
+        "wpackagist-plugin/wordfence": "^7.5",
+        "wpackagist-plugin/wordpress-seo": "^20.0",
+        "wpackagist-plugin/wp-rest-cache": "^2023.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "roave/security-advisories": "dev-latest"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "composer/installers": true,
+            "roots/wordpress-core-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "installer-paths": {
+            "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+            "web/app/themes/{$name}/": ["type:wordpress-theme"]
+        },
+        "wordpress-install-dir": "web/wp"
+    },
+    "scripts": {
+        "post-update-cmd": [],
+        "post-root-package-install": ["php -r \"copy('.env.example', '.env');\""],
+        "test": ["phpcs"]
+    },
+    "scripts-descriptions": {
+        "reset-default": "Removes all the installed default themes, and plugins"
+    }
 }

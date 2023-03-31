@@ -5,7 +5,8 @@
 	margin-top:  .5em;
 }
 
-.postbox-container {
+.postbox-container,
+.editor-styles-wrapper {
 	.acf-flexible-content .layout .acf-fc-layout-handle {
 		background: $dark-blue;
 		color:      $white;
@@ -51,7 +52,8 @@
 }
 
 .postbox,
-.acf-postbox {
+.acf-postbox,
+.editor-styles-wrapper {
 	&.hide { display: none !important; }
 }
 
@@ -97,7 +99,8 @@ a.acf-icon.light {
 		.acf-tab-wrap {
 			max-width: 100%;
 		}
-		.acf-postbox {
+		.acf-postbox,
+		.editor-styles-wrapper {
 			.acf-fields {
 				display:         flex;
 				flex-flow:       row wrap;

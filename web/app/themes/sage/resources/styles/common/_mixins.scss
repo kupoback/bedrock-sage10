@@ -1,0 +1,118 @@
+/* Mixins
+===================================== */
+
+
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+    @return $number;
+}
+
+// snippets //
+
+$rem: 16;
+@function rem($val) {
+    @return ($val/$rem) + rem;
+}
+
+@mixin font($font-size, $tracking: null, $leading: null) {
+    font-size: ($font-size / $base-font-size) + rem;
+
+    @if $font-size == 0 and $leading == 0 {
+        line-height: 0;
+    }
+
+    @if $tracking != null {
+        @if $tracking == 0 {
+            letter-spacing: 0;
+        } @else if $tracking == auto or $tracking == normal { // can take 'auto' or 'normal' to trigger default
+            letter-spacing: normal;
+        } @else if unit($tracking) == 'px' {
+            letter-spacing: strip-unit($tracking) / $font-size + em;
+        } @else if unit($tracking) == 'em' {
+            letter-spacing: $tracking;
+        } @else {
+            letter-spacing: $tracking / $font-size + em;
+        }
+    }
+
+    @if $leading != null {
+        @if $leading == auto or $leading == 1.2 { // can take 'auto' or '1.2' to trigger default
+            line-height: 1.2em;
+        } @else if unit($leading) == 'em' {
+            line-height: $leading;
+        } @else {
+            line-height: $leading / $font-size + em;
+        }
+    }
+}
+
+
+
+// style mixins //
+
+@mixin absolute-center() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin vertical-center() {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin horizontal-center() {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin size($width, $height: $width) {
+    @if type-of($width) == 'number' and unitless($width) {
+        $width: $width + px;
+    }
+    @if type-of($height) == 'number' and unitless($height) {
+        $height: $height + px;
+    }
+
+    width: $width;
+    height: $height;
+}
+
+@mixin border-radius($value) {
+    @if type-of($value) == 'number' and unitless($value) {
+        $value: $value + px;
+    }
+    border-radius: $value;
+    background-clip: padding-box;
+}
+
+
+
+// resets //
+
+@mixin list-reset() {
+    margin: 0;
+    padding: 0;
+
+    list-style-type: none;
+}
+
+@mixin button-reset() {
+    margin: 0;
+    padding: 0;
+    appearance: none;
+    background: none;
+    border: none;
+    border-radius: 0;
+}
+
+@mixin micro-clearfix() {
+    content: '';
+    clear: both;
+    display: table-cell;
+}

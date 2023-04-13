@@ -12,7 +12,9 @@
         </div>
     </div>
     <div class="px-4 pb-6 sm:px-6 lg:px-8">
-        <h3 class="text-lg font-bold text-white">{!! $results !!}@if (!is_admin())<span id="results-count">: 0</span>@endif
+        <h3 class="text-lg font-bold text-white">{!! $results !!}@if (!is_admin())
+                <span id="results-count">: 0</span>
+            @endif
         </h3>
     </div>
     <div class="flex px-4 sm:px-6 lg:px-8 ">
@@ -25,15 +27,15 @@
         </aside>
     </div>
     <script type="application/javascript">
-        var BLOG = {
-            api: {!! json_encode(rest_url('sage/v1/blog-posts')) !!},
-            filterLabel: {!! json_encode($post_filters->filter_label ?? '') !!},
-            filterSubmit: {!! json_encode($post_filters->filter_search ?? '') !!},
-            labels: {!! json_encode($post_labels) !!},
-            noResults: {!! json_encode($no_results) !!},
-            searchLabel: {!! json_encode($post_filters->search_label ?? '') !!},
-            searchPlaceholder: {!! json_encode($post_filters->search_placeholder ?? '') !!},
-            taxonomies: {!! $taxonomy ?: [] !!}
+		var BLOG = {
+			api: {!! json_encode(rest_url('sage/v1/blog-posts')) !!},
+			filterLabel: {!! json_encode($post_filters->filter_label ?? '') !!},
+			filterSubmit: {!! json_encode($post_filters->filter_search ?? '') !!},
+			labels: {!! json_encode($post_labels) !!},
+			noResults: {!! json_encode($no_results) !!},
+			searchLabel: {!! json_encode($post_filters->search_label ?? '') !!},
+			searchPlaceholder: {!! json_encode($post_filters->search_placeholder ?? '') !!},
+			taxonomies: {!! $taxonomy ?: [] !!}
         };
     </script>
     <div>

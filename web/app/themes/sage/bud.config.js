@@ -1,7 +1,10 @@
 /**
- * @typedef {import("@roots/bud").Bud} bud
+ * Compiler configuration
  *
- * @param {bud} bud
+ * @see {@link https://roots.io/docs/sage sage documentation}
+ * @see {@link https://bud.js.org/guides/configure bud.js configuration guide}
+ *
+ * @param {import('@roots/bud').Bud} app
  */
 module.exports = async (bud) => {
     bud
@@ -16,21 +19,6 @@ module.exports = async (bud) => {
          * @type @sageReact This integrates React components to be compiled
          * @type @sageVue   This integrated Vue 3 components to be compiled
          */
-        .alias({
-            "@sageAdmin": "@src/admin_assets",
-            // React script alias'
-            "@sageReact": "@src/react",
-            "@sageRedux": "@src/react/Redux",
-            "@reactComponent": "@src/react/Components",
-            "@reactPages": "@src/react/Pages",
-            "@reactUtil": "@src/react/Util"
-            // Vue script alias'
-            // "@sageVue": "@src/vue",
-            // "@vueComponents": "@src/vue/Components",
-            // "@vuePages": "@src/vue/Pages",
-            // "@vueUtil": "@src/vue/Util",
-            // "@sageVuex": "@src/vue/Vuex",
-        })
 
         /**
          * Application entry points. You can add additional entries to specific
@@ -39,23 +27,35 @@ module.exports = async (bud) => {
          * Paths are relative to your resources directory
          * @see {@link https://bud.js.org/docs/bud.entry/}
          */
-        .entry({
-            app: ["@scripts/app", "@styles/app"],
-            editor: ["@scripts/editor", "@styles/editor"],
-            admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
-            sageReact: ["@sageReact/app"],
-            blog: ['@sageReact/Pages/Blog/blog-index'],
-            // Vue Scripts
-            // vue: ["@sageVue/app"],
-            // blog: ['@sageVue/Pages/Blog/index'],
-        })
 
         /**
          * Directory contents to be included in the compilation
          * @see {@link https://bud.js.org/docs/bud.assets/}
          */
-        .assets(["images", "fonts"])
+        .assets(["images", "fonts"]);
 
+    bud
+        /**
+         * URI of the `public` directory
+         *
+         * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
+         */
+        .setPublicPath("/app/themes/sage/public/");
+
+
+    bud
+        /**
+         * This is used to generate sourcemaps but only when
+         * Bud ran in development mode
+         */
+        .when(bud.isDevelopment, bud => bud.devtool())
+        /**
+         * This is used to minimize all the files when Bud
+         * runs in production mode
+         */
+        .when(bud.isProduction, bud => bud.minimize());
+
+    bud
         /**
          * Matched files trigger a page reload when modified
          * @see {@link https://bud.js.org/docs/bud.watch/}
@@ -69,81 +69,33 @@ module.exports = async (bud) => {
                 "resources/views/**/*",
                 "resources/vue/**/*",
             ]
-        )
+        );
 
-        /**
-         * Target URL to proxy for your local dev server.
-         *
-         * This should be the URL you use to visit your local development server.
-         *
-         * If using Laravel/Valet, use `valet secure sitename` to mimic the dev/staging/prod
-         * server as closely as possible and eliminate http/https cross-contamination
-         * @see {@link https://bud.js.org/docs/bud.proxy/}
-         */
-        .proxy("https://boilerplate8.1.test")
-
-        /**
-         * Development URL to be used in the browser.
-         *
-         * @see {@link https://bud.js.org/docs/bud.serve/}
-         */
-        .serve("http://localhost:3000")
-
-        /**
-         * URI of the `public` directory
-         *
-         * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
-         */
-        .setPublicPath("/app/themes/sage/public/")
-
-        /**
-         * Generate WordPress `theme.json`
-         *
-         * @note This overwrites `theme.json` on every build.
-         *
-         * @see {@link https://bud.js.org/extensions/sage/theme.json/}
-         * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/}
-         */
+    /**
+     * Generate WordPress `theme.json`
+     *
+     * @note This overwrites `theme.json` on every build.
+     *
+     * @see {@link https://bud.js.org/extensions/sage/theme.json/}
+     * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/}
+     */
+    bud
         .wpjson
-        .settings(
-            {
-                color: {
-                    custom: false,
-                    customDuotone: false,
-                    customGradient: false,
-                    defaultDuotone: false,
-                    defaultGradients: false,
-                    defaultPalette: false,
-                    duotone: [],
-                },
-                layout: {
-                    "contentSize": "1536px",
-                },
-                custom: {
-                    spacing: {},
-                    typography: {
-                        'font-size': {},
-                        'line-height': {},
-                    },
-                },
-                spacing: {
-                    padding: false,
-                    margin: false,
-                    units: ['px', '%', 'em', 'rem', 'vw', 'vh'],
-                },
-                typography: {
-                    customFontSize: false,
-                },
-            }
-        )
+        .set('settings.color.custom', false)
+        .set('settings.color.customDuotone', false)
+        .set('settings.color.customGradient', false)
+        .set('settings.color.defaultDuotone', false)
+        .set('settings.color.defaultGradients', false)
+        .set('settings.color.defaultPalette', false)
+        .set('settings.color.duotone', [])
+        .set('settings.custom.spacing', {})
+        .set('settings.custom.typography.font-size', {})
+        .set('settings.custom.typography.line-height', {})
+        .set('settings.spacing.padding', true)
+        .set('settings.spacing.units', ['px', '%', 'em', 'rem', 'vw', 'vh'])
+        .set('settings.typography.customFontSize', false)
         .useTailwindColors()
         .useTailwindFontFamily()
         .useTailwindFontSize()
-        .enable()
-
-        /**
-         * This is used to generate sourcemaps but only when
-         * Bud ran in development mode
-         */
-        .when(bud.isDevelopment, bud => bud.devtool())
+        .enable();
 };

@@ -48,4 +48,4 @@ const main = (err) => {
  * @see https://webpack.js.org/api/hot-module-replacement
  */
 domReady(main);
-import.meta.webpackHot?.accept(main);
+if (import.meta.webpackHot) import.meta.webpackHot.accept(console.error);

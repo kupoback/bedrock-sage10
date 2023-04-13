@@ -1,0 +1,18 @@
+{
+    "alias": {
+        "@sageAdmin": "@src/admin_assets",
+        "@sageReact": "@src/react",
+        "@sageRedux": "@src/react/Redux",
+        "@reactComponent": "@src/react/Components",
+        "@reactPages": "@src/react/Pages",
+        "@reactUtil": "@src/react/Util"
+    },
+    "entry": {
+        "app": ["@scripts/app", "@styles/app"],
+        "editor": ["@scripts/editor", "@styles/editor"],
+        "admin": ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
+        "sageReact": ["@sageReact/app"],
+        "blog": ["@sageReact/Pages/Blog/blog-index"]
+    },
+    "minimize": true
+}

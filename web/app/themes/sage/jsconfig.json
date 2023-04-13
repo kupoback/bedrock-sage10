@@ -19,7 +19,18 @@
             "@vueUtil/*": ["vue/Util/**/*"],
             "@sageVuex/*": ["vue/Vuex/**/*"]
         },
-        "types": ["@roots/bud", "@roots/sage", "@roots/bud-tailwindcss"]
+        "types": [
+            "@roots/bud",
+            "@roots/bud-react",
+            "@roots/bud-postcss",
+            "@roots/bud-sass",
+            "@roots/bud-preset-recommend",
+            "@roots/bud-preset-wordpress",
+            "@roots/bud-tailwindcss",
+            "@roots/bud-wordpress-theme-json",
+            "@roots/bud-vue",
+            "@roots/sage"
+        ]
     },
     "include": ["bud.config.js", "resources"],
     "exclude": ["node_modules", "public"]

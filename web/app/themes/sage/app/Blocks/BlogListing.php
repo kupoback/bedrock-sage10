@@ -169,6 +169,7 @@ class BlogListing extends Block
             );
 
         return $fields
+            ->put('localized', bundle('blog'))
             ->toArray();
     }
 

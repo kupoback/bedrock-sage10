@@ -35,7 +35,7 @@
 			noResults: {!! json_encode($no_results) !!},
 			searchLabel: {!! json_encode($post_filters->search_label ?? '') !!},
 			searchPlaceholder: {!! json_encode($post_filters->search_placeholder ?? '') !!},
-			taxonomies: {!! $taxonomy ?: [] !!}
+			taxonomies: {!! !empty($taxonomy) ? $taxonomy : [] !!}
         };
     </script>
     <div>

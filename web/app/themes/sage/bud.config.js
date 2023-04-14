@@ -42,7 +42,6 @@ module.exports = async (bud) => {
          */
         .setPublicPath("/app/themes/sage/public/");
 
-
     bud
         /**
          * This is used to generate sourcemaps but only when

@@ -5,7 +5,7 @@ namespace App\Classes;
 use acf_field;
 use stdClass;
 
-class AcfNavMenu extends acf_field
+class AcfNavMenuField extends acf_field
 {
     /**
      * Sets up some default values and delegates work to the parent constructor.
@@ -186,4 +186,4 @@ class AcfNavMenu extends acf_field
     }
 }
 
-new AcfNavMenu();
+new AcfNavMenuField();

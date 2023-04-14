@@ -20,7 +20,7 @@ class PostTypes
     {
         $post_types = [
             // Post Type Name => Post Type Registration Method
-            'events' => $this->eventsPostType(), //example
+            // 'events' => $this->eventsPostType(), //example
         ];
 
         if (!empty($post_types)) {
@@ -28,8 +28,6 @@ class PostTypes
                 ->each(function ($pt_args, $pt_name) {
                     register_post_type($pt_name, $pt_args);
                 }));
-            // Flush the permalinks
-            // flush_rewrite_rules();
         }
     }
 

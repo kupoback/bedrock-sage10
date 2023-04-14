@@ -197,4 +197,15 @@ add_action('init', function () {
 
 // Adds the ACF Nav menu custom field to the selectable options
 class_exists('ACF')
-    && add_action('acf/include_field_types', fn () => include_once 'Classes/AcfNavMenu.php');
+    && add_action('acf/include_field_types', fn () => include_once 'Classes/AcfNavMenuField.php');
+
+/**
+ * Manage Optimus License Key through .env
+ */
+add_action('admin_init', function () {
+    if (class_exists('Optimus_HQ')) {
+        if (\Optimus_HQ::is_locked() && env('OPTIMUS_KEY')) {
+            update_site_option('optimus_key', env('OPTIMUS_KEY'));
+        }
+    }
+}, 100);

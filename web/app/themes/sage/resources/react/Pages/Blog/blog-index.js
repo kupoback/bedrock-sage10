@@ -22,20 +22,16 @@ if (typeof BLOG !== 'undefined') {
             .render(<BlogListing/>);
     }
 
-    // if (frameworkPaginationElm) {
-    //     const blogPaginationRoot = createRoot(frameworkPaginationElm);
-    //     blogPaginationRoot
-    //         .render(
-    //             <StrictMode>
-    //                 <Provider store={store}>
-    //                     <Pagination
-    //                         itemsPerPage={3}
-    //                         navClassNames="my-10 pt-10 pb-5 blog-listing__results-pagination"
-    //                     />
-    //                 </Provider>
-    //             </StrictMode>,
-    //         );
-    // }
+    if (frameworkPaginationElm) {
+        const blogPaginationRoot = createRoot(frameworkPaginationElm);
+        blogPaginationRoot
+            .render(
+                <Pagination
+                    itemsPerPage={3}
+                    navClassNames="my-10 pt-10 pb-5 blog-listing__results-pagination"
+                />
+            );
+    }
 
     if (frameworkFiltersElm) {
         const blogFiltersRoot = createRoot(frameworkFiltersElm);

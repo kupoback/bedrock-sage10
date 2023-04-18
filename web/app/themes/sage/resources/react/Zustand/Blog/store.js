@@ -3,11 +3,7 @@ import axios from "axios";
 import {devtools} from "zustand/middleware";
 import {addRemoveTerm} from "../../Util/mixins";
 
-
-const state = (
-    set,
-    get
-) => (
+const state = (set, get) => (
     {
         fetchErr: false,
         loading: false,
@@ -48,6 +44,12 @@ const state = (
             }
             set({loading: false})
         },
+        /**
+         * Updates the page selected from Pagination
+         *
+         * @param {Number} page The page selected
+         */
+        setPage: page => set(() => ({page})),
         /**
          * Sets the input field's search text
          *

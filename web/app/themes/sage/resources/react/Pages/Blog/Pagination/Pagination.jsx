@@ -1,6 +1,7 @@
 import ReactPaginate from "react-paginate"
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPosts, setCurrentPage} from "@reduxBlog/postsSlice";
+import blogStore from "@zustandBlog/store";
 
 import ChevronRight from "@reactComponent/Icons/ChevronRight";
 import ChevronLeft from "@reactComponent/Icons/ChevronLeft";
@@ -14,13 +15,14 @@ import ChevronLeft from "@reactComponent/Icons/ChevronLeft";
  * @constructor
  */
 function Pagination({itemsPerPage, navClassNames}) {
-    const getMaxCount = useSelector((state) => state.maxPages)
-    const dispatch = useDispatch();
+    const {fetch, maxPages, setPage} = blogStore(({fetch, maxPages, setPage}) => ({fetch, maxPages, setPage}))
+    // const dispatch = useDispatch();
+
+
     const handlePageClick = ({selected}) => {
         const blogElm = document.getElementById('framework-blog');
-        const page = selected + 1
-        dispatch(setCurrentPage(page))
-        dispatch(fetchPosts({page}))
+        setPage(selected + 1);
+        fetch(true);
         if (blogElm) {
             let offsetTop = 100;
             if (window.innerWidth > 769) {
@@ -34,7 +36,7 @@ function Pagination({itemsPerPage, navClassNames}) {
         }
     };
 
-    if (getMaxCount < 1 )return '';
+    if (maxPages < 1 )return '';
 
     return (
         <nav className={navClassNames}>
@@ -48,7 +50,7 @@ function Pagination({itemsPerPage, navClassNames}) {
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={itemsPerPage}
                 pageClassName="page h-8 w-8 m-0 rounded border border-gray-100 text-center leading-8 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
-                pageCount={getMaxCount}
+                pageCount={maxPages}
                 pageLinkClassName="page-link text-white"
                 previousLabel={<ChevronLeft />}
                 previousClassName="previous-indicator inline-flex h-8 w-8 m-0 items-center text-white justify-center rounded border border-gray-100 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"

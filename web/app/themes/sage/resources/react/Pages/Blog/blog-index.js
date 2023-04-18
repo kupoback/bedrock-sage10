@@ -2,13 +2,7 @@
  * React Scripts
  */
 import React, {StrictMode} from "react";
-import ReactDom from "react-dom";
-import { Provider } from "react-redux";
-
-/**
- * React Store
- */
-import {store} from "@sageRedux/features/blog/store"
+import {createRoot} from "react-dom";
 
 /**
  * React Components
@@ -18,30 +12,34 @@ import BlogFilter from "./BlogFilter";
 import Pagination from "./Pagination";
 
 if (typeof BLOG !== 'undefined') {
-    ReactDom.render(
-        <StrictMode>
-            <Provider store={store}>
-                <BlogListing />
-            </Provider>
-        </StrictMode>,
-        document.getElementById('framework-blog')
-    )
+    const frameworkBlogElm = document.getElementById('framework-blog');
+    const frameworkPaginationElm = document.getElementById('framework-pagination');
+    const frameworkFiltersElm = document.getElementById('framework-filters');
 
-    ReactDom.render(
-        <StrictMode>
-            <Provider store={store}>
-                <Pagination itemsPerPage={3} navClassNames="my-10 pt-10 pb-5 blog-listing__results-pagination"/>
-            </Provider>
-        </StrictMode>,
-        document.getElementById('framework-pagination')
-    )
+    if (frameworkBlogElm) {
+        const blogRoot = createRoot(frameworkBlogElm);
+        blogRoot
+            .render(<BlogListing/>);
+    }
 
-    ReactDom.render(
-        <StrictMode>
-            <Provider store={store}>
-                <BlogFilter />
-            </Provider>
-        </StrictMode>,
-        document.getElementById('framework-filters')
-    )
+    // if (frameworkPaginationElm) {
+    //     const blogPaginationRoot = createRoot(frameworkPaginationElm);
+    //     blogPaginationRoot
+    //         .render(
+    //             <StrictMode>
+    //                 <Provider store={store}>
+    //                     <Pagination
+    //                         itemsPerPage={3}
+    //                         navClassNames="my-10 pt-10 pb-5 blog-listing__results-pagination"
+    //                     />
+    //                 </Provider>
+    //             </StrictMode>,
+    //         );
+    // }
+
+    if (frameworkFiltersElm) {
+        const blogFiltersRoot = createRoot(frameworkFiltersElm);
+        blogFiltersRoot
+            .render(<BlogFilter/>);
+    }
 }

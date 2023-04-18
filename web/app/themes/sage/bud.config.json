@@ -5,7 +5,9 @@
         "@sageRedux": "@src/react/Redux",
         "@reactComponent": "@src/react/Components",
         "@reactPages": "@src/react/Pages",
-        "@reactUtil": "@src/react/Util"
+        "@reactUtil": "@src/react/Util",
+        "@reduxBlog": "@src/react/Redux/features/blog",
+        "@zustandBlog": "@src/react/Zustand/Blog"
     },
     "entry": {
         "app": ["@scripts/app", "@styles/app"],

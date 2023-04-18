@@ -27,9 +27,12 @@
         "@roots/sage": "^6.12.0",
         "axios": "^1.2",
         "mitt": "^3.0",
+        "react": "^18.2",
+        "react-dom": "^18.2",
         "react-paginate": "^8.1",
         "react-redux": "^8.0",
-        "vuex": "^4.1"
+        "vuex": "^4.1",
+        "zustand": "^4.3.7"
     },
     "dependencies": {}
 }

@@ -1,6 +1,6 @@
 import ReactPaginate from "react-paginate"
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPosts, setCurrentPage} from "@sageRedux/features/blog/postsSlice";
+import {fetchPosts, setCurrentPage} from "@reduxBlog/postsSlice";
 
 import ChevronRight from "@reactComponent/Icons/ChevronRight";
 import ChevronLeft from "@reactComponent/Icons/ChevronLeft";

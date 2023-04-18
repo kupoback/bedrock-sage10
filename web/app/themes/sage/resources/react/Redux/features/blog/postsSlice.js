@@ -34,9 +34,13 @@ export const fetchPosts = createAsyncThunk(
         taxonomySelected.length && (config.params.categories = taxonomySelected)
     }
 
-    const response = await axios
-        .get(`${api}/${page}`, config);
-    return response.data
+    try {
+        const response = await axios
+            .get(`${api}/${page}`, config);
+        return response.data
+    } catch (err) {
+        console.error(err);
+    }
 });
 
 export const postsSlice = createSlice({

@@ -1,4 +1,4 @@
-import ImgSrcSet from "react/Components/ImgSrcSet";
+import ImgSrcSet from "@reactComponent/ImgSrcSet";
 
 function BlogPost({post, firstItem, lastItem}) {
 	const {

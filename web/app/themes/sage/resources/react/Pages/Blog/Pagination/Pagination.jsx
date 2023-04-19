@@ -15,13 +15,13 @@ import ChevronLeft from "@reactComponent/Icons/ChevronLeft";
  * @constructor
  */
 function Pagination({itemsPerPage, navClassNames}) {
-    const {fetch, maxPages, setPage} = blogStore(({fetch, maxPages, setPage}) => ({fetch, maxPages, setPage}))
+    const {fetch, maxPages} = blogStore(({fetch, maxPages}) => ({fetch, maxPages}))
     // const dispatch = useDispatch();
 
 
     const handlePageClick = ({selected}) => {
         const blogElm = document.getElementById('framework-blog');
-        setPage(selected + 1);
+        blogStore.setState(() => ({page: selected + 1}))
         fetch(true);
         if (blogElm) {
             let offsetTop = 100;

@@ -35,6 +35,8 @@ module.exports = async (bud) => {
         .assets(["images", "fonts"]);
 
     bud
+        .setUrl('http://localhost:3000')
+        .setProxyUrl('https://boilerplate8.1.test')
         /**
          * URI of the `public` directory
          *

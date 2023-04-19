@@ -1,0 +1,25 @@
+/* React Block
+===================================== */
+
+/* React Pagination
+===================================== */
+#framework-pagination {
+    li {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    a {
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+    }
+    .disabled {
+        background: transparent;
+        border-color: rgb(255 255 255 / var(--tw-text-opacity));
+        &:hover {
+            cursor: default;
+        }
+        a {
+            cursor: default;
+        }
+    }
+}

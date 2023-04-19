@@ -4,34 +4,43 @@ import blogStore from "@zustandBlog/store";
 
 import Button from "@reactComponent/Button";
 import CategoryItem from "./Components/CategoryItem";
+import blog from "../../../../vue/Pages/Blog/Blog.vue";
 
 function BlogFilter({}) {
     const {filterLabel, filterSubmit, searchLabel, searchPlaceholder, taxonomies} = BLOG;
-    const {fetch, resetState, setSearchText, updateTaxonomySelected} = blogStore(
+    const {fetch, reset, updateTaxonomySelected} = blogStore(
         (
             {
                 fetch,
-                resetState,
-                setSearchText,
+                reset,
                 updateTaxonomySelected
             }
         ) => ({
             fetch,
-            resetState,
-            setSearchText,
+            reset,
             updateTaxonomySelected
         })
     )
 
     /**
+     * Sets the page state to be the first page
+     *
+     * @returns {*}
+     */
+    const setToFirstPage = () => blogStore.setState(() => ({page: 1}))
+    /**
      * Makes a fetch of blog posts restarting the page
      */
-    const submitSearch = () => fetch(true);
+    const submitSearch = () => {
+        setToFirstPage()
+        fetch(true);
+    }
     /**
      * Resets the search form entirely
      */
     const resetForm = () => {
-        resetState()
+        reset()
+        document.getElementById('blog-search').value = '';
         submitSearch()
     }
 
@@ -60,7 +69,7 @@ function BlogFilter({}) {
                     <input type="text"
                            id="blog-search"
                            placeholder={searchPlaceholder}
-                           onChange={({target}) => setSearchText(target.value)}
+                           onChange={({target}) => blogStore.setState(() => ({searchText: target.value}))}
                            onKeyDown={({key}) => key === 'Enter' && submitSearch()}
                            className="form-control block w-full px-3 py-1.5 text-base font-normal caret-yellow-500 text-gray-700 bg-white bg-clip-padding border-solid border-2 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yellow-500 focus:outline-none focus:shadow-none"/>
                 </fieldset>

@@ -3,17 +3,21 @@ import axios from "axios";
 import {devtools} from "zustand/middleware";
 import {addRemoveTerm} from "../../Util/mixins";
 
+const initialState = {
+    fetchErr: false,
+    loading: false,
+    maxPages: 0,
+    page: 1,
+    posts: [],
+    searchText: '',
+    taxonomySelected: [],
+    total: 0,
+    updateSearch: false,
+}
+
 const state = (set, get) => (
     {
-        fetchErr: false,
-        loading: false,
-        maxPages: 0,
-        page: 1,
-        posts: [],
-        searchText: '',
-        taxonomySelected: [],
-        total: 0,
-        updateSearch: false,
+        ...initialState,
         /**
          * Fetches posts from the API
          *
@@ -51,12 +55,6 @@ const state = (set, get) => (
          */
         setPage: page => set(() => ({page})),
         /**
-         * Sets the input field's search text
-         *
-         * @param {String} searchText Updates the search text
-         */
-        setSearchText: searchText => set(() => ({searchText})),
-        /**
          * Updates the taxonomy selected array with adding
          * or removing the term from the array
          *
@@ -73,17 +71,7 @@ const state = (set, get) => (
         /**
          * Resets the entire state back to the default
          */
-        resetState: () => set({
-            fetchErr: false,
-            loading: false,
-            maxPages: 0,
-            page: 1,
-            posts: [],
-            searchText: '',
-            taxonomySelected: [],
-            total: 0,
-            updateSearch: false,
-        }),
+        reset: () => set(initialState),
     }
 )
 

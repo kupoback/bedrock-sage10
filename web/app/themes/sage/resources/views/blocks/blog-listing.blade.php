@@ -12,18 +12,17 @@
         </div>
     </div>
     <div class="px-4 pb-6 sm:px-6 lg:px-8">
-        <h3 class="text-lg font-bold text-white">{!! $results !!}@if (!is_admin())
-                <span id="results-count">: 0</span>
-            @endif
+        <h3 class="text-lg font-bold text-white">
+            {!! $results !!}@if (!is_admin())<span id="results-count">: 0</span>@endif
         </h3>
     </div>
     <div class="flex px-4 sm:px-6 lg:px-8 ">
         <div class="flex-1 w-9/12">
-            <div id="framework-blog"></div>
-            <div id="framework-pagination"></div>
+            <div id="blog"></div>
+            <div id="blog-pagination"></div>
         </div>
         <aside class="pl-8 flex-initial w-3/12">
-            <div id="framework-filters"></div>
+            <div id="blog-filters"></div>
         </aside>
     </div>
     <script type="application/javascript">

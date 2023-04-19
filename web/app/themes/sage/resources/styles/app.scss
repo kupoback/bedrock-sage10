@@ -2,6 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+// Common
 @import "common/reset";
 @import "common/variables";
 @import "common/fonts";
@@ -12,3 +13,6 @@
 
 // Blocks
 @import "blocks/blog";
+
+// Pages
+@import "pages/search";

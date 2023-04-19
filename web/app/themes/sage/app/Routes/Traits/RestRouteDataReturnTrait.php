@@ -27,7 +27,10 @@ trait RestRouteDataReturnTrait
                 $post_date  = new Carbon($post->post_date);
                 $image      = has_post_thumbnail($post) ? ImageHelper::generateImgData(get_post_thumbnail_id($post)) : [];
                 $excerpt    = (!empty($post->post_excerpt) ? $post->post_excerpt : $post->post_content);
-                $categories = wp_get_post_categories($post->ID, ['fields' => 'names']);
+                $categories = false;
+                if ($post->post_type === 'post') {
+                    $categories = wp_get_post_categories($post->ID, ['fields' => 'names']);
+                }
 
                 return [
                     'author'     => get_the_author_meta('display_name', $post->post_author),
@@ -37,7 +40,7 @@ trait RestRouteDataReturnTrait
                         'date' => $post_date->format('M j')
                     ],
                     'dateString' => $post_date->format('F j, Y'),
-                    'excerpt'    => html_entity_decode(Helper::generateExcept($excerpt, 25)),
+                    'excerpt'    => html_entity_decode(Helper::generateExcept($excerpt) ?: ''),
                     'id'         => $post->ID,
                     'image'      => (object) $image,
                     'permalink'  => get_the_permalink($post),

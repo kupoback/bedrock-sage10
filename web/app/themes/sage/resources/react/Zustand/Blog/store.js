@@ -1,23 +1,26 @@
+/**
+ * React Plugins
+ */
 import {create} from 'zustand'
-import axios from "axios";
 import {devtools} from "zustand/middleware";
-import {addRemoveTerm} from "../../Util/mixins";
 
-const initialState = {
-    fetchErr: false,
-    loading: false,
-    maxPages: 0,
-    page: 1,
-    posts: [],
-    searchText: '',
-    taxonomySelected: [],
-    total: 0,
-    updateSearch: false,
-}
+/**
+ * Sage Constants
+ */
+import {apiRequest} from "@reactUtil/api"
+import {addRemoveTerm} from "@reactUtil/mixins";
 
 const state = (set, get) => (
     {
-        ...initialState,
+        fetchErr: false,
+        loading: false,
+        maxPages: 0,
+        page: 1,
+        posts: [],
+        searchText: '',
+        taxonomies: [],
+        total: 0,
+        updateSearch: false,
         /**
          * Fetches posts from the API
          *
@@ -28,53 +31,49 @@ const state = (set, get) => (
             set({fetchErr: false, loading: true})
             const {api} = BLOG;
             const config = {params: {}}
-            const {page, searchText, taxonomySelected} = get();
+            const {page} = get();
 
             if (updateSearch) {
-                const {searchText, taxonomySelected} = get();
+                const {searchText, taxonomies} = get();
                 searchText && (config.params.s = searchText);
-                taxonomySelected.length && (config.params.categories = taxonomySelected)
+                taxonomies.length && (config.params.categories = taxonomies)
             }
 
-            try {
-                const response = await axios
-                    .get(`${api}/${page}`, config);
+            const {fetchErr, maxPages, posts, total} = await apiRequest(`${api}/${page}`, config)
 
-                const {maxPages, posts, total} = await response.data;
-                set(() => ({maxPages, posts, total}))
-            } catch (err) {
-                console.error(err);
-                set({fetchErr: true})
-            }
+            if (fetchErr) set({fetchErr: true})
+            else set(() => ({maxPages, posts, total}))
+
             set({loading: false})
         },
-        /**
-         * Updates the page selected from Pagination
-         *
-         * @param {Number} page The page selected
-         */
-        setPage: page => set(() => ({page})),
         /**
          * Updates the taxonomy selected array with adding
          * or removing the term from the array
          *
          * @param {String} term The term slug
          */
-        updateTaxonomySelected: (term) => set(() => ({taxonomySelected: addRemoveTerm(get().taxonomySelected, term)})),
+        updateTaxonomySelected: (term) => set(() => ({taxonomies: addRemoveTerm(get().taxonomies, term)})),
         /**
          * Checks if the term is in the array or not
          *
          * @param {String} term The term slug
          * @returns {*}
          */
-        taxInArray: term => get().taxonomySelected.includes(term),
-        /**
-         * Resets the entire state back to the default
-         */
-        reset: () => set(initialState),
+        taxInArray: term => get().taxonomies.includes(term),
+        reset: () => set({
+            fetchErr: false,
+            loading: false,
+            maxPages: 0,
+            page: 1,
+            posts: [],
+            searchText: '',
+            taxonomies: [],
+            total: 0,
+            updateSearch: false,
+        })
     }
 )
 
-const blogStore = create(devtools(state))
+const blogStore = create(devtools(state, {trace: true}))
 
 export default blogStore;

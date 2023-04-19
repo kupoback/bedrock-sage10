@@ -7,14 +7,16 @@
         "@reactPages": "@src/react/Pages",
         "@reactUtil": "@src/react/Util",
         "@reduxBlog": "@src/react/Redux/features/blog",
-        "@zustandBlog": "@src/react/Zustand/Blog"
+        "@zustandBlog": "@src/react/Zustand/Blog",
+        "@zustandSearch": "@src/react/Zustand/Search"
     },
     "entry": {
         "app": ["@scripts/app", "@styles/app"],
         "editor": ["@scripts/editor", "@styles/editor"],
         "admin": ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
         "sageReact": ["@sageReact/app"],
-        "blog": ["@sageReact/Pages/Blog/blog-index"]
+        "blog": ["@reactPages/Blog/index"],
+        "search": ["@reactPages/Search/index"]
     },
     "minimize": true
 }

@@ -12,18 +12,18 @@ import BlogFilter from "./BlogFilter";
 import Pagination from "./Pagination";
 
 if (typeof BLOG !== 'undefined') {
-    const frameworkBlogElm = document.getElementById('framework-blog');
-    const frameworkPaginationElm = document.getElementById('framework-pagination');
-    const frameworkFiltersElm = document.getElementById('framework-filters');
+    const blogElm = document.getElementById('blog');
+    const blogPaginationElm = document.getElementById('blog-pagination');
+    const blogFiltersElm = document.getElementById('blog-filters');
 
-    if (frameworkBlogElm) {
-        const blogRoot = createRoot(frameworkBlogElm);
+    if (blogElm) {
+        const blogRoot = createRoot(blogElm);
         blogRoot
             .render(<BlogListing/>);
     }
 
-    if (frameworkPaginationElm) {
-        const blogPaginationRoot = createRoot(frameworkPaginationElm);
+    if (blogPaginationElm) {
+        const blogPaginationRoot = createRoot(blogPaginationElm);
         blogPaginationRoot
             .render(
                 <Pagination
@@ -33,8 +33,8 @@ if (typeof BLOG !== 'undefined') {
             );
     }
 
-    if (frameworkFiltersElm) {
-        const blogFiltersRoot = createRoot(frameworkFiltersElm);
+    if (blogFiltersElm) {
+        const blogFiltersRoot = createRoot(blogFiltersElm);
         blogFiltersRoot
             .render(<BlogFilter/>);
     }

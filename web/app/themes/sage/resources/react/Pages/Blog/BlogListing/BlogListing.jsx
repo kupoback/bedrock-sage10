@@ -1,3 +1,6 @@
+/**
+ * React Scripts
+ */
 import blogStore from "@zustandBlog/store";
 
 /**

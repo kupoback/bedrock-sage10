@@ -1,4 +1,8 @@
-// https://tailwindcss.com/docs/configuration
+/**
+ * @type {import('tailwindcss').Config} config
+ * @link https://tailwindcss.com/docs/configuration
+ */
+
 module.exports = {
     content: ['./index.php', './app/**/*.php', './resources/**/*.{php,vue,js}'],
     theme: {

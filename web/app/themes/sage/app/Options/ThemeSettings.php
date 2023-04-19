@@ -118,7 +118,19 @@ class ThemeSettings extends Field
         $themeSettings
             ->addTab('logos')
                 ->addImage('header_logo')
-                ->addImage('footer_logo');
+                ->addImage('footer_logo')
+            ->addTab('search')
+                ->addText('search_title')
+                    ->setAttr('class', 'one-half')
+                ->addText('search_results')
+                    ->setAttr('class', 'one-half')
+                ->addText('search_label')
+                    ->setAttr('class', 'one-third')
+                ->addText('search_placeholder')
+                    ->setAttr('class', 'one-third')
+                ->addText('search_submit')
+                    ->setAttr('class', 'one-third')
+        ;
 
         return $themeSettings->build();
     }

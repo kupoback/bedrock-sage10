@@ -1,20 +1,16 @@
-/**
- * React Scripts
- */
-import {shallow} from "zustand/shallow";
-import blogStore from "@zustandBlog/store";
 import {setResultsCount} from "@reactUtil/mixins";
+import searchStore from "@zustandSearch/store";
 
-/**
- * React Components
- */
-import Post from "@reactComponent/Post";
 import Loading from "@reactComponent/Loading"
+import Post from "@reactComponent/Post";
 
 const Posts = () => {
-    const {loading, posts, total} = blogStore(state => state, shallow)
+    const {loading, posts, total} = searchStore(({loading, posts, total}) => ({loading, posts, total,}))
 
-    setResultsCount('results-count', total)
+    /**
+     * Update the search count
+     */
+    setResultsCount('results-count', total);
 
     return (
         <>

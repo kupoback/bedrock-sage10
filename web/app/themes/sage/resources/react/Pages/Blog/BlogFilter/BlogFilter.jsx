@@ -1,38 +1,31 @@
-import {useDispatch, useSelector} from "react-redux";
-// import {fetchPosts, resetPosts, updateSearchText, updateTaxonomySelected} from "@reduxBlog/postsSlice";
+/**
+ * React Scripts
+ */
 import blogStore from "@zustandBlog/store";
+import {setPage} from "@reactUtil/mixins";
+import {shallow} from "zustand/shallow";
 
+/**
+ * React Components
+ */
 import Button from "@reactComponent/Button";
 import CategoryItem from "./Components/CategoryItem";
-import blog from "../../../../vue/Pages/Blog/Blog.vue";
 
 function BlogFilter({}) {
-    const {filterLabel, filterSubmit, searchLabel, searchPlaceholder, taxonomies} = BLOG;
-    const {fetch, reset, updateTaxonomySelected} = blogStore(
-        (
-            {
-                fetch,
-                reset,
-                updateTaxonomySelected
-            }
-        ) => ({
-            fetch,
-            reset,
-            updateTaxonomySelected
-        })
-    )
+    const {
+        filterLabel,
+        filterSubmit,
+        searchLabel,
+        searchPlaceholder,
+        taxonomies
+    } = BLOG;
+    const {fetch, reset} = blogStore(state => state, shallow)
 
-    /**
-     * Sets the page state to be the first page
-     *
-     * @returns {*}
-     */
-    const setToFirstPage = () => blogStore.setState(() => ({page: 1}))
     /**
      * Makes a fetch of blog posts restarting the page
      */
     const submitSearch = () => {
-        setToFirstPage()
+        setPage(1, blogStore)
         fetch(true);
     }
     /**
@@ -41,7 +34,7 @@ function BlogFilter({}) {
     const resetForm = () => {
         reset()
         document.getElementById('blog-search').value = '';
-        submitSearch()
+        fetch(true);
     }
 
     return (
@@ -56,8 +49,7 @@ function BlogFilter({}) {
                         {Object.values(taxonomies).map(({id, slug, name}) =>
                             <CategoryItem key={id}
                                           slug={slug}
-                                          name={name}
-                                          taxSelectState={(slug) => updateTaxonomySelected(slug)}/>)}
+                                          name={name} />)}
                     </div>
                 </div>}
             <div className="pb-4 mb-4 blog-listing__filters-search">

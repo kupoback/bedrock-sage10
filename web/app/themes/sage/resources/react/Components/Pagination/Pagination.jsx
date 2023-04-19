@@ -1,42 +1,33 @@
+/**
+ * React Scripts/Plugins
+ */
 import ReactPaginate from "react-paginate"
-import {useDispatch, useSelector} from "react-redux";
-import {fetchPosts, setCurrentPage} from "@reduxBlog/postsSlice";
-import blogStore from "@zustandBlog/store";
 
+/**
+ * React Components
+ */
 import ChevronRight from "@reactComponent/Icons/ChevronRight";
 import ChevronLeft from "@reactComponent/Icons/ChevronLeft";
 
 /**
  * This is the main function for outputting the container of the Pagination
  *
- * @package ReactPaginate https://www.npmjs.com/package/react-paginate
- * @param {Number}   itemsPerPage   The number of items per page
+ * @param {Function} clickHandler  The event binding click handler
+ * @param {String}   elmId        The element ID string to scroll to
+ * @param {Number}   itemsPerPage The number of items per page
+ * @param {Number}   maxPages      The maximum number of pages to render
+ * @param {String}   navClassNames A list of class names to set for the nav
+ * @param {Function} storeState    The store state
+ *
  * @returns {JSX.Element|String}
+ *
+ * @package ReactPaginate https://www.npmjs.com/package/react-paginate
  * @constructor
  */
-function Pagination({itemsPerPage, navClassNames}) {
-    const {fetch, maxPages} = blogStore(({fetch, maxPages}) => ({fetch, maxPages}))
-    // const dispatch = useDispatch();
+function Pagination({clickHandler, elmId, itemsPerPage, maxPages, navClassNames, storeState }) {
+    const handlePageChange = ({selected}) => {clickHandler(storeState, selected, elmId)};
 
-
-    const handlePageClick = ({selected}) => {
-        const blogElm = document.getElementById('framework-blog');
-        blogStore.setState(() => ({page: selected + 1}))
-        fetch(true);
-        if (blogElm) {
-            let offsetTop = 100;
-            if (window.innerWidth > 769) {
-                offsetTop = 75;
-            }
-
-            window.scrollTo({
-                behavior: 'smooth',
-                top: (blogElm.offsetTop - offsetTop)
-            });
-        }
-    };
-
-    if (maxPages < 1 )return '';
+    if (maxPages < 1) return '';
 
     return (
         <nav className={navClassNames}>
@@ -45,14 +36,14 @@ function Pagination({itemsPerPage, navClassNames}) {
                 breakClassName="break-indicator block h-8 w-8 m-0 rounded border border-gray-100 text-center text-white leading-8 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900 hover:border-gray-100 hover:bg-transparent hover:text-gray-100"
                 breakLabel="..."
                 className="flex justify-center gap-1 text-xs font-medium"
-                nextLabel={<ChevronRight />}
+                nextLabel={<ChevronRight/>}
                 nextClassName="next-indicator inline-flex h-8 w-8 m-0 items-center text-white justify-center rounded border border-gray-100 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
-                onPageChange={handlePageClick}
+                onPageChange={handlePageChange}
                 pageRangeDisplayed={itemsPerPage}
                 pageClassName="page h-8 w-8 m-0 rounded border border-gray-100 text-center leading-8 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
                 pageCount={maxPages}
                 pageLinkClassName="page-link text-white"
-                previousLabel={<ChevronLeft />}
+                previousLabel={<ChevronLeft/>}
                 previousClassName="previous-indicator inline-flex h-8 w-8 m-0 items-center text-white justify-center rounded border border-gray-100 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
                 renderOnZeroPageCount={null}
             />

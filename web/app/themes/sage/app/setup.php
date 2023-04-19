@@ -6,6 +6,9 @@
 
 namespace App;
 
+use App\Classes\AcfNestedFields;
+use Illuminate\Support\Str;
+
 use function Roots\bundle;
 
 /**
@@ -18,6 +21,32 @@ add_action('wp_enqueue_scripts', function () {
     // bundle('sageReact')->enqueue();
     // bundle('vue')->enqueueJs();
     bundle('app')->enqueue();
+
+    /**
+     * Add to Search Page
+     */
+    if (is_search()) {
+        bundle('search')
+            ->enqueue()
+            ->localize(
+                'SEARCH',
+                collect(
+                    (new AcfNestedFields(
+                    // Add any other fields to pass to localized args
+                        [
+                            'searchLabel',
+                            'searchPlaceholder',
+                            'searchSubmit'
+                        ],
+                        'theme_settings'
+                    ))
+                        ->getFields()
+                )
+                ->put('api', rest_url('sage/v1/search'))
+                ->sortKeys()
+                ->toArray()
+            );
+    }
 }, 100);
 
 /**

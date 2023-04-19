@@ -1,3 +1,6 @@
+/**
+ * React Component
+ */
 import ImgSrcSet from "@reactComponent/ImgSrcSet";
 
 function BlogPost({post, firstItem, lastItem}) {
@@ -48,7 +51,7 @@ function BlogPost({post, firstItem, lastItem}) {
 						</p>
 					)}
 
-					{excerpt.length && (
+					{excerpt && (
 						<p className="mt-2 text-sm leading-relaxed text-gray-700 line-clamp-3 dark:text-gray-200">
 							{excerpt}
 						</p>

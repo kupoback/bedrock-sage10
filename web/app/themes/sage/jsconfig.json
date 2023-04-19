@@ -17,7 +17,9 @@
             "@vueComponents/*": ["vue/Components/**/*"],
             "@vuePages/*": ["vue/Pages/**/*"],
             "@vueUtil/*": ["vue/Util/**/*"],
-            "@sageVuex/*": ["vue/Vuex/**/*"]
+            "@sageVuex/*": ["vue/Vuex/**/*"],
+            "@zustandBlog/*": ["react/Zustand/Blog/**/*"],
+            "zustandSearch/*": ["react/Zustand/Search/**/*"]
         },
         "types": [
             "@roots/bud",

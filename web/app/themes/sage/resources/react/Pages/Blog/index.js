@@ -9,7 +9,7 @@ import {createRoot} from "react-dom";
  */
 import BlogListing from "./BlogListing";
 import BlogFilter from "./BlogFilter";
-import Pagination from "./Pagination";
+import PaginationContainer from "./PaginationContainer";
 
 if (typeof BLOG !== 'undefined') {
     const blogElm = document.getElementById('blog');
@@ -17,25 +17,17 @@ if (typeof BLOG !== 'undefined') {
     const blogFiltersElm = document.getElementById('blog-filters');
 
     if (blogElm) {
-        const blogRoot = createRoot(blogElm);
-        blogRoot
+        createRoot(blogElm)
             .render(<BlogListing/>);
     }
 
     if (blogPaginationElm) {
-        const blogPaginationRoot = createRoot(blogPaginationElm);
-        blogPaginationRoot
-            .render(
-                <Pagination
-                    itemsPerPage={3}
-                    navClassNames="my-10 pt-10 pb-5 blog-listing__results-pagination"
-                />
-            );
+        createRoot(blogPaginationElm)
+            .render(<PaginationContainer />);
     }
 
     if (blogFiltersElm) {
-        const blogFiltersRoot = createRoot(blogFiltersElm);
-        blogFiltersRoot
+        createRoot(blogFiltersElm)
             .render(<BlogFilter/>);
     }
 }

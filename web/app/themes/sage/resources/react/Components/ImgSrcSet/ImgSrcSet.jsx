@@ -1,4 +1,4 @@
-function ImgSrcSet({image}) {
+function ImgSrcSet({image, classNames}) {
 	const {webpSrcset, sizes, srcset, type, src, imageClass, alt} = image;
 
 	return (

@@ -130,6 +130,8 @@ class ThemeSettings extends Field
                     ->setAttr('class', 'one-third')
                 ->addText('search_submit')
                     ->setAttr('class', 'one-third')
+                ->addWysiwyg('search_no_results')
+                    ->setAttr('class', 'full')
         ;
 
         return $themeSettings->build();

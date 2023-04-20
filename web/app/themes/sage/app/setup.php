@@ -36,7 +36,8 @@ add_action('wp_enqueue_scripts', function () {
                         [
                             'searchLabel',
                             'searchPlaceholder',
-                            'searchSubmit'
+                            'searchSubmit',
+                            'searchNoResults'
                         ],
                         'theme_settings'
                     ))

@@ -94,7 +94,12 @@ class BlogPosts
     public function getPosts(WP_REST_Request $request)
     :WP_Error|WP_REST_Response|WP_HTTP_Response
     {
-        $formatted_data = [];
+        $formatted_data = [
+            'fetchErr' => true,
+            'posts'    => [],
+            'maxPages' => 0,
+            'total'    => 0,
+        ];
         $override_args  = [];
         try {
             $posts_per_page = $request->get_param('posts_per_page') ?? 5;
@@ -138,8 +143,9 @@ class BlogPosts
 
             if ($query->found_posts > 0) {
                 $return_data = [
-                    'posts'    => self::renderPosts($query->posts),
+                    'fetchErr' => false,
                     'maxPages' => $query->max_num_pages,
+                    'posts'    => self::renderPosts($query->posts),
                     'total'    => $query->found_posts,
                 ];
 
@@ -149,11 +155,13 @@ class BlogPosts
             }
         } catch (Exception $exception) {
             $formatted_data = [
-                'success' => false,
-                'status'  => 500,
-                'message' => $exception->getMessage(),
+                'fetchErr' => true,
+                'message'  => $exception->getMessage(),
+                'status'   => 500,
             ];
         }
+
+        error_log(print_r($formatted_data, true));
 
         return rest_ensure_response((object) $formatted_data);
     }

@@ -6,8 +6,8 @@
  *
  * @param {import('@roots/bud').Bud} app
  */
-module.exports = async (bud) => {
-    bud
+module.exports = async (app) => {
+    app
         /**
          * Alias setup
          *
@@ -19,7 +19,17 @@ module.exports = async (bud) => {
          * @type @sageReact This integrates React components to be compiled
          * @type @sageVue   This integrated Vue 3 components to be compiled
          */
-
+        .alias({
+            "@sageAdmin": "@src/admin_assets",
+            "@sageReact": "@src/react",
+            "@sageRedux": "@src/react/Redux",
+            "@reactComponent": "@src/react/Components",
+            "@reactPages": "@src/react/Pages",
+            "@reactUtil": "@src/react/Util",
+            "@reduxBlog": "@src/react/Redux/features/blog",
+            "@zustandBlog": "@src/react/Zustand/Blog",
+            "@zustandSearch": "@src/react/Zustand/Search"
+        })
         /**
          * Application entry points. You can add additional entries to specific
          * CSS and/or JS files for compiling with their own unique file name
@@ -27,14 +37,29 @@ module.exports = async (bud) => {
          * Paths are relative to your resources directory
          * @see {@link https://bud.js.org/docs/bud.entry/}
          */
-
+        .entry({
+            app: ["@scripts/app", "@styles/app"],
+            editor: ["@scripts/editor", "@styles/editor"],
+            admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
+            sageReact: ["@sageReact/app"],
+            blog: ["@reactPages/Blog/index"],
+            search: ["@reactPages/Search/index"]
+        })
+        .minimize(app.isProduction)
         /**
          * Directory contents to be included in the compilation
          * @see {@link https://bud.js.org/docs/bud.assets/}
          */
         .assets(["images", "fonts"]);
 
-    bud
+    app
+        .postcss
+        .setPlugins({
+            ['tailwindcss']: await app.module.resolve('tailwindcss'),
+            ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
+        });
+
+    app
         .setUrl('http://localhost:3000')
         .setProxyUrl('https://boilerplate8.1.test')
         /**
@@ -44,19 +69,19 @@ module.exports = async (bud) => {
          */
         .setPublicPath("/app/themes/sage/public/");
 
-    bud
+    app
         /**
          * This is used to generate sourcemaps but only when
          * Bud ran in development mode
          */
-        .when(bud.isDevelopment, bud => bud.devtool())
+        .when(app.isDevelopment, app => app.devtool())
         /**
          * This is used to minimize all the files when Bud
          * runs in production mode
          */
-        .when(bud.isProduction, bud => bud.minimize());
+        .when(app.isProduction, app => app.minimize());
 
-    bud
+    app
         /**
          * Matched files trigger a page reload when modified
          * @see {@link https://bud.js.org/docs/bud.watch/}
@@ -72,6 +97,10 @@ module.exports = async (bud) => {
             ]
         );
 
+    // If using Tailwind uncomment
+    app.tailwind
+        .generateImports();
+
     /**
      * Generate WordPress `theme.json`
      *
@@ -80,7 +109,7 @@ module.exports = async (bud) => {
      * @see {@link https://bud.js.org/extensions/sage/theme.json/}
      * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/}
      */
-    bud
+    app
         .wpjson
         .set('settings.color.custom', false)
         .set('settings.color.customDuotone', false)
@@ -95,6 +124,7 @@ module.exports = async (bud) => {
         .set('settings.spacing.padding', true)
         .set('settings.spacing.units', ['px', '%', 'em', 'rem', 'vw', 'vh'])
         .set('settings.typography.customFontSize', false)
+        // If using Tailwind uncomment
         .useTailwindColors()
         .useTailwindFontFamily()
         .useTailwindFontSize()

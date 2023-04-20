@@ -32,6 +32,10 @@ trait RestRouteDataReturnTrait
                     $categories = wp_get_post_categories($post->ID, ['fields' => 'names']);
                 }
 
+                if (!empty($image)) {
+                    $image['imageClass'] = 'aspect-square h-full w-full object-cover';
+                }
+
                 return [
                     'author'     => get_the_author_meta('display_name', $post->post_author),
                     'categories' => $categories && !is_wp_error($categories) ? collect($categories)->first() : '',

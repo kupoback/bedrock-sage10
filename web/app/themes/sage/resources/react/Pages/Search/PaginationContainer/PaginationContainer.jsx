@@ -26,7 +26,7 @@ function PaginationContainer() {
             clickHandler={paginationClickHandler}
             elmId="search"
             itemsPerPage={3}
-            navClassNames="my-10 pt-10 pb-5 search__results-pagination"
+            navClassNames="my-10 py-5 search__results-pagination"
             maxPages={maxPages}
             storeState={searchStore} />
     )

@@ -28,7 +28,6 @@ const state = (set, get) => (
          * @returns {Promise<void>}
          */
         fetch: async (updateSearch = false) => {
-            set({fetchErr: false, loading: true})
             const {api} = BLOG;
             const config = {params: {}}
             const {page} = get();
@@ -39,10 +38,10 @@ const state = (set, get) => (
                 taxonomies.length && (config.params.categories = taxonomies)
             }
 
-            const {fetchErr, maxPages, posts, total} = await apiRequest(`${api}/${page}`, config)
+            set({fetchErr: false, loading: true})
 
-            if (fetchErr) set({fetchErr: true})
-            else set(() => ({maxPages, posts, total}))
+            const response = await apiRequest(`${api}/${page}`, config)
+            set({...response})
 
             set({loading: false})
         },

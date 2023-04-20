@@ -4,11 +4,17 @@
  */
 
 module.exports = {
-    content: ['./index.php', './app/**/*.php', './resources/**/*.{php,vue,js}'],
+    content: [
+        './index.php',
+        './app/**/*.php',
+        './resources/**/*.{js,jsx,php,vue}'
+    ],
     theme: {
         extend: {
             colors: {}, // Extend Tailwind's default colors
         },
     },
-    plugins: [],
+    plugins: [
+
+    ],
 };

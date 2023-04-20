@@ -84,7 +84,12 @@ class Search
     public function getSearch(WP_REST_Request $request)
     :WP_Error|WP_REST_Response|WP_HTTP_Response
     {
-        $formatted_data = [];
+        $formatted_data = [
+            'fetchErr' => true,
+            'posts'    => [],
+            'maxPages' => 0,
+            'total'    => 0,
+        ];
         $query_args = collect(['post_type' => ['post', 'page'],]);
         try {
             $paged          = $request->get_param('paged') ?? 1;
@@ -99,8 +104,9 @@ class Search
 
             if ($query->found_posts > 0) {
                 $return_data = [
-                    'posts'    => self::renderPosts($query->posts),
+                    'fetchErr' => false,
                     'maxPages' => $query->max_num_pages,
+                    'posts'    => self::renderPosts($query->posts),
                     'total'    => $query->found_posts,
                 ];
 
@@ -110,9 +116,9 @@ class Search
             }
         } catch (Exception $exception) {
             $formatted_data = [
-                'success' => false,
-                'status'  => 500,
+                'fetchErr' => true,
                 'message' => $exception->getMessage(),
+                'status'  => 500,
             ];
         }
 

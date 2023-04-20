@@ -31,5 +31,4 @@ function PaginationContainer() {
             storeState={blogStore} />
     )
 }
-
 export default PaginationContainer;

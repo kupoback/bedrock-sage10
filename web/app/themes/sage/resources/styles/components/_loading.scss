@@ -1,0 +1,11 @@
+.loading {
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+    height:          100%;
+    width:           100%;
+    padding:         2.5rem 0;
+    svg {
+        width: 100px;
+    }
+}

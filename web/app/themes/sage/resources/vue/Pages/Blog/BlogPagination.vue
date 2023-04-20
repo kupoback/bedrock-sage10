@@ -46,15 +46,9 @@
         },
         components: {Pagination},
         computed: {
-            loading() {
-                return store.state.loading
-            },
-            maxPages() {
-                return store.state.maxPages
-            },
-            page() {
-                return store.state.page
-            },
+            loading() {return store.state.loading},
+            maxPages() {return store.state.maxPages},
+            page() {return store.state.page},
         },
         watch: {},
         name: "BlogPagination"

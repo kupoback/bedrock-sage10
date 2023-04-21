@@ -24,12 +24,11 @@ module.exports = async (app) => {
             "@sageReact": "@src/react",
             "@sageRedux": "@sageReact/Redux",
             "@reactBlocks": "@sageReact/Blocks",
-            "@reactComponent": "@src/react/Components",
+            "@reactComponent": "@sageReact/Components",
             "@reactPages": "@sageReact/Pages",
             "@reactUtil": "@sageReact/Util",
             "@reduxBlog": "@sageRedux/features/blog",
             "@zustand": "@src/react/Zustand",
-            "@zustandGMaps": "@zustand/GoogleMap",
             "@zustandPosts": "@zustand/Posts",
             "@zustandSearch": "@zustand/Search"
         })
@@ -45,7 +44,6 @@ module.exports = async (app) => {
             editor: ["@scripts/editor", "@styles/editor"],
             admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
             sageReact: ["@sageReact/app"],
-            gMap: ["@reactBlocks/GoogleMap/index"],
             posts: ["@reactBlocks/Posts/index"],
             search: ["@reactPages/Search/index"]
         })

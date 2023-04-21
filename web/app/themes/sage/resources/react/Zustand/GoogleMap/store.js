@@ -28,33 +28,33 @@ const state = (set, get) => (
          * @returns {Promise<void>}
          */
         fetch: async (updateSearch = false) => {
-            // const {api} = SEARCH;
-            // const config = {params: {}}
-            // const {page, searchText} = get();
-            //
-            // config.params.s = searchText;
-            // config.params.page = page;
-            //
-            // if (updateSearch) {
-            //     // Setup Query Params and push them to the state
-            //     const query = generateQueryParams(get().query)
-            //     set({query});
-            //
-            //     // Update the browsers history to include the new search term
-            //     updateBrowserHistory(query, true)
-            // }
-            //
-            // set({fetchErr: false, loading: true})
-            //
-            // try {
-            //     const response = await apiGetRequest(`${api}/${page}`, config)
-            //     set({...response})
-            // } catch (err) {
-            //     console.error(err);
-            //     set({fetchErr: true})
-            // }
-            //
-            // set({loading: false})
+            const {api} = SEARCH;
+            const config = {params: {}}
+            const {page, searchText} = get();
+
+            config.params.s = searchText;
+            config.params.page = page;
+
+            if (updateSearch) {
+                // Setup Query Params and push them to the state
+                const query = generateQueryParams(get().query)
+                set({query});
+
+                // Update the browsers history to include the new search term
+                updateBrowserHistory(query, true)
+            }
+
+            set({fetchErr: false, loading: true})
+
+            try {
+                const response = await apiGetRequest(`${api}/${page}`, config)
+                set({...response})
+            } catch (err) {
+                console.error(err);
+                set({fetchErr: true})
+            }
+
+            set({loading: false})
         },
         /**
          * Resets the entire state back to the default
@@ -73,6 +73,6 @@ const state = (set, get) => (
     }
 )
 
-const gMapsStore = create(devtools(state, {trace: true}))
+const searchStore = create(devtools(state, {trace: true}))
 
-export default gMapsStore;
+export default searchStore;

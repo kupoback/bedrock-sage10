@@ -25,12 +25,13 @@ class AcfNestedFields
 {
 
     /**
-     * @param  array            $data       The field names to grab get_field data for
-     * @param  int|string|null  $postId     The int, string, post id for the get_field() method
-     * @param  bool             $camelCase  Whether the data is camelCased or not
+     * @param  array            $data    The field names to grab get_field data for
+     * @param  int|string|null  $postId  The int, string, post id for the get_field() method
      */
-    public function __construct(protected array $data = [], protected int|string|null $postId = null, bool $camelCase = false)
-    {
+    public function __construct(
+        protected readonly array  $data = [],
+        protected int|string|null $postId = null,
+    ) {
         if (is_home()) {
             $this->postId = get_option('page_for_posts');
         } elseif (is_front_page()) {
@@ -48,18 +49,6 @@ class AcfNestedFields
     {
         return $this
             ->setupFields()
-            ->all();
-    }
-
-    public function camelCaseFields()
-    :array
-    {
-        return $this
-            ->setupFields()
-            ->each(function ($item, $key) {
-                error_log(print_r($item, true));
-                error_log(print_r($key, true));
-            })
             ->all();
     }
 

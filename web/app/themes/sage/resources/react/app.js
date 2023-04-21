@@ -1,5 +1,3 @@
 import React from 'react'
 
-module?.hot?.accept(err => {
-    console.error(err)
-})
+module?.hot?.accept(err => console.error(err))

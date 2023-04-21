@@ -40,10 +40,18 @@ function Pagination({clickHandler, currentPage = 1, elmId, itemsPerPage, maxPage
      *
      * @returns {false|*|boolean}
      */
-    const handlePageChange = ({isActive, isBreak, isNext, isPrevious, nextSelectedPage}) => {
-        if ((nextSelectedPage - 1 > 0) || (nextSelectedPage + 1 <= maxPages)) {
-            return (!isBreak && !isActive) && clickHandler(storeState, nextSelectedPage, elmId)
+    const handlePageChange = ({ isActive, isBreak, isNext, isPrevious, nextSelectedPage }) => {
+        if (isBreak || isActive) {
+            return false;
         }
+
+        const nextPage = nextSelectedPage - 1;
+
+        if (nextPage > 0 && nextPage <= maxPages) {
+            clickHandler(storeState, nextPage, elmId);
+            return true;
+        }
+
         return false;
     };
 

@@ -7,8 +7,9 @@ import {devtools} from "zustand/middleware";
 /**
  * Sage Constants
  */
-import {apiRequest} from "@reactUtil/api"
+import {apiGetRequest} from "@reactUtil/api"
 import {addRemoveTerm} from "@reactUtil/mixins";
+import {generateQueryParams} from "@reactUtil/browser-history";
 
 const state = (set, get) => (
     {
@@ -17,6 +18,7 @@ const state = (set, get) => (
         maxPages: 0,
         page: 1,
         posts: [],
+        query: {},
         searchText: '',
         taxonomies: [],
         total: 0,
@@ -30,18 +32,29 @@ const state = (set, get) => (
         fetch: async (updateSearch = false) => {
             const {api} = POSTS;
             const config = {params: {}}
-            const {page} = get();
+            const {page, searchText} = get();
+
+            config.params.s = searchText;
+            config.params.page = page;
 
             if (updateSearch) {
-                const {searchText, taxonomies} = get();
-                searchText && (config.params.s = searchText);
+                // Setup Query Params and push them to the state
+                // const query = generateQueryParams(get().query)
+                // set({query});
+
+                const {taxonomies} = get();
                 taxonomies.length && (config.params.categories = taxonomies)
             }
 
             set({fetchErr: false, loading: true})
 
-            const response = await apiRequest(`${api}/${page}`, config)
-            set({...response})
+            try {
+                const response = await apiGetRequest(`${api}/${page}`, config)
+                set({...response})
+            } catch (err) {
+                console.error(err);
+                set({fetchErr: true})
+            }
 
             set({loading: false})
         },
@@ -65,6 +78,7 @@ const state = (set, get) => (
             maxPages: 0,
             page: 1,
             posts: [],
+            query: {},
             searchText: '',
             taxonomies: [],
             total: 0,

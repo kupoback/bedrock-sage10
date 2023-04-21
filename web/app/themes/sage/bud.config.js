@@ -22,15 +22,16 @@ module.exports = async (app) => {
         .alias({
             "@sageAdmin": "@src/admin_assets",
             "@sageReact": "@src/react",
-            "@sageRedux": "@src/react/Redux",
-            "@reactBlocks": "@src/react/Blocks",
+            "@sageRedux": "@sageReact/Redux",
+            "@reactBlocks": "@sageReact/Blocks",
             "@reactComponent": "@src/react/Components",
-            "@reactPages": "@src/react/Pages",
-            "@reactUtil": "@src/react/Util",
-            "@reduxBlog": "@src/react/Redux/features/blog",
+            "@reactPages": "@sageReact/Pages",
+            "@reactUtil": "@sageReact/Util",
+            "@reduxBlog": "@sageRedux/features/blog",
             "@zustand": "@src/react/Zustand",
-            "@zustandPosts": "@src/react/Zustand/Posts",
-            "@zustandSearch": "@src/react/Zustand/Search"
+            "@zustandGMaps": "@zustand/GoogleMap",
+            "@zustandPosts": "@zustand/Posts",
+            "@zustandSearch": "@zustand/Search"
         })
         /**
          * Application entry points. You can add additional entries to specific
@@ -44,6 +45,7 @@ module.exports = async (app) => {
             editor: ["@scripts/editor", "@styles/editor"],
             admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
             sageReact: ["@sageReact/app"],
+            gMap: ["@reactBlocks/GoogleMap/index"],
             posts: ["@reactBlocks/Posts/index"],
             search: ["@reactPages/Search/index"]
         })

@@ -22,7 +22,7 @@ function PostsFilter({}) {
     const {fetch, reset} = postsStore(state => state, shallow)
 
     /**
-     * Makes a fetch of blog posts restarting the page
+     * Makes a fetch of posts restarting the page
      */
     const submitSearch = () => {
         setPage(1, postsStore)
@@ -54,12 +54,12 @@ function PostsFilter({}) {
                 </div>}
             <div className="pb-4 mb-4 posts-listing__filters-search">
                 <fieldset>
-                    <label htmlFor="blog-search"
+                    <label htmlFor="posts-search"
                            className="form-label inline-block mb-2 text-white">
                         {searchLabel}
                     </label>
                     <input type="text"
-                           id="blog-search"
+                           id="posts-search"
                            placeholder={searchPlaceholder}
                            onChange={({target}) => postsStore.setState(() => ({searchText: target.value}))}
                            onKeyDown={({key}) => key === 'Enter' && submitSearch()}

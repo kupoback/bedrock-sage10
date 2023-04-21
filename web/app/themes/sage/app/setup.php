@@ -17,13 +17,17 @@ use function Roots\bundle;
  * @return void
  */
 add_action('wp_enqueue_scripts', function () {
-    // Uncomment to enable React or Vue on the site
+    /**
+     * Uncomment to enable React or Vue on the
+     * site outside a block bundle
+     */
     // bundle('sageReact')->enqueue();
     // bundle('vue')->enqueueJs();
     bundle('app')->enqueue();
 
     /**
-     * Add to Search Page
+     * Add localized args to the Search Page
+     * loading the values from Theme Settings
      */
     if (is_search()) {
         bundle('search')
@@ -56,7 +60,10 @@ add_action('wp_enqueue_scripts', function () {
  * @return void
  */
 add_action('enqueue_block_editor_assets', function () {
-    // Uncomment to enable React or Vue on the site
+    /**
+     * Uncomment to enable React or Vue on the
+     * site outside a block bundle
+     */
     // bundle('sageReact')->enqueue();
     // bundle('vue')->enqueueJs();
     bundle('editor')->enqueue();

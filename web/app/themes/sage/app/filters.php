@@ -13,9 +13,9 @@ namespace App;
  */
 add_filter('excerpt_more', fn() => sprintf(' &hellip; <a href="%s">%s</a>', get_permalink(), __('Continued', 'sage')));
 
-// if (class_exists('ACF') && get_current_user_id() !== env('SUPER_ADMIN_ID')) {
-//     add_filter('acf/settings/show_admin', '__return_false');
-// }
+if (class_exists('ACF') && get_current_user_id() !== env('SUPER_ADMIN_ID')) {
+    add_filter('acf/settings/show_admin', '__return_false');
+}
 
 /**
  * This filter adds a "Sage Theme" Category for custom blocks,
@@ -31,12 +31,33 @@ add_filter('block_categories_all', fn ($categories) => collect($categories)
     ->toArray());
 
 /**
+ * Allows the addition of other image sizes in the media dropdown
+ */
+add_filter(
+    'image_size_names_choose',
+    fn ($sizes)  => collect($sizes)
+        ->forget(['full', 'large'])
+        // Need to manually add in Medium Large
+        ->put('medium_large', 'Medium-Large') // 1024 width
+        ->put('large', 'Large') // 1280 width
+        // Add image sizes here if they are below 1920
+        // ->put('image-size-name', 'Image Size Text')
+        ->put('banner', 'Banner') // 1920 width
+        // Add image sizes here if they are above 1920
+        // ->put('image-size-name', 'Image Size Text')
+
+        ->put('full', 'Full Size')
+        ->toArray()
+);
+
+/**
  * Function that will load all post types for any select field needed
- * @param $field
+ *
+ * @param array $field The field array for select
  *
  * @return array
  */
-function loadPostTypeChoices($field)
+function loadPostTypeChoices(array $field)
 :array
 {
 

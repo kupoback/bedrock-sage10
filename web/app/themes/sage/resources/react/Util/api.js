@@ -1,17 +1,19 @@
 import axios from "axios";
 
-export const apiRequest = async (apiUrl, config = {}) => {
+/**
+ * Makes an API request passing through the URL and any configs
+ * @param apiUrl
+ * @param config
+ * @returns {Promise<{fetchErr: boolean}|any>}
+ */
+const apiGetRequest = async (apiUrl, config = {}) => {
     try {
-        const response = await axios
-            .get(apiUrl, config);
-
-        return await response.data;
+        const response = await axios.get(apiUrl, config);
+        return response.data;
     } catch (err) {
         console.error(err);
-        return {fetchErr: true}
+        return { fetchErr: true };
     }
-}
+};
 
-export default {
-    apiRequest,
-}
+export { apiGetRequest };

@@ -26,11 +26,11 @@ const Posts = () => {
     }
 
     if (posts.length) {
-        return posts.map(post =>
+        return posts.map((post, index) =>
             <Post key={post.id}
                   post={post}
-                  firstItem={post.id === posts[0]?.id}
-                  lastItem={post.id === posts.findLast(x => true)?.id}/>)
+                  firstItem={index === 0}
+                  lastItem={index === posts.length - 1} />)
     }
 
     return <NoResults noResultsText={searchNoResults} />

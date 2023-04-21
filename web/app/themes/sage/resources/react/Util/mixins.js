@@ -4,12 +4,11 @@
  * @param {Number, String}  term_id
  * @returns {*}
  */
-export const addRemoveTerm = (arrayItems, term_id) => {
-    if (arrayItems.includes(term_id)) arrayItems = arrayItems.filter(term => term !== term_id);
-    else arrayItems.push(term_id);
+const addRemoveTerm = (arrayItems, term_id) =>
+    arrayItems.includes(term_id)
+        ? arrayItems.filter(term => term !== term_id)
+        : [...arrayItems, term_id];
 
-    return arrayItems;
-}
 
 /**
  * Returns whether the object contains any key:values
@@ -17,8 +16,7 @@ export const addRemoveTerm = (arrayItems, term_id) => {
  * @param {Object} obj The object to check for
  * @returns {boolean}
  */
-export const objectNotEmpty = (obj) => Object.keys(obj).length !== 0;
-
+const objectNotEmpty = (obj) => Object.keys(obj).length !== 0;
 
 /**
  * Updates the page selected from Pagination
@@ -26,17 +24,17 @@ export const objectNotEmpty = (obj) => Object.keys(obj).length !== 0;
  * @param {Number}   page The page selected
  * @param {Function} state The store state
  */
-export const setPage = (page, state) => state.setState({page})
+const setPage = (page, state) => state.setState({page})
 
 /**
  * Sets the results total based on the ID passed and the count passed
  * @param {String}          elmId The element ID to set the count to
  * @param {Number, String}  count The total count for innerText
  */
-export const setResultsCount = (elmId, count) => {
-    const elm = document.getElementById(elmId)
-    if (count && elm) elm.innerText = `: ${count}`
-}
+const setResultsCount = (elmId, count) => {
+    const elm = document.getElementById(elmId);
+    elm && (elm.innerText = count ? `: ${count}` : '');
+};
 
 /**
  * Handles the Pagination click handler to change the page and
@@ -46,26 +44,22 @@ export const setResultsCount = (elmId, count) => {
  * @param {Number} page  The page number to switch to
  * @param {String} elmId The ID name of the element to scroll to
  */
-export const paginationClickHandler = (state, page, elmId) => {
-    const elm = document.getElementById(elmId);
+const paginationClickHandler = (state, page, elmId) => {
     setPage(page + 1, state)
     state.getState().fetch(true);
 
+    const elm = document.getElementById(elmId);
     if (elm) {
-        let offsetTop = 100;
-        if (window.innerWidth > 769) {
-            offsetTop = 75;
-        }
+        const offsetTop = window.innerWidth > 769 ? 75 : 100;
 
         window.scrollTo({
             behavior: 'smooth',
-            top: (elm.offsetTop - offsetTop)
+            top: elm.offsetTop - offsetTop,
         });
     }
 }
 
-
-export default {
+export {
     addRemoveTerm,
     objectNotEmpty,
     paginationClickHandler,

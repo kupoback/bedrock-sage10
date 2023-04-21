@@ -47,6 +47,10 @@ module.exports = async (app) => {
             posts: ["@reactBlocks/Posts/index"],
             search: ["@reactPages/Search/index"]
         })
+        /**
+         * This is used to minimize all the files when Bud
+         * runs in production mode
+         */
         .minimize(app.isProduction)
         /**
          * Directory contents to be included in the compilation
@@ -76,12 +80,7 @@ module.exports = async (app) => {
          * This is used to generate sourcemaps but only when
          * Bud ran in development mode
          */
-        .when(app.isDevelopment, app => app.devtool())
-        /**
-         * This is used to minimize all the files when Bud
-         * runs in production mode
-         */
-        .when(app.isProduction, app => app.minimize());
+        .when(app.isDevelopment, app => app.devtool());
 
     app
         /**

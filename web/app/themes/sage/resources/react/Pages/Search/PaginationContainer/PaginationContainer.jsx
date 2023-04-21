@@ -19,11 +19,12 @@ import Pagination from "@reactComponent//Pagination";
  * @constructor
  */
 function PaginationContainer() {
-    const {maxPages} = searchStore(state => state, shallow)
+    const {maxPages, page} = searchStore(state => state, shallow)
 
     return (
         <Pagination
             clickHandler={paginationClickHandler}
+            currentPage={(page - 1) || 0}
             elmId="search"
             itemsPerPage={3}
             navClassNames="my-10 py-5 search__results-pagination"

@@ -33,7 +33,7 @@ const state = (set, get) => (
                 set({query: {...config.params, page}});
                 const query = generateQueryParams(get().query)
                 // Update the browsers history to include the new search term
-                updateBrowserHistory(query)
+                updateBrowserHistory(query, true)
             }
 
             set({fetchErr: false, loading: true})

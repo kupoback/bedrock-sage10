@@ -38,6 +38,14 @@ export const setResultsCount = (elmId, count) => {
     if (count && elm) elm.innerText = `: ${count}`
 }
 
+/**
+ * Handles the Pagination click handler to change the page and
+ * scroll the user back to the top of the listing
+ *
+ * @param {Object} state This is the Zustand state
+ * @param {Number} page  The page number to switch to
+ * @param {String} elmId The ID name of the element to scroll to
+ */
 export const paginationClickHandler = (state, page, elmId) => {
     const elm = document.getElementById(elmId);
     setPage(page + 1, state)

@@ -206,7 +206,7 @@ class PostListing extends Block
                 ->setConfig('multiple', true)
                 ->setConfig('allow_null', false)
                 ->setDefaultValue(['post'])
-            
+
             ->addTextarea('no_results')
                 ->setConfig('rows', 4)
 

@@ -23,11 +23,13 @@ module.exports = async (app) => {
             "@sageAdmin": "@src/admin_assets",
             "@sageReact": "@src/react",
             "@sageRedux": "@src/react/Redux",
+            "@reactBlocks": "@src/react/Blocks",
             "@reactComponent": "@src/react/Components",
             "@reactPages": "@src/react/Pages",
             "@reactUtil": "@src/react/Util",
             "@reduxBlog": "@src/react/Redux/features/blog",
-            "@zustandBlog": "@src/react/Zustand/Blog",
+            "@zustand": "@src/react/Zustand",
+            "@zustandPosts": "@src/react/Zustand/Posts",
             "@zustandSearch": "@src/react/Zustand/Search"
         })
         /**
@@ -42,7 +44,7 @@ module.exports = async (app) => {
             editor: ["@scripts/editor", "@styles/editor"],
             admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
             sageReact: ["@sageReact/app"],
-            blog: ["@reactPages/Blog/index"],
+            posts: ["@reactBlocks/Posts/index"],
             search: ["@reactPages/Search/index"]
         })
         .minimize(app.isProduction)

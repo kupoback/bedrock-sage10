@@ -29,3 +29,25 @@ add_filter('block_categories_all', fn ($categories) => collect($categories)
         ],
     )
     ->toArray());
+
+/**
+ * Function that will load all post types for any select field needed
+ * @param $field
+ *
+ * @return array
+ */
+function loadPostTypeChoices($field)
+:array
+{
+
+    $field['choices'] = collect(get_post_types(['public' => true], 'objects'))
+        ->forget('attachment')
+        ->mapWithKeys(fn ($post_type) => [$post_type->name => $post_type->label])
+        ->sort()
+        ->toArray();
+
+    return $field;
+}
+
+// Can duplicate this line, changing the name to whatever is needed
+add_filter('acf/load_field/name=post_types', __NAMESPACE__ . '\\loadPostTypeChoices');

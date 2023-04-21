@@ -161,8 +161,6 @@ class BlogPosts
             ];
         }
 
-        error_log(print_r($formatted_data, true));
-
         return rest_ensure_response((object) $formatted_data);
     }
 

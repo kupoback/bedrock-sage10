@@ -3,7 +3,7 @@
  */
 import ImgSrcSet from "@reactComponent/ImgSrcSet";
 
-function BlogPost({post, firstItem, lastItem}) {
+function Post({post, firstItem, lastItem}) {
 	const {
 		author,
 		categories,
@@ -20,6 +20,7 @@ function BlogPost({post, firstItem, lastItem}) {
 		<article className={[
 			`flex bg-white transition hover:shadow-xl dark:bg-gray-800 dark:shadow-gray-800/25`,
 			sticky && "border-2 border-dark dark:border-white rounded-lg",
+            firstItem ? "mt-12" : '',
 			lastItem ? "my-12" : 'my-6',
 		].filter(Boolean).join(" ")}>
 			<div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
@@ -68,4 +69,4 @@ function BlogPost({post, firstItem, lastItem}) {
 	);
 }
 
-export default BlogPost;
+export default Post;

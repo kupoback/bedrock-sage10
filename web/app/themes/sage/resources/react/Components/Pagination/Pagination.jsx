@@ -25,7 +25,24 @@ import ChevronLeft from "@reactComponent/Icons/ChevronLeft";
  * @constructor
  */
 function Pagination({clickHandler, elmId, itemsPerPage, maxPages, navClassNames, storeState }) {
-    const handlePageChange = ({selected}) => {clickHandler(storeState, selected, elmId)};
+
+    /**
+     * Bindings for the event handler on the page number clicks
+     *
+     * @param {Boolean} isActive            Whether this element is active
+     * @param {Boolean} isBreak             Whether this element is the break tag
+     * @param {Boolean} isNext              Whether this element is the next tag
+     * @param {Boolean} isPrevious          Whether this element is the previous tag
+     * @param {Number}  nextSelectedPage    What the current index of the page selected is. It will always be 1 number behind actual value
+     *
+     * @returns {false|*|boolean}
+     */
+    const handlePageChange = ({isActive, isBreak, isNext, isPrevious, nextSelectedPage}) => {
+        if ((nextSelectedPage - 1 > 0) || (nextSelectedPage + 1 < maxPages)) {
+            return (!isBreak && !isActive) && clickHandler(storeState, nextSelectedPage, elmId)
+        }
+        return false;
+    };
 
     if (maxPages < 1) return '';
 
@@ -38,7 +55,7 @@ function Pagination({clickHandler, elmId, itemsPerPage, maxPages, navClassNames,
                 className="flex justify-center gap-1 text-xs font-medium"
                 nextLabel={<ChevronRight/>}
                 nextClassName="next-indicator inline-flex h-8 w-8 m-0 items-center text-white justify-center rounded border border-gray-100 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
-                onPageChange={handlePageChange}
+                onClick={handlePageChange}
                 pageRangeDisplayed={itemsPerPage}
                 pageClassName="page h-8 w-8 m-0 rounded border border-gray-100 text-center leading-8 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
                 pageCount={maxPages}

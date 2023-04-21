@@ -27,7 +27,7 @@ class PostTypes
             add_action('init', fn() => collect($post_types)
                 ->each(function ($pt_args, $pt_name) {
                     register_post_type($pt_name, $pt_args);
-                }));
+                }), 0);
         }
     }
 

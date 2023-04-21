@@ -33,7 +33,7 @@ class Taxonomies
                         return false;
                     }
                     return register_taxonomy($tax_name, $tax_arr['post_type'], $tax_arr['tax_args'] ?? []);
-                }));
+                }), 0);
         }
     }
 

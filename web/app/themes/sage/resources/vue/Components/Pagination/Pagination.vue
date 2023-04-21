@@ -16,14 +16,14 @@
                     :tabIndex="firstPageSelected ? -1 : 0"
                     :pageLinkClass="firstBtnClass"
                     @selectPage="selectFirstPage">
-                    
+
                     <template #firstButton>
                         <slot name="firstButton"></slot>
                     </template>
-                    
+
                 </PageButton>
             </li>
-            
+
             <li v-if="!(firstPageSelected() && hidePrevNext)"
                 :class="[
                     defaultClasses.listItem,
@@ -38,14 +38,14 @@
                     :tabIndex="firstPageSelected ? -1 : 0"
                     :pageLinkClass="prevBtnClass"
                     @selectPage="prevPage">
-        
+
                     <template #prevPage>
                         <slot name="prevPage"></slot>
                     </template>
-    
+
                 </PageButton>
             </li>
-            
+
             <li v-for="page in pages"
                 :key="page.content"
                 :class="[
@@ -56,7 +56,7 @@
                     page.selected ? (activeClass || 'active') : '',
                     page.disabled ? (disabledClass || 'disabled') : '',
                 ]">
-                
+
                 <PageButton v-if="page.breakView"
                             slotName="pageBreakView"
                             :buttonText="breakViewText"
@@ -64,13 +64,13 @@
                             :pageLinkClass="[pageLinkClass, breakViewLinkClass]"
                             :pageNumber="selected"
                             :tabIndex="0">
-                    
+
                     <template #pageBreak>
                         <slot name="pageBreak"></slot>
                     </template>
-                    
+
                 </PageButton>
-                
+
                 <PageButton v-else-if="page.disabled"
                             slotName="pageDisabled"
                             :pageLinkClass="[pageLinkClass, pageDisabledClass]"
@@ -78,13 +78,13 @@
                             :isDisabled="page.disabled"
                             :pageNumber="page.content"
                             :tabIndex="0">
-                    
+
                     <template #pageDisabled>
                         <slot name="pageDisabled"></slot>
                     </template>
-                    
+
                 </PageButton>
-                
+
                 <PageButton v-else
                             slotName="page"
                             :pageLinkClass="pageLinkClass"
@@ -93,14 +93,14 @@
                             :pageNumber="page.content"
                             :tabIndex="0"
                             @selectPage="handlePageSelected(page.index + 1)">
-                    
+
                     <template #page>
                         <slot name="page"></slot>
                     </template>
-                    
+
                 </PageButton>
             </li>
-            
+
             <li v-if="!(lastPageSelected() && hidePrevNext)"
                 :class="[
                     defaultClasses.listItem,
@@ -117,14 +117,14 @@
                     :pageNumber="selected"
                     :pageLinkClass="nextBtnClass"
                     @selectPage="nextPage">
-        
+
                     <template #nextPage>
                         <slot name="nextPage"></slot>
                     </template>
-    
+
                 </PageButton>
             </li>
-            
+
             <li v-if="firstLastButton"
                 :class="[
                     defaultClasses.listItem,
@@ -133,7 +133,7 @@
                     pageClass,
                     lastPageSelected() ? (disabledClass || 'disabled') : ''
                 ]">
-    
+
                 <PageButton
                     slotName="lastButton"
                     :buttonText="lastButtonText"
@@ -141,11 +141,11 @@
                     :isDisabled="selected === pageCount"
                     :pageLinkClass="lastBtnClass"
                     @selectPage="selectLastPage">
-        
+
                     <template #lastButton>
                         <slot name="lastButton"></slot>
                     </template>
-    
+
                 </PageButton>
             </li>
         </ul>
@@ -153,7 +153,7 @@
 </template>
 
 <script type="application/javascript">
-    
+
     import {emitter} from "../../Util/bus";
     import PageButton from "./PageButton";
     export default {
@@ -178,13 +178,13 @@
             value: {
                 type: Number
             },
-            
+
             clickHandler: {
                 type: Function,
                 default: () => {
                 }
             },
-    
+
             breakViewText: {
                 type: String,
                 default: '…'
@@ -205,7 +205,7 @@
                 type: String,
                 default: 'Prev'
             },
-            
+
             firstLastButton: {
                 type: Boolean,
                 default: false
@@ -214,7 +214,7 @@
                 type: Boolean,
                 default: false
             },
-            
+
             activeClass: {
                 type: String,
                 default: 'vue-paginate__container-number__active'
@@ -281,7 +281,6 @@
             if (this.forcePage !== this.selected) {
                 this.selected = this.forcePage
             }
-            console.log(this.selected)
         },
         computed: {
             pageRangeOffset() {
@@ -322,48 +321,45 @@
                             disabled: isCurrent,
                         }
                     }
-                    
+
                     let setBreakView = index => {
                         items[index] = {
                             disabled: true,
                             breakView: true
                         }
                     }
-                    
+
                     // 1st - loop through low end of margin pages
                     for (let i = 0; i < this.marginPages; i++) {
                         setPageItem(i);
                     }
-                    
+
                     // 2nd - loop through selected range
                     let selectedRangeLow = 0;
                     if (this.selected - halfPageRange > 0) {
                         selectedRangeLow = this.selected - 1 - halfPageRange;
                     }
-                    
+
                     let selectedRangeHigh = selectedRangeLow + this.pageRangeOffset - 1;
                     if (selectedRangeHigh >= this.pageCount) {
                         selectedRangeHigh = this.pageCount - 1;
                         selectedRangeLow = selectedRangeHigh - this.pageRangeOffset + 1;
                     }
-                    
+
                     for (let i = selectedRangeLow; i <= selectedRangeHigh && i <= this.pageCount - 1; i++) {
                         setPageItem(i);
                     }
-                    
+
                     // Check if there is breakView in the left of selected range
                     if (selectedRangeLow > this.marginPages) {
                         setBreakView(selectedRangeLow - 1)
                     }
-                    
+
                     // Check if there is breakView in the right of selected range
-                    // console.log(selectedRangeHigh + 1 )
-                    // console.log(this.pageCount - this.marginPages)
-                    // console.log(selectedRangeHigh + 1 < this.pageCount - this.marginPages)
                     if (selectedRangeHigh + 1 < this.pageCount - this.marginPages) {
                         setBreakView(selectedRangeHigh + 1)
                     }
-                    
+
                     // 3rd - loop through high end of margin pages
                     for (let i = this.pageCount - 1; i >= this.pageCount - this.marginPages; i--) {
                         setPageItem(i);
@@ -393,19 +389,19 @@
         methods: {
             handlePageSelected(selected) {
                 if (this.selected === selected) return
-                
+
                 this.innerValue = selected
                 emitter.emit('input', selected)
                 this.clickHandler(selected)
             },
             prevPage() {
                 if (this.selected <= 1) return
-                
+
                 this.handlePageSelected(this.selected - 1)
             },
             nextPage() {
                 if (this.selected >= this.pageCount) return
-                
+
                 this.handlePageSelected(this.selected + 1)
             },
             firstPageSelected() {
@@ -416,12 +412,12 @@
             },
             selectFirstPage() {
                 if (this.selected <= 1) return
-                
+
                 this.handlePageSelected(1)
             },
             selectLastPage() {
                 if (this.selected >= this.pageCount) return
-                
+
                 this.handlePageSelected(this.pageCount)
             }
         }

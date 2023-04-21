@@ -30,7 +30,14 @@ module.exports = async (app) => {
             "@reduxBlog": "@sageRedux/features/blog",
             "@zustand": "@src/react/Zustand",
             "@zustandPosts": "@zustand/Posts",
-            "@zustandSearch": "@zustand/Search"
+            "@zustandSearch": "@zustand/Search",
+            "@vue": "@src/vue",
+            "@vueBlocks": "@vue/Blocks",
+            "@vueComponents": "@vue/Components",
+            "@vuePages": "@vue/Pages",
+            "@vueUtil": "@vue/Util",
+            "@vuex": "@vue/Vuex",
+            "@vuexPosts": "@vuex/posts/store"
         })
         /**
          * Application entry points. You can add additional entries to specific
@@ -61,8 +68,8 @@ module.exports = async (app) => {
     app
         .postcss
         .setPlugins({
-            ['tailwindcss']: await app.module.resolve('tailwindcss'),
-            ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
+            // ['tailwindcss']: await app.module.resolve('tailwindcss'),
+            // ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
         });
 
     app
@@ -99,8 +106,8 @@ module.exports = async (app) => {
         );
 
     // If using Tailwind uncomment
-    app.tailwind
-        .generateImports();
+    // app.tailwind
+    //     .generateImports();
 
     /**
      * Generate WordPress `theme.json`
@@ -126,8 +133,8 @@ module.exports = async (app) => {
         .set('settings.spacing.units', ['px', '%', 'em', 'rem', 'vw', 'vh'])
         .set('settings.typography.customFontSize', false)
         // If using Tailwind uncomment
-        .useTailwindColors()
-        .useTailwindFontFamily()
-        .useTailwindFontSize()
+        // .useTailwindColors()
+        // .useTailwindFontFamily()
+        // .useTailwindFontSize()
         .enable();
 };

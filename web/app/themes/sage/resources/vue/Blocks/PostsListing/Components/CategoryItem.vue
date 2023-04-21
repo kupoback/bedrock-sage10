@@ -1,11 +1,11 @@
 <template>
-    <div class="form-check"
+    <div class=""
          @click="addToSelected">
-        <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-yellow-500 checked:border-yellow-500 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+        <input class=""
                type="checkbox"
                value=""
                :id="slug" />
-        <label class="form-check-label inline-block text-white"
+        <label class=""
                :for="slug"
                v-html="name"
                @click="addToSelected" />
@@ -13,8 +13,9 @@
 </template>
 
 <script type="application/javascript">
-    import {store} from "../../../Vuex/posts/store";
-    import mixins from "../../../Util/mixins";
+    import {store} from "@vuexPosts/store";
+    import mixins from "@vueUtil/mixins";
+
     export default {
         props: {
             id: {

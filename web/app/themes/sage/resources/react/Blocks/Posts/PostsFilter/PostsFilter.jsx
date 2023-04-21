@@ -38,13 +38,13 @@ function PostsFilter({}) {
     }
 
     return (
-        <div className="rounded border border-gray-100 p-4 posts-listing__filters">
+        <div className="posts-listing__filters">
             {filterLabel &&
                 <div className="posts-listing__filters-title">
-                    <h3 className="text-lg font-bold text-white">{filterLabel}</h3>
+                    <h3 className="">{filterLabel}</h3>
                 </div>}
             {(typeof taxonomies === 'object' && Object.keys(taxonomies).length !== 0) &&
-                <div className="flex max-h-60 overflow-y-scroll py-4 mb-4 posts-listing__filters-terms">
+                <div className="posts-listing__filters-terms">
                     <div>
                         {Object.values(taxonomies).map(({id, slug, name}) =>
                             <CategoryItem key={id}
@@ -52,10 +52,10 @@ function PostsFilter({}) {
                                           name={name} />)}
                     </div>
                 </div>}
-            <div className="pb-4 mb-4 posts-listing__filters-search">
+            <div className="posts-listing__filters-search">
                 <fieldset>
                     <label htmlFor="posts-search"
-                           className="form-label inline-block mb-2 text-white">
+                           className="">
                         {searchLabel}
                     </label>
                     <input type="text"
@@ -63,20 +63,20 @@ function PostsFilter({}) {
                            placeholder={searchPlaceholder}
                            onChange={({target}) => postsStore.setState(() => ({searchText: target.value}))}
                            onKeyDown={({key}) => key === 'Enter' && submitSearch()}
-                           className="form-control block w-full px-3 py-1.5 text-base font-normal caret-yellow-500 text-gray-700 bg-white bg-clip-padding border-solid border-2 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yellow-500 focus:outline-none focus:shadow-none"/>
+                           className=""/>
                 </fieldset>
             </div>
-            <div className="pb-2 posts-listing__filters-submit group flex items-center justify-between">
+            <div className="posts-listing__filters-submit">
                 <Button
-                    btnClass="rounded-lg border border-gray-100 px-5 py-3 transition-colors hover:border-yellow-500 hover:bg-yellow-500 focus:outline-none focus:ring"
+                    btnClass=""
                     btnType="submit"
                     clickHandler={submitSearch}
-                    content={<span className="font-medium text-white transition-colors">{filterSubmit}</span>}/>
+                    content={<span className="">{filterSubmit}</span>}/>
                 <Button
-                    btnClass="rounded-lg border border-gray-100 px-5 py-3 transition-colors hover:border-yellow-500 hover:bg-yellow-500 focus:outline-none focus:ring"
+                    btnClass=""
                     btnType="reset"
                     clickHandler={() => resetForm()}
-                    content={<span className="font-medium text-white transition-colors">Reset</span>}/>
+                    content={<span className="">Reset</span>}/>
             </div>
         </div>
     );

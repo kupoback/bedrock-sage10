@@ -2,14 +2,12 @@
  * React Scripts/Plugins
  */
 import ReactPaginate from "react-paginate"
-import toNumber from "lodash-es/toNumber";
 
 /**
  * React Components
  */
 import ChevronRight from "@reactComponent/Icons/ChevronRight";
 import ChevronLeft from "@reactComponent/Icons/ChevronLeft";
-import toInteger from "lodash-es/toInteger";
 
 /**
  * This is the main function for outputting the container of the Pagination
@@ -62,21 +60,21 @@ function Pagination({clickHandler, currentPage = 1, elmId, itemsPerPage, maxPage
     return (
         <nav className={navClassNames} role="navigation">
             <ReactPaginate
-                activeClassName="active-class border-yellow-400 bg-yellow-400 text-gray-900 hover:border-yellow-400 hover:bg-yellow-400"
-                breakClassName="break-indicator block h-8 w-8 m-0 rounded border border-gray-100 text-center text-white leading-8 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900 hover:border-gray-100 hover:bg-transparent hover:text-gray-100"
+                activeClassName="active-class "
+                breakClassName="break-indicator"
                 breakLabel="..."
-                className="flex justify-center gap-1 text-xs font-medium"
+                className=""
                 forcePage={currentPage}
                 nextLabel={<ChevronRight/>}
-                nextClassName="next-indicator inline-flex h-8 w-8 m-0 items-center text-white justify-center rounded border border-gray-100 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
+                nextClassName="next-indicator"
                 onClick={handlePageChange}
                 onPageActive={disableActive}
                 pageRangeDisplayed={itemsPerPage}
-                pageClassName="page h-8 w-8 m-0 rounded border border-gray-100 text-center leading-8 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
+                pageClassName="page"
                 pageCount={maxPages}
-                pageLinkClassName="page-link text-white"
+                pageLinkClassName="page-link"
                 previousLabel={<ChevronLeft/>}
-                previousClassName="previous-indicator inline-flex h-8 w-8 m-0 items-center text-white justify-center rounded border border-gray-100 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-900"
+                previousClassName="previous-indicator"
                 renderOnZeroPageCount={null}
             />
         </nav>

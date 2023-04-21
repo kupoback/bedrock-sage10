@@ -1,27 +1,27 @@
-<section @class([$block->classes ?? false, 'container text-white bg-gray-900 mx-auto py-6 blog-listing'])>
-    <div class="px-4 pb-6 sm:px-6 lg:px-8">
+<section @class([$block->classes ?? false, 'posts-listing'])>
+    <div class="">
         <div class="posts-listing__header">
             @if ($title ?? false)
-                <h2 class="text-white text-3xl font-bold sm:text-4xl posts-listing__header-title">{!! $title !!}</h2>
+                <h2 class="posts-listing__header-title">{!! $title !!}</h2>
             @endif
             @if ($content ?? false)
-                <div class="mt-4 posts-listing__header-content">
+                <div class="posts-listing__header-content">
                     {!! $content !!}
                 </div>
             @endif
         </div>
     </div>
-    <div class="px-4 pb-6 sm:px-6 lg:px-8">
-        <h3 class="text-lg font-bold text-white">
-            {!! $results !!}@if (!is_admin())<span id="results-count">: 0</span>@endif
+    <div class="posts-listing__results">
+        <h3 class="posts-listing__results-title">
+            {!! $results !!}@if (!is_admin())<span id="results-count" class="posts-listing__results-title__count">: 0</span>@endif
         </h3>
     </div>
-    <div class="flex px-4 sm:px-6 lg:px-8 ">
-        <div class="flex-1 w-9/12">
+    <div class="posts-listing__container">
+        <section class="posts-listing__container-main">
             <div id="posts-listing"></div>
             <div id="posts-pagination"></div>
-        </div>
-        <aside class="pl-8 flex-initial w-3/12">
+        </section>
+        <aside class="posts-listing__container-aside">
             <div id="posts-filters"></div>
         </aside>
     </div>

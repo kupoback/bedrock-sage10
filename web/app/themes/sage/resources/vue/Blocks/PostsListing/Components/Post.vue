@@ -1,44 +1,45 @@
 <template>
-    <article class="flex bg-white transition hover:shadow-xl dark:bg-gray-800 dark:shadow-gray-800/25"
+    <article class=""
              :class="{
-                'border-2 border-dark dark:border-white rounded-lg': sticky,
-                'my-12': !lastItem && !firstItem,
-                'mt-0': firstItem,
-                'my-6': !lastItem,
+                'post': sticky,
+                '': !lastItem && !firstItem,
+                '': firstItem,
+                '': !lastItem,
              }">
-        <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+        <div class="post__postmeta">
             <time v-if="!objIsEmpty(date)"
-                  datetime="2022-10-10"
-                  class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900 dark:text-white">
+                  :datetime="date?.raw"
+                  class="post__postmeta-time">
                 <span v-if="objHasKey(date, 'year')"
                       v-html="date.year"/>
-                <span class="w-px flex-1 bg-gray-900/10 dark:bg-white/10"></span>
+                <span class="post__postmeta-separator separator"></span>
                 <span v-if="objHasKey(date, 'date')"
+                      class="post__postmeta-date"
                       v-html="date.date"/>
             </time>
         </div>
 
         <div v-if="!objIsEmpty(image)"
-             class="hidden sm:block sm:basis-56">
+             class="post__image">
             <PostImage :image="image"
-                       class="aspect-square h-full w-full object-cover"/>
+                       class=""/>
         </div>
 
-        <div class="flex flex-1 flex-col justify-between">
-            <div class="border-l border-gray-900/10 p-4 dark:border-white/10 sm:!border-l-transparent sm:p-6">
-                <a :href="permalink">
-                    <h3 class="font-bold uppercase text-gray-900 dark:text-white"
-                        v-html="title"/>
-                </a>
+        <div class="post__body">
+            <div class="post__body-title">
+                <h3 class="post__body-title__header">
+                    <a :href="permalink"
+                       v-html="title" />
+                </h3>
 
                 <p v-if="excerpt"
-                   class="mt-2 text-sm leading-relaxed text-gray-700 line-clamp-3 dark:text-gray-200"
+                   class="post__body-content"
                    v-html="excerpt"/>
             </div>
 
-            <div class="sm:flex sm:items-end sm:justify-end">
+            <div class="post__body-footer">
                 <a :href="permalink"
-                   class="block bg-yellow-400 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-500"
+                   class=""
                    v-html="readMore"
                 />
             </div>
@@ -47,10 +48,10 @@
 </template>
 
 <script type="application/javascript">
-    import {store} from "../../../Vuex/posts/store";
-    import mixins from "../../../Util/mixins";
+    import {store} from "@vuexPosts/store";
+    import mixins from "@vueUtil/mixins";
 
-    import PostImage from "../../../Components/ImgSrcSet.vue";
+    import PostImage from "@vueComponents/ImgSrcSet.vue";
 
     export default {
         props: {

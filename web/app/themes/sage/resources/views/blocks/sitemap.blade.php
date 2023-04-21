@@ -6,9 +6,9 @@
     @endif
     @if (($pages ?? false) && !empty($pages))
         <nav class="sitemap-container__pages">
-            <ul class="sitemap-container__pages-list row">
+            <ul class="sitemap-container__pages-list">
                 @foreach ($pages as $page)
-                    <li class="sitemap-container__pages-list-page col-xs-12">
+                    <li class="sitemap-container__pages-list__page">
                         <a href="{!! $page->link !!}">{!! $page->title !!}</a>
                     </li>
                 @endforeach

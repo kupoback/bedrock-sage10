@@ -3,24 +3,3 @@
 
 /* React Pagination
 ===================================== */
-#posts-pagination {
-    li {
-        &:hover {
-            cursor: pointer;
-        }
-    }
-    .break-indicator a,
-    a {
-        color: rgb(255 255 255 / var(--tw-text-opacity));
-    }
-    .disabled {
-        background: transparent;
-        border-color: rgb(255 255 255 / var(--tw-text-opacity));
-        &:hover {
-            cursor: default;
-        }
-        a {
-            cursor: default;
-        }
-    }
-}

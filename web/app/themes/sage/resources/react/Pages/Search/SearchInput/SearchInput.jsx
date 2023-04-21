@@ -33,10 +33,10 @@ function SearchInput() {
     const searchValue = searchText.length ? searchText : '';
 
     return (
-        <div className="rounded border border-gray-100 p-4 search__input">
-            <div className="relative search__filters-search">
+        <div className="search__filters">
+            <fieldset>
                 <label htmlFor="search-input-field"
-                       className="form-label inline-block mb-2 text-white sr-only">
+                       className="search__filters-label">
                     {searchLabel}
                 </label>
                 <input type="text"
@@ -47,15 +47,13 @@ function SearchInput() {
                        aria-valuetext={searchValue}
                        onChange={({target}) => searchStore.setState(() => ({searchText: target.value}))}
                        onKeyDown={({key}) => key === 'Enter' && submitSearch()}
-                       className="form-control block w-full px-3 py-1.5 text-base font-normal caret-yellow-500 text-gray-700 bg-white bg-clip-padding border-solid border-2 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yellow-500 focus:outline-none focus:shadow-none"/>
-                <span className="absolute block inset-y-0 end-0 grid w-50 mx-2 place-content-center">
-                    <Button
-                        btnClass="rounded-lg bg-yellow-400 border border-yellow-400 p-2 transition-colors hover:border-yellow-500 hover:bg-yellow-500 focus:outline-none focus:ring flex align-content-center"
-                        btnType="submit"
-                        clickHandler={submitSearch}
-                        content={<span className="text-xs font-bold uppercase text-gray-900 transition-colors">{searchSubmit}</span>}/>
-                </span>
-            </div>
+                       className="search__filters-input"/>
+            </fieldset>
+            <Button
+                btnClass="search__filters-button"
+                btnType="submit"
+                clickHandler={submitSearch}
+                content={<span className="">{searchSubmit}</span>}/>
         </div>
     )
 }

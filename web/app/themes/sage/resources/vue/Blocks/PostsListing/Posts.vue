@@ -1,5 +1,5 @@
 <template>
-    <div class="blog-listing__results">
+    <div class="posts-listing__results">
         <Post v-if="!loading && posts.length"
               v-for="({author, categories, date, excerpt, id, image, permalink, sticky, title}) in posts"
               :key="id"
@@ -26,13 +26,13 @@
     /**
      * Vue Scripts
      */
-    import {store} from "../../Vuex/posts/store";
+    import {store} from "@vuexPosts/store";
 
     /**
      * Vue Components
      */
-    import Loading from "../../Components/Loading";
-    import NoResults from "../../Components/NoResults";
+    import Loading from "@vueComponents/Loading";
+    import NoResults from "@vueComponents/NoResults";
     import Post from "./Components/Post";
 
     export default {

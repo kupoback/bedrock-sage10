@@ -1,30 +1,30 @@
 <template>
-    <div class="rounded border border-gray-100 p-4 blog-listing__filters">
-        <div class="blog-listing__filters-title">
+    <div class="posts-listing__filters">
+        <div class="posts-listing__filters-title">
             <h3 v-if="label"
-                class="text-lg font-bold"
+                class=""
                 v-html="label" />
         </div>
         <div v-if="typeof taxonomies === 'object' && !objIsEmpty(taxonomies)"
-             class="flex max-h-60 overflow-y-scroll py-4 mb-4 blog-listing__filters-terms">
+             class="posts-listing__filters-terms">
             <CategoryListing :taxonomies="taxonomies" />
         </div>
 
-        <div class="pb-4 mb-4 blog-listing__filters-search">
-            <InputField inputId="blog-search"
-                        inputClass="form-control block w-full px-3 py-1.5 text-base font-normal caret-yellow-500 text-gray-700 bg-white bg-clip-padding border-solid border-2 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yellow-500 focus:outline-none focus:shadow-none"
+        <div class="posts-listing__filters-search">
+            <InputField inputId="posts-search"
+                        inputClass=""
                         :label="searchLabel"
-                        labelClass="form-label inline-block mb-2 text-white"
+                        labelClass=""
                         :placeholder="searchPlaceholder"
                         @inputEmit="getSearchText" />
         </div>
 
-        <div class="pb-2 blog-listing__filters-submit">
-            <Button btnClass="group flex items-center justify-between rounded-lg border border-gray-100 px-5 py-3 transition-colors hover:border-yellow-500 hover:bg-yellow-500 focus:outline-none focus:ring"
+        <div class="posts-listing__filters-submit">
+            <Button btnClass=""
                     btnType="submit"
                     @btnAction="submitSearch">
                 <template #btnContent>
-                    <span class="font-medium text-white transition-colors group-hover:text-gray-900 group-active:text-gray-900"
+                    <span class=""
                           v-html="submit"/>
                 </template>
             </Button>
@@ -36,15 +36,15 @@
     /**
      * Vue Scripts
      */
-    import {store} from "../../Vuex/posts/store";
-    import mixins from "../../Util/mixins";
+    import {store} from "@vuexPosts/store";
+    import mixins from "@vueUtil/mixins";
 
     /**
      * Vue Components
      */
-    import Button from "../../Components/Button.vue";
+    import Button from "@vueComponents/Button.vue";
     import CategoryListing from "./Components/CategoryListing.vue";
-    import InputField from "../../Components/Form/InputField.vue";
+    import InputField from "@vueComponents/Form/InputField.vue";
 
     export default {
         props: {},

@@ -4,10 +4,28 @@
  * @see {@link https://roots.io/docs/sage sage documentation}
  * @see {@link https://bud.js.org/guides/configure bud.js configuration guide}
  *
- * @param {import('@roots/bud').Bud} app
+ * @param {import('@roots/bud').Bud} bud
  */
-module.exports = async (app) => {
-    app
+module.exports = async (bud) => {
+    /**
+     * Quick call to minimize all the files
+     * @param {Object} bud
+     * @returns {any}
+     */
+    const minimizeFiles = (bud) => bud.minimize;
+    /**
+     * Quick call to set up the devtools with common call backs
+     * @param {Object} bud
+     * @returns {*}
+     */
+    const setDevTool = bud => bud.devtool(`inline-cheap-module-source-map`)
+    /**
+     * Bud ENV fetcher
+     * @type {Env}
+     */
+    const budEnv = bud.env;
+
+    bud
         /**
          * Alias setup
          *
@@ -21,23 +39,27 @@ module.exports = async (app) => {
          */
         .alias({
             "@sageAdmin": "@src/admin_assets",
-            "@sageReact": "@src/react",
-            "@sageRedux": "@sageReact/Redux",
-            "@reactBlocks": "@sageReact/Blocks",
-            "@reactComponent": "@sageReact/Components",
-            "@reactPages": "@sageReact/Pages",
-            "@reactUtil": "@sageReact/Util",
-            "@reduxBlog": "@sageRedux/features/blog",
-            "@zustand": "@src/react/Zustand",
-            "@zustandPosts": "@zustand/Posts",
-            "@zustandSearch": "@zustand/Search",
-            "@vue": "@src/vue",
-            "@vueBlocks": "@vue/Blocks",
-            "@vueComponents": "@vue/Components",
-            "@vuePages": "@vue/Pages",
-            "@vueUtil": "@vue/Util",
-            "@vuex": "@vue/Vuex",
-            "@vuexPosts": "@vuex/posts/store"
+            //region React
+            "@sageReact":       "@src/react",
+            "@sageRedux":       "@sageReact/Redux",
+            "@reactBlocks":     "@sageReact/Blocks",
+            "@reactComponent":  "@sageReact/Components",
+            "@reactPages":      "@sageReact/Pages",
+            "@reactUtil":       "@sageReact/Util",
+            "@reduxBlog":       "@sageRedux/features/blog",
+            "@zustand":         "@src/react/Zustand",
+            "@zustandPosts":    "@zustand/Posts",
+            "@zustandSearch":   "@zustand/Search",
+            //endregion
+            //region Vue related content
+            // "@vue": "@src/vue",
+            // "@vueBlocks": "@vue/Blocks",
+            // "@vueComponents": "@vue/Components",
+            // "@vuePages": "@vue/Pages",
+            // "@vueUtil": "@vue/Util",
+            // "@vuex": "@vue/Vuex",
+            // "@vuexPosts": "@vuex/posts/store"
+            //endregion
         })
         /**
          * Application entry points. You can add additional entries to specific
@@ -55,41 +77,52 @@ module.exports = async (app) => {
             search: ["@reactPages/Search/index"]
         })
         /**
-         * This is used to minimize all the files when Bud
-         * runs in production mode
-         */
-        .minimize(app.isProduction)
+     * URI of the `public` directory
+     *
+     * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
+     */
+        .setPublicPath("/app/themes/sage/public/")
         /**
          * Directory contents to be included in the compilation
          * @see {@link https://bud.js.org/docs/bud.assets/}
          */
         .assets(["images", "fonts"]);
 
-    app
-        .postcss
+    bud.postcss
         .setPlugins({
             // ['tailwindcss']: await app.module.resolve('tailwindcss'),
             // ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
-        });
+        })
 
-    app
-        .setUrl('http://localhost:3000')
-        .setProxyUrl('https://boilerplate8.1.test')
-        /**
-         * URI of the `public` directory
-         *
-         * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
-         */
-        .setPublicPath("/app/themes/sage/public/");
+    /**
+     * This section is used to generate sourcemaps for
+     * yarn local, and yarn dev, but not yarn production
+     *
+     * For yarn local, it'll also start the watcher
+     * and browser-sync
+     */
+    budEnv.isNotEmpty('WP_ENV') && bud.when(
+        budEnv.is(`WP_ENV`, 'local'),
+        bud => {
+            setDevTool(bud)
+                .setUrl(budEnv.has('BUD_LOCALHOST')
+                    ? budEnv.get('BUD_LOCALHOST')
+                    : 'http://localhost:3000')
+                .setProxyUrl(
+                    budEnv.has('WP_HOME')
+                        ? budEnv.get('WP_HOME')
+                        : ''
+                )
+        },
+        bud => minimizeFiles(bud)
+    )
+    .when(
+        budEnv.is(`WP_ENV`, 'development'),
+        bud => setDevTool(bud),
+        bud => minimizeFiles(bud)
+    )
 
-    app
-        /**
-         * This is used to generate sourcemaps but only when
-         * Bud ran in development mode
-         */
-        .when(app.isDevelopment, app => app.devtool());
-
-    app
+    bud
         /**
          * Matched files trigger a page reload when modified
          * @see {@link https://bud.js.org/docs/bud.watch/}
@@ -117,7 +150,7 @@ module.exports = async (app) => {
      * @see {@link https://bud.js.org/extensions/sage/theme.json/}
      * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/}
      */
-    app
+    bud
         .wpjson
         .set('settings.color.custom', false)
         .set('settings.color.customDuotone', false)

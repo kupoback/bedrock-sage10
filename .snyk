@@ -2,6 +2,8 @@
 version: v1.25.0
 ignore: {}
 patch: {}
+language-settings:
+    php: '^8.1'
 exclude:
   code:
     - phpunit.phar

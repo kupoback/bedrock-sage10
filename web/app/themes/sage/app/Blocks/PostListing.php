@@ -35,7 +35,7 @@ class PostListing extends Block
     /**
      * The block icon. Omit the `dashicon-` portion
      *
-     * @var null|string
+     * @var array|string
      * @link WordPressIcons https://developer.wordpress.org/resource/dashicons/
      */
     public $icon = 'list-view';
@@ -205,7 +205,7 @@ class PostListing extends Block
             ->addSelect('post_types')
                 ->setConfig('multiple', true)
                 ->setConfig('allow_null', false)
-                ->setDefaultValue(['post'])
+                ->setDefaultValue('post')
 
             ->addTextarea('no_results')
                 ->setConfig('rows', 4)

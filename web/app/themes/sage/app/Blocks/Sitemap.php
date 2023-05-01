@@ -34,7 +34,7 @@ class Sitemap extends Block
     /**
      * The block icon. Omit the `dashicon-` portion
      *
-     * @var null|string
+     * @var array|string
      * @link WordPressIcons https://developer.wordpress.org/resource/dashicons/
      */
     public $icon = 'text-page';
@@ -185,7 +185,7 @@ class Sitemap extends Block
                 ->setConfig('allow_null', false)
                 ->setAttr('class', 'one-half')
                 ->setLabel(__('Post Type', 'sage'))
-                ->setDefaultValue(['page'])
+                ->setDefaultValue('page')
 
             ->addSelect('orderby')
                 ->addChoices(

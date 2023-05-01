@@ -31,6 +31,7 @@ class AcfNavMenuField extends acf_field
      * @param  array  $field  The array representation of the current Nav Menu Field.
      */
     public function render_field_settings(array $field)
+    :void
     {
         // Register the Return Value format setting
         acf_render_field_setting($field, [
@@ -90,6 +91,7 @@ class AcfNavMenuField extends acf_field
      * @param  array  $field  The array representation of the current Nav Menu Field.
      */
     public function render_field(array $field)
+    :void
     {
         $allow_null = $field['allow_null'];
         $nav_menus  = $this->get_nav_menus($allow_null);

@@ -33,7 +33,7 @@ class DummyClass extends Block
     /**
      * The block icon. Omit the `dashicon-` portion
      *
-     * @var null|string
+     * @var array|string
      * @link WordPressIcons https://developer.wordpress.org/resource/dashicons/
      */
     public $icon = 'editor-ul';

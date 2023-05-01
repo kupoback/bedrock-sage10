@@ -23,6 +23,7 @@ class Post extends Composer
      * @return array
      */
     public function override()
+    :array
     {
         return [
             'title' => $this->title(),
@@ -35,6 +36,7 @@ class Post extends Composer
      * @return string
      */
     public function title()
+    :string
     {
         if ($this->view->name() !== 'partials.page-header') {
             return get_the_title();

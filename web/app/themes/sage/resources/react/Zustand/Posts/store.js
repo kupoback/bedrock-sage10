@@ -38,25 +38,20 @@ const state = (set, get) => (
             config.params.page = page;
 
             if (updateSearch) {
-                // Setup Query Params and push them to the state
-                // const query = generateQueryParams(get().query)
-                // set({query});
-
                 const {taxonomies} = get();
                 taxonomies.length && (config.params.categories = taxonomies)
+
+                // Setup Query Params and push them to the state
+                // set({query: config.params})
+                // const query = generateQueryParams(config.params)
+                // Update the browsers history to include the new search term
+                // updateBrowserHistory(query, true)
             }
 
             set({fetchErr: false, loading: true})
 
-            try {
-                const response = await apiGetRequest(`${api}/${page}`, config)
-                set({...response})
-            } catch (err) {
-                console.error(err);
-                set({fetchErr: true})
-            }
-
-            set({loading: false})
+            const response = await apiGetRequest(`${api}/${page}`, config)
+            set({...response, loading: false})
         },
         /**
          * Updates the taxonomy selected array with adding

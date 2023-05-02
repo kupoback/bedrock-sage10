@@ -5,7 +5,7 @@ const windowUrl = new URL(window.location);
  * @param queryParams
  * @returns {module:url.URLSearchParams}
  */
-const generateQueryParams = (queryParams) => {
+export const generateQueryParams = (queryParams) => {
     return Object.entries(queryParams)
         .reduce((searchParams, [key, value]) => {
             searchParams.set(key, value.toString());
@@ -19,7 +19,7 @@ const generateQueryParams = (queryParams) => {
  *
  * @returns {*} The query param we need to search for
  */
-const getQueryParams = () => {
+export const getQueryParams = () => {
     const queryParams = new URLSearchParams(windowUrl?.search);
     return Object.fromEntries(queryParams);
 };
@@ -32,7 +32,7 @@ const getQueryParams = () => {
  * @param {object}  query The Vuex store state
  * @param {boolean} updateHistory Whether to update the history or not
  */
-const updateBrowserHistory = (query, updateHistory = false) => {
+export const updateBrowserHistory = (query, updateHistory = false) => {
     if (query.toString() && updateHistory) {
         const { origin, pathname } = windowUrl;
         const urlPath = `${origin}${pathname}?${query.toString()}`;
@@ -45,15 +45,8 @@ const updateBrowserHistory = (query, updateHistory = false) => {
  * @param {object} query The React store state
  * @param {string} url The URL to go to
  */
-const goToUrl = (query, { url = '' }) => {
+export const goToUrl = (query, { url = '' }) => {
     if (query && url) {
         window.location = `${url}?${query}`;
     }
 };
-
-export {
-    generateQueryParams,
-    getQueryParams,
-    goToUrl,
-    updateBrowserHistory,
-}

@@ -11,7 +11,7 @@ import {shallow} from "zustand/shallow";
 import Button from "@reactComponent/Button";
 
 function SearchInput() {
-    const {searchLabel, searchPlaceholder, searchSubmit} = SEARCH;
+    const {resetSearch, searchLabel, searchPlaceholder, searchSubmit} = SEARCH;
     const {fetch, reset, searchText} = searchStore(state => state, shallow)
 
     /**
@@ -54,6 +54,11 @@ function SearchInput() {
                 btnType="submit"
                 clickHandler={submitSearch}
                 content={<span className="">{searchSubmit}</span>}/>
+            {/*<Button
+                btnClass="search__filters-button"
+                btnType="button"
+                clickHandler={resetForm}
+                content={<span className="">{resetSearch}</span>}/>*/}
         </div>
     )
 }

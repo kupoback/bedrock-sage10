@@ -43,7 +43,7 @@ function Pagination({clickHandler, currentPage = 1, elmId, itemsPerPage, maxPage
             return false;
         }
 
-        const nextPage = nextSelectedPage - 1;
+        const nextPage = nextSelectedPage + 1;
 
         if (nextPage > 0 && nextPage <= maxPages) {
             clickHandler(storeState, nextPage, elmId);

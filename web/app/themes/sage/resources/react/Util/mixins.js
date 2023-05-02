@@ -45,7 +45,7 @@ const setResultsCount = (elmId, count) => {
  * @param {String} elmId The ID name of the element to scroll to
  */
 const paginationClickHandler = (state, page, elmId) => {
-    setPage(page + 1, state)
+    setPage(page, state)
     state.getState().fetch(true);
 
     const elm = document.getElementById(elmId);

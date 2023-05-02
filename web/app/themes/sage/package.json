@@ -8,9 +8,8 @@
         "node": ">=18.0.0"
     },
     "scripts": {
-        "local": "bud dev",
-        "dev": "bud build",
-        "build": "bud build production",
+        "dev": "bud dev",
+        "build": "bud build",
         "translate": "yarn translate:pot && yarn translate:update",
         "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"app,resources\"",
         "translate:update": "wp i18n update-po ./resources/lang/sage.pot ./resources/lang/*.po",

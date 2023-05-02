@@ -38,6 +38,7 @@ add_action('wp_enqueue_scripts', function () {
                     (new AcfNestedFields(
                     // Add any other fields to pass to localized args
                         [
+                            'resetSearch',
                             'searchLabel',
                             'searchPlaceholder',
                             'searchSubmit',

@@ -38,7 +38,13 @@ module.exports = async (bud) => {
          * @type @sageVue   This integrated Vue 3 components to be compiled
          */
         .alias({
-            "@sageAdmin": "@src/admin_assets",
+            //region JS
+            "@sageBlocks":      "@scripts/blocks",
+            "@sageModules":     "@scripts/modules",
+            "@sagePages":       "@scripts/pages",
+            "@sagePlugins":     "@scripts/plugins",
+            //endregion
+            "@sageAdmin":       "@src/admin_assets",
             //region React
             "@sageReact":       "@src/react",
             "@sageRedux":       "@sageReact/Redux",

@@ -13,13 +13,12 @@ class ImageHelper
     /**
      * Returns a picture tag serving webp images in a source tag for an image
      *
-     * @param int    $src_id      The Image ID
-     * @param  array{alt: string, class: string, id: string, pic_class: string, property: string, role: string, size: string}
-     *               $img_attrs   Parameters for overrides, size, property, role, alt, caption override
-     * @param array  $data_attrs  Pass an array of data attributes for use with JS
-     * @param array  $aria_attrs  Any aria attributes needed for the image
+     * @param  int    $src_id      The Image ID
+     * @param  array  $img_attrs   Parameters for overrides, size, property, role, alt, caption override
+     * @param  array  $data_attrs  Pass an array of data attributes for use with JS
+     * @param  array  $aria_attrs  Any aria attributes needed for the image
      *
-     * @return string          Returns a formatted picture HTML element with source and img tags
+     * @return string Returns a formatted picture HTML element with source and img tags
      */
     public static function imgSrcSet(int $src_id, array $img_attrs = [], array $data_attrs = [], array $aria_attrs = [])
     :string
@@ -93,7 +92,7 @@ class ImageHelper
         return sprintf(
             '<picture %10$s>%2$s<img src="%1$s" role="%5$s" %3$s property="v:%4$s" %6$s %7$s content="%1$s" %8$s %9$s/></picture>',
             esc_url($source),
-            ($webp_source ?? '') . $og_source,
+            $webp_source . $og_source,
             $img_alt ? "alt=\"$img_alt\"" : '',
             $properties,
             $role_attributes,
@@ -108,11 +107,10 @@ class ImageHelper
     /**
      * Function Name: captionImgSrcset
      *
-     * @param int    $src_id      The ID of the image
-     * @param  array{alt: string, caption: string, class: string, figure_class: string, id: string, pic_class: string, property: string, role: string, size: string}
-     *               $img_attrs   Parameters for overrides, size, property, role, alt, caption override
-     * @param array  $data_attrs  Adds data attributes to the image tag.
-     * @param array  $aria_attrs  Any aria attributes needed for the image
+     * @param  int    $src_id      The ID of the image
+     * @param  array  $img_attrs   Parameters for overrides, size, property, role, alt, caption override
+     * @param  array  $data_attrs  Adds data attributes to the image tag.
+     * @param  array  $aria_attrs  Any aria attributes needed for the image
      *
      * @return string
      */
@@ -197,7 +195,7 @@ class ImageHelper
         ) : '';
 
         if (isset($get_img_data['img_type']) && strpos($get_img_data['img_type'], 'svg')) {
-            sprintf(
+            return sprintf(
                 '<figure %5$s><picture %11$s><img src="%1$s" role="%4$s" %2$s %6$s %7$s property="v:%3$s" content="%1$s" %8$s %9$s /></picture>%10$s</figure>',
                 esc_url($source),
                 $src_attributes,
@@ -215,7 +213,7 @@ class ImageHelper
         return sprintf(
             '<figure %6$s><picture %12$s>%2$s<img src="%1$s" role="%5$s" %3$s  %7$s %8$s property="v:%4$s" content="%1$s" %9$s %10$s /></picture>%11$s</figure>',
             esc_url($source),
-            ($webp_source ?? '') . $og_source,
+            $webp_source . $og_source,
             $src_attributes,
             $properties,
             $role_attributes,
@@ -335,7 +333,7 @@ class ImageHelper
     {
         // Creation of webp support
         return collect(explode(', ', $src_set))
-            ->map(fn ($srcset) => self::searchWebP(explode(' ', $srcset) ?: $srcset))
+            ->map(fn ($srcset) => self::searchWebP(explode(' ', $srcset)))
             ->filter()
             ->implode(', ');
     }

@@ -13,9 +13,9 @@ namespace App;
  */
 add_filter('excerpt_more', fn() => sprintf(' &hellip; <a href="%s">%s</a>', get_permalink(), __('Continued', 'sage')));
 
-if (class_exists('ACF') && get_current_user_id() !== env('SUPER_ADMIN_ID')) {
-    add_filter('acf/settings/show_admin', '__return_false');
-}
+// if (class_exists('ACF') && get_current_user_id() !== env('SUPER_ADMIN_ID')) {
+//     add_filter('acf/settings/show_admin', '__return_false');
+// }
 
 /**
  * This filter adds a "Sage Theme" Category for custom blocks,

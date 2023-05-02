@@ -11,21 +11,21 @@ class Alert extends Component
      *
      * @var string
      */
-    public $type;
+    public mixed $type;
 
     /**
      * The alert message.
      *
      * @var string
      */
-    public $message;
+    public string $message;
 
     /**
      * The alert types.
      *
      * @var array
      */
-    public $types = [
+    public array $types = [
         'default' => 'text-indigo-50 bg-indigo-400',
         'success' => 'text-green-50 bg-green-400',
         'caution' => 'text-yellow-50 bg-yellow-400',
@@ -35,11 +35,12 @@ class Alert extends Component
     /**
      * Create the component instance.
      *
-     * @param  string  $type
-     * @param  string  $message
+     * @param  string       $type
+     * @param  string|null  $message
+     *
      * @return void
      */
-    public function __construct($type = 'default', $message = null)
+    public function __construct(string $type = 'default', string $message = null)
     {
         $this->type = $this->types[$type] ?? $this->types['default'];
         $this->message = $message;
@@ -48,7 +49,6 @@ class Alert extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
      */
     public function render()
     {

@@ -184,7 +184,7 @@ add_action('after_setup_theme', function () {
      * Adds a 1920w banner image size.
      * Change the width if supporting browser size higher than 1920
      */
-    add_image_size('banner', 1920, 0, 0);
+    add_image_size('banner', 1920, 0, false);
 }, 20);
 
 /**

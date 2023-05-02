@@ -24,16 +24,16 @@ class Shortcodes
             'sitemap',
         ];
 
-        return collect($shortcodes)
-            ->each(fn ($shortcode) => add_shortcode($shortcode, [$this, strtr($shortcode, ['-' => '_']),]));
+        collect($shortcodes)
+            ->each(function ($shortcode) {
+                add_shortcode($shortcode, [$this, strtr($shortcode, ['-' => '_']),]);
+            });
     }
 
     /**
      * A shortcode that outputs a formatted list of pages
      *
-     * @param  array{post_type: string, exclude: string, omit_current:string, orderby: string, order: string, post_status: string}
-     *              $attributes           {
-     *                  Optional. Array or string of arguments to generate a list of pages. See `get_pages()` for additional arguments.
+     * @param  array{post_type: string, exclude: string, omit_current:string, orderby: string, order: string, post_status: string} $attributes Optional. Array or string of arguments to generate a list of pages. See `get_pages()` for additional arguments.
      *
      * @type string $post_type            The post type to override returning. Defaults to page
      * @type string $exclude              Comma-separated list of page IDs to exclude. Defaults to empty.
@@ -43,11 +43,17 @@ class Shortcodes
      *                                    'menu_order', 'post_parent', 'ID', 'rand', or 'comment_count'. Default 'post_title'.
      * @type string $order                Sets whether the order should be in ascending or descending order. Defaults to ASC
      * @type string $post_status          The post_status of posts to return. Defaults to publish
-     *                                    }
      *
      * @return string
      */
-    public function sitemap(array $attributes = [])
+    public function sitemap(array $attributes = [
+        'post_type'    => 'page',
+        'exclude'      => '',
+        'omit_current' => 'yes',
+        'orderby'      => 'post_title',
+        'order'        => 'ASC',
+        'post_status'  => 'publish',
+    ])
     :string
     {
         $defaults = [
@@ -86,7 +92,11 @@ class Shortcodes
 
         $parsed_args['exclude'] = implode(',', apply_filters('wp_list_pages_excludes', $exclude_array));
 
-        $pages = collect(get_pages($parsed_args));
+        $pages = collect(
+            get_pages(
+                $parsed_args->toArray()
+            )
+        );
 
         /**
          * Map through all the pages if we have any

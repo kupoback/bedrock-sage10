@@ -121,7 +121,7 @@ class AcfNavMenuField extends acf_field
     private function get_nav_menus(bool $allow_null = false)
     :array
     {
-        $navs      = get_terms('nav_menu', ['hide_empty' => false]);
+        $navs      = get_terms(['taxonomy' => 'nav_menu', 'hide_empty' => false]);
         $nav_menus = [];
         if ($allow_null) {
             $nav_menus[''] = esc_html__('- Select -', 'sage');

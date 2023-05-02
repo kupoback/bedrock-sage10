@@ -12,7 +12,7 @@ class Search extends Composer
     /**
      * List of views served by this composer.
      *
-     * @var string[]
+     * @var array<string>
      */
     protected static $views = [
         //

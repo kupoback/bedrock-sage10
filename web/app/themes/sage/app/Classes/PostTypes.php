@@ -13,21 +13,25 @@ class PostTypes
 
     use SageAdminTrait;
 
+    private array $postTypes = [];
+
     /**
      * Registers the post types
      */
     public function __construct()
     {
-        $post_types = [
+        $this->postTypes = [
             // Post Type Name => Post Type Registration Method
             // 'events' => $this->eventsPostType(), //example
         ];
 
-        if (!empty($post_types)) {
-            add_action('init', fn() => collect($post_types)
-                ->each(function ($pt_args, $pt_name) {
-                    register_post_type($pt_name, $pt_args);
-                }), 0);
+        if (!empty($this->postTypes)) {
+            add_action('init', function () {
+                collect($this->postTypes)
+                    ->each(function ($pt_args, $pt_name) {
+                        register_post_type($pt_name, $pt_args);
+                    });
+            }, 0);
         }
     }
 

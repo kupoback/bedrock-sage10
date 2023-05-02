@@ -57,8 +57,8 @@ class Helper
     /**
      * Generates share URLs with encoded title and url params for Facebook, Twitter, Instagram, and e-mail
      *
-     * @param  string                                                                            $url           The url of the page
-     * @param  array{email_body: string, email_subject: string, title: string, twitter: string}  $text_strings  Text strings to pass into the URL generations
+     * @param  string  $url           The url of the page
+     * @param  array   $text_strings  Text strings to pass into the URL generations
      *
      * @return Collection
      */

@@ -18,20 +18,16 @@
         "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
     },
     "devDependencies": {
-        "@reduxjs/toolkit": "^1.9",
-        "@roots/bud": "6.12.1",
-        "@roots/bud-prettier": "^6.12.1",
-        "@roots/bud-sass": "^6.12.1",
-        "@roots/bud-tailwindcss": "6.12.1",
-        "@roots/bud-vue": "6.12.1",
-        "@roots/sage": "^6.12.1",
+        "@roots/bud": "6.12.2",
+        "@roots/bud-prettier": "^6.12.2",
+        "@roots/bud-sass": "^6.12.2",
+        "@roots/bud-tailwindcss": "6.12.2",
+        "@roots/sage": "^6.12.2",
         "axios": "^1.2",
         "lodash-es": "^4.17",
         "mitt": "^3.0",
-        "react-dom": "^18.2",
         "react-paginate": "^8.1",
         "react-redux": "^8.0",
-        "vuex": "^4.1",
         "zustand": "^4.3"
     },
     "dependencies": {}

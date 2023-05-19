@@ -22,7 +22,6 @@ add_action('wp_enqueue_scripts', function () {
      * site outside a block bundle
      */
     // bundle('sageReact')->enqueue();
-    // bundle('vue')->enqueueJs();
     bundle('app')->enqueue();
 
     /**
@@ -36,7 +35,7 @@ add_action('wp_enqueue_scripts', function () {
                 'SEARCH',
                 collect(
                     (new AcfNestedFields(
-                    // Add any other fields to pass to localized args
+                        // Add any other fields to pass to localized args
                         [
                             'resetSearch',
                             'searchLabel',
@@ -66,7 +65,6 @@ add_action('enqueue_block_editor_assets', function () {
      * site outside a block bundle
      */
     // bundle('sageReact')->enqueue();
-    // bundle('vue')->enqueueJs();
     bundle('editor')->enqueue();
 }, 100);
 

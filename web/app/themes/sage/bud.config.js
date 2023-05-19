@@ -1,31 +1,34 @@
+
+/**
+ * Quick call to minimize all the files
+ * @param {Object} app
+ * @returns {any}
+ */
+const minimizeFiles = (app) => app.minimize;
+/**
+ * Quick call to set up the devtools with common call backs
+ * @param {Object} app
+ * @returns {*}
+ */
+const setDevTool = app => app.devtool(`inline-cheap-module-source-map`);
+
 /**
  * Compiler configuration
  *
  * @see {@link https://roots.io/docs/sage sage documentation}
  * @see {@link https://bud.js.org/guides/configure bud.js configuration guide}
  *
- * @param {import('@roots/bud').Bud} bud
+ * @param {import('@roots/bud').Bud} app
  */
-module.exports = async (bud) => {
-    /**
-     * Quick call to minimize all the files
-     * @param {Object} bud
-     * @returns {any}
-     */
-    const minimizeFiles = (bud) => bud.minimize;
-    /**
-     * Quick call to set up the devtools with common call backs
-     * @param {Object} bud
-     * @returns {*}
-     */
-    const setDevTool = bud => bud.devtool(`inline-cheap-module-source-map`)
+module.exports = async (app) => {
+
     /**
      * Bud ENV fetcher
-     * @type {Env}
+     * @type {Object}
      */
-    const budEnv = bud.env;
+    const appEnv = app.env;
 
-    bud
+    app
         /**
          * Alias setup
          *
@@ -46,25 +49,16 @@ module.exports = async (bud) => {
             //endregion
             "@sageAdmin":       "@src/admin_assets",
             //region React
-            "@sageReact":       "@src/react",
-            "@sageRedux":       "@sageReact/Redux",
             "@reactBlocks":     "@sageReact/Blocks",
             "@reactComponent":  "@sageReact/Components",
             "@reactPages":      "@sageReact/Pages",
             "@reactUtil":       "@sageReact/Util",
             "@reduxBlog":       "@sageRedux/features/blog",
+            "@sageReact":       "@src/react",
+            "@sageRedux":       "@sageReact/Redux",
             "@zustand":         "@src/react/Zustand",
             "@zustandPosts":    "@zustand/Posts",
             "@zustandSearch":   "@zustand/Search",
-            //endregion
-            //region Vue related content
-            // "@vue": "@src/vue",
-            // "@vueBlocks": "@vue/Blocks",
-            // "@vueComponents": "@vue/Components",
-            // "@vuePages": "@vue/Pages",
-            // "@vueUtil": "@vue/Util",
-            // "@vuex": "@vue/Vuex",
-            // "@vuexPosts": "@vuex/posts/store"
             //endregion
         })
         /**
@@ -75,30 +69,31 @@ module.exports = async (bud) => {
          * @see {@link https://bud.js.org/docs/bud.entry/}
          */
         .entry({
-            app: ["@scripts/app", "@styles/app"],
-            editor: ["@scripts/editor", "@styles/editor"],
-            admin: ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
-            sageReact: ["@sageReact/app"],
-            posts: ["@reactBlocks/Posts/index"],
-            search: ["@reactPages/Search/index"]
+            'admin': ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
+            'app': ["@scripts/app", "@styles/app"],
+            'editor': ["@scripts/editor", "@styles/editor"],
+            'posts': ["@reactBlocks/Posts/index"],
+            'sageReact': ["@sageReact/app"],
+            'search': ["@reactPages/Search/index"],
         })
-        /**
-     * URI of the `public` directory
-     *
-     * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
-     */
-        .setPublicPath("/app/themes/sage/public/")
         /**
          * Directory contents to be included in the compilation
          * @see {@link https://bud.js.org/docs/bud.assets/}
          */
-        .assets(["images", "fonts"]);
+        .assets(["fonts", "images",]);
 
-    bud.postcss
+    /**
+     * URI of the `public` directory
+     *
+     * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
+     */
+    app.setPublicPath("/app/themes/sage/public/")
+
+    app.postcss
         .setPlugins({
             // ['tailwindcss']: await app.module.resolve('tailwindcss'),
             // ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
-        })
+         })
 
     /**
      * This section is used to generate sourcemaps for
@@ -107,28 +102,28 @@ module.exports = async (bud) => {
      * For yarn local, it'll also start the watcher
      * and browser-sync
      */
-    budEnv.isNotEmpty('WP_ENV') && bud.when(
-        budEnv.is(`WP_ENV`, 'local'),
-        bud => {
-            setDevTool(bud)
-                .setUrl(budEnv.has('BUD_LOCALHOST')
-                    ? budEnv.get('BUD_LOCALHOST')
+    appEnv.isNotEmpty('WP_ENV') && app.when(
+        appEnv.is(`WP_ENV`, 'local'),
+        app => {
+            setDevTool(app)
+                .setUrl(appEnv.has('BUD_LOCALHOST')
+                    ? appEnv.get('BUD_LOCALHOST')
                     : 'http://localhost:3000')
                 .setProxyUrl(
-                    budEnv.has('WP_HOME')
-                        ? budEnv.get('WP_HOME')
+                    appEnv.has('WP_HOME')
+                        ? appEnv.get('WP_HOME')
                         : ''
                 )
         },
-        bud => minimizeFiles(bud)
+        app => minimizeFiles(app)
     )
     .when(
-        budEnv.is(`WP_ENV`, 'development'),
-        bud => setDevTool(bud),
-        bud => minimizeFiles(bud)
+        appEnv.is(`WP_ENV`, 'development'),
+        app => setDevTool(app),
+        app => minimizeFiles(app)
     )
 
-    bud
+    app
         /**
          * Matched files trigger a page reload when modified
          * @see {@link https://bud.js.org/docs/bud.watch/}
@@ -140,7 +135,6 @@ module.exports = async (bud) => {
                 "resources/scripts/**/*",
                 "resources/styles/**/*",
                 "resources/views/**/*",
-                "resources/vue/**/*",
             ]
         );
 
@@ -156,7 +150,7 @@ module.exports = async (bud) => {
      * @see {@link https://bud.js.org/extensions/sage/theme.json/}
      * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/}
      */
-    bud
+    app
         .wpjson
         .set('settings.color.custom', false)
         .set('settings.color.customDuotone', false)

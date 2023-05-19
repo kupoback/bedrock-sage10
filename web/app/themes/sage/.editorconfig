@@ -7,20 +7,28 @@ insert_final_newline = true
 indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
+quote_type = single
 
 [*.md]
 trim_trailing_whitespace = false
 
 [*.php]
+indent_size = 4
 
 [*.blade.php]
+indent_size = 4
 
 [resources/views/**.php]
+indent_size = 4
 
 [index.php]
+indent_size = 4
 
 [*.js]
+indent_size = 4
 
 [*.vue]
+indent_size = 4
 
 [*.jsx]
+indent_size = 4

@@ -6,9 +6,6 @@
 
 namespace App;
 
-use App\Classes\AcfNestedFields;
-use Illuminate\Support\Str;
-
 use function Roots\bundle;
 
 /**
@@ -19,35 +16,6 @@ use function Roots\bundle;
 add_action('wp_enqueue_scripts', function () {
     // bundle('sageReact')->enqueue();
     bundle('app')->enqueue();
-
-    /**
-     * Add localized args to the Search Page
-     * loading the values from Theme Settings
-     */
-    if (is_search()) {
-        bundle('search')
-            ->enqueue()
-            ->localize(
-                'SEARCH',
-                collect(
-                    (new AcfNestedFields(
-                        // Add any other fields to pass to localized args
-                        [
-                            'resetSearch',
-                            'searchLabel',
-                            'searchPlaceholder',
-                            'searchSubmit',
-                            'searchNoResults'
-                        ],
-                        'theme_settings'
-                    ))
-                        ->getFields()
-                )
-                ->put('api', rest_url('sage/v1/search'))
-                ->sortKeys()
-                ->toArray()
-            );
-    }
 }, 100);
 
 /**
@@ -214,16 +182,15 @@ add_action('init', function () {
     remove_filter('comment_text_rss', 'wp_staticize_emoji');
     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 
-    /**
-     * Filter out the tinymce emoji plugin.
-     */
 
     add_filter('tiny_mce_plugins', fn ($plugins) => is_array($plugins)
         ? array_diff($plugins, ['wpemoji'])
         : []);
 });
 
-// Adds the ACF Nav menu custom field to the selectable options
+/**
+ * Adds the ACF Nav menu custom field to the selectable options
+ */
 class_exists('ACF')
     && add_action('acf/include_field_types', fn () => include_once 'Classes/AcfNavMenuField.php');
 

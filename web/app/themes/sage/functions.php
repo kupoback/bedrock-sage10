@@ -57,6 +57,7 @@ bootloader()->boot();
 collect(
     [
         'setup',
+        'enqueue',
         'filters',
         'Classes/init',
         'Routes/init',

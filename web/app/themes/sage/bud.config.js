@@ -93,7 +93,7 @@ module.exports = async (app) => {
         .setPlugins({
             // ['tailwindcss']: await app.module.resolve('tailwindcss'),
             // ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
-         })
+         });
 
     /**
      * This section is used to generate sourcemaps for
@@ -121,7 +121,7 @@ module.exports = async (app) => {
         appEnv.is(`WP_ENV`, 'development'),
         app => setDevTool(app),
         app => minimizeFiles(app)
-    )
+    );
 
     app
         /**

@@ -83,11 +83,12 @@ class Helper
     /**
      * Replaces all break tags with new line breaks
      *
-     * @param  string  $email_body
+     * @param  string  $email_body The content body of the email
      *
      * @return string
      */
-    protected static function filterEmailBody(string $email_body = ''):string
+    protected static function filterEmailBody(string $email_body = '')
+    :string
     {
         return str_replace('<br />', '%0D%0A ', $email_body);
     }

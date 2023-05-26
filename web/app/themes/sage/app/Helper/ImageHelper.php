@@ -11,10 +11,22 @@ class ImageHelper
 {
 
     /**
-     * Returns a picture tag serving webp images in a source tag for an image
+     * Returns an HTML 5 formatted picture tag with source sets for webp and the original image
+     * file format. Also supports adding in captions and caption text.
      *
      * @param  int    $src_id      The Image ID
-     * @param  array  $img_attrs   Parameters for overrides, size, property, role, alt, caption override
+     * @param  array{alt:String, caption:Bool|String, figcaption_class:String, figure_class:String, id:String, image_class:String, pic_class: String, property:String, role:String, size:String}
+     *  $img_attrs Additional parameters for generating the proper image output
+     *             alt: The image alt tag override
+     *             caption: The image caption or if you want it to generate one from the media library pass the true boolean.
+     *             figcaption_class: The class for the figure caption tag
+     *             figure_class: The class for the figure tag
+     *             id: The image ID attribute tag
+     *             image_class: The class for the image tag
+     *             pic_class: The image for the picture tag
+     *             property: The image property type, defaults to image
+     *             role: The image role attribute
+     *             size: The image return size, defaults to large
      * @param  array  $data_attrs  Pass an array of data attributes for use with JS
      * @param  array  $aria_attrs  Any aria attributes needed for the image
      *
@@ -26,12 +38,22 @@ class ImageHelper
         $get_img_data = collect(self::imgSrcSetArr($src_id, $img_attrs));
         $img_attrs = collect($img_attrs);
 
+        if ($get_img_data->isEmpty() && is_user_logged_in()) {
+            return sprintf(
+                "<p><b>%s <code>%s</code>:</b> %s</p>",
+                __("Image ID", 'sage'),
+                $src_id,
+                __("Unable to generate data for this image ID. Please ensure the right data is being passed.", 'sage')
+            );
+        }
+
         // Empty array for data attributes return
         $da_return = [];
         $aa_return = [];
 
+        // Classes for the HTML tags
         $properties  = $get_img_data['prop'] ?? '';
-        $image_class = $img_attrs->get('class', false);
+        $image_class = $img_attrs->get('image_class', false);
         $pic_class   = $img_attrs->get('pic_class', false);
         $image_id    = $img_attrs->get('id', false);
 
@@ -40,8 +62,16 @@ class ImageHelper
         $src_set   = $get_img_data->get('src_set', false);
         $src_sizes = $get_img_data->get('src_set_sizes', false);
         $get_webp  = $get_img_data->get('webp', false);
-        $img_alt   = $get_img_data->get('alt', false);
+        $img_alt   = $get_img_data->get('alt', '');
+        $image_type = $get_img_data->get('img_type', '');
+        $is_svg = ($image_type && Str::contains($image_type, 'svg'));
 
+        // Caption Data
+        $fig_class   = $img_attrs->get('figure_class', false);
+        $caption     = $img_attrs->get('caption', false);
+        $caption_text = '';
+
+        // Sets up the role attributes
         $role_attributes = $img_attrs->get(
             'role',
             $get_img_data->get('role', 'img')
@@ -58,7 +88,7 @@ class ImageHelper
         /**
          * The webp output in a source tag
          */
-        $webp_source = $get_webp ? sprintf(
+        $webp_image = $get_webp ? sprintf(
             '<source srcset="%s" sizes="%s" type="image/webp">',
             $get_webp,
             $src_sizes,
@@ -67,164 +97,65 @@ class ImageHelper
         /**
          * The original image output  in a source tag
          */
-        $og_source = $src_set ? sprintf(
+        $original_image = $src_set ? sprintf(
             '<source srcset="%s" sizes="%s" type="%s">',
             $src_set,
             $src_sizes,
-            $get_img_data['img_type'] ?? '',
+            $image_type,
         ) : '';
 
-        if (isset($get_img_data['img_type']) && strpos($get_img_data['img_type'], 'svg')) {
-            return sprintf(
-                '<picture %9$s><img src="%1$s" role="%4$s" %2$s property="v:%3$s" %5$s %6$s content="%1$s" %7$s %8$s/></picture>',
-                esc_url($source),
-                $img_alt ? "alt=\"$img_alt\"" : '',
-                $properties,
-                $role_attributes,
-                $image_class ? "class=\"$image_class\"" : '',
-                $image_id ? "id=\"{$image_id}\"" : '',
-                implode(' ', $da_return),
-                implode(' ', $aa_return),
-                $pic_class ? "class=\"$pic_class\"" : '',
-            );
+        if ($img_attrs->has('caption')) {
+            // Caption
+            if ($caption) {
+                $caption_text = !is_bool($caption) ? $caption : wp_get_attachment_caption($src_id);
+
+                // The Caption
+                $caption = $caption_text ? sprintf(
+                    '<figcaption class="wp-caption-text %1$s" content="%2$s" property="v:caption"><p>%2$s</p></figcaption>',
+                    $img_attrs->get('figcaption_class', ''),
+                    html_entity_decode($caption_text)
+                ) : '';
+            }
+
+            // Check to see if the caption exists.
+            if ($caption && !$img_alt) {
+                $img_alt = $caption_text;
+            }
         }
 
-        return sprintf(
-            '<picture %10$s>%2$s<img src="%1$s" role="%5$s" %3$s property="v:%4$s" %6$s %7$s content="%1$s" %8$s %9$s/></picture>',
+        // Builds out the img HTML tag
+        $image_build = sprintf(
+            '<img src="%1$s" role="%4$s"alt="%2$s" property="v:%3$s" %5$s %6$s content="%1$s" %7$s %8$s />',
             esc_url($source),
-            $webp_source . $og_source,
-            $img_alt ? "alt=\"$img_alt\"" : '',
+            $img_alt,
             $properties,
             $role_attributes,
             $image_class ? "class=\"$image_class\"" : '',
             $image_id ? "id=\"$image_id\"" : '',
             implode(' ', $da_return),
             implode(' ', $aa_return),
-            $pic_class ? "class=\"$pic_class\"" : '',
-        );
-    }
-
-    /**
-     * Function Name: captionImgSrcset
-     *
-     * @param  int    $src_id      The ID of the image
-     * @param  array  $img_attrs   Parameters for overrides, size, property, role, alt, caption override
-     * @param  array  $data_attrs  Adds data attributes to the image tag.
-     * @param  array  $aria_attrs  Any aria attributes needed for the image
-     *
-     * @return string
-     */
-    public static function imgSrcSetCaption(int $src_id, array $img_attrs = [], array $data_attrs = [], array $aria_attrs = [])
-    :string
-    {
-        $get_img_data = collect(self::imgSrcSetArr($src_id, $img_attrs));
-        $img_attrs = collect($img_attrs);
-
-        // Empty array for data attributes return
-        $da_return    = [];
-        $aa_return    = [];
-        $caption_text = '';
-
-        // $img_attrs
-        $image_class = $img_attrs->get('class', false);
-        $pic_class   = $img_attrs->get('pic_class', false);
-        $image_id    = $img_attrs->get('id', false);
-        $fig_class   = $img_attrs->get('figure_class', false);
-        $caption     = $img_attrs->get('caption', false);
-        $src_alt     = $img_attrs->get('alt', false);
-
-        // Image Information
-        $properties = $get_img_data->get('prop', '');
-        $source     = $get_img_data->get('url', false);
-        $src_set    = $get_img_data->get('src_set', false);
-        $src_sizes  = $get_img_data->get('src_set_sizes', false);
-        $get_webp   = $get_img_data->get('webp', false);
-        $img_alt    = $get_img_data->get('alt', false);
-
-        // Image Information
-        $role_attributes = $img_attrs->get(
-            'role',
-            $get_img_data->get('role', 'img')
         );
 
-        // Caption
-        if ($caption) {
-            $caption_text = !is_bool($caption) ? $caption : wp_get_attachment_caption($src_id);
-
-            // The Caption
-            $caption = $caption_text ? sprintf(
-                '<figcaption class="wp-caption-text %1$s" content="%2$s" property="v:caption"><span>%2$s</span></figcaption>',
-                $img_attrs->get('figcaption', ''),
-                html_entity_decode($caption)
-            ) : '';
-        }
-
-        // Check to see if the caption exists.
-        if ($caption && !$src_alt) {
-            $src_alt = $caption_text;
-        }
-
-        if ($data_attrs) {
-            $da_return = self::mapDataAttributes($data_attrs);
-        }
-
-        if ($aria_attrs) {
-            $aa_return = self::mapAriaAttributes($aria_attrs);
-        }
-
-        // Final assembly of image attributes
-        $src_attributes = "alt=\"$src_alt\"";
-
-        /**
-         * The webp output in a source tag
-         */
-        $webp_source = $get_webp ? sprintf(
-            '<source srcset="%s" sizes="%s" type="image/webp">',
-            $get_webp,
-            $src_sizes,
-        ) : '';
-
-        /**
-         * The original image output  in a source tag
-         */
-        $og_source = $src_set ? sprintf(
-            '<source srcset="%s" sizes="%s" type="%s">',
-            $src_set,
-            $src_sizes,
-            $get_img_data['img_type'] ?? '',
-        ) : '';
-
-        if (isset($get_img_data['img_type']) && strpos($get_img_data['img_type'], 'svg')) {
+        // Returns a wrapper with a figure tag and a figcaption tag
+        if ($caption_text) {
             return sprintf(
-                '<figure %5$s><picture %11$s><img src="%1$s" role="%4$s" %2$s %6$s %7$s property="v:%3$s" content="%1$s" %8$s %9$s /></picture>%10$s</figure>',
-                esc_url($source),
-                $src_attributes,
-                $properties,
-                $role_attributes,
-                $fig_class ? 'class="wp-caption ' . $fig_class . '"' : '',
-                $image_class ? 'class="' . $image_class . '"' : '',
-                $image_id ? "id=\"$image_id\"" : '',
-                implode(' ', $da_return),
-                implode(' ', $aa_return),
-                $caption,
+                '<figure %3$s><picture %4$s>%2$s %1$s</picture>%5$s</figure>',
+                $image_build,
+                !$is_svg ? $webp_image . $original_image : '',
+                $fig_class ? "class=\"wp-caption $fig_class\"" : '',
                 $pic_class ? "class=\"$pic_class\"" : '',
+                $caption,
             );
         }
+
+        // Returns with or without the webp/original source depending on if it is an SVG or not
         return sprintf(
-            '<figure %6$s><picture %12$s>%2$s<img src="%1$s" role="%5$s" %3$s  %7$s %8$s property="v:%4$s" content="%1$s" %9$s %10$s /></picture>%11$s</figure>',
-            esc_url($source),
-            $webp_source . $og_source,
-            $src_attributes,
-            $properties,
-            $role_attributes,
-            $fig_class ? 'class="wp-caption ' . $fig_class . '"' : '',
-            $image_class ? 'class="' . $image_class . '"' : '',
-            $image_id ? "id=\"$image_id\"" : '',
-            implode(' ', $da_return),
-            implode(' ', $aa_return),
-            $caption,
+            '<picture %3$s>%2$s %1$s</picture>',
+            $image_build,
+            !$is_svg ? $webp_image . $original_image : '',
             $pic_class ? "class=\"$pic_class\"" : '',
         );
+
     }
 
     /**
@@ -260,11 +191,11 @@ class ImageHelper
 
         // Grabs the image extension
         if ($img_src) {
-            $image_type = str_replace('.', '', substr($img_src, strrpos($img_src, '.')));
+            $image_type = Str::replace('.', '', Str::substr($img_src, strrpos($img_src, '.')));
 
             return [
                 'alt'           => html_entity_decode($src_alt),
-                'img_type'      => "image/{$image_type}",
+                'img_type'      => "image/$image_type",
                 'prop'          => $img_prop,
                 'role'          => 'img',
                 'src_set'       => $src_set,
@@ -282,10 +213,11 @@ class ImageHelper
      *
      * @param  int     $post_thumbnail_id  The image ID
      * @param  string  $image_size         The size of the image to return. Defaults to large
+     * @param  bool    $include_caption    Whether to return the caption data text
      *
      * @return array|string
      */
-    public static function generateImgData(int $post_thumbnail_id, string $image_size = 'large')
+    public static function generateImgData(int $post_thumbnail_id, string $image_size = 'large', bool $include_caption = false)
     :array|string
     {
         if (!$post_thumbnail_id) {
@@ -298,6 +230,7 @@ class ImageHelper
         $img_data = collect(
             [
                 'alt'    => $post_meta_alt ? html_entity_decode($post_meta_alt) : html_entity_decode(get_the_title($post_thumbnail_id)),
+                'caption' => $include_caption ? wp_get_attachment_caption($post_thumbnail_id) : '',
                 'src'    => $source,
                 'srcset' => wp_get_attachment_image_srcset($post_thumbnail_id, $image_size),
                 'sizes'  => wp_get_attachment_image_sizes($post_thumbnail_id, $image_size) ?: '',
@@ -306,12 +239,13 @@ class ImageHelper
             ->filter();
 
         if ($img_data->isNotEmpty()) {
-            $img_data->put('type', 'image/' . str_replace('.', '', substr($source, strrpos($source, '.'))));
+            $image_type = Str::replace('.', '', Str::substr($source, strrpos($source, '.')));
+            $img_data->put('type', "image/$image_type");
 
             // Handles the webp portion of the image
             $webp_srcset = self::getWebp($img_data->get('srcset'));
             if ($webp_srcset) {
-                $img_data->put('webpSrcset', self::getWebp($img_data->get('srcset')));
+                $img_data->put('webpSrcset', $webp_srcset);
             }
 
             return $img_data->toArray();
@@ -341,19 +275,19 @@ class ImageHelper
     /**
      * Parse out the location of the webp file
      *
-     * @param  array  $img_file
+     * @param  array  $img_file The image array return
      *
      * @return string
      */
     protected static function searchWebP(array $img_file)
     :string
     {
-        $home_url = env('WP_HOME');
+        $home_url = class_exists('SitePress') ? wpml_get_home_url_filter() : get_home_url();
         if (!empty($img_file) && $img_file[0]) {
             $item_size = $img_file[1] ?? '';
             $extension = substr($img_file[0], strrpos($img_file[0], '.'));
             $webp_image = match ($extension) {
-                '.jpg', '.png', '.jpeg'  => self::matchWebpImage($extension, $img_file[0], $home_url, $item_size),
+                '.jpg', '.png', '.jpeg', '.gif'  => self::matchWebpImage($extension, $img_file[0], $home_url, $item_size),
                 default => '',
             };
         }
@@ -367,7 +301,7 @@ class ImageHelper
      * @param string $extension The file extension
      * @param string $img_file  The image file path
      * @param string $home_url  The Site URL
-     * @param string $item_size
+     * @param string $item_size The dimensions of the image
      *
      * @return string
      */
@@ -386,7 +320,7 @@ class ImageHelper
     /**
      * Maps the data attributes
      *
-     * @param  array  $data_attributes
+     * @param  array  $data_attributes An array of data attributes to map for output
      *
      * @return array
      */
@@ -401,7 +335,7 @@ class ImageHelper
     /**
      * Maps the aria attributes
      *
-     * @param  array  $aria_attributes
+     * @param  array  $aria_attributes An array of aria attributes to map for output
      *
      * @return array
      */

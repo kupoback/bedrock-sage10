@@ -3,7 +3,7 @@
  */
 import ImgSrcSet from "@reactComponent/ImgSrcSet";
 
-function Post({post, firstItem, lastItem}) {
+function Post({post, firstItem, lastItem, articleClassName}) {
 	const {
 		author,
 		categories,
@@ -19,9 +19,10 @@ function Post({post, firstItem, lastItem}) {
 	return (
 		<article className={[
 			`post`,
-			sticky && "", // Class for sticky posts
-            firstItem ? "" : '', // Class for first item
-			lastItem ? "" : '', // Class for last item or otherwise
+            articleClassName || '', // Class additional for the article
+			sticky && "post-sticky", // Class for sticky posts
+            firstItem ? "post-first" : '', // Class for first item
+			lastItem ? "post-last" : '', // Class for last item or otherwise
 		].filter(Boolean).join(" ")}>
 			<div className="post__metadata">
 				<time dateTime={dateString}
@@ -53,7 +54,7 @@ function Post({post, firstItem, lastItem}) {
                 )}
 
                 {excerpt && (
-                    <p className="post__body-excerpt post-excerpt">
+                    <p className="post__body-excerpt excerpt">
                         {excerpt}
                     </p>
                 )}

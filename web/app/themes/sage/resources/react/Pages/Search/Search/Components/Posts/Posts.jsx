@@ -30,7 +30,9 @@ const Posts = () => {
             <Post key={post.id}
                   post={post}
                   firstItem={index === 0}
-                  lastItem={index === posts.length - 1} />)
+                  lastItem={index === posts.length - 1}
+                  articleClassName="search-post"
+            />)
     }
 
     return <NoResults noResultsText={searchNoResults} />

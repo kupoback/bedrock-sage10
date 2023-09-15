@@ -19,10 +19,10 @@
     },
     "devDependencies": {
         "@roots/bud": "6.12.3",
-        "@roots/bud-prettier": "^6.12.3",
-        "@roots/bud-sass": "^6.12.3",
+        "@roots/bud-prettier": "6.12.3",
+        "@roots/bud-sass": "6.12.3",
         "@roots/bud-tailwindcss": "6.12.3",
-        "@roots/sage": "^6.12.3",
+        "@roots/sage": "6.12.3",
         "axios": "^1.2",
         "lodash-es": "^4.17",
         "mitt": "^3.0",

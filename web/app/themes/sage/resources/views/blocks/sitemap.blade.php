@@ -1,15 +1,15 @@
-<div @class([$block->classes ?? '', 'sitemap-container']) id="sitemap">
+<div @class([$block->classes ?? '', 'sitemap', 'block']) id="sitemap">
     @if ($title)
-        <div class="sitemap-container__title">
+        <div class="sitemap__title">
             {!! $title !!}
         </div>
     @endif
     @if (($pages ?? false) && !empty($pages))
-        <nav class="sitemap-container__pages">
-            <ul class="sitemap-container__pages-list">
+        <nav class="sitemap__pages">
+            <ul class="sitemap__pages-list">
                 @foreach ($pages as $page)
-                    <li class="sitemap-container__pages-list__page">
-                        <a href="{!! $page->link !!}">{!! $page->title !!}</a>
+                    <li class="sitemap__pages-list__page">
+                        @include('elements.anchor-link', ['link' => ['url' => $page->link, 'title' => $page->title]])
                     </li>
                 @endforeach
             </ul>

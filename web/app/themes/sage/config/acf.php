@@ -21,17 +21,32 @@
 return [
 
     'defaults' => [
-        'image'        => ['return_format' => 'id', 'preview_size' => 'thumbnail',],
-        'gallery'      => ['return_format' => 'id',],
-        'forms'        => ['return_format' => 'id'],
-        'message'      => ['wrapper' => ['class' => 'no-label']],
-        'nav_menu'     => ['container' => 'nav'],
-        'repeater'     => ['layout' => 'block',],
-        'select'       => ['ui' => 1],
-        'tab'          => ['placement' => 'left'],
-        'textarea'     => ['rows' => 4],
-        'trueFalse'    => ['ui' => 1],
-        'wysiwyg'      => [
+        'checkbox' => ['layout' => 'horizontal',],
+        'datePicker'     => [
+            'display_format' => 'F j, Y g:i a',
+            'return_format' => 'F j, Y g:i a',
+        ],
+        'dateTimePicker' => [
+            'display_format' => 'F j, Y g:i a',
+            'return_format' => 'F j, Y g:i a',
+        ],
+        'forms'          => ['return_format' => 'id'],
+        'gallery'        => ['return_format' => 'id',],
+        'group'          => ['layout' => 'block'],
+        'image'          => ['return_format' => 'id', 'preview_size' => 'thumbnail',],
+        'message'        => ['wrapper' => ['class' => 'no-label']],
+        'nav_menu'       => ['container' => 'nav'],
+        'radio'          => ['layout' => 'horizontal',],
+        'repeater'       => ['layout' => 'block',],
+        'select'         => ['ui' => 1],
+        'tab'            => ['placement' => 'left'],
+        'textarea'       => ['rows' => 4],
+        'trueFalse'      => [
+            'ui'          => 1,
+            'ui_on_text'  => __("Enable", "sage-acf"),
+            'ui_off_text' => __("Disable", "sage-acf"),
+        ],
+        'wysiwyg'        => [
             'delay' => 1,
             // Uncomment if you want default WYSIWYG to have no Media Select/Upload button
             // 'media_upload' => 0

@@ -178,6 +178,8 @@ class DummyClass extends Block
     public function enqueue()
     :void
     {
-        //
+        if (!is_admin()) {
+            //
+        }
     }
 }

@@ -70,7 +70,7 @@ class ThemeSettings extends Field
      *
      * @var string|int
      */
-    public $post = 'theme_settings';
+    public $post = 'sage_theme';
 
     /**
      * The option page autoload setting.
@@ -136,6 +136,11 @@ class ThemeSettings extends Field
                     ->setDefaultValue("Reset")
                 ->addWysiwyg('search_no_results')
                     ->setAttr('class', 'full')
+                ->addGroup('search_post_labels')
+                    ->addText('read_more')
+                        ->setAttr('class', 'one-half')
+                        ->setDefaultValue(__('Read More', 'sage'))
+                ->endGroup()
         ;
 
         return $themeSettings->build();

@@ -155,7 +155,6 @@ class ImageHelper
             !$is_svg ? $webp_image . $original_image : '',
             $pic_class ? "class=\"$pic_class\"" : '',
         );
-
     }
 
     /**

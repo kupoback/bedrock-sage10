@@ -33,7 +33,7 @@ const setPage = (page, state) => state.setState({page})
  */
 const setResultsCount = (elmId, count) => {
     const elm = document.getElementById(elmId);
-    elm && (elm.innerText = count ? `: ${count}` : '');
+    elm && (elm.innerText = count || '');
 };
 
 /**

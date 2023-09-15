@@ -80,7 +80,7 @@ class AcfNavMenuField extends acf_field
         return [
             '0' => 'None',
             ...collect(apply_filters('wp_nav_menu_container_allowedtags', ['div', 'nav']))
-                ->each(fn ($tag) => ucfirst($tag))
+                ->map(fn ($tag) => ucfirst($tag))
                 ->toArray()
         ];
     }
@@ -121,16 +121,21 @@ class AcfNavMenuField extends acf_field
     private function get_nav_menus(bool $allow_null = false)
     :array
     {
-        $navs      = get_terms(['taxonomy' => 'nav_menu', 'hide_empty' => false]);
-        $nav_menus = [];
+        $navs      = collect(get_terms(['taxonomy' => 'nav_menu', 'hide_empty' => false]));
+        $nav_menus = collect();
         if ($allow_null) {
-            $nav_menus[''] = esc_html__('- Select -', 'sage');
-        }
-        foreach ($navs as $nav) {
-            $nav_menus[$nav->term_id] = $nav->name;
+            $nav_menus->prepend(esc_html__('- Select -', 'sage'));
         }
 
-        return $nav_menus;
+        $navs
+            ->map(fn ($nav) => $nav_menus->put($nav->term_id, $nav->name));
+
+        if ($nav_menus->isEmpty()) {
+            $nav_menus->push(['No Existing Navs']);
+        }
+
+        return $nav_menus
+            ->toArray();
     }
 
     /**

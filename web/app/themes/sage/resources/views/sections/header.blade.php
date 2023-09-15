@@ -1,6 +1,6 @@
 <header class="banner">
   <a class="brand" href="{{ home_url('/') }}">
-    {!! $siteName !!}
+    {!! $site_name !!}
   </a>
 
   @if (has_nav_menu('primary_navigation'))

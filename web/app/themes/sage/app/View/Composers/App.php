@@ -24,18 +24,49 @@ class App extends Composer
     :array
     {
         return [
-            'siteName' => $this->siteName(),
+            'site_name'  => get_bloginfo('name', 'display'),
+            'site_url'   => static::siteUrl(),
+            'title'      => static::getTitle(),
         ];
     }
 
     /**
-     * Returns the site name.
+     * Returns a conditional based page title
      *
-     * @return string
+     * @return string|null
      */
-    public function siteName()
-    :string
+    public function getTitle()
+    :?string
     {
-        return get_bloginfo('name', 'display');
+        if (is_home()) {
+            $homepage = get_option('page_for_posts', true);
+            if ($homepage) {
+                return get_the_title($homepage);
+            }
+
+            return __('Latest Posts', 'sage');
+        }
+        if (is_archive()) {
+            return get_the_archive_title();
+        }
+        if (is_search()) {
+            return sprintf(__('Search Results for %s', 'sage'), get_search_query());
+        }
+        if (is_404()) {
+            return __('Not Found', 'sage');
+        }
+
+        return get_the_title();
+    }
+
+    /**
+     * Returns the sites home url
+     *
+     * @return string|null
+     */
+    public function siteUrl()
+    :?string
+    {
+        return get_home_url();
     }
 }

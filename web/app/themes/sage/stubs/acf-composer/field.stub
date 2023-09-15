@@ -7,14 +7,16 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class DummyClass extends Field
 {
-    /**
+/**
      * The field group.
      *
      * @return array
      *
+     * @throws FieldNameCollisionException
      * @link https://github.com/Log1x/acf-builder-cheatsheet
      */
     public function fields()
+    :array
     {
         $DummyCamel = new FieldsBuilder('DummySnake');
 

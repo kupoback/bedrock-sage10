@@ -1,4 +1,3 @@
-
 /**
  * Quick call to minimize all the files
  * @param {Object} app
@@ -41,6 +40,7 @@ module.exports = async (app) => {
          * @type @sageVue   This integrated Vue 3 components to be compiled
          */
         .alias({
+            "@sageCommon":      "@styles/common",
             //region JS
             "@sageBlocks":      "@scripts/blocks",
             "@sageModules":     "@scripts/modules",
@@ -53,9 +53,7 @@ module.exports = async (app) => {
             "@reactComponent":  "@sageReact/Components",
             "@reactPages":      "@sageReact/Pages",
             "@reactUtil":       "@sageReact/Util",
-            "@reduxBlog":       "@sageRedux/features/blog",
             "@sageReact":       "@src/react",
-            "@sageRedux":       "@sageReact/Redux",
             "@zustand":         "@src/react/Zustand",
             "@zustandPosts":    "@zustand/Posts",
             "@zustandSearch":   "@zustand/Search",
@@ -117,11 +115,11 @@ module.exports = async (app) => {
         },
         app => minimizeFiles(app)
     )
-    .when(
-        appEnv.is(`WP_ENV`, 'development'),
-        app => setDevTool(app),
-        app => minimizeFiles(app)
-    );
+        .when(
+            appEnv.is(`WP_ENV`, 'development'),
+            app => setDevTool(app),
+            app => minimizeFiles(app)
+        );
 
     app
         /**

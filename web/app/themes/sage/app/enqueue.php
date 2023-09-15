@@ -32,9 +32,10 @@ add_action('wp_enqueue_scripts', function () {
                             'searchLabel',
                             'searchPlaceholder',
                             'searchSubmit',
-                            'searchNoResults'
+                            'searchNoResults',
+                            'searchPostLabels',
                         ],
-                        'theme_settings'
+                        'sage_theme'
                     ))
                         ->getFields()
                 )

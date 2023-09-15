@@ -25,17 +25,21 @@ class AcfNestedFields
 {
 
     /**
+     * AcfNestedFields __construct
+     *
      * @param  array            $data    The field names to grab get_field data for
-     * @param  int|string|null  $postId  The int, string, post id for the get_field() method
+     * @param  int|null|string  $postId  The int, string, post id for the get_field() method
      */
     public function __construct(
-        protected readonly array  $data = [],
-        protected int|string|null $postId = null,
+        protected readonly array $data = [],
+        public int|null|string   $postId = '',
     ) {
-        if (is_home()) {
-            $this->postId = get_option('page_for_posts');
-        } elseif (is_front_page()) {
-            $this->postId = get_option('page_for_front');
+        if (!$this->postId) {
+            if (is_home()) {
+                $this->postId = get_option('page_for_posts');
+            } elseif (is_front_page()) {
+                $this->postId = get_option('page_for_front');
+            }
         }
     }
 
@@ -47,9 +51,8 @@ class AcfNestedFields
     public function getFields()
     :array
     {
-        return $this
-            ->setupFields()
-            ->all();
+        return static::setupFields()
+                     ->all();
     }
 
     /**
@@ -61,8 +64,8 @@ class AcfNestedFields
     :Collection
     {
         return collect($this->data)
-            ->mapWithKeys(fn ($value) => [$value => $this->getField($value)])
-            ->mapWithKeys(fn ($value, $key) => $this->mapFluent($value, $key));
+            ->mapWithKeys(fn ($value) => [$value => static::getField($value)])
+            ->mapWithKeys(fn ($value, $key) => static::mapFluent($value, $key));
     }
 
     /**
@@ -74,7 +77,7 @@ class AcfNestedFields
     :Collection
     {
         return collect($this->data)
-            ->mapWithKeys(fn ($value, $key) => $this->mapFluent($value, $key));
+            ->mapWithKeys(fn ($value, $key) => static::mapFluent($value, $key));
     }
 
     /**
@@ -84,7 +87,7 @@ class AcfNestedFields
      *
      * @return mixed
      */
-    protected function getField(string $field)
+    private function getField(string $field)
     :mixed
     {
         if ($this->postId) {
@@ -102,7 +105,7 @@ class AcfNestedFields
      *
      * @return array
      */
-    protected function mapFluent(mixed $value, string $key)
+    private function mapFluent(mixed $value, string $key)
     :array
     {
         $value  = is_array($value)

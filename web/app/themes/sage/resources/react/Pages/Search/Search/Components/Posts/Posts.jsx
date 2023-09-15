@@ -13,7 +13,8 @@ import Post from "@reactComponent/Post";
 import NoResults from "@reactComponent/NoResults";
 
 const Posts = () => {
-    const {searchNoResults} = SEARCH;
+    const {searchNoResults, searchPostLabels} = SEARCH;
+    const {read_more} = searchPostLabels;
     const {loading, posts, total} = searchStore(state => state, shallow)
 
     /**
@@ -29,6 +30,7 @@ const Posts = () => {
         return posts.map((post, index) =>
             <Post key={post.id}
                   post={post}
+                  readMore={read_more}
                   firstItem={index === 0}
                   lastItem={index === posts.length - 1}
                   articleClassName="search-post"

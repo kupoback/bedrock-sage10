@@ -69,7 +69,7 @@
         "wpackagist-plugin/stream": "^3.7",
         "wpackagist-plugin/w3-total-cache": "^2.0",
         "wpackagist-plugin/wordfence": "^7.5",
-        "wpackagist-plugin/wordpress-seo": "^20.0",
+        "wpackagist-plugin/wordpress-seo": "^21.0",
         "wpackagist-plugin/wp-rest-cache": "^2023.0"
     },
     "require-dev": {

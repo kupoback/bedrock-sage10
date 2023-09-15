@@ -3,6 +3,7 @@
 namespace App\Blocks;
 
 use App\Classes\AcfNestedFields;
+use App\Traits\SageTrait;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldNameCollisionException;
 use StoutLogic\AcfBuilder\FieldsBuilder;
@@ -11,6 +12,8 @@ use function Roots\bundle;
 
 class PostListing extends Block
 {
+    use SageTrait;
+
     /**
      * The block name.
      *
@@ -161,15 +164,30 @@ class PostListing extends Block
         $fields = (new AcfNestedFields($this->fieldNames))
             ->setupFields();
 
-        $fields
-            ->put(
-                'taxonomy',
-                $this
-                    ->getTaxonomy($fields->get('post_filters')->filter_type ?? false)
-            );
+        $post_filters = $fields->pull('post_filters');
+
+        /**
+         * JSON Data for the React
+         */
+        $fields->put(
+            'json_data',
+            collect(
+                [
+                    'api' =>rest_url('sage/v1/blog-posts'),
+                    'filterLabel' => $post_filters->filter_label ?? '',
+                    'filterSubmit' => $post_filters->filter_search ?? '',
+                    'labels' => $fields->pull('post_labels', []),
+                    'noResults' => $fields->pull('no_results', ''),
+                    'searchLabel' => $post_filters->search_label ?? '',
+                    'searchPlaceholder' => $post_filters->search_placeholder ?? '',
+                    'taxonomies' => static::getTaxonomy($post_filters->filter_type ?? []),
+                ]
+            )
+                ->map(fn ($value, $key) => "$key: " . json_encode($value))
+                ->implode(',')
+        );
 
         return $fields
-            ->put('localized', bundle('posts'))
             ->toArray();
     }
 
@@ -186,57 +204,62 @@ class PostListing extends Block
         $blogListing = new FieldsBuilder('post_listing');
 
         $blogListing
+            ->addField('nav', 'nav_menu')
             ->addText('title')
-
+                ->setLabel(__("Listing Title", "sage-acf"))
             ->addWysiwyg('content')
-
+                ->setLabel(__("Listing Content", "sage-acf"))
             ->addText('results')
                 ->setDefaultValue(__('Results', 'sage'))
+                ->setLabel(__("Results Count", "sage-acf"))
 
             ->addGroup('post_labels')
                 ->addText('category')
+                    ->setAttr('class', 'one-half')
                     ->setDefaultValue(__('Category', 'sage'))
+                    ->setLabel(__("Category Title", "sage-acf"))
+                ->addText('read_more')
                     ->setAttr('class', 'one-half')
-                ->addText('view_more')
-                    ->setDefaultValue(__('View More', 'sage'))
-                    ->setAttr('class', 'one-half')
+                    ->setDefaultValue(__('Read More', 'sage'))
             ->endGroup()
 
             ->addSelect('post_types')
                 ->setConfig('multiple', true)
                 ->setConfig('allow_null', false)
                 ->setDefaultValue('post')
-
             ->addTextarea('no_results')
-                ->setConfig('rows', 4)
+                ->setLabel(__("No Results Content", "sage-acf"))
 
             ->addGroup('post_filters')
-                ->addText('filter_label', ['default_value' => __('Filter By', 'sage')])
+                ->setLabel(__("Filter Settings", "sage-acf"))
+                ->addText('filter_label')
+                    ->setAttr('class', 'one-half')
                     ->setDefaultValue(__('Filter By', 'sage'))
+                    ->setLabel(__("Filter Label", "sage-acf"))
                 ->addSelect('filter_type')
-                    ->addChoices(['category' => "Categories", 'tags' => "Tags"])
+                    ->addChoices(
+                        [
+                            'category' => "Categories",
+                            'tags' => "Tags"
+                        ]
+                    )
+                    ->setAttr('class', 'one-half')
                     ->setConfig('allow_null', true)
                 ->addText('search_label')
+                    ->setAttr('class', 'one-half')
                     ->setDefaultValue(__('Search', 'sage'))
+                    ->setLabel(__("Input Label", "sage-acf"))
                 ->addText('search_placeholder')
+                    ->setAttr('class', 'one-half')
                     ->setDefaultValue(__('Enter in a keyword', 'sage'))
+                    ->setLabel(__("Placeholder", "sage-acf"))
                 ->addText('filter_search')
+                    ->setAttr('class', 'one-half')
                     ->setDefaultValue(__('Search', 'sage'))
+                    ->setLabel(__("Search Button", "sage-acf"))
             ->endGroup();
 
         return $blogListing->build();
-    }
-
-    public function getTaxonomy(string $taxonomy_name = 'categories')
-    :bool|string
-    {
-        $taxonomy_type = $taxonomy_name;
-        if ($taxonomy_type) {
-            return collect(get_terms(['taxonomy' => $taxonomy_type]))
-                ->filter()
-                ->map(fn ($term) => ['id' => $term->term_id, 'name' => $term->name, 'slug' => $term->slug]);
-        }
-        return '';
     }
 
     /**
@@ -248,6 +271,7 @@ class PostListing extends Block
     :void
     {
         bundle('posts')
+            ->when(!is_admin())
             ->enqueueJs();
     }
 }

@@ -21,8 +21,6 @@ class Page extends Composer
     protected function with()
     :array
     {
-        return [
-            ...parent::with(),
-        ];
+        return [];
     }
 }

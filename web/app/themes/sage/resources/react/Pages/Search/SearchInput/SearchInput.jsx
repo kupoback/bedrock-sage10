@@ -50,7 +50,7 @@ function SearchInput() {
                        className="search__filters-input"/>
             </fieldset>
             <Button
-                btnClass="search__filters-button"
+                btnClass="search__filters-button btn"
                 btnType="submit"
                 clickHandler={submitSearch}
                 content={<span className="">{searchSubmit}</span>}/>

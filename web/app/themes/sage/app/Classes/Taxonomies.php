@@ -29,7 +29,7 @@ class Taxonomies
                 collect($this->taxonomies)
                     ->each(function ($tax_arr, $tax_name) {
                         // Drop out if a string or array of post types are not defined
-                        if ($tax_arr['post_type'] ?? false) {
+                        if (!$tax_arr['post_type'] ?? false) {
                             new WP_Error('no-post-types-defined', "Did not define post types to assign taxonomy to");
                             return false;
                         }

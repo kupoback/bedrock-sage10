@@ -11,10 +11,12 @@
 
 // Components
 @import "components/base";
+@import "components/buttons";
 @import "components/loading";
 
 // Blocks
 @import "blocks/posts-listing";
+@import "blocks/sitemap";
 
 // Pages
 @import "pages/search";

@@ -92,4 +92,45 @@ class Helper
     {
         return str_replace('<br />', '%0D%0A ', $email_body);
     }
+
+    /**
+     * Method that filters internal array items
+     * that would be multidimensional
+     *
+     * @param  mixed  $data  The data that needs to be parsed
+     *
+     * @return Collection|mixed
+     */
+    public static function filterArray(mixed $data)
+    :mixed
+    {
+        if (!is_object($data) && !is_array($data)) {
+            return $data;
+        }
+
+        return collect($data)
+            ->filter(function ($data) {
+                return is_object($data) || is_array($data)
+                    ? static::filterArray($data)
+                            ->isNotEmpty()
+                    : $data;
+            });
+    }
+
+    /**
+     * Quick method to convert an array to an object if it's not already
+     *
+     * @param  array|object  $context The array or accidental object
+     *
+     * @return object
+     */
+    public static function convertArrayToObject(array|object $context)
+    :object
+    {
+        if (is_object($context)) {
+            return $context;
+        }
+
+        return (object) $context;
+    }
 }

@@ -16,9 +16,9 @@ class Alert extends Component
     /**
      * The alert message.
      *
-     * @var string
+     * @var null|string
      */
-    public string $message;
+    public null|string $message;
 
     /**
      * The alert types.

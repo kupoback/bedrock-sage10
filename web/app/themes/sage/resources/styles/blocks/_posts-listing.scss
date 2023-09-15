@@ -1,5 +1,95 @@
 /* React Block
 ===================================== */
+.posts-listing {
+
+    &__header {
+
+        &-title {
+
+        }
+        &-content {
+
+        }
+    }
+
+    &__count {
+
+
+    }
+
+    &__container {
+
+        &-count {
+
+            &__results {
+
+            }
+        }
+
+        &-main {
+
+        }
+
+        &-aside {
+
+        }
+    }
+
+    &__results {
+
+    }
+}
+
+/* Post Item
+===================================== */
+.post {
+
+    &__metadata {
+
+        &-time {
+
+        }
+
+        &-separator {
+
+        }
+    }
+
+    &__body {
+
+        &-title {
+
+        }
+
+        &-author {
+
+        }
+
+        &-categories {
+
+        }
+
+        &-excerpt {
+
+        }
+    }
+
+    &__footer {
+
+    }
+
+    &-sticky {
+
+    }
+
+    &-first {
+
+    }
+
+    &-last {
+
+    }
+}
 
 /* React Pagination
 ===================================== */

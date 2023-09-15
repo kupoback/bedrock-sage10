@@ -3,7 +3,15 @@
  */
 import ImgSrcSet from "@reactComponent/ImgSrcSet";
 
-function Post({post, firstItem, lastItem, articleClassName}) {
+function Post(
+	{
+		post,
+		firstItem = false,
+		lastItem = false,
+		articleClassName = '',
+		readMore = 'Read More',
+		categoryLabel = '',
+	}) {
 	const {
 		author,
 		categories,
@@ -42,8 +50,7 @@ function Post({post, firstItem, lastItem, articleClassName}) {
 
             <div className="post__body">
                 <h3 className="post__body-title title ">
-                    <a className="post__body-title__permalink"
-                       href={permalink}>{title}</a>
+                    <a href={permalink}>{title}</a>
                 </h3>
 
                 {author && <p className="post__body-author author">{author}</p>}
@@ -61,9 +68,8 @@ function Post({post, firstItem, lastItem, articleClassName}) {
             </div>
 
             <div className="post__footer">
-                <a href={permalink}
-                   className="post__footer-permalink">
-                    Read More
+                <a href={permalink}>
+	                {readMore}
                 </a>
             </div>
 		</article>

@@ -1,4 +1,4 @@
-<div @class([$block->classes ?? '',])>
+<div @class([$block->classes ?? '', '', 'block'])>
     <div>
         {{-- Used to allow nested blocks --}}
         <InnerBlocks />

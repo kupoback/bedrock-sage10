@@ -13,7 +13,8 @@ import Loading from "@reactComponent/Loading"
 import NoResults from "@reactComponent/NoResults";
 
 const Posts = () => {
-    const {noResults} = POSTS;
+    const {labels, noResults} = POSTS;
+    const {category, read_more} = labels;
     const {loading, posts, total} = postsStore(state => state, shallow)
 
     /**
@@ -29,6 +30,8 @@ const Posts = () => {
         return posts.map(post =>
             <Post key={post.id}
                   post={post}
+                  categoryLabel={category}
+                  readMore={read_more}
                   firstItem={post.id === posts[0]?.id}
                   lastItem={post.id === posts.findLast(x => true)?.id}/>)
     }

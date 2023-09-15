@@ -55,7 +55,7 @@ function SearchInput() {
                 clickHandler={submitSearch}
                 content={<span className="">{searchSubmit}</span>}/>
             {/*<Button
-                btnClass="search__filters-button"
+                btnClass="search__filters-button btn"
                 btnType="button"
                 clickHandler={resetForm}
                 content={<span className="">{resetSearch}</span>}/>*/}

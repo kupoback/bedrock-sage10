@@ -19,13 +19,26 @@ const setDevTool = app => app.devtool(`inline-cheap-module-source-map`);
  *
  * @param {import('@roots/bud').Bud} app
  */
-module.exports = async (app) => {
+export default async (app) => {
 
     /**
      * Bud ENV fetcher
      * @type {Object}
      */
     const appEnv = app.env;
+
+    /**
+     * Adds support for JSX to the path resolutions
+     */
+    app.config(existingConfig => {
+        const resolve = existingConfig.resolve;
+        resolve.extensionAlias['.js'].push('.jsx')
+        resolve.extensions.push('.jsx')
+        return ({
+            ...existingConfig,
+            resolve,
+        })
+    })
 
     app
         /**
@@ -81,6 +94,23 @@ module.exports = async (app) => {
         .assets(["fonts", "images",]);
 
     /**
+     * Add external dependencies to be loaded site wide
+     * so that it's omitted from the individual files
+     */
+    app.bundle(
+            'vendor',
+            [
+                'axios',
+                'lodash-es',
+                'mitt',
+                'react',
+                'react-dom',
+                'react-paginate',
+                'zustand'
+            ]
+        )
+
+    /**
      * URI of the `public` directory
      *
      * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
@@ -88,9 +118,9 @@ module.exports = async (app) => {
     app.setPublicPath("/app/themes/sage/public/")
 
     app.postcss
-        .setPlugins({
-            // ['tailwindcss']: await app.module.resolve('tailwindcss'),
-            // ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
+        .getPlugins({
+            ['tailwindcss']: await app.module.resolve('tailwindcss'),
+            ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
          });
 
     /**
@@ -145,27 +175,36 @@ module.exports = async (app) => {
      *
      * @note This overwrites `theme.json` on every build.
      *
-     * @see {@link https://bud.js.org/extensions/sage/theme.json/}
-     * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/}
+     * @see {@link https://bud.js.org/extensions/sage/theme.json}
+     * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json}
      */
-    app
-        .wpjson
-        .set('settings.color.custom', false)
-        .set('settings.color.customDuotone', false)
-        .set('settings.color.customGradient', false)
-        .set('settings.color.defaultDuotone', false)
-        .set('settings.color.defaultGradients', false)
-        .set('settings.color.defaultPalette', false)
-        .set('settings.color.duotone', [])
-        .set('settings.custom.spacing', {})
-        .set('settings.custom.typography.font-size', {})
-        .set('settings.custom.typography.line-height', {})
-        .set('settings.spacing.padding', true)
-        .set('settings.spacing.units', ['px', '%', 'em', 'rem', 'vw', 'vh'])
-        .set('settings.typography.customFontSize', false)
-        // If using Tailwind uncomment
-        // .useTailwindColors()
-        // .useTailwindFontFamily()
-        // .useTailwindFontSize()
-        .enable();
+    app.wpjson
+        .setSettings({
+            color: {
+                custom: false,
+                customDuotone: false,
+                customGradient: false,
+                defaultDuotone: false,
+                defaultGradients: false,
+                defaultPalette: false,
+                duotone: [],
+            },
+            custom: {
+                spacing: {},
+                typography: {
+                    'font-size': {},
+                    'line-height': {},
+                },
+            },
+            spacing: {
+                padding: true,
+                units: ['px', '%', 'em', 'rem', 'vw', 'vh'],
+            },
+            typography: {
+                customFontSize: false,
+            },
+        })
+        .useTailwindColors()
+        .useTailwindFontFamily()
+        .useTailwindFontSize();
 };

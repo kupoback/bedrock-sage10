@@ -1,7 +1,6 @@
-// If Tailwind, uncomment
-//@import 'tailwindcss/base';
-//@import 'tailwindcss/components';
-//@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 // Common
 @import "common/reset";
@@ -9,7 +8,7 @@
 @import "common/fonts";
 @import "common/mixins";
 
-// Components
+ //Components
 @import "components/base";
 @import "components/buttons";
 @import "components/loading";

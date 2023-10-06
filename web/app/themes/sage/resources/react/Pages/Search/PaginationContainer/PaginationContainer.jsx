@@ -27,7 +27,7 @@ function PaginationContainer() {
             currentPage={(page - 1) || 0}
             elmId="search"
             itemsPerPage={3}
-            navClassNames="search__results-pagination pagination"
+            navClassNames="search__results-pagination"
             maxPages={maxPages}
             storeState={searchStore} />
     )

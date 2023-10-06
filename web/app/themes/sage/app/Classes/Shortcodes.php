@@ -107,7 +107,7 @@ class Shortcodes
                 '<div id="sitemap" class="sitemap-container"><ul class="page-list row">%s</ul></div>',
                 $pages
                     ->map(fn ($page) => sprintf(
-                        '<li class="page-link col-xs-12"><a href="%2$s">%1$s</a></li>',
+                        '<li class="page-link"><a href="%2$s">%1$s</a></li>',
                         $page->post_title,
                         get_permalink($page),
                     ))

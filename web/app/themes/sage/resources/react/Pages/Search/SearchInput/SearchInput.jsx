@@ -33,10 +33,9 @@ function SearchInput() {
     const searchValue = searchText.length ? searchText : '';
 
     return (
-        <div className="search__filters">
+        <div className="search__input">
             <fieldset>
-                <label htmlFor="search-input-field"
-                       className="search__filters-label">
+                <label htmlFor="search-input-field">
                     {searchLabel}
                 </label>
                 <input type="text"
@@ -46,16 +45,15 @@ function SearchInput() {
                        value={searchValue}
                        aria-valuetext={searchValue}
                        onChange={({target}) => searchStore.setState(() => ({searchText: target.value}))}
-                       onKeyDown={({key}) => key === 'Enter' && submitSearch()}
-                       className="search__filters-input"/>
+                       onKeyDown={({key}) => key === 'Enter' && submitSearch()} />
             </fieldset>
             <Button
-                btnClass="search__filters-button btn"
+                btnClass="search__input-submit btn"
                 btnType="submit"
                 clickHandler={submitSearch}
                 content={<span className="">{searchSubmit}</span>}/>
             {/*<Button
-                btnClass="search__filters-button btn"
+                btnClass="search__input-button btn"
                 btnType="button"
                 clickHandler={resetForm}
                 content={<span className="">{resetSearch}</span>}/>*/}

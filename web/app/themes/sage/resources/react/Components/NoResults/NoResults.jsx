@@ -1,3 +1,8 @@
+/**
+ * Sage Scripts
+ */
+import {outputClassNames} from "@reactUtil/mixins";
+
 function NoResults(
     {noResultsText = '',
         containerClass = '',
@@ -5,8 +10,8 @@ function NoResults(
 
     }) {
     return (
-        <div className={containerClass}>
-            <div className={noResultSClass}
+        <div className={outputClassNames([containerClass])}>
+            <div className={outputClassNames([noResultSClass])}
                  dangerouslySetInnerHTML={{__html: noResultsText}} />
         </div>
     )

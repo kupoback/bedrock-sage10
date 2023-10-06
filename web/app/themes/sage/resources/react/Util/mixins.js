@@ -22,7 +22,7 @@ const objectNotEmpty = (obj) => Object.keys(obj).length !== 0;
  * Updates the page selected from Pagination
  *
  * @param {Number}   page The page selected
- * @param {Function} state The store state
+ * @param {Object} state The store state
  */
 const setPage = (page, state) => state.setState({page})
 
@@ -59,9 +59,18 @@ const paginationClickHandler = (state, page, elmId) => {
     }
 }
 
+/**
+ * Outputs the array of classes to a string
+ *
+ * @param {array} classes An array of classes
+ * @returns {*}
+ */
+const outputClassNames = (classes) => classes.filter(Boolean).join(" ");
+
 export {
     addRemoveTerm,
     objectNotEmpty,
+    outputClassNames,
     paginationClickHandler,
     setPage,
     setResultsCount,

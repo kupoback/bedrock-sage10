@@ -1,4 +1,9 @@
 /**
+ * Sage Scripts
+ */
+import {outputClassNames} from "@reactUtil/mixins";
+
+/**
  * React Component
  */
 import ImgSrcSet from "@reactComponent/ImgSrcSet";
@@ -25,23 +30,27 @@ function Post(
 	} = post;
 
 	return (
-		<article className={[
+		<article className={outputClassNames([
 			`post`,
             articleClassName || '', // Class additional for the article
 			sticky && "post-sticky", // Class for sticky posts
             firstItem ? "post-first" : '', // Class for first item
 			lastItem ? "post-last" : '', // Class for last item or otherwise
-		].filter(Boolean).join(" ")}>
+		])}>
+            <div className="post__header">
+                <h3>
+                    <a href={permalink}
+                       dangerouslySetInnerHTML={{__html: title}} />
+                </h3>
+            </div>
 			<div className="post__metadata">
-				<time dateTime={dateString}
+				<time dateTime={date}
 				      className="post__metadata-time">
-					{date?.year && <span>{date.year}</span>}
-					<span className="post__metadata-separator separator" />
-					{date?.date && <span>{date.date}</span>}
+                    {dateString}
 				</time>
 			</div>
 
-			{Object.keys(image).length !== 0 && (
+			{(image && Object.keys(image).length !== 0) && (
 				<div className="post__image">
 					<ImgSrcSet image={image}
                                classNames=""
@@ -49,28 +58,24 @@ function Post(
 				</div>)}
 
             <div className="post__body">
-                <h3 className="post__body-title title ">
-                    <a href={permalink}>{title}</a>
-                </h3>
-
                 {author && <p className="post__body-author author">{author}</p>}
                 {categories && (
-                    <p className="post__body-categories categories">
-                        {categories}
-                    </p>
+                    <div className="post__body-categories categories">
+                        {categoryLabel && <p dangerouslySetInnerHTML={{__html: categoryLabel}} />}
+                        <p dangerouslySetInnerHTML={{__html: categories}} />
+                    </div>
                 )}
 
                 {excerpt && (
-                    <p className="post__body-excerpt excerpt">
-                        {excerpt}
-                    </p>
+                    <div className="post__body-excerpt excerpt">
+                        <p dangerouslySetInnerHTML={{__html: excerpt}} />
+                    </div>
                 )}
             </div>
 
             <div className="post__footer">
-                <a href={permalink}>
-	                {readMore}
-                </a>
+                <a href={permalink}
+                   dangerouslySetInnerHTML={{__html: readMore}} />
             </div>
 		</article>
 	);

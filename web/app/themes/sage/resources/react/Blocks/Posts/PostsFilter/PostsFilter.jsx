@@ -41,7 +41,7 @@ function PostsFilter({}) {
         <div className="posts-listing__filters">
             {filterLabel &&
                 <div className="posts-listing__filters-title">
-                    <h3 className="">{filterLabel}</h3>
+                    <h3>{filterLabel}</h3>
                 </div>}
             {(typeof taxonomies === 'object' && Object.keys(taxonomies).length !== 0) &&
                 <div className="posts-listing__filters-terms">
@@ -55,15 +55,13 @@ function PostsFilter({}) {
             <div className="posts-listing__filters-search">
                 <fieldset>
                     <label htmlFor="posts-search"
-                           className="">
-                        {searchLabel}
-                    </label>
+                           dangerouslySetInnerHTML={{__html: searchLabel}}
+                           />
                     <input type="text"
                            id="posts-search"
                            placeholder={searchPlaceholder}
                            onChange={({target}) => postsStore.setState(() => ({searchText: target.value}))}
-                           onKeyDown={({key}) => key === 'Enter' && submitSearch()}
-                           className=""/>
+                           onKeyDown={({key}) => key === 'Enter' && submitSearch()} />
                 </fieldset>
             </div>
             <div className="posts-listing__filters-submit">

@@ -4,6 +4,11 @@
 import ReactPaginate from "react-paginate"
 
 /**
+ * Sage Scripts
+ */
+import {outputClassNames} from "@reactUtil/mixins";
+
+/**
  * React Components
  */
 import ChevronRight from "@reactComponent/Icons/ChevronRight";
@@ -58,7 +63,7 @@ function Pagination({clickHandler, currentPage = 1, elmId, itemsPerPage, maxPage
     if (maxPages < 1) return '';
 
     return (
-        <nav className={navClassNames} role="navigation">
+        <nav className={outputClassNames([`pagination`, navClassNames || '',])} role="navigation">
             <ReactPaginate
                 activeClassName="active-class "
                 breakClassName="break-indicator"

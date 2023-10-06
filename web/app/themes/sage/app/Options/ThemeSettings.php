@@ -115,10 +115,41 @@ class ThemeSettings extends Field
         $themeSettings = new FieldsBuilder('theme_settings');
 
         // Start using -> build methods here
+        //region Logos
         $themeSettings
             ->addTab('logos')
                 ->addImage('header_logo')
-                ->addImage('footer_logo')
+                ->addImage('footer_logo');
+        //endregion
+
+        //region Header
+        $themeSettings
+            ->addTab('header')
+                ->setLabel(__("Header Setup", "sage-acf"))
+                ->addGroup('nav_search')
+                    ->addText('nav_search_title')
+                        ->setAttr('class', 'one-third')
+                        ->setLabel(__("Search Title", "sage-acf"))
+                    ->addText('nav_search_placeholder')
+                        ->setAttr('class', 'one-third')
+                        ->setLabel(__("Search Placeholder", "sage-acf"))
+                    ->addText('nav_search_button')
+                        ->setAttr('class', 'one-third')
+                        ->setLabel(__("Search Button", "sage-acf"))
+                ->endGroup();
+        //endregion
+
+
+        //region Header
+        $themeSettings
+            ->addTab('footer')
+                ->setLabel(__("Footer Setup", "sage-acf"))
+            ->addText('footer_copyright')
+                ->setLabel(__("Copyright Text", "sage-acf"));
+        //endregion
+
+        //region Search
+        $themeSettings
             ->addTab('search')
                 ->addText('search_title')
                     ->setAttr('class', 'one-half')
@@ -140,8 +171,20 @@ class ThemeSettings extends Field
                     ->addText('read_more')
                         ->setAttr('class', 'one-half')
                         ->setDefaultValue(__('Read More', 'sage'))
-                ->endGroup()
-        ;
+                ->endGroup();
+        //endregion
+
+        //region 404
+        $themeSettings
+            ->addTab('error_404')
+                ->addText('error_title')
+                    ->setDefaultValue("Error 404")
+                    ->setLabel(__("Error 404 Title", "sage-acf"))
+                ->addWysiwyg('error_content')
+                    ->setLabel(__("Error 404 Content", "sage-acf"))
+                ->addImage('error_image')
+                    ->setLabel(__("Error 404 Image", "sage-acf"));
+        //endregion
 
         return $themeSettings->build();
     }

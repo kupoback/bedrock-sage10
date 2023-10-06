@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('partials.page-header')
+    @include('partials.page-header', ['classes' => 'error__title'])
 
-  @if (! have_posts())
-    <x-alert type="warning">
-      {!! __('Sorry, but the page you are trying to view does not exist.', 'sage') !!}
-    </x-alert>
-
-    {!! get_search_form(false) !!}
-  @endif
+    <section class="error__content">
+        <div class="wrapper">
+            {!! $content ?: '' !!}
+        </div>
+    </section>
 @endsection

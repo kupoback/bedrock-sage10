@@ -13,11 +13,7 @@ function PostsListing({}) {
     // Initial Fetch
     fetch();
 
-    return (
-    	<div className="posts-listing__results">
-            <Posts />
-    	</div>
-    );
+    return <Posts />;
 }
 
 export default PostsListing;

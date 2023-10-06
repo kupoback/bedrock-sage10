@@ -12,8 +12,7 @@ function CategoryItem({slug, name}) {
 			       id={slug}
                    onChange={() => updateTaxonomySelected(slug)}
 			       className={`${taxChecked(slug)}`} />
-			<label className=""
-			       htmlFor={slug}>{name}</label>
+			<label htmlFor={slug}>{name}</label>
 		</div>
 	)
 }

@@ -17,11 +17,7 @@ function Search({}) {
     // Initial Fetch
     fetch();
 
-    return (
-    	<div className="search__results">
-            <Posts />
-    	</div>
-    );
+    return <Posts />;
 }
 
 export default Search;

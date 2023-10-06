@@ -13,7 +13,7 @@ import SearchInput from "./SearchInput";
 
 
 if (typeof SEARCH !== 'undefined') {
-    const searchElm = document.getElementById('search');
+    const searchElm = document.getElementById('search-container');
     const searchInputElm = document.getElementById('search-input');
     const searchPaginationElm = document.getElementById('search-pagination');
     const searchFiltersElm = document.getElementById('search-filters');

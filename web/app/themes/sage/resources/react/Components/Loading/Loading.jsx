@@ -15,7 +15,7 @@ function Loading({loadingClass = 'loading', fillColor = ''}) {
                         repeatCount="indefinite"
                         begin="0.1"/>
                 </circle>
-                <circle fill="#facc15" stroke="none" cx="50" cy="25" r="6">
+                <circle fill="currentColor" stroke="none" cx="50" cy="25" r="6">
                     <animate
                         attributeName="opacity"
                         dur="1s"
@@ -24,13 +24,13 @@ function Loading({loadingClass = 'loading', fillColor = ''}) {
                         begin="0.2"/>
                 </circle>
                 <circle fill={fillColor} stroke="none" cx="68" cy="25" r="6">
-                <animate
-                    attributeName="opacity"
-                    dur="1s"
-                    values="0;1;0"
-                    repeatCount="indefinite"
-                    begin="0.3"/>
-            </circle>
+                    <animate
+                        attributeName="opacity"
+                        dur="1s"
+                        values="0;1;0"
+                        repeatCount="indefinite"
+                        begin="0.3"/>
+                </circle>
             </svg>
         </div>
     );

@@ -72,10 +72,26 @@ class Helper
 
         return collect(
             [
-                'facebook' => "https://facebook.com/sharer/sharer.php?u=$share_url",
-                'twitter'  => "https://twitter.com/intent/tweet?text=$twitter_title&url=$share_url",
-                'linkedin' => "https://www.linkedin.com/sharing/share-offsite/?url=$share_url",
-                'email'    => "mailto:?subject=$email_subject&body=$email_body",
+                'facebook' => (object) [
+                    'link' => "https://facebook.com/sharer/sharer.php?u=$share_url",
+                    'icon' => asset('images/icons/facebook.svg'),
+                ],
+                'twitter'  => (object) [
+                    'link' => "https://twitter.com/intent/tweet?text=$twitter_title&url=$share_url",
+                    'icon' => asset('images/icons/twitter.svg'),
+                ],
+                'linkedin' => (object) [
+                    'link' => "https://www.linkedin.com/sharing/share-offsite/?url=$share_url",
+                    'icon' => asset('images/icons/linkedin.svg'),
+                ],
+                'email'    => (object) [
+                    'link' => "mailto:?subject=$email_subject&body=$email_body",
+                    'icon' => asset('images/icons/email.svg'),
+                ],
+                'print'    => (object) [
+                    'link' => "javascript:window.print();",
+                    'icon' => asset('images/icons/print.svg'),
+                ],
             ],
         );
     }

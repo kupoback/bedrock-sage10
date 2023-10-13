@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/email</title>
+    <defs>
+        <path d="M0.998217469,0 C0.399286988,0 0,0.427857011 0,1.06964253 L0,1.06964253 L0,2.56992036 L8.00129639,7.39025746 L16,2.67827375 L16,1.06964253 C16,0.427857011 15.600713,0 15.0043753,0 L15.0043753,0 L0.998217469,0 Z M8.50170151,9.53509909 C8.22168206,9.68512688 7.78091071,9.68512688 7.50089127,9.53509909 L7.50089127,9.53509909 L0,5.0342656 L0,13.9303575 C0,14.5749213 0.399286988,15 0.998217469,15 L0.998217469,15 L15.0043753,15 C15.600713,15 16,14.5749213 16,13.9303575 L16,13.9303575 L16,5.0342656 L8.50170151,9.53509909 Z" id="path-1" />
+    </defs>
+    <g id="About-CT-and-Subpages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="FAQs" transform="translate(-1235.000000, -374.000000)">
+            <g id="sharing" transform="translate(1144.000000, 374.000000)">
+                <g id="Group-8" transform="translate(91.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1" />
+                    </mask>
+                    <g id="Clip-7" />
+                    <polygon id="Fill-6" fill="currentColor" mask="url(#mask-2)" points="-5.00145843 20.3593258 20.9988657 20.3593258 20.9988657 -5.3593258 -5.00145843 -5.3593258" />
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

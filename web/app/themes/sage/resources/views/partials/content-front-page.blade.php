@@ -1,1 +1,1 @@
-<?= the_content(); ?>
+@php(the_content())

@@ -149,4 +149,19 @@ class Helper
 
         return (object) $context;
     }
+
+    /**
+     * Filters an array of classes for blade @class([]) to omit any spaces from it
+     *
+     * @param  array  $classes An array of classes from @class([])
+     *
+     * @return string
+     */
+    public static function filterBladeClasses(array $classes)
+    :string
+    {
+        return collect($classes)
+            ->filter()
+            ->implode(' ');
+    }
 }

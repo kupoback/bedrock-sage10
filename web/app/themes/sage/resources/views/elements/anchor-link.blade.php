@@ -1,7 +1,7 @@
 @php $link = \App\Helper\Helper::convertArrayToObject($link); @endphp
-@if ($link->url ?? false)
+@isset($link->url)
 	<a href="{!! $link->url !!}"
-	   @if ($classes ?? false) @class([$classes]) @endif
-	   @if ($link->target ?? false) target="{!! $link->target !!}" rel="noopener" @endif
+	   @isset($classes) @class([\App\Helper\Helper::filterBladeClasses($classes)]) @endisset
+	   @isset($link->target) target="{!! $link->target !!}" rel="noopener" @endisset
 	>{!! $link->title !!}</a>
-@endif
+@endisset

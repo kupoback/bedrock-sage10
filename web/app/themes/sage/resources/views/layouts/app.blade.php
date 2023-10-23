@@ -1,17 +1,17 @@
 <a class="sr-only focus:not-sr-only" href="#main" tabindex="0">
-	{{ __('Skip to content', 'sage') }}
+    {{ __('Skip to content', 'sage') }}
 </a>
 
 @include('sections.header')
 
 <main id="main" class="main">
-	@yield('content')
+    @yield('content')
 </main>
 
 @hasSection('sidebar')
-	<aside class="sidebar">
-		@yield('sidebar')
-	</aside>
+    <aside class="sidebar">
+        @yield('sidebar')
+    </aside>
 @endif
 
 @include('sections.footer')

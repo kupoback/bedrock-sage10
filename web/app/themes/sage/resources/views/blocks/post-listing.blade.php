@@ -1,13 +1,14 @@
 <div @class([$block->classes ?? false, 'posts-listing', 'block'])>
     <section class="posts-listing__header">
-        @if ($title ?? false)
+        @isset($title)
             <h2>{!! $title !!}</h2>
-        @endif
-        @if ($content ?? false)
+        @endisset
+
+        @isset ($content)
             <div class="posts-listing__header-content">
                 {!! $content !!}
             </div>
-        @endif
+        @endisset
     </section>
 
     <section class="posts-listing__container">

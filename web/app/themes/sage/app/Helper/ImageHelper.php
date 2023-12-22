@@ -53,28 +53,28 @@ class ImageHelper
 
         // Classes for the HTML tags
         $properties  = $get_img_data['prop'] ?? '';
-        $image_class = $img_attrs->get('image_class', false);
-        $pic_class   = $img_attrs->get('pic_class', false);
-        $image_id    = $img_attrs->get('id', false);
+        $image_class = $img_attrs->pull('image_class', false);
+        $pic_class   = $img_attrs->pull('pic_class', false);
+        $image_id    = $img_attrs->pull('id', false);
 
         // Image Information
-        $source    = $get_img_data->get('url', false);
-        $src_set   = $get_img_data->get('src_set', false);
-        $src_sizes = $get_img_data->get('src_set_sizes', false);
-        $get_webp  = $get_img_data->get('webp', false);
-        $img_alt   = $get_img_data->get('alt', '');
-        $image_type = $get_img_data->get('img_type', '');
+        $source    = $get_img_data->pull('url', false);
+        $src_set   = $get_img_data->pull('src_set', false);
+        $src_sizes = $get_img_data->pull('src_set_sizes', false);
+        $get_webp  = $get_img_data->pull('webp', false);
+        $img_alt   = $get_img_data->pull('alt', '');
+        $image_type = $get_img_data->pull('img_type', '');
         $is_svg = ($image_type && Str::contains($image_type, 'svg'));
 
         // Caption Data
-        $fig_class   = $img_attrs->get('figure_class', false);
-        $caption     = $img_attrs->get('caption', false);
+        $fig_class   = $img_attrs->pull('figure_class', false);
+        $caption     = $img_attrs->pull('caption', false);
         $caption_text = '';
 
         // Sets up the role attributes
         $role_attributes = $img_attrs->get(
             'role',
-            $get_img_data->get('role', 'img')
+            $get_img_data->pull('role', 'img')
         );
 
         if ($data_attrs) {
@@ -112,7 +112,7 @@ class ImageHelper
                 // The Caption
                 $caption = $caption_text ? sprintf(
                     '<figcaption class="wp-caption-text %1$s" content="%2$s" property="v:caption"><p>%2$s</p></figcaption>',
-                    $img_attrs->get('figcaption_class', ''),
+                    $img_attrs->pull('figcaption_class', ''),
                     html_entity_decode($caption_text)
                 ) : '';
             }

@@ -1,4 +1,5 @@
-<div @class([$block->classes ?? false, 'posts-listing', 'block'])>
+<div @class([$block->classes ?? false, 'posts-listing', 'block'])
+     @isset($block->inlineStyle) style="{{ $block->inlineStyle }}" @endisset>
     <section class="posts-listing__header">
         @isset($title)
             <h2>{!! $title !!}</h2>
@@ -27,5 +28,3 @@
         </aside>
     </section>
 </div>
-
-<script type="application/javascript">var POSTS = { {!! $json_data !!} }</script>

@@ -4,8 +4,8 @@ namespace DummyNamespace;
 
 use App\Classes\AcfNestedFields;
 use Log1x\AcfComposer\Block;
+use Log1x\AcfComposer\Builder;
 use StoutLogic\AcfBuilder\FieldNameCollisionException;
-use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class DummyClass extends Block
 {
@@ -96,14 +96,19 @@ class DummyClass extends Block
      * @var array
      */
     public $supports = [
-        'align' => true,
-        'align_text' => false,
+        'align'         => true,
+        'align_text'    => false,
         'align_content' => false,
-        'full_height' => false,
-        'anchor' => false,
-        'mode' => false,
-        'multiple' => true,
-        'jsx' => true,
+        'full_height'   => false,
+        'anchor'        => false,
+        'mode'          => false,
+        'multiple'      => true,
+        'jsx'           => true,
+        'color'         => [
+            'background' => true,
+            'text'       => true,
+            'gradient'   => true,
+        ],
     ];
 
     /**
@@ -111,17 +116,7 @@ class DummyClass extends Block
      *
      * @var array
      */
-    public $styles = [
-        [
-            'name' => 'light',
-            'label' => 'Light',
-            'isDefault' => true,
-        ],
-        [
-            'name' => 'dark',
-            'label' => 'Dark',
-        ]
-    ];
+    public $styles = ['light', 'dark'];
 
     /**
      * The block preview example data.
@@ -129,6 +124,15 @@ class DummyClass extends Block
      * @var array
      */
     public $example = [];
+
+    /**
+     * The block template.
+     *
+     * @var array
+     */
+    public $template = [
+        'core/paragraph' => ['placeholder' => 'Enter content here'],
+    ];
 
     /**
      * The field names defined in $this->fields()
@@ -163,7 +167,7 @@ class DummyClass extends Block
     public function fields()
     :array
     {
-        $DummyCamel = new FieldsBuilder('DummySnake');
+        $DummyCamel = Builder::make('DummySnake');
 
         // Start using -> build methods here
 
@@ -173,13 +177,13 @@ class DummyClass extends Block
     /**
      * Assets to be enqueued when rendering the block.
      *
+     * @param  array  $block
+     *
      * @return void
      */
-    public function enqueue()
+    public function assets(array $block)
     :void
     {
-        if (!is_admin()) {
-            //
-        }
+        //
     }
 }

@@ -5,6 +5,7 @@ namespace App\Blocks;
 use App\Classes\AcfNestedFields;
 use Illuminate\Support\Collection;
 use Log1x\AcfComposer\Block;
+use Log1x\AcfComposer\Builder;
 use StoutLogic\AcfBuilder\FieldNameCollisionException;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
@@ -105,6 +106,11 @@ class Sitemap extends Block
         'mode' => false,
         'multiple' => true,
         'jsx' => true,
+        'color' => [
+            'background' => true,
+            'text' => true,
+            'gradient' => true,
+        ],
     ];
 
     /**
@@ -112,17 +118,7 @@ class Sitemap extends Block
      *
      * @var array
      */
-    public $styles = [
-        [
-            'name' => 'light',
-            'label' => 'Light',
-            'isDefault' => true,
-        ],
-        [
-            'name' => 'dark',
-            'label' => 'Dark',
-        ]
-    ];
+    public $styles = ['light', 'dark'];
 
     /**
      * The block preview example data.
@@ -130,6 +126,13 @@ class Sitemap extends Block
      * @var array
      */
     public $example = [];
+
+    /**
+     * The block template.
+     *
+     * @var array
+     */
+    public $template = [];
 
     /**
      * The field names defined in $this->fields()
@@ -173,7 +176,7 @@ class Sitemap extends Block
     public function fields()
     :array
     {
-        $sitemap = new FieldsBuilder('sitemap');
+        $sitemap = Builder::make('sitemap');
 
         // Start using -> build methods here
         $sitemap
@@ -282,9 +285,11 @@ class Sitemap extends Block
     /**
      * Assets to be enqueued when rendering the block.
      *
+     * @param array $block The blocks data
+     *
      * @return void
      */
-    public function enqueue()
+    public function assets(array $block)
     :void
     {
         //

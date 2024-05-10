@@ -1,6 +1,7 @@
-<div @class([$block->classes ?? '', '', 'block'])>
+<div @class([$block->classes ?? '', '', 'block'])
+     @isset($block->inlineStyle) style="{{ $block->inlineStyle }}" @endisset>
     <div>
         {{-- Used to allow nested blocks --}}
-        <InnerBlocks />
+        <InnerBlocks template="{{ $block->template }}" />
     </div>
 </div>

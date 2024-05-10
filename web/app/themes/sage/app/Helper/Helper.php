@@ -162,6 +162,7 @@ class Helper
     {
         return collect($classes)
             ->filter()
+            ->unique()
             ->implode(' ');
     }
 }

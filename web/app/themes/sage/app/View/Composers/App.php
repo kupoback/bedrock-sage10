@@ -24,7 +24,6 @@ class App extends Composer
     :array
     {
         return [
-            'site_name'  => get_bloginfo('name', 'display'),
             'site_url'   => static::siteUrl(),
             'title'      => static::getTitle(),
         ];

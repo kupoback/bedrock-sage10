@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
+use Log1x\AcfComposer\Builder;
 use Log1x\AcfComposer\Options as Field;
 use StoutLogic\AcfBuilder\FieldNameCollisionException;
-use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class DummyClass extends Field
 {
@@ -105,14 +105,13 @@ class DummyClass extends Field
      * The option page field group.
      *
      * @return array
-     * @throws FieldNameCollisionException
      *
      * @link https://github.com/Log1x/acf-builder-cheatsheet
      */
     public function fields()
     :array
     {
-        $DummyCamel = new FieldsBuilder('DummySnake');
+        $DummyCamel = Builder::make('DummySnake');
 
         // Start using -> build methods here
 

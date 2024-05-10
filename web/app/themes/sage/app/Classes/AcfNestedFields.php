@@ -37,7 +37,8 @@ class AcfNestedFields
         if (!$this->postId) {
             if (is_home()) {
                 $this->postId = get_option('page_for_posts');
-            } elseif (is_front_page()) {
+            }
+            if (is_front_page()) {
                 $this->postId = get_option('page_for_front');
             }
         }
@@ -78,6 +79,38 @@ class AcfNestedFields
     {
         return collect($this->data)
             ->mapWithKeys(fn ($value, $key) => static::mapFluent($value, $key));
+    }
+
+    /**
+     * Removes the underscores from the array data
+     *
+     * @param  array  $data  ACF Field key to value data
+     *
+     * @return array
+     */
+    public static function cleanData(array $data)
+    :array
+    {
+        return collect($data)
+            ->filter(fn ($data, $key) => !Str::startsWith($key, "_"))
+            ->toArray();
+    }
+
+    /**
+     * Takes an array of data and groups them for ACF
+     * @param  array   $data        The array of ACF data
+     * @param  string  $key_filter  The group key name
+     *
+     * @return array
+     */
+    public static function fixGroupKeys(array $data, string $key_filter)
+    :array
+    {
+        return collect($data)
+            ->filter(fn ($value, $key) => $key !== $key_filter)
+            ->filter(fn ($value, $key) => Str::contains($key, $key_filter))
+            ->mapWithKeys(fn ($value, $key) => [Str::replace("{$key_filter}_", '', $key) => $value])
+            ->toArray();
     }
 
     /**

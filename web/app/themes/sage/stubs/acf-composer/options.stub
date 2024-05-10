@@ -2,8 +2,10 @@
 
 namespace DummyNamespace;
 
+use Log1x\AcfComposer\Builder;
 use Log1x\AcfComposer\Options as Field;
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use StoutLogic\AcfBuilder\FieldNameCollisionException;
 
 class DummyClass extends Field
 {
@@ -15,11 +17,32 @@ class DummyClass extends Field
     public $name = 'DummyTitle';
 
     /**
+     * The option page menu slug.
+     *
+     * @var string
+     */
+    public $slug = 'DummySlug';
+
+    /**
      * The option page document title.
      *
      * @var string
      */
     public $title = 'DummyTitle | Options';
+
+    /**
+     * The option page menu position.
+     *
+     * @var int
+     */
+    public $position = PHP_INT_MAX;
+
+    /**
+     * The slug of another admin page to be used as a parent.
+     *
+     * @var string
+     */
+    public $parent = null;
 
     /**
      * The option page menu icon.
@@ -40,13 +63,13 @@ class DummyClass extends Field
      * The option page field group.
      *
      * @return array
-     *
+     * @throws FieldNameCollisionException
      * @link https://github.com/Log1x/acf-builder-cheatsheet
      */
     public function fields()
     :array
     {
-        $DummyCamel = new FieldsBuilder('DummySnake');
+        $DummyCamel = Builder::make('DummySnake');
 
         // Start using -> build methods here
 

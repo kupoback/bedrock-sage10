@@ -6,9 +6,61 @@ use App\Helper\Helper;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use WP_Post;
 
 trait SageDataFormatTrait
 {
+
+    /**
+     * Formats the post for the frontend
+     *
+     * @param  object  $post   An array of posts
+     * @param  bool    $image  Whether to include the post image
+     *
+     */
+    protected function setupPost(object $post, bool $image = false)
+    :Collection
+    {
+        $date_format = 'F j, Y';
+
+        $return = collect(
+            [
+                'ID'        => $post->ID,
+                'excerpt'   => Helper::generateExcept($post),
+                'permalink' => get_the_permalink($post->ID),
+                'title'     => $post->post_title,
+                'type'      => $post->post_type,
+            ],
+        );
+
+        if ($image && has_post_thumbnail($post->ID)) {
+            $return
+                ->put('image', get_post_thumbnail_id($post->ID));
+        }
+
+        $date = Carbon::parse($post->post_date, "America/New_York");
+
+        $return
+            /**
+             * Categories
+             */
+            ->put(
+                'category',
+                static::getPrimaryTerm(
+                    $post->ID,
+                    match ($post->post_type) {
+                        // Can add more maps here
+                        'post'  => 'category',
+                        default => '',
+                    },
+                )
+            )
+            ->put('date', $date->format('c'))
+            ->put('date_string', $date->format($date_format))
+        ;
+
+        return $return;
+    }
     /**
      * Calls to a Helper method that filters internal array items
      * that would be multidimensional
@@ -67,19 +119,28 @@ trait SageDataFormatTrait
     }
 
     /**
-     * Filters the keys to allow them to be back to
-     * normal for their variable data on the frontend
+     * Grabs and returns the primary post taxonomy term
      *
-     * @param  Collection  $data    The collection of data
-     * @param  string      $search  The string to search and replace for
+     * @param  WP_Post|int  $post      The WP_Post Object
+     * @param  string       $taxonomy  The taxonomy name to grab the primary term from
      *
-     * @return Collection
+     * @return string|null
      */
-    protected function fixKeyNames(Collection $data, string $search)
-    :Collection
+    protected function getPrimaryTerm(WP_Post|int $post, string $taxonomy = 'category')
+    :string|null
     {
-        return $data
-            ->filter()
-            ->mapWithKeys(fn ($value, $key) => [Str::replace("{$search}_", '', $key) => $value]);
+        $yoast_term = '';
+        if (function_exists('yoast_get_primary_term')) {
+            $yoast_term =  yoast_get_primary_term($taxonomy, $post);
+        }
+
+        return $yoast_term ?: collect(
+            wp_get_post_terms(
+                is_int($post) ? $post : $post->ID,
+                $taxonomy,
+                ['fields' => 'names'],
+            )
+        )
+            ->first();
     }
 }

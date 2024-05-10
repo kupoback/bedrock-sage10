@@ -61,7 +61,7 @@ function loadPostTypeChoices(array $field)
 :array
 {
 
-    $field['choices'] = collect(get_post_types(['public' => true], 'objects'))
+    $field['choices'] = collect(get_post_types(['publicly_queryable' => true], 'objects'))
         ->forget('attachment')
         ->mapWithKeys(fn ($post_type) => [$post_type->name => $post_type->label])
         ->sort()

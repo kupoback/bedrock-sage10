@@ -35,14 +35,14 @@ add_action('wp_enqueue_scripts', function () {
                             'searchNoResults',
                             'searchPostLabels',
                         ],
-                        'sage_theme'
+                        'sage_theme',
                     ))
-                        ->getFields()
+                        ->getFields(),
                 )
                     ->put('api', rest_url('sage/v1/search'))
                     ->sortKeys()
-                    ->toArray()
+                    ->toArray(),
             );
     }
-}, 100);
+},100);
 

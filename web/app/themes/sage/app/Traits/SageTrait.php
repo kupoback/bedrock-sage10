@@ -8,6 +8,18 @@ use Illuminate\Support\Str;
 trait SageTrait
 {
     /**
+     * Quicker method to just return the theme_settings fields
+     *
+     * @param string $field The settings field name
+     *
+     * @return mixed
+     */
+    protected function getThemeSetting(string $field)
+    :mixed
+    {
+        return get_field($field, 'sage_theme');
+    }
+    /**
      * Filters the keys to allow them to be back to
      * normal for their variable data on the frontend
      *

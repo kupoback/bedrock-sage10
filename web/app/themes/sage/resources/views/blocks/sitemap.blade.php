@@ -1,4 +1,5 @@
-<div id="sitemap" @class([$block->classes ?? '', 'sitemap', 'block'])>
+<div id="sitemap" @class([$block->classes ?? '', 'sitemap', 'block'])
+     @if($block->inlineStyle) style="{{ $block->inlineStyle }}" @endif>
     @if ($title)
         <div class="sitemap__title">
             <h2>{!! $title !!}</h2>

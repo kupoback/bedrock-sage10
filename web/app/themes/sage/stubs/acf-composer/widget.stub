@@ -1,0 +1,59 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Classes\AcfNestedFields;
+use Log1x\AcfComposer\Builder;
+use Log1x\AcfComposer\Widget;
+use StoutLogic\AcfBuilder\FieldNameCollisionException;
+
+class DummyClass extends Widget
+{
+    /**
+     * The widget name.
+     *
+     * @var string
+     */
+    public $name = 'DummyTitle';
+
+    /**
+     * The widget description.
+     *
+     * @var string
+     */
+    public $description = 'This is a DummyTitle widget.';
+
+    /**
+     * The field names defined in $this->fields()
+     *
+     * @var array
+     */
+    public array $fieldNames = [];
+
+    /**
+     * Data to be passed to the widget before rendering.
+     */
+    public function with()
+    :array
+    {
+        return (new AcfNestedFields($this->fieldNames, $this->widget->id))
+                   ->getFields();
+    }
+
+    /**
+     * The widget field group.
+     *
+     * @return array
+     * @throws FieldNameCollisionException
+     * @link https://github.com/Log1x/acf-builder-cheatsheet
+     */
+    public function fields()
+    :array
+    {
+        $DummyCamel = Builder::make('DummySnake');
+
+        // Start using -> build methods here
+
+        return $DummyCamel->build();
+    }
+}

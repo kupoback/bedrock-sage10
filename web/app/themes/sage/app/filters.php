@@ -72,3 +72,40 @@ function loadPostTypeChoices(array $field)
 
 // Can duplicate this line, changing the name to whatever is needed
 add_filter('acf/load_field/name=post_types', __NAMESPACE__ . '\\loadPostTypeChoices');
+
+/**
+ * Generates the Select Field with Gravity Form Options
+ *
+ * @param  array  $field Array data of the ACF Field
+ *
+ * @return array
+ */
+function loadGravityForms(array $field)
+:array
+{
+    if (class_exists('GFFormsModel')) {
+        $choices = collect(
+            [
+                'none' => __('None', 'sage-admin-text'),
+            ]
+        );
+
+        $forms = \GFFormsModel::get_forms();
+
+        if (!empty($forms)) {
+            collect($forms)
+                ->each(function ($form) use (&$choices) {
+                    if ($form->id ?? false) {
+                        $choices[$form->id] = $form->title;
+                    }
+                });
+        }
+
+        $field['choices'] = $choices->toArray();
+    }
+
+    return $field;
+}
+
+// Duplicate this line, changing the name= to have it populate in another select field
+add_filter('acf/load_field/name=form', __NAMESPACE__ . '\\loadGravityForms');

@@ -21,14 +21,14 @@
 return [
 
     'defaults' => [
-        'checkbox' => ['layout' => 'horizontal',],
+        'checkbox'       => ['layout' => 'horizontal',],
         'datePicker'     => [
             'display_format' => 'F j, Y g:i a',
-            'return_format' => 'F j, Y g:i a',
+            'return_format'  => 'F j, Y g:i a',
         ],
         'dateTimePicker' => [
             'display_format' => 'F j, Y g:i a',
-            'return_format' => 'F j, Y g:i a',
+            'return_format'  => 'F j, Y g:i a',
         ],
         'forms'          => ['return_format' => 'id'],
         'gallery'        => ['return_format' => 'id',],

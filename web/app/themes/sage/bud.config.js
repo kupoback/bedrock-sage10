@@ -80,15 +80,32 @@ export default async (app) => {
          * @see {@link https://bud.js.org/docs/bud.entry/}
          */
         .entry({
-            'admin': ["@sageAdmin/css/admin_styles", "@sageAdmin/js/sage-admin"],
-            'app': ["@scripts/app", "@styles/app"],
-            'editor': ["@scripts/editor", "@styles/editor"],
-            'posts': ["@reactBlocks/Posts/index"],
-            'sageReact': ["@sageReact/app"],
-            'search': ["@reactPages/Search/index"],
+            'admin': [
+                "@sageAdmin/css/admin_styles",
+                "@sageAdmin/js/sage-admin"
+            ],
+            'app': [
+                "@scripts/app",
+                "@styles/app"
+            ],
+            'editor': [
+                "@scripts/editor",
+                "@styles/editor"
+            ],
+            'posts': [
+                "@reactBlocks/Posts/index"
+            ],
+            'sageReact': [
+                "@sageReact/app"
+            ],
+            'search': [
+                "@reactPages/Search/index"
+            ],
         })
         /**
          * Directory contents to be included in the compilation
+         * Can be expanded as needed for copying files
+         *
          * @see {@link https://bud.js.org/docs/bud.assets/}
          */
         .assets(["fonts", "images",]);
@@ -112,6 +129,8 @@ export default async (app) => {
 
     /**
      * URI of the `public` directory
+     *
+     * @note Change the theme name from `sage` to theme name
      *
      * @see {@link https://bud.js.org/docs/bud.setPublicPath/}
      */
@@ -159,6 +178,9 @@ export default async (app) => {
         .watch(
             [
                 "app/**/*",
+                "resources/admin_assets/**/*",
+                "resources/fonts/**/*",
+                "resources/images/**/*",
                 "resources/react/**/*",
                 "resources/scripts/**/*",
                 "resources/styles/**/*",

@@ -4,16 +4,19 @@
 
 @function strip-unit($number) {
     @if type-of($number) == 'number' and not unitless($number) {
-        @return $number / ($number * 0 + 1);
+        @return mathDiv($number, ($number * 0 + 1));
     }
     @return $number;
 }
 
 // snippets //
 
-$rem: 16;
-@function rem($val) {
-    @return ($val/$rem) + rem;
+@function mathDiv($val1, $val2) {
+    @return calc($val1 / $val2);
+}
+
+@function rem($val, $rem: 16) {
+    @return mathDiv($val, $rem) + rem;
 }
 
 @mixin font($font-size, $tracking: null, $leading: null) {
@@ -29,11 +32,11 @@ $rem: 16;
         } @else if $tracking == auto or $tracking == normal { // can take 'auto' or 'normal' to trigger default
             letter-spacing: normal;
         } @else if unit($tracking) == 'px' {
-            letter-spacing: strip-unit($tracking) / $font-size + em;
+            letter-spacing: mathDiv(strip-unit($tracking), $font-size) + em;
         } @else if unit($tracking) == 'em' {
             letter-spacing: $tracking;
         } @else {
-            letter-spacing: $tracking / $font-size + em;
+            letter-spacing: mathDiv($tracking, $font-size) + em;
         }
     }
 
@@ -43,7 +46,7 @@ $rem: 16;
         } @else if unit($leading) == 'em' {
             line-height: $leading;
         } @else {
-            line-height: $leading / $font-size + em;
+            line-height: mathDiv($leading, $font-size) + em;
         }
     }
 }

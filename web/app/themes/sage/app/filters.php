@@ -6,6 +6,8 @@
 
 namespace App;
 
+use App\Helper\BlockHelper;
+
 /**
  * Add "… Continued" to the excerpt.
  *
@@ -109,3 +111,35 @@ function loadGravityForms(array $field)
 
 // Duplicate this line, changing the name= to have it populate in another select field
 add_filter('acf/load_field/name=form', __NAMESPACE__ . '\\loadGravityForms');
+
+
+/**
+ * Adjusts Native Gutenberg Blocks markup
+ */
+add_filter('render_block', function ($block_content, $block) {
+    
+    if (($block['blockName'] ?? '') === 'core/image') {
+        $block_attrs = collect($block['attrs'])
+            ->put('caption', $block['innerHTML'] ?? '');
+        $image_id = $block_attrs->get('id', 0);
+
+        if ($image_id) {
+            return BlockHelper::defaultImageBlock(
+                $image_id,
+                $block_attrs,
+            );
+        }
+    }
+
+    if (($block['blockName'] ?? '') === 'core/quote') {
+        $quote_icon = asset('images/icons/quote.svg');
+
+        return sprintf(
+            "<div class='blockquote-block'><div class='row'><div class='blockquote-block__icon col-1'>%s</div><div class='blockquote-block__content col-11'>%s</div></div></div>",
+            $quote_icon->exists() ? $quote_icon->contents() : '',
+            $block_content
+        );
+    }
+
+    return $block_content;
+}, 10, 2);

@@ -24,7 +24,7 @@ class App extends Composer
     :array
     {
         return [
-            'site_url'   => static::siteUrl(),
+            'site_url'   => get_home_url(),
             'title'      => static::getTitle(),
         ];
     }
@@ -56,16 +56,5 @@ class App extends Composer
         }
 
         return get_the_title();
-    }
-
-    /**
-     * Returns the sites home url
-     *
-     * @return string|null
-     */
-    public function siteUrl()
-    :?string
-    {
-        return get_home_url();
     }
 }

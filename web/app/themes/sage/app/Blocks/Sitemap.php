@@ -98,18 +98,18 @@ class Sitemap extends Block
      * @var array
      */
     public $supports = [
-        'align' => true,
-        'align_text' => false,
+        'align'         => true,
+        'align_text'    => false,
         'align_content' => false,
-        'full_height' => false,
-        'anchor' => false,
-        'mode' => false,
-        'multiple' => true,
-        'jsx' => true,
-        'color' => [
+        'full_height'   => false,
+        'anchor'        => false,
+        'mode'          => false,
+        'multiple'      => true,
+        'jsx'           => true,
+        'color'         => [
             'background' => true,
-            'text' => true,
-            'gradient' => true,
+            'text'       => true,
+            'gradient'   => true,
         ],
     ];
 

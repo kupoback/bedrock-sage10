@@ -19,7 +19,6 @@ class Search extends Composer
      * @var array<string>
      */
     protected static $views = [
-        //
         'search'
     ];
 

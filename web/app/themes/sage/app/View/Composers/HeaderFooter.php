@@ -12,7 +12,6 @@ class HeaderFooter extends Composer
      * @var string[]
      */
     protected static $views = [
-        //
         'sections.header',
         'sections.footer',
     ];

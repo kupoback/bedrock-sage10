@@ -50,7 +50,6 @@ export default async (app) => {
          * Uncomment which you'd want to use
          * @type @sageAdmin This is basic styles/scripts for the wp-admin. Styles included for a nicer look for ACF
          * @type @sageReact This integrates React components to be compiled
-         * @type @sageVue   This integrated Vue 3 components to be compiled
          */
         .alias({
             "@sageCommon":      "@styles/common",
@@ -121,7 +120,7 @@ export default async (app) => {
                 'lodash-es',
                 'mitt',
                 'react',
-                'react-dom',
+                'react-dom/client',
                 'react-paginate',
                 'zustand'
             ]
@@ -137,10 +136,15 @@ export default async (app) => {
     app.setPublicPath("/app/themes/sage/public/")
 
     app.postcss
-        .getPlugins({
-            ['tailwindcss']: await app.module.resolve('tailwindcss'),
-            ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
-         });
+        .getPlugins(
+            // {
+            //     ['tailwindcss']: await app.module.resolve('tailwindcss'),
+            //     ['nesting']: await app.module.resolve('tailwindcss/nesting/index.js'),
+            // }
+        );
+
+    app.postcss
+        .setSourceMap(!appEnv.is('WP_ENV', 'production'));
 
     /**
      * This section is used to generate sourcemaps for
@@ -150,7 +154,7 @@ export default async (app) => {
      * and browser-sync
      */
     appEnv.isNotEmpty('WP_ENV') && app.when(
-        appEnv.is(`WP_ENV`, 'local'),
+        appEnv.is('WP_ENV', 'local'),
         app => {
             setDevTool(app)
                 .setUrl(appEnv.has('BUD_LOCALHOST')
@@ -165,7 +169,7 @@ export default async (app) => {
         app => minimizeFiles(app)
     )
         .when(
-            appEnv.is(`WP_ENV`, 'development'),
+            appEnv.is('WP_ENV', 'development'),
             app => setDevTool(app),
             app => minimizeFiles(app)
         );
@@ -226,7 +230,8 @@ export default async (app) => {
                 customFontSize: false,
             },
         })
-        .useTailwindColors()
-        .useTailwindFontFamily()
-        .useTailwindFontSize();
+        // .useTailwindColors()
+        // .useTailwindFontFamily()
+        // .useTailwindFontSize()
+    ;
 };

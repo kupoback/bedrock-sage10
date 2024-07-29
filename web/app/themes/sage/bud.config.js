@@ -182,13 +182,7 @@ export default async (app) => {
         .watch(
             [
                 "app/**/*",
-                "resources/admin_assets/**/*",
-                "resources/fonts/**/*",
-                "resources/images/**/*",
-                "resources/react/**/*",
-                "resources/scripts/**/*",
-                "resources/styles/**/*",
-                "resources/views/**/*",
+                "resources/**/*",
             ]
         );
 

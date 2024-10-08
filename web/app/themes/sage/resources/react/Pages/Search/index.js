@@ -1,7 +1,7 @@
 /**
  * React Scripts
  */
-import React from "react";
+import React, {StrictMode} from "react";
 import {createRoot} from "react-dom/client";
 
 /**
@@ -18,14 +18,17 @@ if (typeof SEARCH !== 'undefined') {
     const searchPaginationElm = document.getElementById('search-pagination');
     const searchFiltersElm = document.getElementById('search-filters');
 
-    searchElm && createRoot(searchElm).render(<Search/>);
+    searchElm && createRoot(searchElm)
+        .render(<StrictMode><Search/></StrictMode>);
 
-    searchPaginationElm && createRoot(searchPaginationElm).render(<PaginationContainer/>);
+    searchPaginationElm && createRoot(searchPaginationElm)
+        .render(<StrictMode><PaginationContainer/></StrictMode>);
 
-    searchInputElm && createRoot(searchInputElm).render(<SearchInput />)
+    searchInputElm && createRoot(searchInputElm)
+        .render(<StrictMode><SearchInput /></StrictMode>)
 
     if (searchFiltersElm) {
         // createRoot(searchFiltersElm)
-        //     .render(<BlogFilter/>);
+        //     .render(<StrictMode><BlogFilter/></StrictMode>);
     }
 }

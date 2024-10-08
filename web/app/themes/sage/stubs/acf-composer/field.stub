@@ -19,13 +19,13 @@ class DummyClass extends Field
     public function fields()
     :array
     {
-        $DummyCamel = Builder::make('DummySnake');
+        $fields = Builder::make('DummySnake');
 
-        $DummyCamel
+        $fields
             ->setLocation('post_type', '==', 'post');
 
         // Start using -> build methods here
 
-        return $DummyCamel->build();
+        return $fields->build();
     }
 }

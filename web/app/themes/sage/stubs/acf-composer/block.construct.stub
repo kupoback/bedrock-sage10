@@ -63,6 +63,10 @@ class DummyClass extends Block
 
     /**
      * Data to be passed to the block before rendering.
+     * This method uses the AcfNestedFields Class to return an array
+     * with ->getFields(), but can be replaced with ->setupFields()
+     * instead if you need to hook into the Collection to manipulate
+     * the data output of the array items, like Post Objects
      *
      * @return array
      */
@@ -83,11 +87,11 @@ class DummyClass extends Block
     public function fields()
     :array
     {
-        $DummyCamel = Builder::make('DummySnake');
+        $fields = Builder::make('DummySnake');
 
         // Start using -> build methods here
 
-        return $DummyCamel->build();
+        return $fields->build();
     }
 
     /**

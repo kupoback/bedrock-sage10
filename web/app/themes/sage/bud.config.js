@@ -5,7 +5,7 @@
  */
 const minimizeFiles = (app) => app.minimize;
 /**
- * Quick call to set up the devtools with common call backs
+ * Quick call to set up the devtools with common callbacks
  * @param {Object} app
  * @returns {*}
  */
@@ -117,12 +117,6 @@ export default async (app) => {
             'vendor',
             [
                 'axios',
-                'lodash-es',
-                'mitt',
-                'react',
-                'react-dom/client',
-                'react-paginate',
-                'zustand'
             ]
         )
 

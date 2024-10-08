@@ -1,7 +1,7 @@
 /**
  * React Plugins
  */
-import {create} from 'zustand'
+import {createWithEqualityFn} from 'zustand/traditional'
 import {devtools} from "zustand/middleware";
 
 /**
@@ -82,6 +82,6 @@ const state = (set, get) => (
     }
 )
 
-const postsStore = create(devtools(state, {trace: true}))
+const postsStore = createWithEqualityFn(devtools(state, {trace: true}))
 
 export default postsStore;

@@ -135,4 +135,24 @@ trait SageAdminTrait
 
         return wp_parse_args($ct_args, $default_args);
     }
+
+    /**
+     * Returns a list of all queryable post-types on the website
+     *
+     * @return array
+     */
+    protected function listPostTypes()
+    :array
+    {
+        $post_types = collect(get_post_types(['publicly_queryable' => true,]));
+
+        if ($post_types->isNotEmpty()) {
+            return $post_types
+                ->forget('attachment')
+                ->sort()
+                ->toArray();
+        }
+
+        return [];
+    }
 }

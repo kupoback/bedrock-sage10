@@ -167,11 +167,11 @@ class DummyClass extends Block
     public function fields()
     :array
     {
-        $DummyCamel = Builder::make('DummySnake');
+        $fields = Builder::make('DummySnake');
 
         // Start using -> build methods here
 
-        return $DummyCamel->build();
+        return $fields->build();
     }
 
     /**

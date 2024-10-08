@@ -176,17 +176,17 @@ class Sitemap extends Block
     public function fields()
     :array
     {
-        $sitemap = Builder::make('sitemap');
+        $fields = Builder::make('sitemap');
 
         // Start using -> build methods here
-        $sitemap
+        $fields
             ->addText('title')
                 ->setAttr('class', 'one-half')
 
             ->addSelect('post_types')
+                ->setAttr('class', 'one-half')
                 ->setConfig('multiple', true)
                 ->setConfig('allow_null', false)
-                ->setAttr('class', 'one-half')
                 ->setLabel(__('Post Type', 'sage'))
                 ->setDefaultValue('page')
 
@@ -220,7 +220,8 @@ class Sitemap extends Block
                 ->setLabel(__("Exclude the following pages", "sage"))
                 ->setInstructions(__("Use this field with a list of comma separated Post ID's to omit from the listing", 'sage'));
 
-        return $sitemap->build();
+
+        return $fields->build();
     }
 
     /**
@@ -254,15 +255,16 @@ class Sitemap extends Block
         $pages = collect(
             get_posts(
                 [
-                    'post_type' => $acf_values->get('post_types', []),
-                    'orderby' => $acf_values->get('orderby', 'title'),
-                    'order' => $acf_values->get('order', 'asc'),
-                    'exclude' => $exclude
+                    'post_type'      => $acf_values->get('post_types', []),
+                    'posts_per_page' => -1,
+                    'orderby'        => $acf_values->get('orderby', 'title'),
+                    'order'          => $acf_values->get('order', 'asc'),
+                    'exclude'        => $exclude
                         ->filter()
                         ->isNotEmpty()
                         ? apply_filters('wp_list_pages_excludes', $exclude->toArray())
-                        : []
-                ]
+                        : [],
+                ],
             )
         );
 

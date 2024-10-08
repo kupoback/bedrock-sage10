@@ -1,7 +1,7 @@
 /**
  * React Plugins
  */
-import {create} from 'zustand'
+import {createWithEqualityFn} from 'zustand/traditional'
 import {devtools} from "zustand/middleware";
 
 /**
@@ -66,6 +66,6 @@ const state = (set, get) => (
     }
 )
 
-const gMapsStore = create(devtools(state, {trace: true}))
+const gMapsStore = createWithEqualityFn(devtools(state, {trace: true}))
 
 export default gMapsStore;

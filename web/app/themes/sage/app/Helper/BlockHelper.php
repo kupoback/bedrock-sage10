@@ -18,6 +18,7 @@ class BlockHelper
     public static function defaultImageBlock(int $image_id, Collection $block_attrs)
     :string
     {
+        $image_class = collect();
         preg_match('/<figcaption class="wp-element-caption">(.*?)<\/figcaption>/s', $block_attrs->get('caption', ''), $match);
 
         $args = collect(
@@ -32,8 +33,16 @@ class BlockHelper
                 ->put('figure_class', 'wp-element-figure figure-image');
         }
 
+        if ($block_attrs->has('align')) {
+            $image_class->push("align" . $block_attrs->get('align'));
+        }
+
         if ($block_attrs->get('aspectRatio')) {
-            $args->put('image_class', "aspect-ratio-{$block_attrs->get('aspectRatio')}");
+            $image_class->push(" aspect-ratio-{$block_attrs->get('aspectRatio')}");
+        }
+
+        if ($image_class->isNotEmpty()) {
+            $args->put('image_class', $image_class->filter()->implode(' '));
         }
 
         return ImageHelper::imgSrcSet(
@@ -41,9 +50,25 @@ class BlockHelper
             $args->toArray(),
             [],
             [
-                'decoding' => 'async',
-                'fetchpriority' => 'high'
-            ]
+                'decoding'      => 'async',
+                'fetchpriority' => 'high',
+            ],
         );
+
+        /**
+         * Use the following if you want to have images be links
+         * and change the above return to the $image variable
+         */
+        //preg_match_all('/<a[^>]+href=([\'"])(?<href>.+?)\1[^>]*>/i', $block_html, $link);
+
+        // Wrap the image in a link if set
+        // if ($link['href'] ?? false) {
+        //     return sprintf(
+        //         '%s%s</a>',
+        //         $link[0][0] ?? '',
+        //         $image,
+        //     );
+        // }
+        // return $image;
     }
 }

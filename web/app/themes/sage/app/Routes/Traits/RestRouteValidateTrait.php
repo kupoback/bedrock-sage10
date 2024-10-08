@@ -43,6 +43,29 @@ trait RestRouteValidateTrait
     }
 
     /**
+     * Sanitizes the array values passed through Rest API
+     *
+     * @param $value
+     * @param $request
+     * @param $param
+     *
+     * @return array|WP_Error
+     */
+    public function sanitizeArray($value, $request, $param)
+    :array|WP_Error
+    {
+        if (!is_array($value)) {
+            return new WP_Error(
+                'rest_invalid_param',
+                esc_html__('Value must be an array.', 'sage-admin-text'),
+                ['status' => 400]
+            );
+        }
+
+        return array_map('sanitize_text_field', $value);
+    }
+
+    /**
      * A function to validate and return the int value of a string
      *
      * @param $value

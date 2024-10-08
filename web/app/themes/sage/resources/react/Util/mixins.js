@@ -7,8 +7,7 @@
 const addRemoveTerm = (arrayItems, term_id) =>
     arrayItems.includes(term_id)
         ? arrayItems.filter(term => term !== term_id)
-        : [...arrayItems, term_id];
-
+        : [...arrayItems, term_id]
 
 /**
  * Returns whether the object contains any key:values
@@ -59,6 +58,8 @@ const paginationClickHandler = (state, page, elmId) => {
     }
 }
 
+const hasImage = (obj) => typeof obj === 'object' && objectNotEmpty(obj)
+
 /**
  * Outputs the array of classes to a string
  *
@@ -69,6 +70,7 @@ const outputClassNames = (classes) => classes.filter(Boolean).join(" ");
 
 export {
     addRemoveTerm,
+    hasImage,
     objectNotEmpty,
     outputClassNames,
     paginationClickHandler,

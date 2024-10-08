@@ -64,9 +64,10 @@ function loadPostTypeChoices(array $field)
 {
 
     $field['choices'] = collect(get_post_types(['publicly_queryable' => true], 'objects'))
+        ->push((object) ['name' => 'page', 'label' => __('Pages', 'sage-admin-text')])
         ->forget('attachment')
         ->mapWithKeys(fn ($post_type) => [$post_type->name => $post_type->label])
-        ->sort()
+        ->sortKeys()
         ->toArray();
 
     return $field;
@@ -117,7 +118,7 @@ add_filter('acf/load_field/name=form', __NAMESPACE__ . '\\loadGravityForms');
  * Adjusts Native Gutenberg Blocks markup
  */
 add_filter('render_block', function ($block_content, $block) {
-    
+
     if (($block['blockName'] ?? '') === 'core/image') {
         $block_attrs = collect($block['attrs'])
             ->put('caption', $block['innerHTML'] ?? '');
@@ -143,3 +144,21 @@ add_filter('render_block', function ($block_content, $block) {
 
     return $block_content;
 }, 10, 2);
+
+/**
+ * Sets the priority for the SEO meta-box
+ */
+add_filter('wpseo_metabox_prio', fn (string $priority) => 'low');
+
+/**
+ * Adding WP Rest Endpoints to cache
+ */
+add_filter('wp_rest_cache/allowed_endpoints', function ($allowed_endpoints) {
+    $sage_endpoint = 'sage/v1';
+    if (!isset($allowed_endpoints[$sage_endpoint])) {
+        $allowed_endpoints[$sage_endpoint][] = 'search/';
+        $allowed_endpoints[$sage_endpoint][] = 'posts/';
+    };
+
+    return $allowed_endpoints;
+}, 10, 1);

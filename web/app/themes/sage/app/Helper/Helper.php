@@ -165,4 +165,19 @@ class Helper
             ->unique()
             ->implode(' ');
     }
+
+    /**
+     * Filters out any block content that is fully empty
+     *
+     * @param string $block Block content
+     *
+     * @return string
+     */
+    public static function filterBlockContent(string $block)
+    :string
+    {
+        $content = Str::replace('\n', '', trim($block));
+
+        return Str::replace('<p></p>', '', $content);
+    }
 }

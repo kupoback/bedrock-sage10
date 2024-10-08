@@ -15,7 +15,7 @@ trait SageDataFormatTrait
      * Formats the post for the frontend
      *
      * @param  object  $post   An array of posts
-     * @param  bool    $image  Whether to include the post image
+     * @param  bool    $image  Whether to include the post-image
      *
      */
     protected function setupPost(object $post, bool $image = false)
@@ -26,6 +26,14 @@ trait SageDataFormatTrait
         $return = collect(
             [
                 'ID'        => $post->ID,
+                'category'  => static::getPrimaryTerm(
+                    $post->ID,
+                    match ($post->post_type) {
+                        // Can add more maps here
+                        'post'  => 'category',
+                        default => '',
+                    },
+                ),
                 'excerpt'   => Helper::generateExcept($post),
                 'permalink' => get_the_permalink($post->ID),
                 'title'     => $post->post_title,
@@ -41,20 +49,6 @@ trait SageDataFormatTrait
         $date = Carbon::parse($post->post_date, "America/New_York");
 
         $return
-            /**
-             * Categories
-             */
-            ->put(
-                'category',
-                static::getPrimaryTerm(
-                    $post->ID,
-                    match ($post->post_type) {
-                        // Can add more maps here
-                        'post'  => 'category',
-                        default => '',
-                    },
-                )
-            )
             ->put('date', $date->format('c'))
             ->put('date_string', $date->format($date_format))
         ;

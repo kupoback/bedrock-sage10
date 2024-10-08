@@ -18,10 +18,10 @@ class DummyClass extends Partial
     public function fields()
     :Builder
     {
-        $DummyCamel = Builder::make('DummySnake');
+        $fields = Builder::make('DummySnake');
 
         // Start using -> build methods here
 
-        return $DummyCamel;
+        return $fields;
     }
 }

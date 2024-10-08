@@ -198,8 +198,7 @@ add_action('init', function () {
 /**
  * Adds the ACF Nav menu custom field to the selectable options
  */
-class_exists('ACF')
-&& add_action('acf/include_field_types', fn () => include_once 'Classes/AcfNavMenuField.php');
+class_exists('ACF') && add_action('acf/include_field_types', fn () => include_once 'Classes/AcfNavMenuField.php');
 
 /**
  * Manage Optimus License Key through .env

@@ -27,6 +27,7 @@ class ImageHelper
      *             property: The image property type, defaults to image
      *             role: The image role attribute
      *             size: The image return size, defaults to large
+     *             loading: Whether to add lazy load to the image
      * @param  array  $data_attrs  Pass an array of data attributes for use with JS
      * @param  array  $aria_attrs  Any aria attributes needed for the image
      *
@@ -65,6 +66,7 @@ class ImageHelper
         $img_alt   = $get_img_data->pull('alt', '');
         $image_type = $get_img_data->pull('img_type', '');
         $is_svg = ($image_type && Str::contains($image_type, 'svg'));
+        $img_loading  = $img_attrs->pull('loading', false);
 
         // Caption Data
         $fig_class   = $img_attrs->pull('figure_class', false);
@@ -125,7 +127,7 @@ class ImageHelper
 
         // Builds out the img HTML tag
         $image_build = sprintf(
-            '<img src="%1$s" role="%4$s"alt="%2$s" property="v:%3$s" %5$s %6$s content="%1$s" %7$s %8$s />',
+            '<img src="%1$s" role="%4$s"alt="%2$s" property="v:%3$s" %5$s %6$s content="%1$s" %7$s %8$s %9$s />',
             esc_url($source),
             $img_alt,
             $properties,
@@ -134,6 +136,7 @@ class ImageHelper
             $image_id ? "id=\"$image_id\"" : '',
             implode(' ', $da_return),
             implode(' ', $aa_return),
+            $img_loading ? "loading='$img_loading'" : "",
         );
 
         // Returns a wrapper with a figure tag and a figcaption tag

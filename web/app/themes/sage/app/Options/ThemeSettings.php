@@ -60,10 +60,11 @@ class ThemeSettings extends Field
 
     /**
      * Redirect to the first child page if one exists.
+     * Set to false if allowing for children Option pages
      *
      * @var boolean
      */
-    public $redirect = true;
+    public $redirect = false;
 
     /**
      * The post ID to save and load values from.

@@ -60,6 +60,7 @@ class DummyClass extends Field
 
     /**
      * Redirect to the first child page if one exists.
+     * Set to 'false' if allowing for children Option pages
      *
      * @var boolean
      */
@@ -111,10 +112,10 @@ class DummyClass extends Field
     public function fields()
     :array
     {
-        $DummyCamel = Builder::make('DummySnake');
+        $fields = Builder::make('DummySnake');
 
         // Start using -> build methods here
 
-        return $DummyCamel->build();
+        return $fields->build();
     }
 }

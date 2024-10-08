@@ -1,7 +1,7 @@
 /**
  * React Scripts
  */
-import React from "react";
+import React, {StrictMode} from "react";
 import {createRoot} from "react-dom/client";
 
 /**
@@ -18,16 +18,16 @@ if (typeof POSTS !== 'undefined') {
 
     if (postsListingElm) {
         createRoot(postsListingElm)
-            .render(<PostsListing/>);
+            .render(<StrictMode><PostsListing/></StrictMode>);
     }
 
     if (postsFiltersElm) {
         createRoot(postsFiltersElm)
-            .render(<PostsFilter/>);
+            .render(<StrictMode><PostsFilter/></StrictMode>);
     }
 
     if (postsPaginationElm) {
         createRoot(postsPaginationElm)
-            .render(<PaginationContainer />);
+            .render(<StrictMode><PaginationContainer /></StrictMode>);
     }
 }

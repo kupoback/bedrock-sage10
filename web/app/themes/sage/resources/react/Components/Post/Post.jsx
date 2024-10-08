@@ -1,7 +1,7 @@
 /**
  * Sage Scripts
  */
-import {outputClassNames} from "@reactUtil/mixins";
+import {hasImage, outputClassNames} from "@reactUtil/mixins";
 
 /**
  * React Component
@@ -50,7 +50,7 @@ function Post(
 				</time>
 			</div>
 
-			{(image && Object.keys(image).length !== 0) && (
+			{hasImage(image) && (
 				<div className="post__image">
 					<ImgSrcSet image={image}
                                classNames=""

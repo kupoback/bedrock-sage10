@@ -54,7 +54,7 @@ class Search
         /**
          * Blog Posts
          */
-        self::registerRoute(
+        static::registerRoute(
             'search',
             WP_REST_Server::READABLE,
             [$this, 'getSearch'],
@@ -106,7 +106,7 @@ class Search
                 $return_data = [
                     'fetchErr' => false,
                     'maxPages' => $query->max_num_pages,
-                    'posts'    => self::renderPosts($query->posts),
+                    'posts'    => static::renderPosts($query->posts),
                     'total'    => $query->found_posts,
                 ];
 

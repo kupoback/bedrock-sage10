@@ -68,7 +68,7 @@ class Helper
         $share_url     = urlencode($url);
         $twitter_title = $text_strings['twitter'] ?? get_bloginfo('name');
         $email_subject = $text_strings['email_subject'] ?? ($text_strings['title'] ?? '');
-        $email_body    = self::filterEmailBody($text_strings['email_body'] ?? '');
+        $email_body    = static::filterEmailBody($text_strings['email_body'] ?? '');
 
         return collect(
             [

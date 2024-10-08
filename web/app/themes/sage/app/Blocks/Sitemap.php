@@ -160,7 +160,7 @@ class Sitemap extends Block
     public function with()
     :array
     {
-        return self::buildSitemap(
+        return static::buildSitemap(
             (new AcfNestedFields($this->fieldNames))
                 ->setupFields()
         );

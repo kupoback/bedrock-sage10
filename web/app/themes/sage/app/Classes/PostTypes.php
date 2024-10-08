@@ -22,7 +22,7 @@ class PostTypes
     {
         $this->postTypes = [
             // Post Type Name => Post Type Registration Method
-            // 'events' => $this->eventsPostType(), //example
+            // 'events' => static::eventsPostType(), //example
         ];
 
         if (!empty($this->postTypes)) {
@@ -44,7 +44,7 @@ class PostTypes
     public function eventsPostType()
     :array
     {
-        return self::postTypeArray(
+        return static::postTypeArray(
             'Events',
             'dashicons-tickets-alt',
             __("This post type is used for managing the events on the site", "sage"),

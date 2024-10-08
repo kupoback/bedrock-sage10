@@ -21,7 +21,7 @@ class Taxonomies
     {
         $this->taxonomies = [
             // Taxonomy Name => Taxonomy Registration Method
-            // 'event_type' => $this->eventTypeTaxonomy(),
+            // 'event_type' => static::eventTypeTaxonomy(),
         ];
 
         if (!empty($this->taxonomies)) {
@@ -49,7 +49,7 @@ class Taxonomies
     {
         return [
             'post_type' => 'events', //array or string
-            'tax_args'  => self::taxonomyArray(
+            'tax_args'  => static::taxonomyArray(
                 'Event Type',
                 'event-type',
             ),

@@ -36,7 +36,7 @@ class ImageHelper
     public static function imgSrcSet(int $src_id, array $img_attrs = [], array $data_attrs = [], array $aria_attrs = [])
     :string
     {
-        $get_img_data = collect(self::imgSrcSetArr($src_id, $img_attrs));
+        $get_img_data = collect(static::imgSrcSetArr($src_id, $img_attrs));
         $img_attrs = collect($img_attrs);
 
         if ($get_img_data->isEmpty() && is_user_logged_in()) {
@@ -80,11 +80,11 @@ class ImageHelper
         );
 
         if ($data_attrs) {
-            $da_return = self::mapDataAttributes($data_attrs);
+            $da_return = static::mapDataAttributes($data_attrs);
         }
 
         if ($aria_attrs) {
-            $aa_return = self::mapAriaAttributes($aria_attrs);
+            $aa_return = static::mapAriaAttributes($aria_attrs);
         }
 
         /**
@@ -203,7 +203,7 @@ class ImageHelper
                 'src_set'       => $src_set,
                 'src_set_sizes' => $src_set_sizes,
                 'url'           => $img_src,
-                'webp'          => self::getWebp($src_set),
+                'webp'          => static::getWebp($src_set),
             ];
         }
 
@@ -245,7 +245,7 @@ class ImageHelper
             $img_data->put('type', "image/$image_type");
 
             // Handles the webp portion of the image
-            $webp_srcset = self::getWebp($img_data->get('srcset'));
+            $webp_srcset = static::getWebp($img_data->get('srcset'));
             if ($webp_srcset) {
                 $img_data->put('webpSrcset', $webp_srcset);
             }
@@ -269,7 +269,7 @@ class ImageHelper
     {
         // Creation of webp support
         return collect(explode(', ', $src_set))
-            ->map(fn ($srcset) => self::searchWebP(explode(' ', $srcset)))
+            ->map(fn ($srcset) => static::searchWebP(explode(' ', $srcset)))
             ->filter()
             ->implode(', ');
     }
@@ -289,7 +289,7 @@ class ImageHelper
             $item_size = $img_file[1] ?? '';
             $extension = substr($img_file[0], strrpos($img_file[0], '.'));
             $webp_image = match ($extension) {
-                '.jpg', '.png', '.jpeg', '.gif'  => self::matchWebpImage($extension, $img_file[0], $home_url, $item_size),
+                '.jpg', '.png', '.jpeg', '.gif'  => static::matchWebpImage($extension, $img_file[0], $home_url, $item_size),
                 default => '',
             };
         }

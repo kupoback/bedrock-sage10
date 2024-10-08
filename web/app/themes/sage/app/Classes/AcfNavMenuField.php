@@ -192,5 +192,3 @@ class AcfNavMenuField extends acf_field
         return $value;
     }
 }
-
-new AcfNavMenuField();

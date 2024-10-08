@@ -45,7 +45,7 @@ class SageNavRestAPI
         /**
          * Grabs the navigation items
          */
-        self::registerRoute(
+        static::registerRoute(
             'get-nav',
             WP_REST_Server::READABLE,
             [$this, 'navWOChildren'],
@@ -55,7 +55,7 @@ class SageNavRestAPI
         /**
          * Grabs the navigation items with children mapped
          */
-        self::registerRoute(
+        static::registerRoute(
             'get-nav-with-children',
             WP_REST_Server::READABLE,
             [$this, 'navWithChildren'],
@@ -85,7 +85,7 @@ class SageNavRestAPI
         if (!is_wp_error($get_menu) && !empty($get_menu)) {
             $return_menu = collect($get_menu)
                 ->map(fn ($the_item) => (int) $the_item->menu_item_parent === 0
-                    ? self::parseNavItem($the_item)
+                    ? static::parseNavItem($the_item)
                     : false)
                 ->filter()
                 ->values();
@@ -116,7 +116,7 @@ class SageNavRestAPI
 
         if (!is_wp_error($get_menu) && !empty($get_menu)) {
             $parse_items = collect($get_menu)
-                ->map(fn ($item) => self::parseNavItem($item))
+                ->map(fn ($item) => static::parseNavItem($item))
                 ->groupBy('parent');
 
             $return_menu = collect(collect($parse_items)->first())

@@ -249,9 +249,9 @@ class PostListing extends Block
      * @param  array  $block
      *
      * @return void
+     * @link https://developer.wordpress.org/block-editor/how-to-guides/enqueueing-assets-in-the-editor/#editor-content-scripts-and-styles
      */
-    public function assets(array $block)
-    :void
+    public function assets(array $block): void
     {
         if (($block['data'] ?? false) && !is_admin()) {
             $data = collect(AcfNestedFields::cleanData($block['data']));

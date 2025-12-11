@@ -33,7 +33,8 @@ class AcfNestedFields
     public function __construct(
         protected readonly array $data = [],
         public int|null|string   $postId = '',
-    ) {
+    )
+    {
         if (!$this->postId) {
             if (is_home()) {
                 $this->postId = get_option('page_for_posts');
@@ -49,8 +50,7 @@ class AcfNestedFields
      *
      * @return array
      */
-    public function getFields()
-    :array
+    public function getFields(): array
     {
         return static::setupFields()
                      ->all();
@@ -61,8 +61,7 @@ class AcfNestedFields
      *
      * @return Collection
      */
-    public function setupFields()
-    :Collection
+    public function setupFields(): Collection
     {
         return collect($this->data)
             ->mapWithKeys(fn ($value) => [$value => static::getField($value)])
@@ -74,8 +73,7 @@ class AcfNestedFields
      *
      * @return Collection
      */
-    public function convertGetFields()
-    :Collection
+    public function convertGetFields(): Collection
     {
         return collect($this->data)
             ->mapWithKeys(fn ($value, $key) => static::mapFluent($value, $key));
@@ -88,8 +86,7 @@ class AcfNestedFields
      *
      * @return array
      */
-    public static function cleanData(array $data)
-    :array
+    public static function cleanData(array $data): array
     {
         return collect($data)
             ->filter(fn ($data, $key) => !Str::startsWith($key, "_"))
@@ -98,13 +95,13 @@ class AcfNestedFields
 
     /**
      * Takes an array of data and groups them for ACF
+     *
      * @param  array   $data        The array of ACF data
      * @param  string  $key_filter  The group key name
      *
      * @return array
      */
-    public static function fixGroupKeys(array $data, string $key_filter)
-    :array
+    public static function fixGroupKeys(array $data, string $key_filter): array
     {
         return collect($data)
             ->filter(fn ($value, $key) => $key !== $key_filter)
@@ -120,8 +117,7 @@ class AcfNestedFields
      *
      * @return mixed
      */
-    private function getField(string $field)
-    :mixed
+    private function getField(string $field): mixed
     {
         if ($this->postId) {
             return get_field(Str::snake($field), $this->postId);
@@ -138,8 +134,7 @@ class AcfNestedFields
      *
      * @return array
      */
-    private function mapFluent(mixed $value, string $key)
-    :array
+    private function mapFluent(mixed $value, string $key): array
     {
         $value  = is_array($value)
             ? json_decode((new Fluent($value))->toJson())

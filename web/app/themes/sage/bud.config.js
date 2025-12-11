@@ -27,6 +27,18 @@ export default async (app) => {
      */
     const appEnv = app.env;
 
+    app.hooks.action('build.before', async (bud) => {
+        // Set custom Sass options
+        bud.build.items.sass.setOptions({
+            sassOptions: {
+                // Silience legacy API warning
+                // https://sass-lang.com/documentation/breaking-changes/legacy-js-api/
+                silenceDeprecations: ['legacy-js-api']
+            },
+            sourceMap: true,
+        });
+    });
+
     /**
      * Adds support for JSX to the path resolutions
      */

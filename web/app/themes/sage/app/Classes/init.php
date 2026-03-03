@@ -6,7 +6,9 @@ use App\Classes\PostTypes;
 use App\Classes\Shortcodes;
 use App\Classes\Taxonomies;
 
-new AcfNavMenuField();
+if (class_exists('ACF')) {
+    new AcfNavMenuField();
+}
 new PostTypes();
 new Shortcodes();
 new Taxonomies();

@@ -184,7 +184,7 @@ class ImageHelper
 
         if (!$src_alt) {
             $src_alt = get_post_meta($src_id, '_wp_attachment_image_alt', true)
-                ?: get_the_title($src_id);
+                ?: '';
         }
 
         if (is_array($src_alt)) {
@@ -231,7 +231,7 @@ class ImageHelper
 
         $img_data = collect(
             [
-                'alt'    => $post_meta_alt ? html_entity_decode($post_meta_alt) : html_entity_decode(get_the_title($post_thumbnail_id)),
+                'alt'    => $post_meta_alt ? html_entity_decode($post_meta_alt) : '',
                 'caption' => $include_caption ? wp_get_attachment_caption($post_thumbnail_id) : '',
                 'src'    => $source,
                 'srcset' => wp_get_attachment_image_srcset($post_thumbnail_id, $image_size),

@@ -24,7 +24,7 @@
         "@roots/bud-sass": "6.24.0",
         "@roots/bud-tailwindcss": "6.24.0",
         "@roots/sage": "6.24.0",
-        "axios": "^1.13",
+        "axios": "1.13.6",
         "lodash-es": "^4.17",
         "mitt": "^3.0",
         "react-paginate": "^8.1",

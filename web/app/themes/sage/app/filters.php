@@ -162,3 +162,18 @@ add_filter('wp_rest_cache/allowed_endpoints', function ($allowed_endpoints) {
 
     return $allowed_endpoints;
 }, 10, 1);
+
+/**
+ * Silences the load text domain and register route warnings from plugins
+ */
+add_filter('doing_it_wrong_trigger_error', function($status, $function_name) {
+    if ('_load_textdomain_just_in_time' === $function_name) {
+        return false;
+    }
+
+    if ('register_rest_route' === $function_name) {
+        return false;
+    }
+
+    return $status;
+}, 10, 2 );

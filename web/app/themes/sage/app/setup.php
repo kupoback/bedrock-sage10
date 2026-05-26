@@ -206,7 +206,7 @@ class_exists('ACF') && add_action('acf/include_field_types', fn () => include_on
 add_action('admin_init', function () {
     if (class_exists('Optimus_HQ')) {
         if (\Optimus_HQ::is_locked() && env('OPTIMUS_KEY')) {
-            update_site_option('optimus_key', env('OPTIMUS_KEY'));
+            update_option('optimus_key', env('OPTIMUS_KEY'));
         }
     }
 }, 100);

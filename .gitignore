@@ -130,6 +130,8 @@ web/app/uploads/*
 !web/app/uploads/.gitkeep
 web/app/wflogs
 !web/wp-config.php
+!web/app/themes/**/yarn.lock
+!web/app/themes/**/package-lock.json
 
 web/app/updraft
 !composer.lock

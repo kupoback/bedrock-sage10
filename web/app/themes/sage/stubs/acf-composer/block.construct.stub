@@ -96,6 +96,8 @@ class DummyClass extends Block
 
     /**
      * Assets to be enqueued when rendering the block.
+     * Field data can be found in $block['data'], but will
+     * include `_` field names too
      *
      * @param  array  $block
      *

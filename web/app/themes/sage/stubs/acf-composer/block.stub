@@ -67,7 +67,7 @@ class DummyClass extends Block
      * @example inline  Edit within editor
      * @example preview Edit in the sidebar
      */
-    public $mode = 'inline';
+    public $mode = 'preview';
 
     /**
      * The default block alignment.
@@ -176,6 +176,8 @@ class DummyClass extends Block
 
     /**
      * Assets to be enqueued when rendering the block.
+     * Field data can be found in $block['data'], but will
+     * include `_` field names too
      *
      * @param  array  $block
      *

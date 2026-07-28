@@ -86,12 +86,12 @@ trait SageAdminTrait
      * Creates an array return for registering a taxonomy
      *
      * @param string      $singular      The taxonomy singular name
-     * @param null|string $tax_slug      The taxonomy archive slug
+     * @param string $tax_slug      The taxonomy archive slug
      * @param bool        $hierarchical  Whether this mimics a category or a tag
      * @param array       $ct_args       Any other args to override minus the label. See method for array fields to override
      * @param bool        $enable_plural Whether to pluralize the title
      */
-    protected function taxonomyArray(string $singular, string $tax_slug = null, bool $hierarchical = true, array $ct_args = [], bool $enable_plural = true)
+    protected function taxonomyArray(string $singular, string $tax_slug = '', bool $hierarchical = true, array $ct_args = [], bool $enable_plural = true)
     :array
     {
         $single_lower = strtolower($singular);
@@ -126,7 +126,7 @@ trait SageAdminTrait
             "show_in_nav_menus" => false,
             "show_tagcloud"     => false,
             "rewrite"           => [
-                "slug"         => $tax_slug,
+                "slug"         => $tax_slug || null,
                 "with_front"   => false,
                 "hierarchical" => false,
             ],

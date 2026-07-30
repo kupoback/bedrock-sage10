@@ -284,12 +284,13 @@ class ImageHelper
     protected static function searchWebP(array $img_file)
     :string
     {
-        $home_url = class_exists('SitePress') ? wpml_get_home_url_filter() : get_home_url();
+        // Uncomment if using WPML and place in the static::matchWebpImage 3rd param
+        // $home_url = class_exists('SitePress') ? wpml_get_home_url_filter() : get_home_url();
         if (!empty($img_file) && $img_file[0]) {
             $item_size = $img_file[1] ?? '';
             $extension = substr($img_file[0], strrpos($img_file[0], '.'));
             $webp_image = match ($extension) {
-                '.jpg', '.png', '.jpeg', '.gif'  => static::matchWebpImage($extension, $img_file[0], $home_url, $item_size),
+                '.jpg', '.png', '.jpeg', '.gif'  => static::matchWebpImage($extension, $img_file[0], get_home_url(), $item_size),
                 default => '',
             };
         }

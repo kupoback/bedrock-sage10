@@ -11,7 +11,8 @@ class BlockHelper
      * Generates to the ::imgSrcSet for the core/image native Gutenberg block
      *
      * @param  int         $image_id    The image ID
-     * @param  Collection  $block_attrs The blocks attribute
+     * @param  Collection{align?:String, aspectRatio?:String, caption?:String, sizeSlug?:String}
+     *                     $block_attrs  The blocks attribute
      *
      * @return string
      */

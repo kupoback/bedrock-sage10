@@ -76,7 +76,7 @@ trait SageAdminTrait
             "exclude_from_search" => false,
             "publicly_queryable"  => true,
             "capability_type"     => $type,
-            "show_in_rest"        => false,
+            "show_in_rest"        => true, // Set to false if you want to disable Gutenberg Editor in $pt_args
         ];
 
         return wp_parse_args($pt_args, $default_pt_args);

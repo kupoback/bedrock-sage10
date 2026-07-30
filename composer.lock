@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "948462f640fad7cdb6d97da85b4aeeae",
+    "content-hash": "3b30a22dd5d4506e2fda4890b3ebc031",
     "packages": [
         {
             "name": "clique-bedrock/advanced-custom-fields-pro",
@@ -1154,15 +1154,15 @@
         },
         {
             "name": "wpackagist-plugin/mainwp-child",
-            "version": "6.1.4",
+            "version": "6.1.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mainwp-child/",
-                "reference": "tags/6.1.4"
+                "reference": "tags/6.1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mainwp-child.6.1.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/mainwp-child.6.1.5.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

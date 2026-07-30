@@ -11,7 +11,7 @@ import {shallow} from "zustand/shallow";
 import Button from "@reactComponent/Button";
 
 function SearchInput() {
-    const {resetSearch, searchLabel, searchPlaceholder, searchSubmit} = SEARCH;
+    const {resetSearch, label, placeholder, submit} = SEARCH;
     const {fetch, reset, searchText} = searchStore(state => state, shallow)
 
     /**
@@ -36,12 +36,12 @@ function SearchInput() {
         <div className="search__input">
             <fieldset>
                 <label htmlFor="search-input-field">
-                    {searchLabel}
+                    {label}
                 </label>
                 <input type="text"
                        id="search-input-field"
-                       placeholder={searchPlaceholder}
-                       aria-placeholder={searchPlaceholder}
+                       placeholder={placeholder}
+                       aria-placeholder={placeholder}
                        value={searchValue}
                        aria-valuetext={searchValue}
                        onChange={({target}) => searchStore.setState(() => ({searchText: target.value}))}
@@ -51,7 +51,7 @@ function SearchInput() {
                 btnClass="search__input-submit btn"
                 btnType="submit"
                 clickHandler={submitSearch}
-                content={<span className="">{searchSubmit}</span>}/>
+                content={<span className="">{submit}</span>}/>
             {/*<Button
                 btnClass="search__input-button btn"
                 btnType="button"

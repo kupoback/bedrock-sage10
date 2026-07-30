@@ -29,13 +29,13 @@ add_action('wp_enqueue_scripts', function () {
                     // Add any other fields to pass to localized args
                         [
                             'resetSearch',
-                            'searchLabel',
-                            'searchPlaceholder',
-                            'searchSubmit',
-                            'searchNoResults',
-                            'searchPostLabels',
+                            'label',
+                            'placeholder',
+                            'submit',
+                            'noResults',
+                            'postLabels',
                         ],
-                        'sage_theme',
+                        'sage_search_options',
                     ))
                         ->getFields(),
                 )

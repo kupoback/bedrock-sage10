@@ -206,14 +206,19 @@ export default async (app) => {
      */
     app.wpjson
         .setSettings({
+            appearanceTools: true,
             color: {
-                custom: false,
-                customDuotone: false,
-                customGradient: false,
+                custom: false, // Set true if you want to have a custom palette
+                customDuotone: false, // Set true if you want a custom duotone
+                customGradient: false, // Set true if you want gradient options
                 defaultDuotone: false,
                 defaultGradients: false,
                 defaultPalette: false,
+                text: true,
+                link: true,
                 duotone: [],
+                // Multi-level array with "color", "name", and "slug" as the options for custom colors
+                // palette: [],
             },
             custom: {
                 spacing: {},
@@ -221,6 +226,10 @@ export default async (app) => {
                     'font-size': {},
                     'line-height': {},
                 },
+            },
+            layout: {
+                contentSize: "1280px", // Can change for a maximum layout in the editor
+                wideSize: "1280px", // Can change for a maximum layout in the editor
             },
             spacing: {
                 padding: true,
@@ -233,5 +242,6 @@ export default async (app) => {
         // .useTailwindColors()
         // .useTailwindFontFamily()
         // .useTailwindFontSize()
+        .enable()
     ;
 };

@@ -19,6 +19,7 @@ trait SageTrait
     {
         return get_field($field, 'sage_theme');
     }
+
     /**
      * Filters the keys to allow them to be back to
      * normal for their variable data on the frontend

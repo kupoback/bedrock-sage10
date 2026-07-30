@@ -1,6 +1,6 @@
 <?php
 
-use function Roots\bootloader;
+use Roots\Acorn\Application;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ require $composer;
 |
 */
 
-if (! function_exists('\Roots\bootloader')) {
+if (! class_exists('\Roots\Acorn\Application')) {
     wp_die(
         __('You need to install Acorn to use this theme.', 'sage'),
         '',
@@ -41,7 +41,8 @@ if (! function_exists('\Roots\bootloader')) {
     );
 }
 
-bootloader()->boot();
+Application::configure()
+           ->boot();
 
 /*
 |--------------------------------------------------------------------------

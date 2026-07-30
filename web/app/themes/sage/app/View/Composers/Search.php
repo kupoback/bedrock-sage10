@@ -30,12 +30,9 @@ class Search extends Composer
     public function with()
     :array
     {
-        return static::fixKeyNames(
-            static::setupSearch(),
-            'search'
-        )->toArray();
+        return static::setupSearch()
+                     ->toArray();
     }
-
 
     /**
      * Sets up the search fields
@@ -47,10 +44,10 @@ class Search extends Composer
     {
         return (new AcfNestedFields(
             [
-                'search_title',
-                'search_results'
+                'title',
+                'results'
             ],
-            'sage_theme'
+            'sage_search_options'
         ))
             ->setupFields()
             ->filter();

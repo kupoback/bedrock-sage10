@@ -125,7 +125,7 @@ trait SageDataFormatTrait
     {
         $yoast_term = '';
         if (function_exists('yoast_get_primary_term')) {
-            $yoast_term =  yoast_get_primary_term($taxonomy, $post);
+            $yoast_term =  \yoast_get_primary_term($taxonomy, $post);
         }
 
         return $yoast_term ?: collect(

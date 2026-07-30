@@ -15,7 +15,9 @@ use function Roots\bundle;
  */
 add_action('wp_enqueue_scripts', function () {
     // bundle('sageReact')->enqueue();
-    bundle('app')->enqueue();
+    bundle('app')
+        ->when(!is_admin())
+        ->enqueue();
 }, 100);
 
 /**
@@ -196,11 +198,6 @@ add_action('init', function () {
 });
 
 /**
- * Adds the ACF Nav menu custom field to the selectable options
- */
-class_exists('ACF') && add_action('acf/include_field_types', fn () => include_once 'Classes/AcfNavMenuField.php');
-
-/**
  * Manage Optimus License Key through .env
  */
 add_action('admin_init', function () {
@@ -288,3 +285,50 @@ add_action('sage_favicons', function () {
             ->implode(''),
     );
 });
+
+
+/**
+ * Handles the GTM, OST and Facebook code for the head and body
+ */
+if (!in_array(env('WP_ENV'), ['local', 'development'])) {
+    /**
+     * Sets the site to English mode to pull these tags in
+     */
+    $gtm_id        = get_field('gtm_id', 'sage_theme');
+    $facebook_code = get_field('facebook_domain_code', 'sage_theme');
+
+    /**
+     * Hooks into the wp_head to add the GTM script tag, and the Facebook Domain verification tag
+     */
+    add_action('sage_gtm', function () use ($facebook_code, $gtm_id) {
+        if ($gtm_id) {
+            printf(
+                "<!-- Google Tag Manager -->
+            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','%s');</script>
+            <!-- End Google Tag Manager -->",
+                $gtm_id
+            );
+
+
+            /**
+             * Creates a custom action for adding the GTM noscript at the top of the <body> tags in index.php
+             */
+            add_action('sage_body_gtm', function () use ($gtm_id) {
+                printf(
+                    '<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%s" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->',
+                    $gtm_id
+                );
+            });
+        }
+
+        /**
+         * Adds the Facebook Pixel code to the header
+         */
+        if ($facebook_code) {
+            printf(
+                "<!-- Facebook Domain Verification Code --><meta name='facebook-domain-verification' content='%s'><!-- End Facebook Domain Verification Code -->",
+                $facebook_code
+            );
+        }
+    });
+}

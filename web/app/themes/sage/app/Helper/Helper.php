@@ -180,4 +180,22 @@ class Helper
 
         return Str::replace('<p></p>', '', $content);
     }
+
+    /**
+     * Camel cases the array's keys
+     *
+     * @param  array|null  $array Array of key and value pairs
+     *
+     * @return array|null
+     */
+    public static function camelKeys(array|null $array): array|null
+    {
+        if (!is_array($array)) {
+            return null;
+        }
+
+        return collect($array)
+            ->mapWithKeys(fn ($value, $key) => [Str::camel($key) => $value])
+            ->toArray();
+    }
 }

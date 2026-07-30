@@ -120,7 +120,16 @@ class ThemeSettings extends Field
         $themeSettings
             ->addTab('logos')
                 ->addImage('header_logo')
-                ->addImage('footer_logo');
+                    ->setLabel(__("Header Logo", "sage-admin-text"))
+                ->addImage('footer_logo')
+                    ->setLabel(__("Footer Logo", "sage-admin-text"))
+                ->addText('gtm_id')
+                    ->setAttr('class', 'one-half')
+                    ->setLabel(__("GTM Site ID", "sage-admin-text"))
+                ->addText('facebook_domain_code')
+                    ->setAttr('class', 'one-half')
+                    ->setLabel(__("Facebook Domain Code", "sage-admin-text"));
+        ;
         //endregion
 
         //region Header
@@ -147,44 +156,6 @@ class ThemeSettings extends Field
                 ->setLabel(__("Footer Setup", "sage-acf"))
             ->addText('footer_copyright')
                 ->setLabel(__("Copyright Text", "sage-acf"));
-        //endregion
-
-        //region Search
-        $themeSettings
-            ->addTab('search')
-                ->addText('search_title')
-                    ->setAttr('class', 'one-half')
-                ->addText('search_results')
-                    ->setAttr('class', 'one-half')
-                ->addText('search_label')
-                    ->setAttr('class', 'one-half')
-                ->addText('search_placeholder')
-                    ->setAttr('class', 'one-half')
-                ->addText('search_submit')
-                    ->setAttr('class', 'one-half')
-                    ->setDefaultValue("Submit")
-                ->addText('reset_search')
-                    ->setAttr('class', 'one-half')
-                    ->setDefaultValue("Reset")
-                ->addWysiwyg('search_no_results')
-                    ->setAttr('class', 'full')
-                ->addGroup('search_post_labels')
-                    ->addText('read_more')
-                        ->setAttr('class', 'one-half')
-                        ->setDefaultValue(__('Read More', 'sage'))
-                ->endGroup();
-        //endregion
-
-        //region 404
-        $themeSettings
-            ->addTab('error_404')
-                ->addText('error_title')
-                    ->setDefaultValue("Error 404")
-                    ->setLabel(__("Error 404 Title", "sage-acf"))
-                ->addWysiwyg('error_content')
-                    ->setLabel(__("Error 404 Content", "sage-acf"))
-                ->addImage('error_image')
-                    ->setLabel(__("Error 404 Image", "sage-acf"));
         //endregion
 
         return $themeSettings->build();

@@ -13,8 +13,8 @@ import Post from "@reactComponent/Post";
 import NoResults from "@reactComponent/NoResults";
 
 const Posts = () => {
-    const {searchNoResults, searchPostLabels} = SEARCH;
-    const {read_more} = searchPostLabels;
+    const {noResults, postLabels} = SEARCH;
+    const {read_more} = postLabels;
     const {loading, posts, total} = searchStore(state => state, shallow)
 
     /**
@@ -37,7 +37,7 @@ const Posts = () => {
             />)
     }
 
-    return <NoResults noResultsText={searchNoResults} />
+    return <NoResults noResultsText={noResults} />
 }
 
 export default Posts;

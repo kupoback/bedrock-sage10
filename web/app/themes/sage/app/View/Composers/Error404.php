@@ -13,7 +13,6 @@ class Error404 extends Composer
      * @var string[]
      */
     protected static $views = [
-        'partials.page-header',
         '404',
     ];
 
@@ -25,13 +24,7 @@ class Error404 extends Composer
     public function override()
     :array
     {
-        $data = static::optionsData();
-
-        return [
-            'title' => $data['error_title'],
-            'image' => $data['error_image'],
-            'content' => $data['error_content']
-        ];
+        return static::optionsData();
     }
 
     /**
@@ -44,11 +37,11 @@ class Error404 extends Composer
     {
         return (new AcfNestedFields(
             [
-                'error_title',
-                'error_content',
-                'error_image',
+                'title',
+                'content',
+                'image',
             ],
-            'sage_theme'
+            'sage_404_options'
         ))
             ->getFields();
     }

@@ -52,67 +52,83 @@ add_filter(
         ->toArray()
 );
 
+//region AFC Filters
 /**
- * Function that will load all post types for any select field needed
- *
- * @param array $field The field array for select
- *
- * @return array
+ * Adds the ACF Nav menu custom field to the selectable options
  */
-function loadPostTypeChoices(array $field)
-:array
-{
+if (class_exists('ACF')) {
+    /**
+     * Function that will load all post types for any select field needed
+     *
+     * @param  array  $field  The field array for select
+     *
+     * @return array
+     */
+    function loadPostTypeChoices(array $field): array
+    {
+        $field['choices'] = collect(get_post_types(['publicly_queryable' => true], 'objects'))
+            ->push((object) ['name' => 'page', 'label' => __('Pages', 'sage-admin-text')])
+            ->forget('attachment')
+            ->mapWithKeys(fn ($post_type) => [$post_type->name => $post_type->label])
+            ->sortKeys()
+            ->toArray();
 
-    $field['choices'] = collect(get_post_types(['publicly_queryable' => true], 'objects'))
-        ->push((object) ['name' => 'page', 'label' => __('Pages', 'sage-admin-text')])
-        ->forget('attachment')
-        ->mapWithKeys(fn ($post_type) => [$post_type->name => $post_type->label])
-        ->sortKeys()
-        ->toArray();
-
-    return $field;
-}
-
-// Can duplicate this line, changing the name to whatever is needed
-add_filter('acf/load_field/name=post_types', __NAMESPACE__ . '\\loadPostTypeChoices');
-
-/**
- * Generates the Select Field with Gravity Form Options
- *
- * @param  array  $field Array data of the ACF Field
- *
- * @return array
- */
-function loadGravityForms(array $field)
-:array
-{
-    if (class_exists('GFFormsModel')) {
-        $choices = collect(
-            [
-                'none' => __('None', 'sage-admin-text'),
-            ]
-        );
-
-        $forms = \GFFormsModel::get_forms();
-
-        if (!empty($forms)) {
-            collect($forms)
-                ->each(function ($form) use (&$choices) {
-                    if ($form->id ?? false) {
-                        $choices[$form->id] = $form->title;
-                    }
-                });
-        }
-
-        $field['choices'] = $choices->toArray();
+        return $field;
     }
 
-    return $field;
+    // Can duplicate this line, changing the name to whatever is needed
+    add_filter('acf/load_field/name=post_types', __NAMESPACE__ . '\\loadPostTypeChoices');
+
+    function loadNavMenus($field): array
+    {
+        $menus = wp_get_nav_menus();
+        if (!empty($menus)) {
+            foreach ($menus as $menu) {
+                $field['choices'][$menu->slug] = $menu->name;
+            }
+        }
+        return $field;
+    };
+
+    // Duplicate this line, changing the name= to have it populate in another select field
+    add_filter('acf/load_field/name=nav_menu', __NAMESPACE__ . '\\loadNavMenus');
+
+    /**
+     * Generates the Select Field with Gravity Form Options
+     *
+     * @param  array  $field  Array data of the ACF Field
+     *
+     * @return array
+     */
+    function loadGravityForms(array $field): array
+    {
+        if (class_exists('GFFormsModel')) {
+            $choices = collect(
+                [
+                    'none' => __('None', 'sage-admin-text'),
+                ]
+            );
+
+            $forms = \GFFormsModel::get_forms();
+
+            if (!empty($forms)) {
+                collect($forms)
+                    ->each(function ($form) use (&$choices) {
+                        if ($form->id ?? false) {
+                            $choices[$form->id] = $form->title;
+                        }
+                    });
+            }
+
+            $field['choices'] = $choices->toArray();
+        }
+
+        return $field;
+    }
+
+    // Duplicate this line, changing the name= to have it populate in another select field
+    add_filter('acf/load_field/name=form', __NAMESPACE__ . '\\loadGravityForms');
 }
-
-// Duplicate this line, changing the name= to have it populate in another select field
-add_filter('acf/load_field/name=form', __NAMESPACE__ . '\\loadGravityForms');
-
 
 /**
  * Adjusts Native Gutenberg Blocks markup
@@ -176,4 +192,4 @@ add_filter('doing_it_wrong_trigger_error', function($status, $function_name) {
     }
 
     return $status;
-}, 10, 2 );
+}, 999, 2);
